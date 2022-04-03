@@ -339,7 +339,7 @@
               <MiscControls>--cpp</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\stm32\stm32f407\periph_library\inc;.\CMSIS\inc;.\code\inc;..\mother board v2;..\..\mpu9250;.\code\src\Write_Robot_Code\FunctionalClass;.\code\src\Write_Robot_Code\Obstacle;.\code\src\Write_Robot_Code\Robot;.\code\src\Write_Robot_Code\RobotParametrs;.\code\src\Write_Robot_Code\StructObject;.\code\src\Write_Robot_Code\VecField;.\code\src\Write_Robot_Code\VectorToMove</IncludePath>
+              <IncludePath>..\..\Libraries\stm32f407\periph_library\inc;.\CMSIS\inc;.\code\inc;..\Mother board;..\..\Libraries\mpu9250\inc;.\code\src\Write_Robot_Code\FunctionalClass;.\code\src\Write_Robot_Code\Obstacle;.\code\src\Write_Robot_Code\Robot;.\code\src\Write_Robot_Code\RobotParametrs;.\code\src\Write_Robot_Code\StructObject;.\code\src\Write_Robot_Code\VecField;.\code\src\Write_Robot_Code\VectorToMove;..\..\Libraries\SSD1306\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -421,42 +421,42 @@
             <File>
               <FileName>stm32f407_pin.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\..\stm32\stm32f407\periph_library\src\stm32f407_pin.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f407_SPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\stm32\stm32f407\periph_library\src\stm32f407_SPI.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f407_SSD1306.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\stm32\stm32f407\periph_library\src\stm32f407_SSD1306.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f407_sysFunc.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\stm32\stm32f407\periph_library\src\stm32f407_sysFunc.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f407_UART.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\stm32\stm32f407\periph_library\src\stm32f407_UART.cpp</FilePath>
+              <FilePath>..\..\Libraries\stm32f407\periph_library\src\stm32f407_pin.cpp</FilePath>
             </File>
             <File>
               <FileName>stm32f407_adc.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\..\stm32\stm32f407\periph_library\src\stm32f407_adc.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>mpu9250.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\..\mpu9250\mpu9250.cpp</FilePath>
+              <FilePath>..\..\Libraries\stm32f407\periph_library\src\stm32f407_adc.cpp</FilePath>
             </File>
             <File>
               <FileName>stm32f407_PWM.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\..\stm32\stm32f407\periph_library\src\stm32f407_PWM.cpp</FilePath>
+              <FilePath>..\..\Libraries\stm32f407\periph_library\src\stm32f407_PWM.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f407_SPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Libraries\stm32f407\periph_library\src\stm32f407_SPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f407_sysFunc.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Libraries\stm32f407\periph_library\src\stm32f407_sysFunc.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f407_UART.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Libraries\stm32f407\periph_library\src\stm32f407_UART.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SSD1306.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Libraries\SSD1306\src\SSD1306.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>mpu9250.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\Libraries\mpu9250\src\mpu9250.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -472,5 +472,14 @@
     <components/>
     <files/>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>Mother board</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>

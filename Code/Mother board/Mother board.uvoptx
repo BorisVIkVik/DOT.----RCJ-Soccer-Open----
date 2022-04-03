@@ -152,22 +152,6 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>49</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>.\code\src\main.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
           <LineNumber>22</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>134225428</Address>
@@ -177,12 +161,12 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\..\stm32\stm32f407\periph_library\src\stm32f407_SPI.cpp</Filename>
+          <Filename>C:\Projects\RoboCup2022\Dropbox\software\2022\DOT.----RCJ-Soccer-Open----\stm32\stm32f407\periph_library\src\stm32f407_SPI.cpp</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\mother_board_v2\../../stm32/stm32f407/periph_library/src/stm32f407_SPI.cpp\22</Expression>
         </Bp>
         <Bp>
-          <Number>2</Number>
+          <Number>1</Number>
           <Type>0</Type>
           <LineNumber>80</LineNumber>
           <EnabledFlag>1</EnabledFlag>
@@ -453,7 +437,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\stm32\stm32f407\periph_library\src\stm32f407_pin.cpp</PathWithFileName>
+      <PathWithFileName>..\..\Libraries\stm32f407\periph_library\src\stm32f407_pin.cpp</PathWithFileName>
       <FilenameWithoutPath>stm32f407_pin.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -465,8 +449,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\stm32\stm32f407\periph_library\src\stm32f407_SPI.cpp</PathWithFileName>
-      <FilenameWithoutPath>stm32f407_SPI.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\..\Libraries\stm32f407\periph_library\src\stm32f407_adc.cpp</PathWithFileName>
+      <FilenameWithoutPath>stm32f407_adc.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -477,8 +461,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\stm32\stm32f407\periph_library\src\stm32f407_SSD1306.cpp</PathWithFileName>
-      <FilenameWithoutPath>stm32f407_SSD1306.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\..\Libraries\stm32f407\periph_library\src\stm32f407_PWM.cpp</PathWithFileName>
+      <FilenameWithoutPath>stm32f407_PWM.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -489,8 +473,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\stm32\stm32f407\periph_library\src\stm32f407_sysFunc.cpp</PathWithFileName>
-      <FilenameWithoutPath>stm32f407_sysFunc.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\..\Libraries\stm32f407\periph_library\src\stm32f407_SPI.cpp</PathWithFileName>
+      <FilenameWithoutPath>stm32f407_SPI.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -501,8 +485,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\stm32\stm32f407\periph_library\src\stm32f407_UART.cpp</PathWithFileName>
-      <FilenameWithoutPath>stm32f407_UART.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\..\Libraries\stm32f407\periph_library\src\stm32f407_sysFunc.cpp</PathWithFileName>
+      <FilenameWithoutPath>stm32f407_sysFunc.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -513,8 +497,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\stm32\stm32f407\periph_library\src\stm32f407_adc.cpp</PathWithFileName>
-      <FilenameWithoutPath>stm32f407_adc.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\..\Libraries\stm32f407\periph_library\src\stm32f407_UART.cpp</PathWithFileName>
+      <FilenameWithoutPath>stm32f407_UART.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -525,8 +509,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\mpu9250\mpu9250.cpp</PathWithFileName>
-      <FilenameWithoutPath>mpu9250.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\..\Libraries\SSD1306\src\SSD1306.cpp</PathWithFileName>
+      <FilenameWithoutPath>SSD1306.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -537,8 +521,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\stm32\stm32f407\periph_library\src\stm32f407_PWM.cpp</PathWithFileName>
-      <FilenameWithoutPath>stm32f407_PWM.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\..\Libraries\mpu9250\src\mpu9250.cpp</PathWithFileName>
+      <FilenameWithoutPath>mpu9250.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
