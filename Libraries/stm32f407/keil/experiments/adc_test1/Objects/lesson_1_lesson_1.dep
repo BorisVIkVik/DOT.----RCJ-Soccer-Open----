@@ -1,0 +1,24 @@
+Dependencies for Project 'lesson_1', Target 'lesson_1': (DO NOT MODIFY !)
+F (.\Startup\startup_stm32f40xx.s)(0x582097A2)(--cpu Cortex-M4.fp --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_lesson_1-IC:\Users\Roma\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 524" --pd "STM32F407xx SETA 1"--list .\listings\startup_stm32f40xx.lst --xref -o .\objects\startup_stm32f40xx.o --depend .\objects\startup_stm32f40xx.d)
+F (.\CMSIS\src\system_stm32f4xx.c)(0x58244C28)(--c99 -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections -I .\CMSIS\inc -I .\Code\inc -I ..\lesson_1 -I ..\..\..\periph_library\inc --cpp-I.\RTE\_lesson_1-IC:\Users\Roma\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F407xx-o .\objects\system_stm32f4xx.o --omf_browse .\objects\system_stm32f4xx.crf --depend .\objects\system_stm32f4xx.d)
+I (.\CMSIS\inc\stm32f4xx.h)(0x5E2AE8A6)
+I (.\CMSIS\inc\core_cm4.h)(0x581CC64E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588BC994)
+I (.\CMSIS\inc\core_cmInstr.h)(0x581CC64E)
+I (.\CMSIS\inc\core_cmFunc.h)(0x581CC64E)
+I (.\CMSIS\inc\core_cmSimd.h)(0x581CC64E)
+I (.\CMSIS\inc\system_stm32f4xx.h)(0x582097AC)
+F (.\Code\src\main.cpp)(0x5E2B2114)(--cpp -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections -I .\CMSIS\inc -I .\Code\inc -I ..\lesson_1 -I ..\..\..\periph_library\inc --cpp-I.\RTE\_lesson_1-IC:\Users\Roma\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F407xx-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (.\Code\inc\main.h)(0x5E2B1BA9)
+I (.\CMSIS\inc\stm32f4xx.h)(0x5E2AE8A6)
+I (.\CMSIS\inc\core_cm4.h)(0x581CC64E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588BC994)
+I (.\CMSIS\inc\core_cmInstr.h)(0x581CC64E)
+I (.\CMSIS\inc\core_cmFunc.h)(0x581CC64E)
+I (.\CMSIS\inc\core_cmSimd.h)(0x581CC64E)
+I (.\CMSIS\inc\system_stm32f4xx.h)(0x582097AC)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588BC994)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BC994)
+I (..\..\..\periph_library\inc\stm32f407_sysFunc.h)(0x5D669676)
+I (..\..\..\periph_library\inc\stm32f407_pin.h)(0x5D67D568)
+I (..\..\..\periph_library\inc\stm32f407_UART.h)(0x5D6696B4)

@@ -1,0 +1,43 @@
+Dependencies for Project 'uart test', Target 'uart test': (DO NOT MODIFY !)
+F (.\code\src\main.cpp)(0x5D5E3D87)(--cpp -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I "..\uart test" -I .\CMSIS\inc -I .\code\inc -I "..\..\..\periph library\inc" --cpp-I.\RTE\_uart_test-ID:\Program\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Program\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (.\code\inc\main.h)(0x5D5E3D87)
+I (.\CMSIS\inc\stm32f10x.h)(0x5D5E3D87)
+I (.\CMSIS\inc\core_cm3.h)(0x5D5E3D87)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588BC994)
+I (.\CMSIS\inc\system_stm32f10x.h)(0x5D5E3D87)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588BC994)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\math.h)(0x588BC994)
+I (..\..\..\periph library\inc\stm32f103_sysFunc.h)(0x5D5E3D87)
+I (..\..\..\periph library\inc\stm32f103_pin.h)(0x5D5E3D87)
+I (..\..\..\periph library\inc\stm32f103_UART.h)(0x5D5E3D87)
+F (..\..\..\periph library\src\stm32f103_pin.cpp)(0x5D5E3D87)(--cpp -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I "..\uart test" -I .\CMSIS\inc -I .\code\inc -I "..\..\..\periph library\inc" --cpp-I.\RTE\_uart_test-ID:\Program\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Program\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD-o .\objects\stm32f103_pin.o --omf_browse .\objects\stm32f103_pin.crf --depend .\objects\stm32f103_pin.d)
+I (..\..\..\periph library\inc\stm32f103_pin.h)(0x5D5E3D87)
+I (.\CMSIS\inc\stm32f10x.h)(0x5D5E3D87)
+I (.\CMSIS\inc\core_cm3.h)(0x5D5E3D87)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588BC994)
+I (.\CMSIS\inc\system_stm32f10x.h)(0x5D5E3D87)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588BC994)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\math.h)(0x588BC994)
+F (..\..\..\periph library\src\stm32f103_sysFunc.cpp)(0x5D5E3D87)(--cpp -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I "..\uart test" -I .\CMSIS\inc -I .\code\inc -I "..\..\..\periph library\inc" --cpp-I.\RTE\_uart_test-ID:\Program\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Program\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD-o .\objects\stm32f103_sysfunc.o --omf_browse .\objects\stm32f103_sysfunc.crf --depend .\objects\stm32f103_sysfunc.d)
+I (..\..\..\periph library\inc\stm32f103_sysFunc.h)(0x5D5E3D87)
+I (.\CMSIS\inc\stm32f10x.h)(0x5D5E3D87)
+I (.\CMSIS\inc\core_cm3.h)(0x5D5E3D87)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588BC994)
+I (.\CMSIS\inc\system_stm32f10x.h)(0x5D5E3D87)
+F (..\..\..\periph library\src\stm32f103_UART.cpp)(0x5D5E3D87)(--cpp -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I "..\uart test" -I .\CMSIS\inc -I .\code\inc -I "..\..\..\periph library\inc" --cpp-I.\RTE\_uart_test-ID:\Program\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Program\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD-o .\objects\stm32f103_uart.o --omf_browse .\objects\stm32f103_uart.crf --depend .\objects\stm32f103_uart.d)
+I (..\..\..\periph library\inc\stm32f103_UART.h)(0x5D5E3D87)
+I (.\CMSIS\inc\stm32f10x.h)(0x5D5E3D87)
+I (.\CMSIS\inc\core_cm3.h)(0x5D5E3D87)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588BC994)
+I (.\CMSIS\inc\system_stm32f10x.h)(0x5D5E3D87)
+I (..\..\..\periph library\inc\stm32f103_pin.h)(0x5D5E3D87)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588BC994)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\math.h)(0x588BC994)
+F (.\CMSIS\src\core_cm3.c)(0x5D5E3D87)(--c99 -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I "..\uart test" -I .\CMSIS\inc -I .\code\inc -I "..\..\..\periph library\inc" --cpp-I.\RTE\_uart_test-ID:\Program\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Program\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD-o .\objects\core_cm3.o --omf_browse .\objects\core_cm3.crf --depend .\objects\core_cm3.d)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588BC994)
+F (.\CMSIS\src\system_stm32f10x.c)(0x5D5E3D87)(--c99 -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections -I "..\uart test" -I .\CMSIS\inc -I .\code\inc -I "..\..\..\periph library\inc" --cpp-I.\RTE\_uart_test-ID:\Program\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Program\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD-o .\objects\system_stm32f10x.o --omf_browse .\objects\system_stm32f10x.crf --depend .\objects\system_stm32f10x.d)
+I (.\CMSIS\inc\stm32f10x.h)(0x5D5E3D87)
+I (.\CMSIS\inc\core_cm3.h)(0x5D5E3D87)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588BC994)
+I (.\CMSIS\inc\system_stm32f10x.h)(0x5D5E3D87)
+F (.\startup\startup_stm32f10x_md.s)(0x5D5E3D87)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_uart_test-ID:\Program\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Program\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 524" --pd "STM32F10X_MD SETA 1"--list .\listings\startup_stm32f10x_md.lst --xref -o .\objects\startup_stm32f10x_md.o --depend .\objects\startup_stm32f10x_md.d)

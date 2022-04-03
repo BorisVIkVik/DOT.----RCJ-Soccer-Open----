@@ -1,0 +1,78 @@
+Dependencies for Project 'pin_test', Target 'pin test': (DO NOT MODIFY !)
+CompilerVersion: 5060960::V5.06 update 7 (build 960)::ARMCC
+F (.\CMSIS\src\system_stm32f4xx.c)(0x58244C28)(--c99 -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ..\..\..\periph_library\inc -I .\CMSIS\inc -I .\code\inc -I ..\pin_test --cpp-ID:\Program\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Program\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="533" -DSTM32F407xx-o .\objects\system_stm32f4xx.o --omf_browse .\objects\system_stm32f4xx.crf --depend .\objects\system_stm32f4xx.d)
+I (.\CMSIS\inc\stm32f4xx.h)(0x5E31EE9D)
+I (.\CMSIS\inc\core_cm4.h)(0x581CC64E)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E7502)
+I (.\CMSIS\inc\core_cmInstr.h)(0x581CC64E)
+I (.\CMSIS\inc\core_cmFunc.h)(0x581CC64E)
+I (.\CMSIS\inc\core_cmSimd.h)(0x581CC64E)
+I (.\CMSIS\inc\system_stm32f4xx.h)(0x582097AC)
+F (.\code\src\main.cpp)(0x603A7B95)(--cpp -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ..\..\..\periph_library\inc -I .\CMSIS\inc -I .\code\inc -I ..\pin_test --cpp-ID:\Program\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Program\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="533" -DSTM32F407xx-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (.\code\inc\main.h)(0x5E41BEA7)
+I (.\CMSIS\inc\stm32f4xx.h)(0x5E31EE9D)
+I (.\CMSIS\inc\core_cm4.h)(0x581CC64E)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E7502)
+I (.\CMSIS\inc\core_cmInstr.h)(0x581CC64E)
+I (.\CMSIS\inc\core_cmFunc.h)(0x581CC64E)
+I (.\CMSIS\inc\core_cmSimd.h)(0x581CC64E)
+I (.\CMSIS\inc\system_stm32f4xx.h)(0x582097AC)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5E8E7502)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E7502)
+I (..\..\..\periph_library\inc\stm32f407_sysFunc.h)(0x5D669676)
+I (..\..\..\periph_library\inc\stm32f407_pin.h)(0x5E48EEBC)
+I (..\..\..\periph_library\inc\stm32f407_UART.h)(0x5FF3A10B)
+I (..\..\..\periph_library\inc\stm32f407_pinList.h)(0x60368F24)
+I (..\..\..\periph_library\inc\stm32f407_wrappers.h)(0x5F21638A)
+I (..\..\..\periph_library\inc\stm32f407_adc.h)(0x5E47579A)
+F (.\startup\startup_stm32f40xx.s)(0x582097A2)(--cpu Cortex-M4.fp.sp -g --apcs=interwork -ID:\Program\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Program\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 533" --pd "STM32F407xx SETA 1"--list .\listings\startup_stm32f40xx.lst --xref -o .\objects\startup_stm32f40xx.o --depend .\objects\startup_stm32f40xx.d)
+F (..\..\..\periph_library\src\stm32f407_pin.cpp)(0x5ED2978A)(--cpp -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ..\..\..\periph_library\inc -I .\CMSIS\inc -I .\code\inc -I ..\pin_test --cpp-ID:\Program\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Program\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="533" -DSTM32F407xx-o .\objects\stm32f407_pin.o --omf_browse .\objects\stm32f407_pin.crf --depend .\objects\stm32f407_pin.d)
+I (..\..\..\periph_library\inc\stm32f407_pin.h)(0x5E48EEBC)
+I (.\CMSIS\inc\stm32f4xx.h)(0x5E31EE9D)
+I (.\CMSIS\inc\core_cm4.h)(0x581CC64E)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E7502)
+I (.\CMSIS\inc\core_cmInstr.h)(0x581CC64E)
+I (.\CMSIS\inc\core_cmFunc.h)(0x581CC64E)
+I (.\CMSIS\inc\core_cmSimd.h)(0x581CC64E)
+I (.\CMSIS\inc\system_stm32f4xx.h)(0x582097AC)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5E8E7502)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E7502)
+F (..\..\..\periph_library\src\stm32f407_sysFunc.cpp)(0x6000C937)(--cpp -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ..\..\..\periph_library\inc -I .\CMSIS\inc -I .\code\inc -I ..\pin_test --cpp-ID:\Program\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Program\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="533" -DSTM32F407xx-o .\objects\stm32f407_sysfunc.o --omf_browse .\objects\stm32f407_sysfunc.crf --depend .\objects\stm32f407_sysfunc.d)
+I (..\..\..\periph_library\inc\stm32f407_sysFunc.h)(0x5D669676)
+I (.\CMSIS\inc\stm32f4xx.h)(0x5E31EE9D)
+I (.\CMSIS\inc\core_cm4.h)(0x581CC64E)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E7502)
+I (.\CMSIS\inc\core_cmInstr.h)(0x581CC64E)
+I (.\CMSIS\inc\core_cmFunc.h)(0x581CC64E)
+I (.\CMSIS\inc\core_cmSimd.h)(0x581CC64E)
+I (.\CMSIS\inc\system_stm32f4xx.h)(0x582097AC)
+I (..\..\..\periph_library\inc\stm32f407_pin.h)(0x5E48EEBC)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5E8E7502)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E7502)
+F (..\..\..\periph_library\src\stm32f407_UART.cpp)(0x60439718)(--cpp -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ..\..\..\periph_library\inc -I .\CMSIS\inc -I .\code\inc -I ..\pin_test --cpp-ID:\Program\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Program\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="533" -DSTM32F407xx-o .\objects\stm32f407_uart.o --omf_browse .\objects\stm32f407_uart.crf --depend .\objects\stm32f407_uart.d)
+I (..\..\..\periph_library\inc\stm32f407_UART.h)(0x5FF3A10B)
+I (.\CMSIS\inc\stm32f4xx.h)(0x5E31EE9D)
+I (.\CMSIS\inc\core_cm4.h)(0x581CC64E)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E7502)
+I (.\CMSIS\inc\core_cmInstr.h)(0x581CC64E)
+I (.\CMSIS\inc\core_cmFunc.h)(0x581CC64E)
+I (.\CMSIS\inc\core_cmSimd.h)(0x581CC64E)
+I (.\CMSIS\inc\system_stm32f4xx.h)(0x582097AC)
+I (..\..\..\periph_library\inc\stm32f407_pin.h)(0x5E48EEBC)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5E8E7502)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E7502)
+F (..\..\..\periph_library\src\stm32f407_adc.cpp)(0x5FFF0202)(--cpp -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ..\..\..\periph_library\inc -I .\CMSIS\inc -I .\code\inc -I ..\pin_test --cpp-ID:\Program\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\Program\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="533" -DSTM32F407xx-o .\objects\stm32f407_adc.o --omf_browse .\objects\stm32f407_adc.crf --depend .\objects\stm32f407_adc.d)
+I (..\..\..\periph_library\inc\stm32f407_adc.h)(0x5E47579A)
+I (.\CMSIS\inc\stm32f4xx.h)(0x5E31EE9D)
+I (.\CMSIS\inc\core_cm4.h)(0x581CC64E)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E7502)
+I (.\CMSIS\inc\core_cmInstr.h)(0x581CC64E)
+I (.\CMSIS\inc\core_cmFunc.h)(0x581CC64E)
+I (.\CMSIS\inc\core_cmSimd.h)(0x581CC64E)
+I (.\CMSIS\inc\system_stm32f4xx.h)(0x582097AC)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5E8E7502)
+I (D:\Program\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E7502)
+I (..\..\..\periph_library\inc\stm32f407_wrappers.h)(0x5F21638A)
+I (..\..\..\periph_library\inc\stm32f407_pin.h)(0x5E48EEBC)
+I (..\..\..\periph_library\inc\stm32f407_UART.h)(0x5FF3A10B)
+I (..\..\..\periph_library\inc\stm32f407_pinList.h)(0x60368F24)
