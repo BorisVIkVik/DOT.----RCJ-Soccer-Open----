@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #include "stm32f407_SPI.h"
-#include "stm32f407_SSD1306.h"
+#include "SSD1306.h"
 
 
 // the memory buffer for the LCD

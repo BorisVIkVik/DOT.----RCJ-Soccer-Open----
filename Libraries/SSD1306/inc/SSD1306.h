@@ -1,5 +1,5 @@
-#ifndef STM32F407_SSD1306
-#define STM32F407_SSD1306
+#ifndef SSD1306
+#define SSD1306
 
 #include "stm32f407_sysFunc.h"
 #include "stm32f407_SPI.h"
