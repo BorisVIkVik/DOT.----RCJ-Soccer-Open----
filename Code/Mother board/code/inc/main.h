@@ -13,9 +13,9 @@
 #include "stm32f407_wrappers.h"
 #include "stm32f407_adc.h"
 #include "stm32f407_SPI.h"
-#include "stm32f407_SSD1306.h"
 #include "stm32f407_PWM.h"
 
+#include "SSD1306.h"
 #include "mpu9250_registers.h"
 #include "mpu9250.h"
 

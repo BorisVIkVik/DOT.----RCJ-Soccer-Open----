@@ -382,7 +382,7 @@
       <GroupNumber>2</GroupNumber>
       <FileNumber>2</FileNumber>
       <FileType>8</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>.\code\src\main.cpp</PathWithFileName>
@@ -397,7 +397,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\code\src\Write_Robot_Code\FunctionalClass\FunctionalClass.cpp</PathWithFileName>
+      <PathWithFileName>.\code\src\libs\FunctionalClass\FunctionalClass.cpp</PathWithFileName>
       <FilenameWithoutPath>FunctionalClass.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>

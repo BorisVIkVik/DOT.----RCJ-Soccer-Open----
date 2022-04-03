@@ -10,7 +10,7 @@
       <TargetName>Mother board</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
+      <pCCUsed>5060960::V5.06 update 7 (build 960)::ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -339,7 +339,7 @@
               <MiscControls>--cpp</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\Libraries\stm32f407\periph_library\inc;.\CMSIS\inc;.\code\inc;..\Mother board;..\..\Libraries\mpu9250\inc;.\code\src\Write_Robot_Code\FunctionalClass;.\code\src\Write_Robot_Code\Obstacle;.\code\src\Write_Robot_Code\Robot;.\code\src\Write_Robot_Code\RobotParametrs;.\code\src\Write_Robot_Code\StructObject;.\code\src\Write_Robot_Code\VecField;.\code\src\Write_Robot_Code\VectorToMove;..\..\Libraries\SSD1306\inc</IncludePath>
+              <IncludePath>..\..\Libraries\stm32f407\periph_library\inc;.\CMSIS\inc;.\code\inc;..\Mother board;..\..\Libraries\mpu9250\inc;.\code\src\libs\FunctionalClass;.\code\src\libs\Obstacle;.\code\src\libs\Robot;.\code\src\libs\RobotParametrs;.\code\src\libs\StructObject;.\code\src\libs\VecField;.\code\src\libs\VectorToMove;..\..\Libraries\SSD1306\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -401,7 +401,7 @@
             <File>
               <FileName>FunctionalClass.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\code\src\Write_Robot_Code\FunctionalClass\FunctionalClass.cpp</FilePath>
+              <FilePath>.\code\src\libs\FunctionalClass\FunctionalClass.cpp</FilePath>
             </File>
           </Files>
         </Group>
