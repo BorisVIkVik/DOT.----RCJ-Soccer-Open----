@@ -1,145 +1,0 @@
-Dependencies for Project 'mother board v2', Target 'mother board v2': (DO NOT MODIFY !)
-CompilerVersion: 5060960::V5.06 update 7 (build 960)::ARMCC
-F (.\CMSIS\src\system_stm32f4xx.c)(0x604392DC)(-c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ..\..\stm32\stm32f407\periph_library\inc -I .\CMSIS\inc -I .\code\inc -I "..\mother board v2" -I ..\..\mpu9250 --cpp-IC:\Users\Roma\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="533" -DSTM32F407xx-o .\objects\system_stm32f4xx.o --omf_browse .\objects\system_stm32f4xx.crf --depend .\objects\system_stm32f4xx.d)
-I (.\CMSIS\inc\stm32f4xx.h)(0x5E31EE9D)
-I (.\CMSIS\inc\core_cm4.h)(0x581CC64E)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E7502)
-I (.\CMSIS\inc\core_cmInstr.h)(0x581CC64E)
-I (.\CMSIS\inc\core_cmFunc.h)(0x581CC64E)
-I (.\CMSIS\inc\core_cmSimd.h)(0x581CC64E)
-I (.\CMSIS\inc\system_stm32f4xx.h)(0x582097AC)
-F (.\code\src\main.cpp)(0x6065E74C)(--cpp -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ..\..\stm32\stm32f407\periph_library\inc -I .\CMSIS\inc -I .\code\inc -I "..\mother board v2" -I ..\..\mpu9250 --cpp-IC:\Users\Roma\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="533" -DSTM32F407xx-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
-I (.\code\inc\main.h)(0x60520D9A)
-I (.\CMSIS\inc\stm32f4xx.h)(0x5E31EE9D)
-I (.\CMSIS\inc\core_cm4.h)(0x581CC64E)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E7502)
-I (.\CMSIS\inc\core_cmInstr.h)(0x581CC64E)
-I (.\CMSIS\inc\core_cmFunc.h)(0x581CC64E)
-I (.\CMSIS\inc\core_cmSimd.h)(0x581CC64E)
-I (.\CMSIS\inc\system_stm32f4xx.h)(0x582097AC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5E8E7502)
-I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E7502)
-I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5E8E7502)
-I (.\code\inc\connectionList.h)(0x6065C46C)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_sysFunc.h)(0x5D669676)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_pin.h)(0x5E48EEBC)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_UART.h)(0x5ED6CAA5)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_pinList.h)(0x60368F24)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_wrappers.h)(0x5F21638A)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_adc.h)(0x5E47579A)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_SPI.h)(0x6050AF5E)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_SSD1306.h)(0x6050B03F)
-I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5E8E7502)
-I (..\..\mpu9250\mpu9250_registers.h)(0x5FF1FB3B)
-I (..\..\mpu9250\mpu9250.h)(0x60414A06)
-I (..\..\stm32\stm32f407\periph_library\inc\font.h)(0x60520BCC)
-I (.\code\inc\tools.h)(0x6058A613)
-I (C:\Keil_v5\ARM\ARMCC\include\typeinfo)(0x5E8E7502)
-I (C:\Keil_v5\ARM\ARMCC\include\exception)(0x5E8E7502)
-I (.\code\inc\pwm.h)(0x60648ECF)
-I (.\code\inc\drivers.h)(0x6065BDD2)
-I (.\code\inc\functional.h)(0x6065E50E)
-I (.\code\inc\callbacks.h)(0x6065E616)
-F (.\startup\startup_stm32f40xx.s)(0x582097A2)(--cpu Cortex-M4.fp.sp -g --apcs=interwork -IC:\Users\Roma\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 533" --pd "STM32F407xx SETA 1"--list .\listings\startup_stm32f40xx.lst --xref -o .\objects\startup_stm32f40xx.o --depend .\objects\startup_stm32f40xx.d)
-F (..\..\stm32\stm32f407\periph_library\src\stm32f407_pin.cpp)(0x5ED2978A)(--cpp -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ..\..\stm32\stm32f407\periph_library\inc -I .\CMSIS\inc -I .\code\inc -I "..\mother board v2" -I ..\..\mpu9250 --cpp-IC:\Users\Roma\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="533" -DSTM32F407xx-o .\objects\stm32f407_pin.o --omf_browse .\objects\stm32f407_pin.crf --depend .\objects\stm32f407_pin.d)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_pin.h)(0x5E48EEBC)
-I (.\CMSIS\inc\stm32f4xx.h)(0x5E31EE9D)
-I (.\CMSIS\inc\core_cm4.h)(0x581CC64E)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E7502)
-I (.\CMSIS\inc\core_cmInstr.h)(0x581CC64E)
-I (.\CMSIS\inc\core_cmFunc.h)(0x581CC64E)
-I (.\CMSIS\inc\core_cmSimd.h)(0x581CC64E)
-I (.\CMSIS\inc\system_stm32f4xx.h)(0x582097AC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5E8E7502)
-I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E7502)
-F (..\..\stm32\stm32f407\periph_library\src\stm32f407_SPI.cpp)(0x6065E556)(--cpp -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ..\..\stm32\stm32f407\periph_library\inc -I .\CMSIS\inc -I .\code\inc -I "..\mother board v2" -I ..\..\mpu9250 --cpp-IC:\Users\Roma\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="533" -DSTM32F407xx-o .\objects\stm32f407_spi.o --omf_browse .\objects\stm32f407_spi.crf --depend .\objects\stm32f407_spi.d)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_SPI.h)(0x6050AF5E)
-I (.\CMSIS\inc\stm32f4xx.h)(0x5E31EE9D)
-I (.\CMSIS\inc\core_cm4.h)(0x581CC64E)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E7502)
-I (.\CMSIS\inc\core_cmInstr.h)(0x581CC64E)
-I (.\CMSIS\inc\core_cmFunc.h)(0x581CC64E)
-I (.\CMSIS\inc\core_cmSimd.h)(0x581CC64E)
-I (.\CMSIS\inc\system_stm32f4xx.h)(0x582097AC)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_pin.h)(0x5E48EEBC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5E8E7502)
-I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E7502)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_pinList.h)(0x60368F24)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_wrappers.h)(0x5F21638A)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_UART.h)(0x5ED6CAA5)
-F (..\..\stm32\stm32f407\periph_library\src\stm32f407_SSD1306.cpp)(0x6050B08F)(--cpp -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ..\..\stm32\stm32f407\periph_library\inc -I .\CMSIS\inc -I .\code\inc -I "..\mother board v2" -I ..\..\mpu9250 --cpp-IC:\Users\Roma\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="533" -DSTM32F407xx-o .\objects\stm32f407_ssd1306.o --omf_browse .\objects\stm32f407_ssd1306.crf --depend .\objects\stm32f407_ssd1306.d)
-I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5E8E7502)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_SPI.h)(0x6050AF5E)
-I (.\CMSIS\inc\stm32f4xx.h)(0x5E31EE9D)
-I (.\CMSIS\inc\core_cm4.h)(0x581CC64E)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E7502)
-I (.\CMSIS\inc\core_cmInstr.h)(0x581CC64E)
-I (.\CMSIS\inc\core_cmFunc.h)(0x581CC64E)
-I (.\CMSIS\inc\core_cmSimd.h)(0x581CC64E)
-I (.\CMSIS\inc\system_stm32f4xx.h)(0x582097AC)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_pin.h)(0x5E48EEBC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5E8E7502)
-I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E7502)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_pinList.h)(0x60368F24)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_wrappers.h)(0x5F21638A)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_UART.h)(0x5ED6CAA5)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_SSD1306.h)(0x6050B03F)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_sysFunc.h)(0x5D669676)
-I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5E8E7502)
-F (..\..\stm32\stm32f407\periph_library\src\stm32f407_sysFunc.cpp)(0x6000C937)(--cpp -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ..\..\stm32\stm32f407\periph_library\inc -I .\CMSIS\inc -I .\code\inc -I "..\mother board v2" -I ..\..\mpu9250 --cpp-IC:\Users\Roma\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="533" -DSTM32F407xx-o .\objects\stm32f407_sysfunc.o --omf_browse .\objects\stm32f407_sysfunc.crf --depend .\objects\stm32f407_sysfunc.d)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_sysFunc.h)(0x5D669676)
-I (.\CMSIS\inc\stm32f4xx.h)(0x5E31EE9D)
-I (.\CMSIS\inc\core_cm4.h)(0x581CC64E)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E7502)
-I (.\CMSIS\inc\core_cmInstr.h)(0x581CC64E)
-I (.\CMSIS\inc\core_cmFunc.h)(0x581CC64E)
-I (.\CMSIS\inc\core_cmSimd.h)(0x581CC64E)
-I (.\CMSIS\inc\system_stm32f4xx.h)(0x582097AC)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_pin.h)(0x5E48EEBC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5E8E7502)
-I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E7502)
-F (..\..\stm32\stm32f407\periph_library\src\stm32f407_UART.cpp)(0x60439718)(--cpp -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ..\..\stm32\stm32f407\periph_library\inc -I .\CMSIS\inc -I .\code\inc -I "..\mother board v2" -I ..\..\mpu9250 --cpp-IC:\Users\Roma\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="533" -DSTM32F407xx-o .\objects\stm32f407_uart.o --omf_browse .\objects\stm32f407_uart.crf --depend .\objects\stm32f407_uart.d)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_UART.h)(0x5ED6CAA5)
-I (.\CMSIS\inc\stm32f4xx.h)(0x5E31EE9D)
-I (.\CMSIS\inc\core_cm4.h)(0x581CC64E)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E7502)
-I (.\CMSIS\inc\core_cmInstr.h)(0x581CC64E)
-I (.\CMSIS\inc\core_cmFunc.h)(0x581CC64E)
-I (.\CMSIS\inc\core_cmSimd.h)(0x581CC64E)
-I (.\CMSIS\inc\system_stm32f4xx.h)(0x582097AC)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_pin.h)(0x5E48EEBC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5E8E7502)
-I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E7502)
-F (..\..\stm32\stm32f407\periph_library\src\stm32f407_adc.cpp)(0x5FFF0202)(--cpp -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ..\..\stm32\stm32f407\periph_library\inc -I .\CMSIS\inc -I .\code\inc -I "..\mother board v2" -I ..\..\mpu9250 --cpp-IC:\Users\Roma\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="533" -DSTM32F407xx-o .\objects\stm32f407_adc.o --omf_browse .\objects\stm32f407_adc.crf --depend .\objects\stm32f407_adc.d)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_adc.h)(0x5E47579A)
-I (.\CMSIS\inc\stm32f4xx.h)(0x5E31EE9D)
-I (.\CMSIS\inc\core_cm4.h)(0x581CC64E)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E7502)
-I (.\CMSIS\inc\core_cmInstr.h)(0x581CC64E)
-I (.\CMSIS\inc\core_cmFunc.h)(0x581CC64E)
-I (.\CMSIS\inc\core_cmSimd.h)(0x581CC64E)
-I (.\CMSIS\inc\system_stm32f4xx.h)(0x582097AC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5E8E7502)
-I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E7502)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_wrappers.h)(0x5F21638A)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_pin.h)(0x5E48EEBC)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_UART.h)(0x5ED6CAA5)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_pinList.h)(0x60368F24)
-F (..\..\mpu9250\mpu9250.cpp)(0x6043768B)(--cpp -c --cpu Cortex-M4.fp.sp -g -O0 --apcs=interwork --split_sections -I ..\..\stm32\stm32f407\periph_library\inc -I .\CMSIS\inc -I .\code\inc -I "..\mother board v2" -I ..\..\mpu9250 --cpp-IC:\Users\Roma\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="533" -DSTM32F407xx-o .\objects\mpu9250.o --omf_browse .\objects\mpu9250.crf --depend .\objects\mpu9250.d)
-I (..\..\mpu9250\mpu9250.h)(0x60414A06)
-I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5E8E7502)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_sysFunc.h)(0x5D669676)
-I (.\CMSIS\inc\stm32f4xx.h)(0x5E31EE9D)
-I (.\CMSIS\inc\core_cm4.h)(0x581CC64E)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E7502)
-I (.\CMSIS\inc\core_cmInstr.h)(0x581CC64E)
-I (.\CMSIS\inc\core_cmFunc.h)(0x581CC64E)
-I (.\CMSIS\inc\core_cmSimd.h)(0x581CC64E)
-I (.\CMSIS\inc\system_stm32f4xx.h)(0x582097AC)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_pin.h)(0x5E48EEBC)
-I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5E8E7502)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_pinList.h)(0x60368F24)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_wrappers.h)(0x5F21638A)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_UART.h)(0x5ED6CAA5)
-I (..\..\stm32\stm32f407\periph_library\inc\stm32f407_SPI.h)(0x6050AF5E)
-I (..\..\mpu9250\mpu9250_registers.h)(0x5FF1FB3B)
