@@ -3,8 +3,6 @@
 
 #include "stm32f407_pin.h"
 #include "stm32f407_UART.h"
-//#include "connectionList.h"
-
 
 
 #define ERROR(msg) writeStrUART(DEBUG_UART, msg);writeStrUART(DEBUG_UART, "\r\n")

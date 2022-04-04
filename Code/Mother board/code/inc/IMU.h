@@ -21,6 +21,7 @@ class IMU
 		void setZeroAngle();
 		void calibrate(uint32_t t);
 		unsigned int update();
+		void updateAnglesFromFIFO();
 		double getAngle();
 		double imuFloatValue, angleChange;
 		long long int imuFloatTime;
@@ -29,7 +30,7 @@ class IMU
 		mpu9250 mpuSensor;
 		unsigned int spi;
 		uint16_t en, ss;
-		double angle, zeroAngle;
+		volatile double angle, zeroAngle;
 		bool working;
 };
 
@@ -79,10 +80,16 @@ unsigned int IMU::update()
 {
 	if(!working) return IMU_POWER_OFF;
 	
-	mpuSensor.updateAnglesFromFIFO();
+	updateAnglesFromFIFO();
 	angle = mpuSensor.yaw;	
 	adduction(angle);
 	return 0;
+}
+
+
+void IMU::updateAnglesFromFIFO()
+{
+	mpuSensor.updateAnglesFromFIFO();
 }
 
 

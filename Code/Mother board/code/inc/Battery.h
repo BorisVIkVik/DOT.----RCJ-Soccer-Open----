@@ -15,6 +15,7 @@
 #define MAX_LOW_VOLTAGE_TIME	1000
 
 
+
 class Battery
 {
 	public:	
@@ -82,7 +83,7 @@ unsigned int Battery::update()
 		if(cellVoltage[i] < LOW_CELL_VOLTAGE) lowCellVoltage = 1;
 	}
 	
-	percentage = voltage / MAX_BATTERY_VOLTAGE * 100;
+	percentage = (voltage - LOW_BATTERY_VOLTAGE) / (MAX_BATTERY_VOLTAGE - LOW_BATTERY_VOLTAGE) * 100;
 	if(percentage > 100.0) percentage = 100.0;
 	if(percentage < 0.0) percentage = 0.0;
 	
@@ -94,7 +95,7 @@ unsigned int Battery::update()
 			lowBatteryVoltageTimer = millis();
 		}
 		
-		if(millis() - lowBatteryVoltageTimer > MAX_LOW_VOLTAGE_TIME) return LOW_BATTERY_POWER;
+		//if(millis() - lowBatteryVoltageTimer > MAX_LOW_VOLTAGE_TIME) return LOW_BATTERY_POWER;
 		else return 0;
 	}
 	else

@@ -18,7 +18,7 @@
 
 
 #include "tools.h"
-#include "functional.h"
+#include "Robot.h"
 #include <FunctionalClass.h>
 
 #define EMPTY_SCREEN 0

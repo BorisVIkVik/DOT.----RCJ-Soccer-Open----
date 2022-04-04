@@ -116,6 +116,7 @@ class Screen
 		
 		void execute()
 		{
+			if(size == 0) return;
 			lines[scroll + choosenOne].callback();
 		}
 };

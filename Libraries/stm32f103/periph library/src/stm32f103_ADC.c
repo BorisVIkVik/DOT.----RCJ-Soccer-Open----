@@ -4,6 +4,7 @@ bool calibrated[ADCQ];
 int channelQ[ADCQ];
 uint8_t sq[ADCQ][16];
 
+
 void resetADC(void){
 	ADC1->CR2 &= ~ADC_CR2_ADON;	
 	ADC2->CR2 &= ~ADC_CR2_ADON;	
@@ -16,6 +17,7 @@ void resetADC(void){
 	}
 }
 	
+
 void initADC(unsigned int adcNum, uint8_t channel, uint16_t prt, uint16_t pin, bool contMode){						//regular mode
 	
 	if(channelQ[adcNum] == 16) return;					//if all channels are in use
@@ -94,6 +96,7 @@ void initADC(unsigned int adcNum, uint8_t channel, uint16_t prt, uint16_t pin, b
 	channelQ[adcNum]++;
 	
 }
+
 
 uint16_t readADC(unsigned int adcNum, uint8_t channel){ ///////gdsdfsdfsd
 	

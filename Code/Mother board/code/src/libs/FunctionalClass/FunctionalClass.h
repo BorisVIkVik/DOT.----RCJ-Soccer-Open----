@@ -1,6 +1,6 @@
 #pragma once
 
-#include "functional.h"
+#include "Robot.h"
 #include <RobotParametrs.h>
 //#include <stdint.h>
 #include <Obstacle.h>

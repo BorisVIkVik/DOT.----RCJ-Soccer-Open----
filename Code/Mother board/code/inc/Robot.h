@@ -16,18 +16,6 @@
 #include "Errors.h"
 
 
-void initLEDs()
-{
-	initPin(LED_1, OUTPUTPP);
-	initPin(LED_2, OUTPUTPP);
-	initPin(LED_3, OUTPUTPP);
-	
-	setPin(LED_1, 0);
-	setPin(LED_2, 0);
-	setPin(LED_3, 0);
-}
-
-
 /* ROBOT */
 class Robot
 {
@@ -48,6 +36,9 @@ class Robot
 		long long int driverTimer;
 	
 		void init();
+		void initLEDs();
+		void swithPowerOn();
+		void swithPowerOff();
 		void move(double velocity, double dir, double heading = 0, double acc = 4 /* m/(s^2) */, double smooth = 1 /* ob/s */);
 		void updateMenu();
 		void changePlayState();
@@ -68,7 +59,7 @@ void Robot::init()
 {	
 	//Turn on power switch
 	initPin(POWER_SWITCH, OUTPUTPP);
-	setPin(POWER_SWITCH, 1);
+	swithPowerOn();
 	
 	//Turn on 5V regulator
 	initPin(REG_5V_EN, OUTPUTPP);
@@ -145,6 +136,17 @@ void Robot::init()
 	display.init(&disp);
 }
 
+
+void Robot::initLEDs()
+{
+	initPin(LED_1, OUTPUTPP);
+	initPin(LED_2, OUTPUTPP);
+	initPin(LED_3, OUTPUTPP);
+	
+	setPin(LED_1, 0);
+	setPin(LED_2, 0);
+	setPin(LED_3, 0);
+}
 
 
 void Robot::changePlayState()
@@ -243,6 +245,18 @@ void Robot::move(double velocity, double dir, double heading, double acc, double
 }
 
 
+void Robot::swithPowerOn()
+{
+	setPin(POWER_SWITCH, 0);
+}
+
+
+void Robot::swithPowerOff()
+{
+	setPin(POWER_SWITCH, 1);
+}
+
+
 void Robot::updateMenu()
 {
 	static int32_t lastUpdate = millis(); 
@@ -331,7 +345,7 @@ void Robot::handleErrors()
 		display.print("LOW BATTERY VOLTAGE", 1, 0);
 		display.print("TURNING OFF", 2, 0);
 		display.show();
-		setPin(POWER_SWITCH, 0);
+		swithPowerOff();
 		while(1);
 	}
 }
@@ -357,7 +371,7 @@ void Robot::logErrors()
 	if (GLOBAL_ERROR != 0)
 	{
 		//display.clear();
-		display.print(GLOBAL_ERROR, 0, 14);
+		display.print(GLOBAL_ERROR, 4, 14);
 		//display();
 	}
 }

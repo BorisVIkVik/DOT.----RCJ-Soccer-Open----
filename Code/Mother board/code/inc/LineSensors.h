@@ -13,6 +13,8 @@
 
 #define CALIBRATION_START 0x01
 #define CALIBRATION_END   0x02
+#define SENSORS_ON 0x03
+#define SENSORS_OFF   0x04
 
 class LineSensors
 {
@@ -21,6 +23,8 @@ class LineSensors
 		unsigned int update();
 		void beginLineCalibration();
 		void endLineCalibration();
+		void turnOnSensors();
+		void turnOffSensors();
 		uint8_t getLine();
 	
 	
@@ -50,13 +54,16 @@ unsigned int LineSensors::update()
 	uint8_t res = writeSPI(spi, lineBoardTx);
 	setPin(ss, 1);
 	
-	if (res != 0)
-		{
-			line = max2(uint8_t(res - 1), line);
-			return 0;
-		}
+	if (res != 255 && res != 0)
+	{
+		line = res - 1;
+		return 0;
+	}
 	else
+	{
+		line = 0;
 		return LINE_BOARD_CONNECTION_ERROR;
+	}
 }
 
 
@@ -69,6 +76,18 @@ void LineSensors::beginLineCalibration()
 void LineSensors::endLineCalibration()
 {
 	lineBoardTx = CALIBRATION_END;
+}
+
+
+void LineSensors::turnOnSensors()
+{
+	lineBoardTx = SENSORS_ON;
+}
+
+
+void LineSensors::turnOffSensors()
+{
+	lineBoardTx = SENSORS_OFF;
 }
 
 

@@ -56,23 +56,28 @@ void clb_screenToCalibrations()
 
 		void clb_imuSetup()
 		{
+			/*
 			robot.imu.imuFloatTime = millis();
 			robot.imu.setZeroAngle();
+			*/
 		}
 
 		void clb_imu_pnc_clear()
 		{
+			/*
 			robot.imu.setZeroAngle();
 			pncBeginTime = millis();
-			
+			*/
 		}
 
 		void clb_imu_pnc_start()
 		{
+			/*
 			robot.imu.imuFloatValue += robot.imu.getAngle() / double(millis() - pncBeginTime);
 			robot.imu.imuFloatTime = millis();
 			pncBeginTime = millis();
 			robot.imu.setZeroAngle();
+			*/
 		}
 		
 		//Light sensors calibration
@@ -91,6 +96,16 @@ void clb_screenToCalibrations()
 				void clb_endLightsCalib()
 				{
 					robot.lineSensors.endLineCalibration();
+				}
+				
+				void clb_turnOnBackLight()
+				{
+					robot.lineSensors.turnOnSensors();
+				}
+				
+				void clb_turnOffBackLight()
+				{
+					robot.lineSensors.turnOffSensors();
 				}
 
 
