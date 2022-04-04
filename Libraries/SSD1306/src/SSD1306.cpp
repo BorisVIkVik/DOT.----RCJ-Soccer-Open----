@@ -81,7 +81,7 @@ static uint8_t buffer[SSD1306_LCDHEIGHT * SSD1306_LCDWIDTH / 8] = {
 #define ssd1306_swap(a, b) { int16_t t = a; a = b; b = t; }
 
 // the most basic function, set a single pixel
-void stm32f407_SSD1306::drawPixel(int16_t x, int16_t y, uint16_t color) {
+void SSD1306::drawPixel(int16_t x, int16_t y, uint16_t color) {
   if ((x < 0) || (x >= SSD1306_LCDWIDTH) || (y < 0) || (y >= SSD1306_LCDHEIGHT))
     return;
 
@@ -115,7 +115,7 @@ void stm32f407_SSD1306::drawPixel(int16_t x, int16_t y, uint16_t color) {
 
 
 // constructor for hardware SPI - we indicate DataCommand, ChipSelect, Reset
-stm32f407_SSD1306::stm32f407_SSD1306(unsigned int SPI_NUM, uint16_t DC, uint16_t RST, uint16_t CS, uint16_t PWR_EN, uint16_t SCK, uint16_t MOSI) {
+SSD1306::SSD1306(unsigned int SPI_NUM, uint16_t DC, uint16_t RST, uint16_t CS, uint16_t PWR_EN, uint16_t SCK, uint16_t MOSI) {
 	
 	spiNum = SPI_NUM;
   dc = DC;
@@ -132,22 +132,22 @@ stm32f407_SSD1306::stm32f407_SSD1306(unsigned int SPI_NUM, uint16_t DC, uint16_t
 	
 }
 
-void stm32f407_SSD1306::switchOff()
+void SSD1306::switchOff()
 {
 	setPin(pwr_en, 0);
 }
 
-void stm32f407_SSD1306::switchOn()
+void SSD1306::switchOn()
 {
 	setPin(pwr_en, 1);
 }
 
-void stm32f407_SSD1306::draw()
+void SSD1306::draw()
 {
 	display();
 }
 
-void stm32f407_SSD1306::begin(uint8_t vccstate, bool reset) {
+void SSD1306::begin(uint8_t vccstate, bool reset) {
   _vccstate = vccstate;
 
 	rotation = 0;
@@ -236,7 +236,7 @@ void stm32f407_SSD1306::begin(uint8_t vccstate, bool reset) {
 }
 
 
-void stm32f407_SSD1306::invert(uint8_t i) {
+void SSD1306::invert(uint8_t i) {
   if (i) {
     ssd1306_command(SSD1306_INVERTDISPLAY);
   } else {
@@ -244,7 +244,7 @@ void stm32f407_SSD1306::invert(uint8_t i) {
   }
 }
 
-void stm32f407_SSD1306::ssd1306_command(uint8_t c) {
+void SSD1306::ssd1306_command(uint8_t c) {
 
   // SPI
 
@@ -262,7 +262,7 @@ void stm32f407_SSD1306::ssd1306_command(uint8_t c) {
 // Activate a right handed scroll for rows start through stop
 // Hint, the display is 16 rows tall. To scroll the whole display, run:
 // display.scrollright(0x00, 0x0F)
-void stm32f407_SSD1306::startscrollright(uint8_t start, uint8_t stop){
+void SSD1306::startscrollright(uint8_t start, uint8_t stop){
   ssd1306_command(SSD1306_RIGHT_HORIZONTAL_SCROLL);
   ssd1306_command(0X00);
   ssd1306_command(start);
@@ -277,7 +277,7 @@ void stm32f407_SSD1306::startscrollright(uint8_t start, uint8_t stop){
 // Activate a right handed scroll for rows start through stop
 // Hint, the display is 16 rows tall. To scroll the whole display, run:
 // display.scrollright(0x00, 0x0F)
-void stm32f407_SSD1306::startscrollleft(uint8_t start, uint8_t stop){
+void SSD1306::startscrollleft(uint8_t start, uint8_t stop){
   ssd1306_command(SSD1306_LEFT_HORIZONTAL_SCROLL);
   ssd1306_command(0X00);
   ssd1306_command(start);
@@ -292,7 +292,7 @@ void stm32f407_SSD1306::startscrollleft(uint8_t start, uint8_t stop){
 // Activate a diagonal scroll for rows start through stop
 // Hint, the display is 16 rows tall. To scroll the whole display, run:
 // display.scrollright(0x00, 0x0F)
-void stm32f407_SSD1306::startscrolldiagright(uint8_t start, uint8_t stop){
+void SSD1306::startscrolldiagright(uint8_t start, uint8_t stop){
   ssd1306_command(SSD1306_SET_VERTICAL_SCROLL_AREA);
   ssd1306_command(0X00);
   ssd1306_command(SSD1306_LCDHEIGHT);
@@ -309,7 +309,7 @@ void stm32f407_SSD1306::startscrolldiagright(uint8_t start, uint8_t stop){
 // Activate a diagonal scroll for rows start through stop
 // Hint, the display is 16 rows tall. To scroll the whole display, run:
 // display.scrollright(0x00, 0x0F)
-void stm32f407_SSD1306::startscrolldiagleft(uint8_t start, uint8_t stop){
+void SSD1306::startscrolldiagleft(uint8_t start, uint8_t stop){
   ssd1306_command(SSD1306_SET_VERTICAL_SCROLL_AREA);
   ssd1306_command(0X00);
   ssd1306_command(SSD1306_LCDHEIGHT);
@@ -322,14 +322,14 @@ void stm32f407_SSD1306::startscrolldiagleft(uint8_t start, uint8_t stop){
   ssd1306_command(SSD1306_ACTIVATE_SCROLL);
 }
 
-void stm32f407_SSD1306::stopscroll(void){
+void SSD1306::stopscroll(void){
   ssd1306_command(SSD1306_DEACTIVATE_SCROLL);
 }
 
 // Dim the display
 // dim = true: display is dimmed
 // dim = false: display is normal
-void stm32f407_SSD1306::dim(bool dim) {
+void SSD1306::dim(bool dim) {
   uint8_t contrast;
 
   if (dim) {
@@ -347,7 +347,7 @@ void stm32f407_SSD1306::dim(bool dim) {
   ssd1306_command(contrast);
 }
 
-void stm32f407_SSD1306::display() {
+void SSD1306::display() {
   ssd1306_command(SSD1306_COLUMNADDR);
   ssd1306_command(0);   // Column start address (0 = reset)
   ssd1306_command(SSD1306_LCDWIDTH-1); // Column end address (127 = reset)
@@ -380,7 +380,7 @@ void stm32f407_SSD1306::display() {
   
 }
 
-void stm32f407_SSD1306::display(uint8_t *buf) {
+void SSD1306::display(uint8_t *buf) {
   ssd1306_command(SSD1306_COLUMNADDR);
   ssd1306_command(0);   // Column start address (0 = reset)
   ssd1306_command(SSD1306_LCDWIDTH-1); // Column end address (127 = reset)
@@ -413,18 +413,18 @@ void stm32f407_SSD1306::display(uint8_t *buf) {
 }
 
 // clear everything
-void stm32f407_SSD1306::clear(void) {
+void SSD1306::clear(void) {
   memset(buffer, 0, (SSD1306_LCDWIDTH*SSD1306_LCDHEIGHT/8));
 }
 
 
-inline void stm32f407_SSD1306::fastSPIwrite(uint8_t d) {
+inline void SSD1306::fastSPIwrite(uint8_t d) {
 
 	writeSPI(spiNum, d);
   
 }
 
-void stm32f407_SSD1306::drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t color) {
+void SSD1306::drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t color) {
   bool bSwap = false;
   switch(rotation) {
     case 0:
@@ -458,7 +458,7 @@ void stm32f407_SSD1306::drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t 
   }
 }
 
-void stm32f407_SSD1306::drawFastHLineInternal(int16_t x, int16_t y, int16_t w, uint16_t color) {
+void SSD1306::drawFastHLineInternal(int16_t x, int16_t y, int16_t w, uint16_t color) {
   // Do bounds/limit checks
   if(y < 0 || y >= SSD1306_LCDHEIGHT) { return; }
 
@@ -493,7 +493,7 @@ void stm32f407_SSD1306::drawFastHLineInternal(int16_t x, int16_t y, int16_t w, u
   }
 }
 
-void stm32f407_SSD1306::drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color) {
+void SSD1306::drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color) {
   bool bSwap = false;
   switch(rotation) {
     case 0:
@@ -527,11 +527,11 @@ void stm32f407_SSD1306::drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t 
 }
 
 
-stm32f407_SSD1306::stm32f407_SSD1306()
+SSD1306::SSD1306()
 {
 }
 
-void stm32f407_SSD1306::drawFastVLineInternal(int16_t x, int16_t __y, int16_t __h, uint16_t color) {
+void SSD1306::drawFastVLineInternal(int16_t x, int16_t __y, int16_t __h, uint16_t color) {
 
   // do nothing if we're off the left or right side of the screen
   if(x < 0 || x >= SSD1306_LCDWIDTH) { return; }

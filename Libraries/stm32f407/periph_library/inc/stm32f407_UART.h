@@ -1,7 +1,6 @@
 #ifndef STM32F407_UART
 #define STM32F407_UART
 
-
 //#include "stm32f407_software_UART.h"
 
 #include "stm32f4xx.h"
@@ -28,7 +27,7 @@
 #define UARTbufSize 32
 
 
-void initUART(unsigned int num, uint32_t baudrate,  uint8_t wordLength = 8, float _stopBits = 1, uint8_t parity = 0, unsigned int clk = 84);
+void initUART(unsigned int num, uint32_t baudrate,  uint8_t wordLength = 8, float _stopBits = 1, uint8_t parity = 0, unsigned int clk = 0);
 void writeUART(unsigned int num, char data);
 void writeStrUART(unsigned int num, char* data);
 uint8_t UARTAvailable(unsigned int num);

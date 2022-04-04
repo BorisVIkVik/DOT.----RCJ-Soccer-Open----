@@ -1,5 +1,8 @@
-#include "tools.h"
+#ifndef FONT_LIB
+#define FONT_LIB
 
+#include "tools.h"
+#include "SSD1306.h"
 const unsigned char bitmaps[] = 
 {
 // @0 '!' (1 pixels wide)
@@ -1428,7 +1431,7 @@ unsigned symbolToIndex(char symbol)
 	return symbol - '!';
 }
 
-unsigned drawChar(stm32f407_SSD1306& display, char symbol, unsigned x, unsigned y)
+unsigned drawChar(SSD1306& display, char symbol, unsigned x, unsigned y)
 {
 	y *= LETTER_HEIGHT;
 	y += 3;
@@ -1462,7 +1465,7 @@ unsigned drawChar(stm32f407_SSD1306& display, char symbol, unsigned x, unsigned 
 	return fontData[index][0] + 2;
 }
 
-void drawString(stm32f407_SSD1306& display, char* s, unsigned row = 0, unsigned column = 0)
+void drawString(SSD1306& display, char* s, unsigned row = 0, unsigned column = 0)
 {
 	unsigned x = column * 7, i = 0;
 	char symbol;
@@ -1581,7 +1584,7 @@ char* toPrint(T x, short next = 3)
 
 
 template <typename T>
-void printTml(stm32f407_SSD1306& display, T x, int next = 3, int row = 0, int column = 0)
+void printTml(SSD1306& display, T x, int next = 3, int row = 0, int column = 0)
 {	
 	char *ptr = toPrint(x, next);
 	
@@ -1589,3 +1592,5 @@ void printTml(stm32f407_SSD1306& display, T x, int next = 3, int row = 0, int co
 	
 	delete ptr;
 }
+
+#endif

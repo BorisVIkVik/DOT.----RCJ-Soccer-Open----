@@ -1,10 +1,8 @@
 #ifndef DRIVERS_LIB
 #define DRIVERS_LIB
 
-int LOW_VOLTAGE_COUNTER = 0;
 
 /* DRIVER_REGISTER */
-
 #define D_WRITE 		3
 #define D_READ 			6
 #define D_WRITE_ANS 163
@@ -20,13 +18,13 @@ class Driver
 		char uart, addr, reg[21];
 		char msg[4];
 	
-		int velocity, current, temperature, voltage, cTime;
+		int velocity, current, temperature, voltage;
 		uint64_t lastUpdateTime;
     int64_t last;	
 		bool floating;
 	
 		Driver();
-		void init(int cTime, char selfAddr, char uartAddr);
+		void init(char selfAddr, char uartAddr);
 	  void write(char* data, char len, char messageType);
 		void writeReg(char addr, char val);
 		void updateFromReg();
@@ -46,38 +44,28 @@ bool Driver::isWorks()
 	return (millis() - lastUpdateTime) < 200;
 }
 
+/*
 void Driver::logError()
 {
 	return;
 	
-	if (last == -1) last = millis() + cTime;
-	/*
-	if (cTime == 0)
-		LOW_VOLTAGE_COUNTER = 0;
-	*/
+	if (last == -1) last = millis();
+
 	if (millis() - last > 500)
 	{
-		last = millis() + cTime;
+		last = millis();
 		delay(2);
 		attemptVoltage();
 		delay(2);
 	}
-	/*
-	if (voltage <= 13 && voltage != 0)					//voltage is checked within Robot::updateBatteryVoltage() in functional.h
-	{
-		LOW_VOLTAGE_COUNTER++;
-		if (LOW_VOLTAGE_COUNTER == 4)
-		{
-			GLOBAL_ERROR |= LOW_POWER;
-		}
-	}
-	*/
+
 	if (!isWorks()) 
 	{
 		GLOBAL_ERROR |= DRIVER_CONNECTION_ERROR;
 		//printUART(DEBUG_UART, int(addr));
 	}
 }
+*/
 
 void Driver::updateFromReg()
 {
@@ -112,13 +100,11 @@ Driver::Driver()
 	
 	for (int i = 0; i < 21; i++) reg[i] = 0;
 	
-	cTime = 0;
 	floating = false;
 }
 
-void Driver::init(int cTime, char selfAddr, char UARTAddr)
+void Driver::init(char selfAddr, char UARTAddr)
 {
-	this->cTime = cTime;
 	uart = UARTAddr;
 	addr = selfAddr;
 }

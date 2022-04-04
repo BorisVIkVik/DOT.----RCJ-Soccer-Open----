@@ -225,7 +225,7 @@ class BaseFunctional
 
 bool BaseFunctional::checkBall()
 {
-    return _RC->ball1();
+    return _RC->ballSensor.getValue();
 }
 
 void BaseFunctional::dribblerSpeed(int8_t speed)

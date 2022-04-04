@@ -1,5 +1,5 @@
-#ifndef SSD1306
-#define SSD1306
+#ifndef SSD1306_LIB
+#define SSD1306_LIB
 
 #include "stm32f407_sysFunc.h"
 #include "stm32f407_SPI.h"
@@ -93,10 +93,10 @@
 
 
 
-class stm32f407_SSD1306 {
+class SSD1306 {
  public:
-  stm32f407_SSD1306(unsigned int SPI_NUM, uint16_t DC, uint16_t RST, uint16_t CS, uint16_t PWR_EN, uint16_t SCK, uint16_t MOSI);
-	stm32f407_SSD1306(void);
+  SSD1306(unsigned int SPI_NUM, uint16_t DC, uint16_t RST, uint16_t CS, uint16_t PWR_EN, uint16_t SCK, uint16_t MOSI);
+	SSD1306(void);
 
 	void switchOn(void);
 	void switchOff(void);

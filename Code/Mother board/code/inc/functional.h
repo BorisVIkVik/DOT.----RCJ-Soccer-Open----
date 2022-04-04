@@ -1,437 +1,148 @@
-#include <connectionList.h>
 #ifndef FUNCTIONALITY_LIB
 #define FUNCTIONALITY_LIB
 
-bool disableButtons = false;
+#include "connectionList.h"
+#include "InitImage.h"
+#include "KickerModule.h"
+#include "LineSensors.h"
+#include "Camera.h"
+#include "Battery.h"
+#include "BallSensor.h"
+#include "MotorDrivers.h"
+#include "Display.h"
+#include "IMU.h"
+#include "Buttons.h"
 
-/* BUTTONS */
-void initButtons()
-{
-	initPin(BUTTON_1, INPUT, FL);
-	initPin(BUTTON_2, INPUT, FL);
-	initPin(BUTTON_3, INPUT, FL);
-}
+#include "Errors.h"
 
-struct Button
-{
-	bool pressed;
-	long counter;
-	bool changed;
-	
-	Button()
-	{
-		pressed = 0;
-		counter = 0;
-		changed = false;
-	}
-	
-	bool isChanged(bool preferred = false)
-	{
-		if (!preferred && disableButtons)
-			return false;
-		
-		bool chn = changed;
-		changed = false;
-		
-		return chn;
-	}
-	
-	void setState(bool state)
-	{
-		if (pressed == 1 && state == 0) 
-		{
-			changed = true;
-		}
-		
-		pressed = state;
-	}
-};
 
-/* LEDS */
 void initLEDs()
 {
 	initPin(LED_1, OUTPUTPP);
 	initPin(LED_2, OUTPUTPP);
 	initPin(LED_3, OUTPUTPP);
 	
-	initPin(PE1, OUTPUTPP);
-	initPin(PE14, OUTPUTPP);
-	
-	setPin(LED_3, 0);
-	setPin(LED_2, 0);
 	setPin(LED_1, 0);
-	
-	setPin(PE1, 0);
-	setPin(PE14, 0);
+	setPin(LED_2, 0);
+	setPin(LED_3, 0);
 }
-
-struct VimTransaction
-{
-	uint8_t ballX, ballY, yGoalX, yGoalY, bGoalX, bGoalY;//double vel, dir, heading, acc;
-};
-
-/* DISPLAY */
-void defaultCallback()
-{
-}
-
-class Command
-{
-	public:
-		char* name;
-		void (*callback)();
-		
-		Command()
-		{
-			char* name = "";
-			callback = 0;
-		}
-		
-		Command(char* name, void (*callback)()=defaultCallback)
-		{
-			this->name = name;
-			this->callback = callback;
-		}
-};
-
-#define LEN 4
-
-class Screen
-{
-	public:
-		Command lines[10];
-		int size;
-		int scroll;
-		int choosenOne;
-	
-		Screen()
-		{
-			choosenOne = 0;
-			size = 0;
-			scroll = 0;
-		}
-		
-		void add(Command cmd)
-		{
-			if (size == 20)
-				return;
-			
-			lines[size] = cmd;
-			size++;
-		}
-		
-		void scrollDown()
-		{
-			choosenOne--;
-			
-			if (choosenOne < 0)
-			{
-				choosenOne++;
-				scroll--;
-			}
-			
-			if (scroll < 0)
-				scroll = 0;
-		}
-		
-		void scrollUp()
-		{
-			int savedChoosen = choosenOne;
-			int savedScroll = scroll;
-			
-			choosenOne++;
-			
-			if (choosenOne >= LEN)
-			{
-				choosenOne = savedChoosen;
-				scroll++;
-			}
-			
-			if (choosenOne >= size)
-			{
-				choosenOne = savedChoosen;
-				scroll = savedScroll;
-			}
-			
-			if (scroll > size - LEN)
-				scroll = savedScroll;
-		}
-		
-		void execute()
-		{
-			lines[scroll + choosenOne].callback();
-		}
-};
-
-class Display
-{
-	public:
-		stm32f407_SSD1306 display;
-		Screen screens[10];
-		int screenIndex;
-		
-		Display()
-		{
-			screenIndex = 0;
-		}
-	
-		void setScreen(int index)
-		{
-			screenIndex = index;
-		}
-		
-		void addToScreen(Command cmd)
-		{
-			screens[screenIndex].add(cmd);
-		}
-		
-		void scrollDown()
-		{
-			screens[screenIndex].scrollDown();
-		}
-		
-		void scrollUp()
-		{
-			screens[screenIndex].scrollUp();
-		}
-		
-		void update()
-		{
-			int size = min2(LEN, screens[screenIndex].size);
-			for (int i = 0; i < size; i++)
-			{
-				char* text = screens[screenIndex].lines[i + screens[screenIndex].scroll].name;
-				drawString(display, text, i, 1);
-			}
-			
-			drawString(display, "+", screens[screenIndex].choosenOne, 0);
-		}
-		
-		void execute()
-		{
-			screens[screenIndex].execute();
-		}
-		
-		void clear()
-		{
-			display.clear();
-		}
-		
-		void show()
-		{
-			display.display();
-		}
-};
 
 
 /* ROBOT */
 class Robot
 {
 	public:
-		mpu9250 imu;
+		LineSensors lineSensors;
+		Camera camera;
+		KickerModule kickerModule;
+		Battery battery;
+		BallSensor ballSensor;
+		MotorDrivers motorDrivers;
 		Display display;
-		VimTransaction target;
-		double angle, calibratedAngle, dx, dy;
-		bool kick1, kick2;
-		long long kicker1Timer, kicker2Timer;
-		int driblerSpeed1, driblerSpeed2;
-		double imuFloatValue, angleChange;
-		long long int imuFloatTime;
-		PL_ADC ADC_1, ADC_2;
-		uint8_t line, lineBoardTx;
-		Driver motors[5];
-		Button button[3];
-		double cells[4];
-		int ball[2];
-		int oldMotorSpeed[4];
-		bool manualDribblerControl;
-		double batteryVoltage;
-		bool lowBatteryVoltageError;
-		long long int lowBatteryVoltageTimer;
+		IMU imu;
+		Buttons buttons;
 	
-		void setMotors(int v1, int v2, int v3, int v4);
-		void enableMotors();
-		void disableMotors();
-		void setMotor(int i, int vel);
-		void updateIMU();
-		void updateDrivers();
-		void wait(uint32_t t);
-		void logErrors();
+		double dx, dy;
+		PL_ADC ADC_1, ADC_2;
+		long long int batteryUpdateTimer;
+		long long int driverTimer;
+	
 		void init();
 		void move(double velocity, double dir, double heading = 0, double acc = 4 /* m/(s^2) */, double smooth = 1 /* ob/s */);
-		void setupIMU();
-		void sendFlagToLine(uint8_t flag);
-		void updateLine();
-		void updateButtons();
-		void beginLineCalibration();
-		void endLineCalibration();
-		void cycleEnd();
-		void updateVIM();
-		void sendCommandToVIM(char reg, bool val);
-		void sync();
-		void syncVIM();
-		void calibrateIMU(uint32_t t);
 		void updateMenu();
-		void updateKickers();
-		void updateDribblers();
 		void changePlayState();
 		void setPlayState(bool a);
 		bool playState();
-		void updateBatteryVoltage();
+		void wait(uint32_t t);
+		void handleErrors();
+		void logErrors();
 		
-		int ball1();
-		int ball2();
-		
-		double cell1();
-		double cell2();
-		double cell3();
-		double cell4();
-		
-		void updateCells();
-		void updateBallSensors();
-		
-		void print(char* x, int row = 0, int column = 0);
-		void print(int x, int row = 0, int column = 0, int next = 3);
-		void print(unsigned x, int row = 0, int column = 0, int next = 3);
-		void print(long long x, int row = 0, int column = 0, int next = 3);
-		void print(unsigned long long x, int row = 0, int column = 0, int next = 3);
-		void print(double x, int row = 0, int column = 0, int next = 3);
-		void print(float x, int row = 0, int column = 0, int next = 3);
 		
 	private:
 		bool playStateBool;
 		long long int playStateTimer;
 };
 
+
 void Robot::init()
-{
-	//dribblers start sequence
-	initPWM(DRIBLER_1_TIM, DRIBLER_1_CH, DRIBLER_1_PIN, SERVO_FREQ);
-	initPWM(DRIBLER_2_TIM, DRIBLER_2_CH, DRIBLER_2_PIN, SERVO_FREQ);
-	setPWM(DRIBLER_1_TIM, DRIBLER_1_CH, 180);
-	setPWM(DRIBLER_2_TIM, DRIBLER_2_CH, 180);
-	delay(250);
-	setPWM(DRIBLER_1_TIM, DRIBLER_1_CH, 0);
-	setPWM(DRIBLER_2_TIM, DRIBLER_2_CH, 0);
-	delay(250);
-	setPWM(DRIBLER_1_TIM, DRIBLER_1_CH, 90);
-	setPWM(DRIBLER_2_TIM, DRIBLER_2_CH, 90);
-	delay(1000);
+{	
+	//Turn on power switch
+	initPin(POWER_SWITCH, OUTPUTPP);
+	setPin(POWER_SWITCH, 1);
 	
-	kick1 = 0;
-	kick2 = 0;
-	kicker1Timer = millis();
-	kicker2Timer = millis();
+	//Turn on 5V regulator
+	initPin(REG_5V_EN, OUTPUTPP);
+	setPin(REG_5V_EN, 1);
 	
-	imuFloatTime = millis();
-	imuFloatValue = 0;
-	
-	initLEDs();
-	initButtons();
-	initPin(IMU_PWR_EN, OUTPUTPP);
-	setPin(IMU_PWR_EN, 1);
-	delay(10);
-	imu.initIMU(IMU_SPI, IMU_SPI_SS);
-	delay(100);
-	setupIMU(); // IMU calibrated angle estimating
-	
-	
-	initUART(MOTOR_1_UART, 115200, 8, 1, NO_PARITY, 42);
-	initUART(MOTOR_2_UART, 115200, 8, 1, NO_PARITY, 42);
-	initUART(MOTOR_3_UART, 115200, 8, 1, NO_PARITY, 84);
-	initUART(MOTOR_4_UART, 115200, 8, 1, NO_PARITY, 84);
-	//initUART(MOTOR_DRIBBLER_UART, 115200, 8, 1, NO_PARITY, 84);
-	initUART(DEBUG_UART, 115200, 8, 0, NO_PARITY, 42);
-	initUART(VIM_UART, 115200, 8, 1, NO_PARITY, 42);
-	
-	delay(300); // small delay for successfull setup of UARTs
-	
-	initSPI(LINE_SENSORS_SPI, MASTER, 8, 8);
-	initPin(LINE_SENSORS_SS, OUTPUTPP);
-	setPin(LINE_SENSORS_SS, 1);
-	
-	//initSPI(KICKER_MODULE_SPI, MASTER, 8, 8); same as LINE_SENSORS_SPI
-	initPin(KICKER_MODULE_SS, OUTPUTPP);
-	setPin(KICKER_MODULE_SS, 1);
-	
-	
-	motors[0].init(0, MOTOR_1, MOTOR_1_UART);
-	wait(3);
-	motors[1].init(100, MOTOR_2, MOTOR_2_UART);
-	wait(3);
-	motors[2].init(200, MOTOR_3, MOTOR_3_UART);
-	wait(3);
-	motors[3].init(300, MOTOR_4, MOTOR_4_UART);
-	wait(3);
-	//motors[4].init(400, MOTOR_DRIBBLER, MOTOR_DRIBBLER_UART);
-	wait(3);
-	
-	for (int i = 0; i < 4; i++)
-	{
-		motors[i].setVelocity(0);
-		wait(5);
-	}
-	oldMotorSpeed[0] = 0;
-	oldMotorSpeed[1] = 0;
-	oldMotorSpeed[2] = 0;
-	oldMotorSpeed[3] = 0;
-	manualDribblerControl = 0;
-	
-	dx = 0;
-	dy = 0;
-	lineBoardTx = 0xBB;
-	
-	stm32f407_SSD1306 disp(DISPLAY_SPI, DISPLAY_DC, DISPLAY_RESET, DISPLAY_CS, DISPLAY_PWR_EN, DISPLAY_SCK, DISPLAY_MOSI);
-	
+	//Initialize OLED screen on mother board and show init image
+	SSD1306 disp(DISPLAY_SPI, DISPLAY_DC, DISPLAY_RESET, DISPLAY_CS, DISPLAY_PWR_EN, DISPLAY_SCK, DISPLAY_MOSI);
+	disp.switchOn();
 	disp.begin();
 	disp.clear();
+	disp.display(initImageBuffer);
 	disp.invert(0);
 	disp.rotate(2);
-	this->display.display = disp;
+	int initImageTimer = millis();
 	
-	playStateBool = false;
-	playStateTimer = millis();
+	//Initialize LEDs on mother board
+	initLEDs();
 	
-	batteryVoltage = 10.0;
-	lowBatteryVoltageTimer = millis();
+	//Initialize buttons on mother board
+	buttons.init(BUTTON_1, BUTTON_2, BUTTON_3, BUTTON_4);
 	
-	// Setup a bunch of some pins like power for ball sensors, smth about batteries pins etc
-	initPin(BALL_SENSOR_2_EN, OUTPUTPP);
-	setPin(BALL_SENSOR_2_EN, 0);
-	initPin(BALL_SENSOR_1_EN, OUTPUTPP);
-	setPin(BALL_SENSOR_1_EN, 0);
+	//Initialize IMU
+	imu.init(IMU_SPI, IMU_SPI_SS, IMU_PWR_EN);
 	
-	initPin(BATTERY_S4_EN, OUTPUTPP);
-	setPin(BATTERY_S4_EN, 1);
-	initPin(BATTERY_S2_EN, OUTPUTPP);
-	setPin(BATTERY_S2_EN, 1);
-	initPin(BATTERY_S1_EN, OUTPUTPP);
-	setPin(BATTERY_S1_EN, 1);
-	initPin(BATTERY_S3_EN, OUTPUTPP);
-	setPin(BATTERY_S3_EN, 1);
+	//Initialize all motor drivers
+	motorDrivers.init(MOTOR_1_UART, MOTOR_1,
+																		MOTOR_2_UART, MOTOR_2,
+																		MOTOR_3_UART, MOTOR_3,
+																		MOTOR_4_UART, MOTOR_4,
+																		MOTOR_DRIBBLER_UART, MOTOR_DRIBBLER
+																		);
 	
+	//Initialize UART for bluetooth and LIDAR
+	initUART(BLUETOOTH_UART, 115200, 8, 0, NO_PARITY, 42);
+	initUART(LIDAR_UART, 115200, 8, 1, NO_PARITY, 42);
+	//Delay for successfull setup of UARTs
+	delay(200);
 	
+	//Initialize camera and line sensors board
+	initSPI(PERIPH_SPI, MASTER, 8, 8);
+	lineSensors.init(PERIPH_SPI, LINE_SENSORS_SS);
+	camera.init(PERIPH_SPI, CAMERA_SS);
+	
+	//Initialize kicker
+	kickerModule.init(KICKER_BOOSTER_EN, KICKER_BOOSTER_DONE, KICKER_1, KICKER_2);
+	
+	//Initialize ADCs for battery voltage reading and ball sensor
 	ADC_1 = *(new PL_ADC(ADC1));
 	ADC_1.init();
-	ADC_1.add(BATTERY_S3);
-	ADC_1.add(BATTERY_S2);
-	ADC_1.add(BATTERY_S1);
-	ADC_1.add(BATTERY_S4);
+	battery.init(&ADC_1, BATTERY_S1, BATTERY_S2, BATTERY_S3, BATTERY_S4);
 	ADC_1.start();
 	
 	ADC_2 = *(new PL_ADC(ADC2));
 	ADC_2.init();
-	ADC_2.add(BALL_SENSOR_2);
-	ADC_2.add(BALL_SENSOR_1);
+	ballSensor.init(&ADC_2, BALL_SENSOR, BALL_SENSOR_EN);
 	ADC_2.start();
 	
+	//Some variables
+	dx = 0;
+	dy = 0;
 	
-	driblerSpeed1 = 0;
-	driblerSpeed2 = 0;
+	batteryUpdateTimer = millis();
+	driverTimer = millis() - 125;
 	
-	angleChange = 0;
+	playStateBool = false;
+	playStateTimer = millis();
 	
-	disableButtons = false;
+	//Show init image at least 1 second
+	while(millis() - initImageTimer < 1000);
+	//Clear display
+	disp.clear();
+	disp.display();
+	//Initialize display
+	display.init(&disp);
 }
 
 
@@ -459,217 +170,6 @@ bool Robot::playState()
 	return playStateBool;
 }
 
-int Robot::ball1()
-{
-	return ADC_2.read(BALL_SENSOR_1) > 2980;	
-}
-
-int Robot::ball2()
-{
-	return ADC_2.read(BALL_SENSOR_2) > 2900;	
-}
-
-double Robot::cell1()
-{
-	return double(ADC_1.read(BATTERY_S1)) * 0.001098;	//* 3.3 * double(1200 + 3300) / double(4096 * 3300);
-}
-
-double Robot::cell2()
-{
-	return double(ADC_1.read(BATTERY_S2)) * 0.002173;	//* 3.3 * double(5600 + 3300) / double(4096 * 3300);
-}
-
-double Robot::cell3()
-{
-	return double(ADC_1.read(BATTERY_S3)) * 0.003521;	//* 3.3 * double(9100 + 2700) / double(4096 * 2700);
-}
-
-double Robot::cell4()
-{
-	return double(ADC_1.read(BATTERY_S4)) * 0.004685;	//* 3.3 * double(13000 + 2700) / double(4096 * 2700);
-}
-
-void Robot::updateCells()
-{
-	double _c1 = cell1();
-	double _c2 = cell2();
-	double _c3 = cell3();
-	double _c4 = cell4();
-	cells[0] = _c1;
-	cells[1] = _c2 - _c1;
-	cells[2] = _c3 - _c2;
-	cells[3] = _c4 - _c3;
-}
-
-void Robot::updateBatteryVoltage()
-{
-	batteryVoltage = cells[0] + cells[1] + cells[2] + cells[3];
-	
-	bool lowCellVoltage = 0;
-	
-	for (int i = 0; i < 4; i++)
-		if (cells[i] < 3.3)
-			lowCellVoltage = 1;
-	
-	if(batteryVoltage < 13.8 || lowCellVoltage)
-	{
-		if(GLOBAL_ERROR & LOW_BATTERY_POWER == 0) lowBatteryVoltageTimer = millis();
-		
-		if(millis() - lowBatteryVoltageTimer > 750) GLOBAL_ERROR |= LOW_BATTERY_POWER;
-	}
-	else
-	{
-		GLOBAL_ERROR &= ~LOW_BATTERY_POWER;
-	}
-}
-
-void Robot::updateBallSensors()
-{
-	ball[0] = ball1();
-	ball[1] = ball2();
-}
-
-void Robot::disableMotors()
-{
-	for (int i = 0; i < 4; i++)
-	{
-		motors[i].enableFloating();
-	}
-}
-
-void Robot::enableMotors()
-{
-	for (int i = 0; i < 4; i++)
-	{
-		motors[i].disableFloating();
-	}
-}
-
-void Robot::syncVIM()
-{
-	double dAngle = angle - calibratedAngle;
-	while(dAngle < 0) dAngle += 360;
-	while(dAngle >= 360) dAngle -= 360;
-	
-	unsigned char a1 = (int)(dAngle * 256.0 / 360.0);
-	unsigned char a2 = (int)((dAngle * 256.0 / 360.0 - (int)a1) * 256.0 * 256.0 / 360.0);
-	
-	writeStrUART(DEBUG_UART, "data: ");
-	printUART(DEBUG_UART, (int)a1);
-	writeStrUART(DEBUG_UART, " ");
-	printUART(DEBUG_UART, (int)a2);
-	writeStrUART(DEBUG_UART, " | ");
-	printUART(DEBUG_UART, dAngle * 256.0 / 360.0 - int(a1));
-	writeStrUART(DEBUG_UART, "\n");
-	
-	
-	char msg[] = {0xBB, a1, a2, int(playState()) + int(ball[0]) * 2 + int(ball[1]) * 4};
-	for (int i = 0; i < 4; i++)
-	    writeUART(VIM_UART, msg[i]);
-	writeUART(VIM_UART, crc8(msg, 4));
-	
-	cycleEnd();
-}
-
-void Robot::setMotor(int i, int vel)
-{
-	if(vel != oldMotorSpeed[i])
-	{
-		oldMotorSpeed[i] = vel;
-		motors[i].setVelocity(vel);
-	}	
-}
-
-void Robot::setMotors(int v1, int v2, int v3, int v4)
-{
-	setMotor(0, v1);
-	setMotor(1, v2);
-	setMotor(2, v3);
-	setMotor(3, v4);
-	
-	while(!UARTTxFinished(motors[0].uart) || !UARTTxFinished(motors[1].uart) || !UARTTxFinished(motors[2].uart) || !UARTTxFinished(motors[3].uart));
-	wait(2);
-}
-
-void Robot::updateButtons()
-{
-	button[0].setState(readPin(BUTTON_1));
-	button[1].setState(readPin(BUTTON_2));
-	button[2].setState(readPin(BUTTON_3));
-}
-
-void Robot::updateKickers()
-{
-	uint8_t kickerTxData = 0;
-	
-	if (kick1 && millis() - kicker1Timer > 500)
-	{
-		kickerTxData = kickerTxData | 1;
-		kick1 = 0;
-		kicker1Timer = millis();
-	}
-	if (kick2 && millis() - kicker2Timer > 500)
-	{
-		kickerTxData = kickerTxData | 128;
-		kick2 = 0;
-		kicker2Timer = millis();
-	}
-	
-	if(kickerTxData)
-	{
-		setPin(KICKER_MODULE_SS, 0);
-		writeSPI(KICKER_MODULE_SPI, kickerTxData);
-		setPin(KICKER_MODULE_SS, 1);
-	}
-}
-
-void Robot::updateDribblers()
-{
-	 int power1 = driblerSpeed1;
-	 int power2 = driblerSpeed2;
-	
-	/*
-	if(power1 == 0)
-		TIM1 -> CCER &= ~TIM_CCER_CC3E;				//disable output
-	else 
-		TIM1 -> CCER |= TIM_CCER_CC3E;					//enable output
-	
-	if(power2 == 0)
-		TIM1 -> CCER &= ~TIM_CCER_CC4E;
-	else
-		TIM1 -> CCER |= TIM_CCER_CC4E;
-	*/
-	
-	if (abs(power1) > 30)
-		power1 = sgn(power1) * 30;
-	setPWM(DRIBLER_1_TIM, DRIBLER_1_CH, 90 + power1 * 0.9);
-}
-
-void Robot::updateLine()
-{
-	setPin(LINE_SENSORS_SS, 0);
-	uint8_t res = writeSPI(LINE_SENSORS_SPI, lineBoardTx);
-	
-	if (res != 0)
-		line = max2(uint8_t(res - 1), line);
-	else
-	{
-		GLOBAL_ERROR |= LINE_BOARD_CONNECTION_ERROR;
-		line = 0;
-	}
-	
-	setPin(LINE_SENSORS_SS, 1);
-}
-
-void Robot::beginLineCalibration()
-{
-	lineBoardTx = CALIBRATION_START;
-}
-
-void Robot::endLineCalibration()
-{
-	lineBoardTx = CALIBRATION_END;
-}
 
 void Robot::move(double velocity, double dir, double heading, double acc, double smooth)
 {
@@ -681,7 +181,7 @@ void Robot::move(double velocity, double dir, double heading, double acc, double
 	
 	velocity *= 326.5 * mul;
 	
-	double dAngle = angle - calibratedAngle;
+	double dAngle = imu.getAngle();
 	adduction(dAngle);
 	
 	static double oldErr = dAngle + heading, p, d, s, err, k;
@@ -737,166 +237,11 @@ void Robot::move(double velocity, double dir, double heading, double acc, double
   v3 = v3 * k + u;
   v4 = v4 * k + u;
 	
-	setMotors(v1, v2, v3, v4);
+	motorDrivers.setMotors(v1, v2, v3, v4);
 	
 	oldErr = err;
 }
 
-void Robot::setupIMU()
-{
-	updateIMU();
-	calibratedAngle = angle;
-}
-
-void Robot::updateIMU()
-{
-	angle = imu.yaw;	
-	adduction(angle);
-}
-
-
-// 0xBB : speed / 80 : direction[0] : direction[1] : heading[0] : heading[1] : acc / 10 : playState : dribler1 : dribler2 : crc8
-void Robot::updateVIM()
-{
-	static const int MSG_SIZE = 11;
-	static int ptr = 0, upperBound = MSG_SIZE, msg[MSG_SIZE];
-	static bool inSeq = false;
-	static uint32_t lastUseTime = millis();
-	
-	if (UARTAvailable(VIM_UART))
-	{
-		lastUseTime = millis();
-		
-		int symb = ((int)(readUART(VIM_UART)) + 256) % 256;
-		
-		if (symb == 0xBB && !inSeq) // if start of message detected
-		{
-			inSeq = true;
-			ptr = 0;
-		}
-		
-		if (inSeq)
-		{
-			msg[ptr++] = symb;
-			
-			if (ptr == upperBound) // message completed
-			{
-				char crc = crc8(msg, MSG_SIZE - 1);
-				if (crc == msg[MSG_SIZE - 1])
-				{
-					target.ballX = msg[1];
-					target.ballY = msg[2]; 
-					target.yGoalX = msg[3];
-					target.yGoalY = msg[4];
-                    target.bGoalX = msg[5];
-                    target.bGoalY = msg[6];
-				}
-				else
-				{
-					GLOBAL_ERROR |= VIM_DATA_ERROR;
-				}
-				
-				ptr = 0;
-				inSeq = false;
-			}
-		}
-	}
-	
-	if (millis() - lastUseTime > 100) 
-	{
-		GLOBAL_ERROR |= VIM_CONNECTION_ERROR;
-	}
-	
-	if (ptr >= MSG_SIZE) 
-	{
-		inSeq = false;
-		ptr = 0;
-	}
-}
-
-void Robot::updateDrivers()
-{
-	static int ptr = 0, upperBound = 16, msg[16];
-	static bool inSeq = false;
-	
-	for (int i = 0; i < 4; i++)
-	{
-		Driver motor = motors[i];
-		while (UARTAvailable(motor.uart))
-		{
-			int symb = ((int)(readUART(motor.uart)) + 256) % 256;
-			
-			if (symb == 0xBB && !inSeq) // if start of message detected
-			{
-				inSeq = true;
-				
-				ptr = 0;
-			}
-			
-			if (inSeq)
-			{
-				msg[ptr++] = symb;
-				
-				//printUART(DEBUG_UART, msg[ptr - 1]);
-				//writeStrUART(DEBUG_UART, " ");
-				
-				if (ptr == 3) // detect size of the message
-				{
-					upperBound = symb;
-				}
-				
-				if (ptr == upperBound) // message completed
-				{
-					char addr = msg[1];
-					int type = msg[4];
-					
-					/* Checking crc sum */
-					char crc_1 = crc8(msg, 3);
-					char crc_2 = crc8(msg, upperBound - 1);
-					
-					if (msg[3] != crc_1 || msg[upperBound - 1] != crc_2)
-					{
-						GLOBAL_ERROR |= DRIVER_DATA_ERROR;
-						ptr = 0;
-						return;
-					}	
-					for (int i = 0; i < 4; i++) // Check every motor
-					{
-						if (addr == motors[i].addr) // For motor with correct address
-						{
-							if (type == 166) // If message is slave answer for reading
-							{
-								int len = (upperBound - 6);
-								for (int j = 0; j < len; j += 2)
-								{
-									motors[i].reg[msg[j + 5]] = msg[j + 6];
-								}
-							}
-							
-							if (type == 227 || type == 230)
-							{							
-								GLOBAL_ERROR |= DRIVER_FATAL_ERROR;
-							}
-							
-							motors[i].updateFromReg();
-						}
-					}
-					
-					inSeq = false;
-					ptr = 0;
-				}
-				
-				
-				if (ptr >= 16) inSeq = false;
-			}
-		}
-	}
-}
-
-void Robot::cycleEnd()
-{
-	line = 0;
-}
 
 void Robot::updateMenu()
 {
@@ -906,28 +251,35 @@ void Robot::updateMenu()
 	if ((int32_t)millis() - lastUpdate < 250)
 		return;
 	
-	if (!button[0].pressed)
+	if (!buttons.isPressed(0))
 		wasButtonUnpressed = true;
 	
-	if (button[0].pressed && wasButtonUnpressed)
+	if (buttons.isPressed(0) && wasButtonUnpressed)
 	{
 		display.execute();
 		lastUpdate = millis();
 		wasButtonUnpressed = false;
 	}
 	
-	if (button[1].pressed)
+	if (buttons.isPressed(1))
 	{
 		display.scrollDown();
 		lastUpdate = millis();
 	}
 	
-	if (button[2].pressed)
+	if (buttons.isPressed(2))
 	{
 		display.scrollUp();
 		lastUpdate = millis();
 	}
+	
+	if (buttons.isPressed(3))
+	{
+		display.escape();
+		lastUpdate = millis();
+	}
 }
+
 
 void Robot::wait(uint32_t t)
 {
@@ -940,42 +292,54 @@ void Robot::wait(uint32_t t)
 	
 	int64_t tt = millis();
 	do {
-		updateBatteryVoltage();
-		updateDrivers();
-		updateIMU();
-		updateVIM();
-		updateButtons();
-		updateLine();
-		updateBallSensors();
-		updateCells();
+		
+		if(millis() - batteryUpdateTimer > 250)
+		{
+			GLOBAL_ERROR |= battery.update();
+			batteryUpdateTimer = millis();
+		}
+		if(millis() - driverTimer > 250)
+		{
+			motorDrivers.attemptCurrent();
+			driverTimer = millis();
+		}
+		GLOBAL_ERROR |= motorDrivers.update();
+		GLOBAL_ERROR |= imu.update();
+		GLOBAL_ERROR |= lineSensors.update();
+		GLOBAL_ERROR |= camera.update();
+		GLOBAL_ERROR |= ballSensor.update();
+		GLOBAL_ERROR |= buttons.update();		
+		//GLOBAL_ERROR |= lidar.update();
+		
 		updateMenu();
-		logErrors();
-		updateKickers();
-		updateDribblers();
+		handleErrors();
 	} while(millis() - tt < t);
+}
+
+
+void Robot::handleErrors()
+{
+	logErrors();
 	
-	if (GLOBAL_ERROR) setPin(LED_ERROR, 1);
-	else setPin(LED_ERROR, millis() % 200 < 100);
+	if (GLOBAL_ERROR) setPin(ERROR_LED, 1);
+	else setPin(ERROR_LED, millis() % 200 < 100);
+	
+	if(GLOBAL_ERROR & LOW_BATTERY_POWER)
+	{
+		motorDrivers.setMotors(0, 0, 0, 0, 0);
+		display.clear();
+		display.print("LOW BATTERY VOLTAGE", 1, 0);
+		display.print("TURNING OFF", 2, 0);
+		display.show();
+		setPin(POWER_SWITCH, 0);
+		while(1);
+	}
 }
 
-void Robot::sendCommandToVIM(char reg, bool val)
-{
-	char begin = reg * 2 + (val ? 1 : 0);
-	writeUART(VIM_UART, begin * 16 + begin);
-}
-
-void Robot::sync()
-{
-}
-
-void Robot::calibrateIMU(uint32_t t)
-{
-	imu.calibrate(t);
-}
 
 void Robot::logErrors()
 {
-	for (int i = 0; i < 4; i++) motors[i].logError();
+	//for (int i = 0; i < 4; i++) motors[i].logError();
 	/*
 	if (GLOBAL_ERROR & IMU_DATA_ERROR)
 		writeStrUART(DEBUG_UART, "IMU data error\r\n");
@@ -993,43 +357,9 @@ void Robot::logErrors()
 	if (GLOBAL_ERROR != 0)
 	{
 		//display.clear();
-		print(GLOBAL_ERROR, 0, 14);
+		display.print(GLOBAL_ERROR, 0, 14);
 		//display();
 	}
 }
 
-void Robot::print(char* x, int row, int column)
-{		
-	drawString(display.display, x, row, column);
-}
-
-void Robot::print(int x, int row, int column, int next)
-{
-	printTml(display.display, x, next, row, column);
-}
-
-void Robot::print(unsigned x, int row, int column, int next)
-{
-	printTml(display.display, x, next, row, column);
-}
-
-void Robot::print(long long  x, int row, int column, int next)
-{
-	printTml(display.display, x, next, row, column);
-}
-
-void Robot::print(unsigned long long  x, int row, int column, int next)
-{
-	printTml(display.display, x, next, row, column);
-}
-
-void Robot::print(double x, int row, int column, int next)
-{
-	printTml(display.display, x, next, row, column);
-}
-
-void Robot::print(float x, int row, int column, int next)
-{
-	printTml(display.display, x, next, row, column);
-}
 #endif

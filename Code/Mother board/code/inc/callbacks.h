@@ -1,7 +1,6 @@
 #ifndef __MENU_CALLBACKS__
 #define __MENU_CALLBACKS__
 
-
 #define MANUAL_DRIBBLER_CONTROL_SPEED 22
 
 int clb_var = 0;
@@ -36,10 +35,11 @@ void clb_screenToGame()
 {
 	g_state = GAME_SCREEN;
 	robot.display.setScreen(GAME_SCREEN);
-	robot.button[0].changed = false;
-	robot.button[1].changed = false;
-	robot.button[2].changed = false;
-	robot.setupIMU();
+	robot.buttons.setChanged(0, false);
+	robot.buttons.setChanged(1, false);
+	robot.buttons.setChanged(2, false);
+	robot.buttons.setChanged(3, false);
+	robot.imu.setZeroAngle();
 }
 
 //Calibrations screen
@@ -56,23 +56,23 @@ void clb_screenToCalibrations()
 
 		void clb_imuSetup()
 		{
-			robot.imuFloatTime = millis();
-			robot.setupIMU();
+			robot.imu.imuFloatTime = millis();
+			robot.imu.setZeroAngle();
 		}
 
 		void clb_imu_pnc_clear()
 		{
-			robot.setupIMU();
+			robot.imu.setZeroAngle();
 			pncBeginTime = millis();
 			
 		}
 
 		void clb_imu_pnc_start()
 		{
-			robot.imuFloatValue += double(robot.angle - robot.calibratedAngle) / double(millis() - pncBeginTime);
-			robot.imuFloatTime = millis();
+			robot.imu.imuFloatValue += robot.imu.getAngle() / double(millis() - pncBeginTime);
+			robot.imu.imuFloatTime = millis();
 			pncBeginTime = millis();
-			robot.setupIMU();
+			robot.imu.setZeroAngle();
 		}
 		
 		//Light sensors calibration
@@ -85,12 +85,12 @@ void clb_screenToCalibrations()
 						
 				void clb_beginLightsCalib()
 				{
-					robot.beginLineCalibration();
+					robot.lineSensors.beginLineCalibration();
 				}
 
 				void clb_endLightsCalib()
 				{
-					robot.endLineCalibration();
+					robot.lineSensors.endLineCalibration();
 				}
 
 
@@ -110,23 +110,17 @@ void clb_screenToDribbler()
 
 		void clb_dribblerInOn()
 		{
-			robot.manualDribblerControl = 1;
-			robot.driblerSpeed1 = -MANUAL_DRIBBLER_CONTROL_SPEED; 
-			robot.driblerSpeed2 = -MANUAL_DRIBBLER_CONTROL_SPEED;
+			robot.motorDrivers.setDribbler(-MANUAL_DRIBBLER_CONTROL_SPEED);
 		}
 
 		void clb_dribblerOutOn()
 		{
-			robot.manualDribblerControl = 1;
-			robot.driblerSpeed1 = -MANUAL_DRIBBLER_CONTROL_SPEED; 
-			robot.driblerSpeed2 = -MANUAL_DRIBBLER_CONTROL_SPEED;
+			robot.motorDrivers.setDribbler(MANUAL_DRIBBLER_CONTROL_SPEED);
 		}
 
 		void clb_dribblerOff()
 		{
-			robot.manualDribblerControl = 0;
-			robot.driblerSpeed1 = 0; 
-			robot.driblerSpeed2 = 0;
+			robot.motorDrivers.setDribbler(0);
 		}
 
 //Kicker screen		
@@ -138,18 +132,17 @@ void clb_screenToKicker()
 
 		void clb_kickStraight()
 		{
-			robot.kick1 = 1;
-			robot.kick2 = 1;
+			robot.kickerModule.kick(1, 1);
 		}
 		
 		void clb_kick1()
 		{
-			robot.kick1 = 1;
+			robot.kickerModule.kick(1, 0);
 		}
 
 		void clb_kick2()
 		{
-			robot.kick2 = 1;
+			robot.kickerModule.kick(0, 1);
 		}
 
 //Battery screen

@@ -1,3 +1,6 @@
+#ifndef MPU9250_LIB
+#define MPU9250_LIB
+
 //for stm32f407!!!
 
 #include "math.h"
@@ -55,3 +58,5 @@ private:
 	int readReg(int regAddr, int * data = 0, int q = 0);
 	void writeReg(int regAddr, uint8_t data);
 };
+
+#endif

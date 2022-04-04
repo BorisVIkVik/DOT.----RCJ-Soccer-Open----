@@ -135,6 +135,12 @@ void initUART(unsigned int num, uint32_t baudrate, uint8_t wordLength, float _st
 		uart->CR1 &= ~USART_CR1_OVER8;
 		
 		
+		if(clk == 0)
+		{
+			if(num == _UART1 || num == _UART6) clk = 84;
+			else clk = 42;
+		}
+			
 		//select baudrate
 		uint16_t mantissa = 0, fraction = 0;
 		/*if (clk == 42)												//for oversampling 8 (OVER8 = 1)
