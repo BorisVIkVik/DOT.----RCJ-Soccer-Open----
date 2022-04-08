@@ -16,7 +16,7 @@ inline int mpu9250::convert(uint16_t msb, uint8_t lsb)
 }
 
 
-
+///volatile int32_t alucard = 0;
 int mpu9250::readReg(int regAddr, int * data, int q)
 {
 	setPin(mpuSSPin, 0);

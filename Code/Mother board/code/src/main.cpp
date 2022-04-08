@@ -9,6 +9,7 @@ void setupScreens();
 
 
 int main()
+
 {
 	sysStart();
 	
@@ -38,6 +39,7 @@ int main()
 	t = millis();
 	while(1)
 	{
+		robot.motorDrivers.setMotors(50,50,50,50, 0);
 		robot.wait(1);
 		
 		
@@ -78,7 +80,7 @@ int main()
 				else robot.display.print("waiting", 0, 6);
 				
 				robot.display.print("Yaw angle: ", 2, 1);
-				robot.display.print(int32_t(12.25/*robot.imu.getAngle()*/), 2, 11);
+				robot.display.print(int32_t(robot.imu.getAngle()), 2, 11);
 				break;
 			
 			case CALIBRATIONS_SCREEN:
@@ -94,7 +96,7 @@ int main()
 				robot.display.print("Line data: ", 0, 1);
 				robot.display.print(robot.lineSensors.getLine(), 0, 11);
 				robot.display.print("Yaw angle: ", 1, 1);
-				robot.display.print(12.25/*robot.imu.getAngle()*/, 1, 11);
+				robot.display.print(robot.imu.getAngle(), 1, 11);
 				robot.display.print(robot.ADC_2.read(BALL_SENSOR), 2, 1);
 				break;
 			
@@ -169,7 +171,7 @@ void setupScreens()
 	robot.display.addToScreen(*(new Command("Dribbler", clb_screenToDribbler)));
 	robot.display.addToScreen(*(new Command("Kicker", clb_screenToKicker)));
 	robot.display.addToScreen(*(new Command("Battery", clb_toBatteryScreen)));
-	//robot.display.addToScreen(*(new Command("Some shit by Roman", clb_toKokokoScreen)));
+	robot.display.addToScreen(*(new Command("Some shit by Roman", clb_toKokokoScreen)));
 	
 	robot.display.setScreen(GAME_SCREEN);
 	robot.display.addToScreen(*(new Command("Play: ", clb_doNothing)));
@@ -184,8 +186,8 @@ void setupScreens()
 	
 	robot.display.setScreen(LIGHT_SENSORS_CALIBRATION_SCREEN);
 	robot.display.addEsc(*(new Command("", clb_screenToCalibrations))); 
-	//robot.display.addToScreen(*(new Command("Turn on backlight", clb_turnOnBackLight)));
-	//robot.display.addToScreen(*(new Command("Turn off backlight", clb_turnOffBackLight)));
+	robot.display.addToScreen(*(new Command("Turn on backlight", clb_turnOnBackLight)));
+	robot.display.addToScreen(*(new Command("Turn off backlight", clb_turnOffBackLight)));
 	robot.display.addToScreen(*(new Command("Begin calibration", clb_beginLightsCalib)));
 	robot.display.addToScreen(*(new Command("End calibration", clb_endLightsCalib)));
 	
