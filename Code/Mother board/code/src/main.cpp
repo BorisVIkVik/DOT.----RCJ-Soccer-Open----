@@ -37,11 +37,22 @@ int main()
 	volatile int8_t state = 0;
 	tt = millis() - t;
 	t = millis();
+	
+	volatile int check = 0;
 	while(1)
 	{
-		robot.motorDrivers.setMotors(50,50,50,50, 0);
+		check = robot.camera.ballX;
+		if(robot.playState())
+		{
+			int xTmp = robot.camera.ballX;
+			int yTmp = -robot.camera.yGoalY - 62;
+		basicFunc.move2(basicFunc.genATMPoint(xTmp,yTmp,min2(2.0, 0.08 * sqrt(double(xTmp * xTmp + yTmp * yTmp)))), 0);
 		robot.wait(1);
-		
+		}
+		else
+		{
+			robot.motorDrivers.setMotors(0,0,0,0);
+		}
 		
 		
 ///////////////////////////		USER INTERFACE		///////////////////////////
@@ -57,12 +68,11 @@ int main()
 		{
 			case MENU_SCREEN:
 				//robot.motorDrivers.disableMotors();
-				robot.motorDrivers.setMotors(0,0,0,0);
+				//robot.motorDrivers.setMotors(0,0,0,0);
 				break;
 			
 			case GAME_SCREEN:
 				robot.motorDrivers.enableMotors();
-
 				if (robot.buttons.isChanged(0, true))
 				{
 					if(millis() - notGameScreenTimer > 500) robot.changePlayState();
@@ -98,6 +108,12 @@ int main()
 				robot.display.print("Yaw angle: ", 1, 1);
 				robot.display.print(robot.imu.getAngle(), 1, 11);
 				robot.display.print(robot.ADC_2.read(BALL_SENSOR), 2, 1);
+				robot.display.print("ballX: ", 2, 1);
+				robot.display.print(robot.camera.ballX, 2, 9);
+				robot.display.print("ballY: ", 3, 1);
+				robot.display.print(robot.camera.ballY, 3, 9);
+				robot.display.print(int(millis()), 3, 15);
+			
 				break;
 			
 			case DRIBBLER_SCREEN:
@@ -110,15 +126,15 @@ int main()
 				break;
 			
 			case BATTERY_SCREEN:
-				robot.display.print("Battery:", 1, 1);
-				robot.display.print("S1: ", 1, 8);
-				robot.display.print(robot.battery.getCellVoltage(0), 1, 11);
-				robot.display.print("S2: ", 2, 8);
-				robot.display.print(robot.battery.getCellVoltage(1), 2, 11);
-				robot.display.print("S3: ", 3, 8);
-				robot.display.print(robot.battery.getCellVoltage(2), 3, 11);
-				robot.display.print("S4: ", 4, 8);
-				robot.display.print(robot.battery.getCellVoltage(3), 4, 11);
+				robot.display.print("Battery:", 0, 1);
+				robot.display.print("S1: ", 0, 8);
+				robot.display.print(robot.battery.getCellVoltage(0), 0, 11);
+				robot.display.print("S2: ", 1, 8);
+				robot.display.print(robot.battery.getCellVoltage(1), 1, 11);
+				robot.display.print("S3: ", 2, 8);
+				robot.display.print(robot.battery.getCellVoltage(2), 2, 11);
+				robot.display.print("S4: ", 3, 8);
+				robot.display.print(robot.battery.getCellVoltage(3), 3, 11);
 				break;
 			
 			case KOKOKO_SCREEN:

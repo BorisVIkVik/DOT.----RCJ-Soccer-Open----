@@ -292,8 +292,8 @@ VectorToMove BaseFunctional::genATMVecField(int16_t x, int16_t y)//, vector<Obst
 
 VectorToMove BaseFunctional::genATMPoint(int16_t x, int16_t y, int8_t vecMod)
 {
-    int16_t tmpX = x;
-    int16_t tmpY = y;
+    int16_t tmpX = y;
+    int16_t tmpY = x;
     int16_t atm = atan2(double(tmpY), double(tmpX)) * 57.3;
 		VectorToMove res(atm, vecMod);
 		return res;

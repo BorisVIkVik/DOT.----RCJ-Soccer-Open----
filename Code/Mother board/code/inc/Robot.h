@@ -33,6 +33,7 @@ class Robot
 		double dx, dy;
 		PL_ADC ADC_1, ADC_2;
 		long long int batteryUpdateTimer;
+		long long int cameraTimer;
 		long long int driverTimer;
 	
 		void init();
@@ -122,6 +123,7 @@ void Robot::init()
 	dy = 0;
 	
 	batteryUpdateTimer = millis();
+	cameraTimer = millis();
 	driverTimer = millis() - 125;
 	
 	playStateBool = false;
@@ -297,12 +299,14 @@ void Robot::updateMenu()
 
 void Robot::wait(uint32_t t)
 {
+	/*
 	static uint32_t error_step_time = 0;
 	if ((millis() + error_step_time) % 250 < 50) 
 	{
 		GLOBAL_ERROR = 0;
 		error_step_time += 50;
 	}
+	*/
 	
 	int64_t tt = millis();
 	do {
@@ -312,6 +316,10 @@ void Robot::wait(uint32_t t)
 			GLOBAL_ERROR |= battery.update();
 			batteryUpdateTimer = millis();
 		}
+		if(millis() - cameraTimer > 50)
+		{
+			GLOBAL_ERROR |= camera.update();
+		}
 		if(millis() - driverTimer > 250)
 		{
 			motorDrivers.attemptCurrent();
@@ -320,14 +328,15 @@ void Robot::wait(uint32_t t)
 		GLOBAL_ERROR |= motorDrivers.update();
 		GLOBAL_ERROR |= imu.update();
 		GLOBAL_ERROR |= lineSensors.update();
-		GLOBAL_ERROR |= camera.update();
 		GLOBAL_ERROR |= ballSensor.update();
 		GLOBAL_ERROR |= buttons.update();		
 		//GLOBAL_ERROR |= lidar.update();
 		
 		updateMenu();
+		
 		handleErrors();
 	} while(millis() - tt < t);
+	
 }
 
 

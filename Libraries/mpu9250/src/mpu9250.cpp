@@ -244,7 +244,7 @@ void mpu9250::calibrate(int _T)
 	
 	xAccOffset = double(_dax)/_T;
 	yAccOffset = double(_day)/_T;
-	zAccOffset = double(_daz)/_T - (32768 / ACC_FS);
+	zAccOffset = double(_daz)/_T + (32768 / ACC_FS);
 }
 
 

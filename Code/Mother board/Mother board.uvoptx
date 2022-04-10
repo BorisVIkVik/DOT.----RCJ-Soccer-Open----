@@ -152,66 +152,66 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>174</LineNumber>
+          <LineNumber>85</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134220006</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\..\Libraries\stm32f407\periph_library\src\stm32f407_SPI.cpp</Filename>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\code\src\main.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\mother_board_v2\../../Libraries/stm32f407/periph_library/src/stm32f407_SPI.cpp\174</Expression>
+          <Expression></Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>178</LineNumber>
+          <LineNumber>70</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134220012</Address>
+          <Address>0</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\..\Libraries\stm32f407\periph_library\src\stm32f407_SPI.cpp</Filename>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\code\src\main.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\mother_board_v2\../../Libraries/stm32f407/periph_library/src/stm32f407_SPI.cpp\178</Expression>
+          <Expression></Expression>
         </Bp>
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>27</LineNumber>
+          <LineNumber>79</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134235652</Address>
+          <Address>134230780</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\..\Libraries\mpu9250\src\mpu9250.cpp</Filename>
+          <Filename>.\code\inc\Camera.h</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\mother_board_v2\../../Libraries/mpu9250/src/mpu9250.cpp\27</Expression>
+          <Expression>\\mother_board_v2\./code/inc/Camera.h\79</Expression>
         </Bp>
         <Bp>
           <Number>3</Number>
           <Type>0</Type>
-          <LineNumber>116</LineNumber>
+          <LineNumber>74</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134225244</Address>
+          <Address>134226720</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\..\Libraries\stm32f407\periph_library\src\stm32f407_SPI.cpp</Filename>
+          <Filename>.\code\inc\IMU.h</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\mother_board_v2\../../Libraries/stm32f407/periph_library/src/stm32f407_SPI.cpp\116</Expression>
+          <Expression>\\mother_board_v2\code/src/main.cpp\74</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -350,6 +350,46 @@
           <WinNumber>1</WinNumber>
           <ItemText>spi</ItemText>
         </Ww>
+        <Ww>
+          <count>27</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>check</ItemText>
+        </Ww>
+        <Ww>
+          <count>28</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>symb,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>29</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>msg[0]</ItemText>
+        </Ww>
+        <Ww>
+          <count>30</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>msg,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>31</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>len,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>32</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>msgLen,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>33</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>rxData,0x10</ItemText>
+        </Ww>
+        <Ww>
+          <count>34</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>startByte</ItemText>
+        </Ww>
       </WatchWindow1>
       <WatchWindow2>
         <Ww>
@@ -372,7 +412,7 @@
       <DebugFlag>
         <trace>0</trace>
         <periodic>1</periodic>
-        <aLwin>1</aLwin>
+        <aLwin>0</aLwin>
         <aCover>0</aCover>
         <aSer1>0</aSer1>
         <aSer2>0</aSer2>

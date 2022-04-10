@@ -29,22 +29,23 @@ class Battery
 		uint16_t s[4];
 		PL_ADC *adc;
 		double cellCoef[4];
+		double cellReading[4];
 		double cellVoltage[4];
 		double voltage;
 		long long int lowBatteryVoltageTimer;
 		bool lowVoltageDetected;
 		double percentage;
 		
-		void updateCell(int n);
+		void readCell(int n);
 };
 
 
 void Battery::init(PL_ADC *adc, uint16_t s1, uint16_t s2, uint16_t s3, uint16_t s4)
 {
-	cellCoef[0] = 0.001098;		//* 3.3 * double(1200 + 3300) / double(4096 * 3300);
-	cellCoef[1] = 0.002173;		//* 3.3 * double(5600 + 3300) / double(4096 * 3300);
-	cellCoef[2] = 0.003521;		//* 3.3 * double(9100 + 2700) / double(4096 * 2700);
-	cellCoef[3] = 0.004685;		//* 3.3 * double(13000 + 2700) / double(4096 * 2700);
+	cellCoef[0] = 0.00117;		//* 3.3 * double(1200 + 3300) / double(4096 * 3300);
+	cellCoef[1] = 0.002177;		//* 3.3 * double(5600 + 3300) / double(4096 * 3300);
+	cellCoef[2] = 0.00331;		//* 3.3 * double(9100 + 2700) / double(4096 * 2700);
+	cellCoef[3] = 0.0047;		//* 3.3 * double(13000 + 2700) / double(4096 * 2700);
 	
 	s[0] = s1;
 	s[1] = s2;
@@ -64,9 +65,9 @@ void Battery::init(PL_ADC *adc, uint16_t s1, uint16_t s2, uint16_t s3, uint16_t 
 }
 
 
-void Battery::updateCell(int n)
+void Battery::readCell(int n)
 {
-	cellVoltage[n] = double(adc->read(s[n])) * cellCoef[n];
+	cellReading[n] = double(adc->read(s[n])) * cellCoef[n];
 }
 
 
@@ -77,11 +78,18 @@ unsigned int Battery::update()
 	
 	for(int i = 0; i < 4; i++){
 		delayMicros(500);
-		updateCell(i);
-		voltage += cellVoltage[i];
+		readCell(i);
+	}
+	
+	for(int i = 0; i < 4; i++){
+		cellVoltage[i] = cellReading[i];
+		if(i > 0) cellVoltage[i] -= cellReading[i-1];
 		
 		if(cellVoltage[i] < LOW_CELL_VOLTAGE) lowCellVoltage = 1;
 	}
+
+	
+	voltage = cellReading[3];
 	
 	percentage = (voltage - LOW_BATTERY_VOLTAGE) / (MAX_BATTERY_VOLTAGE - LOW_BATTERY_VOLTAGE) * 100;
 	if(percentage > 100.0) percentage = 100.0;
@@ -95,7 +103,7 @@ unsigned int Battery::update()
 			lowBatteryVoltageTimer = millis();
 		}
 		
-		//if(millis() - lowBatteryVoltageTimer > MAX_LOW_VOLTAGE_TIME) return LOW_BATTERY_POWER;
+		if(millis() - lowBatteryVoltageTimer > MAX_LOW_VOLTAGE_TIME) return LOW_BATTERY_POWER;
 		else return 0;
 	}
 	else
