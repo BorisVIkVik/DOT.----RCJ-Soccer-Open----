@@ -203,9 +203,11 @@ void mpu9250::setAccOffset(int xOffset, int yOffset, int zOffset)				//sets hard
 
 
 
-//for calibration imu must stand still (for finding gyro offsets)
-//and pointing acc Z axis straight upperwards, if other axis points
-//upperwards its (n is x, y or z) nAccOffset calculates as 
+//For calibration imu must stand still (for finding gyro offsets)
+//and pointing acc Z axis straight downwards!!!
+//
+//If other axis points upperwards
+//it`s (n is x, y or z) nAccOffset calculates as 
 //_dan/_T - (32768 / ACC_FS) (or + (32768 / ACC_FS) if it points downwards)
 void mpu9250::calibrate(int _T)
 {

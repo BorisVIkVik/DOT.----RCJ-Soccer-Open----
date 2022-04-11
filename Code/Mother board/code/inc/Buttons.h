@@ -6,11 +6,16 @@
 #include "stm32f407_pinList.h"
 #include "stm32f407_wrappers.h"
 
+#define ENTER_BUTTON 0
+#define DOWN_BUTTON 1
+#define UP_BUTTON 2
+#define ESC_BUTTON 3
+
 
 class Buttons
 {
 	public:
-		void init(uint16_t b1, uint16_t b2, uint16_t b3, uint16_t b4);
+		void init(uint16_t enterButton, uint16_t downButton, uint16_t upButton, uint16_t escButton);
 		unsigned int update();
 		void disable();
 		void enable();
@@ -62,12 +67,12 @@ class Buttons
 };
 
 
-void Buttons::init(uint16_t b1, uint16_t b2, uint16_t b3, uint16_t b4)
+void Buttons::init(uint16_t enterButton, uint16_t downButton, uint16_t upButton, uint16_t escButton)
 {
-	b[0] = b1;
-	b[1] = b2;
-	b[2] = b3;
-	b[3] = b4;
+	b[ENTER_BUTTON] = enterButton;
+	b[DOWN_BUTTON] = downButton;
+	b[UP_BUTTON] = upButton;
+	b[ESC_BUTTON] = escButton;
 	
 	for(int i = 0; i < 4; i++)
 		initPin(b[i], INPUT, FL);

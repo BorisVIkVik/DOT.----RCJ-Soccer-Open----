@@ -25,6 +25,10 @@ void clb_screenToMain()
 {
 	g_state = MENU_SCREEN;
 	robot.display.setScreen(MENU_SCREEN);
+	
+	robot.switch5vOff();
+	robot.lineSensors.turnOffSensors();
+	robot.motorDrivers.disableMotors();
 }
 
 
@@ -35,6 +39,9 @@ void clb_screenToGame()
 {
 	g_state = GAME_SCREEN;
 	robot.display.setScreen(GAME_SCREEN);
+	robot.motorDrivers.enableMotors();
+	robot.switch5vOn();
+	robot.lineSensors.turnOnSensors();
 	robot.buttons.setChanged(0, false);
 	robot.buttons.setChanged(1, false);
 	robot.buttons.setChanged(2, false);
@@ -56,6 +63,7 @@ void clb_screenToCalibrations()
 
 		void clb_imuSetup()
 		{
+			robot.imu.setZeroAngle();
 			/*
 			robot.imu.imuFloatTime = millis();
 			robot.imu.setZeroAngle();
@@ -114,6 +122,8 @@ void clb_screenToDebugData()
 {
 	clb_screenToEmpty();
 	g_state = DEBUG_DATA_SCREEN;
+	robot.switch5vOn();
+	robot.lineSensors.turnOnSensors();
 }
 
 //Dribbler screen
@@ -167,11 +177,5 @@ void clb_toBatteryScreen()
 	g_state = BATTERY_SCREEN;
 }
 
-//KOKOKO screen
-void clb_toKokokoScreen()
-{
-	clb_screenToEmpty();
-	g_state = KOKOKO_SCREEN;
-}
 
 #endif
