@@ -221,6 +221,8 @@ void mpu9250::calibrate(int _T)
 	setGyroOffset(0, 0, 0);
 	setAccOffset(0, 0, 0);
 	
+	long long int realCalibrationTimer = millis();
+	
 	for(int i = 0; i < _T; i++)
 	{
 		readGyro();
@@ -235,18 +237,21 @@ void mpu9250::calibrate(int _T)
 		_daz += za;
 		delay(1);
 	}
+	
+	int realCalibrationTime = millis() - realCalibrationTimer;
+	
 	correctionTimer = millis();
 	
 	ACC_DIV = 32768 / ACC_FS;
 	GYRO_DIV = 32768 / GYRO_FS / DEG2RAD;
 
-	xGyroOffset = double(_dgx)/_T;
-	yGyroOffset = double(_dgy)/_T;
-	zGyroOffset = double(_dgz)/_T;
+	xGyroOffset = double(_dgx)/realCalibrationTime;
+	yGyroOffset = double(_dgy)/realCalibrationTime;
+	zGyroOffset = double(_dgz)/realCalibrationTime;
 	
-	xAccOffset = double(_dax)/_T;
-	yAccOffset = double(_day)/_T;
-	zAccOffset = double(_daz)/_T + (32768 / ACC_FS);
+	xAccOffset = double(_dax)/realCalibrationTime;
+	yAccOffset = double(_day)/realCalibrationTime;
+	zAccOffset = double(_daz)/realCalibrationTime + (32768 / ACC_FS);
 }
 
 

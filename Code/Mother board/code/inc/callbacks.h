@@ -46,7 +46,6 @@ void clb_screenToGame()
 	robot.buttons.setChanged(1, false);
 	robot.buttons.setChanged(2, false);
 	robot.buttons.setChanged(3, false);
-	robot.imu.setZeroAngle();
 }
 
 //Calibrations screen

@@ -197,22 +197,6 @@
           <ExecCommand></ExecCommand>
           <Expression>\\mother_board_v2\./code/inc/Camera.h\79</Expression>
         </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
-          <LineNumber>74</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134226720</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\code\inc\IMU.h</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\mother_board_v2\code/src/main.cpp\74</Expression>
-        </Bp>
       </Breakpoint>
       <WatchWindow1>
         <Ww>
