@@ -2,21 +2,18 @@
 
 import sensor, image, time, pyb
 from math import sqrt, atan2
-from pyb import UART
 from pyb import SPI
 EXPOSURE_TIME_SCALE = 0.4
 
-#txrx = UART(3, 115200, timeout_char = 1)
-#txrx.init(115200, bits=8, parity=None, stop=1,timeout_char = 1)
-#spi = SPI(2, SPI.SLAVE, polarity=0, phase=0, crc = 0x08)
 
-buf = bytearray(9)
+threshold_yellow=(38, 100, 3, 45, 30, 127)
+threshold_ball=(51, 71, 56, 113, 28, 58)
 
 
 cX = 149  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
 cY = 120  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
 
-
+buf = bytearray(9)
 ballX = 0
 ballY = 0
 yGoalX = 0
@@ -38,7 +35,7 @@ sensor.set_auto_exposure(False)
 current_exposure_time_in_microseconds=  sensor.get_exposure_us()
 sensor.set_auto_exposure(False, \
     exposure_us = int(current_exposure_time_in_microseconds* EXPOSURE_TIME_SCALE))
-sensor.skip_frames(time = 2000)
+sensor.skip_frames(time = 500)
 
 clock = time.clock()
 
@@ -56,9 +53,6 @@ def crc8(data, len):
     return crc
 
 
-threshold_yellow=(38, 100, 3, 45, 30, 127)
-threshold_ball=(51, 71, 56, 113, 28, 58)
-#pyb.ExtInt(pyb.Pin("P3"), pyb.ExtInt.IRQ_FALLING, pyb.Pin.PULL_UP, nss_callback)
 while(True):
     clock.tick()
     img = sensor.snapshot()
@@ -159,8 +153,10 @@ while(True):
         ballX = (GLXPixel + 139) // 2
         ballY = (GLYPixel + 139) // 2
     except: pass
+
+
+
     spi = SPI(2, SPI.SLAVE, polarity=0, phase=0)
-    #print("kek")
     buf[0] = 0xBB
     buf[1] = 6 #msg_length
     buf[2] = ballX
@@ -170,9 +166,8 @@ while(True):
     buf[6] = 1
     buf[7] = 1
     buf[8] = crc8(buf, 8)
-
     spi.write(buf)
-
     spi.deinit()
+
     img.draw_cross(cX, cY, (0,255,0))
    # print(clock.fps())
