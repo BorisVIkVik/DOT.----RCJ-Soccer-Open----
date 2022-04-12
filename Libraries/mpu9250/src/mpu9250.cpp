@@ -252,6 +252,8 @@ void mpu9250::calibrate(int _T)
 	xAccOffset = double(_dax)/realCalibrationTime;
 	yAccOffset = double(_day)/realCalibrationTime;
 	zAccOffset = double(_daz)/realCalibrationTime + (32768 / ACC_FS);
+	
+	yaw = 0, pitch = 0, roll = 0;
 }
 
 
@@ -370,6 +372,7 @@ void mpu9250::updateAngles(double _time, bool flag1)
 	pitch = pitch * RAD2DEG - pitchOffset;
 	roll = roll * RAD2DEG - rollOffset;
 	yaw = yaw * RAD2DEG - yawOffset;
+	
 	while (pitch < -180) pitch += 360;
 	while (pitch > 180) pitch -= 360;
 	while (roll < -180) roll += 360;

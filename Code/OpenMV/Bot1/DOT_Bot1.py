@@ -6,20 +6,23 @@ from pyb import SPI
 EXPOSURE_TIME_SCALE = 0.4
 
 
-threshold_yellow=(38, 100, 3, 45, 30, 127)
-threshold_ball=(51, 71, 56, 113, 28, 58)
+blue_yellow =       (38, 100, 3, 45, 30, 127)
+threshold_yellow =  (38, 100, 3, 45, 30, 127)
+threshold_ball =    (51, 71, 56, 113, 28, 58)
 
 
 cX = 149  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
 cY = 120  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
 
-buf = bytearray(9)
+buf = bytearray(10)
 ballX = 0
 ballY = 0
 yGoalX = 0
 yGoalY = 0
 bGoalX = 0
 bGoalY = 0
+
+spi = SPI(2, SPI.SLAVE, polarity=0, phase=0)
 
 sensor.reset()
 sensor.set_pixformat(sensor.RGB565)
@@ -155,19 +158,23 @@ while(True):
     except: pass
 
 
+    objects = 0
+    bGoalX = 0
+    bGoalY = 0
 
     spi = SPI(2, SPI.SLAVE, polarity=0, phase=0)
     buf[0] = 0xBB
-    buf[1] = 6 #msg_length
-    buf[2] = ballX
-    buf[3] = ballY
-    buf[4] = yGoalX
-    buf[5] = yGoalY
-    buf[6] = 1
-    buf[7] = 1
-    buf[8] = crc8(buf, 8)
+    buf[1] = 7 #msg_length
+    buf[2] = objects
+    buf[3] = ballX
+    buf[4] = ballY
+    buf[5] = yGoalX
+    buf[6] = yGoalY
+    buf[7] = bGoalX
+    buf[8] = bGoalY
+    buf[9] = crc8(buf, 9)
     spi.write(buf)
     spi.deinit()
 
     img.draw_cross(cX, cY, (0,255,0))
-   # print(clock.fps())
+    print(clock.fps())

@@ -39,6 +39,7 @@ int main()
 	t = millis();
 	
 	volatile int check = 0;
+	robot.motorDrivers.disableMotors();
 	while(1)
 	{
 		check = robot.camera.ballX;
@@ -75,20 +76,21 @@ int main()
 				{
 					if(millis() - notGameScreenTimer > 500) robot.changePlayState();
 				}
-				if (robot.buttons.isChanged(DOWN_BUTTON, true))
+				if (robot.buttons.isChanged(UP_BUTTON, true))
 				{
 					robot.imu.setZeroAngle();
 				}
-				if (robot.buttons.isChanged(ESC_BUTTON, true) && !robot.playState())
+				if (robot.buttons.isChanged(ESC_BUTTON, true))
 				{
-					clb_screenToMain();
+					if(robot.playState()) robot.changePlayState();
+					else clb_screenToMain();
 				}
 				
 				if (robot.playState()) robot.display.print("playing", 0, 6);
 				else robot.display.print("waiting", 0, 6);
 				
 				robot.display.print("Yaw angle: ", 2, 1);
-				robot.display.print(int32_t(robot.imu.getAngle()), 2, 11);
+				robot.display.print(robot.imu.getAngle(), 2, 11);
 				break;
 			
 			case CALIBRATIONS_SCREEN:
