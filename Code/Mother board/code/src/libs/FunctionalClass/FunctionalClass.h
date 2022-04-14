@@ -9,6 +9,7 @@
 #include <struct_Object.h>
 #include <vector>
 #include <math.h>
+#include <SpeedSaver.h>
 
 using namespace std;
 
