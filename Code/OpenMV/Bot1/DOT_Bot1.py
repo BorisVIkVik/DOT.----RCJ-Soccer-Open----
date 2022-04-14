@@ -6,7 +6,7 @@ from pyb import SPI
 EXPOSURE_TIME_SCALE = 0.4
 
 
-blue_yellow =       (38, 100, 3, 45, 30, 127)
+threshold_blue =    (95, 100, -128, 127, -128, 127)
 threshold_yellow =  (38, 100, 3, 45, 30, 127)
 threshold_ball =    (51, 71, 56, 113, 28, 58)
 

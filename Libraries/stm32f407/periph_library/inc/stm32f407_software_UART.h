@@ -3,8 +3,18 @@
 
 #include <stm32f4xx.h>
 #include <stm32f407_pin.h>
+#include "stm32f407_pinList.h"
+#include "stm32f407_wrappers.h"
 
-static void initUARTDMATx(void)
+
+uint8_t softUARTwordLength;
+uint8_t softUARTpatity;
+float softUARTStopBits;
+uint16_t softUARTRXPin;
+uint16_t softUARTTXPin;
+
+
+static void initSoftUARTDMATx(void)
 {
 	setPin(A, 8, true);//Change
 	SET_BIT(RCC->AHB1ENR, RCC_AHB1ENR_DMA1EN);
@@ -19,7 +29,7 @@ static void initUARTDMATx(void)
   NVIC_EnableIRQ(DMA2_Stream1_IRQn);
 }
 
-static void initUARTDMARx(void)
+static void initSoftUARTDMARx(void)
 {
 	setPin(A, 8, true);//Change
 	SET_BIT(RCC->AHB1ENR, RCC_AHB1ENR_DMA1EN);
@@ -35,14 +45,28 @@ static void initUARTDMARx(void)
 
 
 
-static void initEmulatedUART (uint32_t baudrate, unsigned int clk)
+static void initSoftUART(uint16_t _rXPin, uint16_t _tXPin, uint32_t baudrate, unsigned int clk, uint8_t _wordLength = 8, float _stopBits = 0, uint8_t _parity = 0)
 {
 	RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
 	TIM2->ARR = ((uint32_t) ((clk*1000000/baudrate) - 1));	//Hz
 	TIM2->PSC = 0;
 
-	initUARTDMATx();
-	initUARTDMARx();
+	if(_wordLength >= 1 && _wordLength <= 23) softUARTwordLength = _wordLength;
+	else softUARTwordLength = 8;
+	
+	if(_parity >= 0 && _parity <= 2) softUARTpatity = _parity;
+	else softUARTpatity = 0;
+	
+	if(_stopBits == 0 || _stopBits == 1.5 || _stopBits == 2) softUARTStopBits = _stopBits;
+	else softUARTStopBits = 0;
+	
+	softUARTRXPin = _rXPin;
+	softUARTTXPin = _tXPin;
+	initPin(softUARTRXPin, INPUT, FL);
+	initPin(softUARTTXPin, OUTPUTPP);
+	
+	initSoftUARTDMATx();
+	initSoftUARTDMARx();
 }
 
 
@@ -53,7 +77,7 @@ static void initEmulatedUART (uint32_t baudrate, unsigned int clk)
   * @param  pdata pinteur in data
   * @retval None
   */
-static void emulatedUARTTransmitFormatFrame(uint8_t Data, uint32_t *pBuffer_Tx)
+static void softUARTTransmitFormatFrame(uint8_t Data, uint32_t *pBuffer_Tx)
 {
 uint32_t counter = 0;
 uint32_t bitmask = 0;
@@ -61,7 +85,7 @@ uint32_t length = 0;
 uint32_t cntparity = 0;
 
 
-  length = UART_WORDLENGTH_8B;
+  length = softUARTwordLength;
 
   /* Get the Pin Number */
   bitmask = (uint32_t)huart->Init.TxPinNumber;
@@ -102,7 +126,7 @@ int TxXferCount = 0;
 
 
 /////////////////////////////////////////////////////////////////////////////////////////ne hvat bufer
-static void emulatedUARTTransmitFrame()
+static void softUARTTransmitFrame()
 {
   uint32_t tmp_sr = 0;
   uint32_t tmp_ds = 0;
@@ -158,7 +182,7 @@ int State = 0;
  * @param  Size: Amount of data to be sent
  * @retval HAL status
 */
-HAL_StatusTypeDef HAL_UART_Emul_Transmit_DMA(uint8_t *pData, uint16_t Size)
+HAL_StatusTypeDef softUARTTransmitDMA(uint8_t *pData, uint16_t Size)
 {
   uint32_t tmp = 0;
 
@@ -190,7 +214,7 @@ HAL_StatusTypeDef HAL_UART_Emul_Transmit_DMA(uint8_t *pData, uint16_t Size)
     if (huart->TxXferCount == FIRST_BYTE)
     {
       /* Format Frame to be sent */
-      emulatedUARTTransmitFormatFrame(*(pData), (uint32_t*)pFirstBuffer_Tx);
+      softUARTTransmitFormatFrame(*(pData), (uint32_t*)pFirstBuffer_Tx);
 
       /* Enable the Capture compare channel */
       //TIM_CCxChannelCmd(TIM1, TIM_CHANNEL_1, TIM_CCx_ENABLE);
@@ -203,13 +227,13 @@ HAL_StatusTypeDef HAL_UART_Emul_Transmit_DMA(uint8_t *pData, uint16_t Size)
       TIM1->CCER |= (uint32_t)(ChannelState << Channel);
 
       /* Send Frames */
-      emulatedUARTTransmitFrame();
+      softUARTTransmitFrame();
     }
 
     if ((huart->TxXferCount == FIRST_BYTE) && (huart->TxXferCount < Size))
     { 
       /* Format Second Frame to be sent */
-      emulatedUARTTransmitFormatFrame(huart, *(pData + huart->TxXferCount), (uint32_t*)pSecondBuffer_Tx);
+      softUARTTransmitFormatFrame(huart, *(pData + huart->TxXferCount), (uint32_t*)pSecondBuffer_Tx);
     }
 
     return HAL_OK;

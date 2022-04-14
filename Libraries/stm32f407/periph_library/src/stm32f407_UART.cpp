@@ -17,8 +17,11 @@ void initUART(unsigned int num, uint32_t baudrate, uint8_t wordLength, float _st
 	}
 	
 	if(num > 6) {
-		//                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   initEmulatedUART(baudrate, clk);
+		#ifdef STM32F407_SOFTWARE_UART
 		
+		initSoftUART(baudrate, clk, wordLength);
+		
+		#endif
 	}
 	else {
 		
