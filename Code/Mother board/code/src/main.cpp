@@ -39,6 +39,7 @@ int main()
 	t = millis();
 	
 	volatile int check = 0;
+	robot.motorDrivers.disableMotors();
 	while(1)
 	{
 		check = robot.camera.ballX;
@@ -67,30 +68,29 @@ int main()
 		switch (g_state)
 		{
 			case MENU_SCREEN:
-				//robot.motorDrivers.disableMotors();
-				//robot.motorDrivers.setMotors(0,0,0,0);
+				
 				break;
 			
 			case GAME_SCREEN:
-				robot.motorDrivers.enableMotors();
-				if (robot.buttons.isChanged(0, true))
+				if (robot.buttons.isChanged(ENTER_BUTTON, true))
 				{
 					if(millis() - notGameScreenTimer > 500) robot.changePlayState();
 				}
-				if (robot.buttons.isChanged(1, true))
+				if (robot.buttons.isChanged(UP_BUTTON, true))
 				{
-					clb_imu_pnc_start();
+					robot.imu.setZeroAngle();
 				}
-				if (robot.buttons.isChanged(3, true))
+				if (robot.buttons.isChanged(ESC_BUTTON, true))
 				{
-					clb_screenToMain();
+					if(robot.playState()) robot.changePlayState();
+					else clb_screenToMain();
 				}
 				
 				if (robot.playState()) robot.display.print("playing", 0, 6);
 				else robot.display.print("waiting", 0, 6);
 				
 				robot.display.print("Yaw angle: ", 2, 1);
-				robot.display.print(int32_t(robot.imu.getAngle()), 2, 11);
+				robot.display.print(robot.imu.getAngle(), 2, 11);
 				break;
 			
 			case CALIBRATIONS_SCREEN:
@@ -137,14 +137,6 @@ int main()
 				robot.display.print(robot.battery.getCellVoltage(3), 3, 11);
 				break;
 			
-			case KOKOKO_SCREEN:
-				robot.display.print(GLOBAL_ERROR, 1, 1);
-				robot.display.print(robot.imu.imuFloatValue * 1000, 2, 2);
-				robot.display.print(robot.imu.angleChange, 2, 8);
-				robot.display.print(robot.imu.getAngle(), 3, 3);
-				robot.motorDrivers.setMotors(10, -10, -10, 10);
-				break;
-			
 			default:
 				break;
 		}
@@ -187,17 +179,16 @@ void setupScreens()
 	robot.display.addToScreen(*(new Command("Dribbler", clb_screenToDribbler)));
 	robot.display.addToScreen(*(new Command("Kicker", clb_screenToKicker)));
 	robot.display.addToScreen(*(new Command("Battery", clb_toBatteryScreen)));
-	robot.display.addToScreen(*(new Command("Some shit by Roman", clb_toKokokoScreen)));
 	
 	robot.display.setScreen(GAME_SCREEN);
 	robot.display.addToScreen(*(new Command("Play: ", clb_doNothing)));
 	
 	robot.display.setScreen(CALIBRATIONS_SCREEN);
 	robot.display.addEsc(*(new Command("", clb_screenToMain))); 
-	robot.display.addToScreen(*(new Command("ZerofY", clb_imuSetup)));
+	robot.display.addToScreen(*(new Command("Zero IMU", clb_imuSetup)));
 	robot.display.addToScreen(*(new Command("Calibrate IMU", clb_imuCalib)));
-	robot.display.addToScreen(*(new Command("Clear PNC", clb_imu_pnc_clear)));
-	robot.display.addToScreen(*(new Command("Start PNC", clb_imu_pnc_start)));
+	//robot.display.addToScreen(*(new Command("Clear PNC", clb_imu_pnc_clear)));
+	//robot.display.addToScreen(*(new Command("Start PNC", clb_imu_pnc_start)));
 	robot.display.addToScreen(*(new Command("Calibrate light sens...", clb_screenToLightSensorsCalibration)));
 	
 	robot.display.setScreen(LIGHT_SENSORS_CALIBRATION_SCREEN);
@@ -208,12 +199,13 @@ void setupScreens()
 	robot.display.addToScreen(*(new Command("End calibration", clb_endLightsCalib)));
 	
 	robot.display.setScreen(DEBUG_DATA_SCREEN);
+	robot.display.addEsc(*(new Command("", clb_screenToMain)));
 	//empty
 	
 	robot.display.setScreen(DRIBBLER_SCREEN);
 	robot.display.addEsc(*(new Command("", clb_screenToMain)));
 	robot.display.addToScreen(*(new Command("Dribbler in ON", clb_dribblerInOn)));
-	//robot.display.addToScreen(*(new Command("Dribbler out ON", clb_dribblerOutOn)));
+	robot.display.addToScreen(*(new Command("Dribbler out ON", clb_dribblerOutOn)));
 	robot.display.addToScreen(*(new Command("Dribbler OFF", clb_dribblerOff)));
 	
 	robot.display.setScreen(KICKER_SCREEN);
@@ -223,9 +215,7 @@ void setupScreens()
 	robot.display.addToScreen(*(new Command("Kick diagonal 2", clb_kick1)));
 	
 	robot.display.setScreen(BATTERY_SCREEN);
-	//empty
-	
-	robot.display.setScreen(KOKOKO_SCREEN);
+	robot.display.addEsc(*(new Command("", clb_screenToMain)));
 	//empty
 	
 	robot.display.setScreen(MENU_SCREEN);

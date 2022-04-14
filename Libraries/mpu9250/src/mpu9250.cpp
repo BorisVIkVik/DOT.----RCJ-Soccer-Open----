@@ -203,9 +203,11 @@ void mpu9250::setAccOffset(int xOffset, int yOffset, int zOffset)				//sets hard
 
 
 
-//for calibration imu must stand still (for finding gyro offsets)
-//and pointing acc Z axis straight upperwards, if other axis points
-//upperwards its (n is x, y or z) nAccOffset calculates as 
+//For calibration imu must stand still (for finding gyro offsets)
+//and pointing acc Z axis straight downwards!!!
+//
+//If other axis points upperwards
+//it`s (n is x, y or z) nAccOffset calculates as 
 //_dan/_T - (32768 / ACC_FS) (or + (32768 / ACC_FS) if it points downwards)
 void mpu9250::calibrate(int _T)
 {
@@ -218,6 +220,8 @@ void mpu9250::calibrate(int _T)
 	
 	setGyroOffset(0, 0, 0);
 	setAccOffset(0, 0, 0);
+	
+	long long int realCalibrationTimer = millis();
 	
 	for(int i = 0; i < _T; i++)
 	{
@@ -233,18 +237,23 @@ void mpu9250::calibrate(int _T)
 		_daz += za;
 		delay(1);
 	}
+	
+	int realCalibrationTime = millis() - realCalibrationTimer;
+	
 	correctionTimer = millis();
 	
 	ACC_DIV = 32768 / ACC_FS;
 	GYRO_DIV = 32768 / GYRO_FS / DEG2RAD;
 
-	xGyroOffset = double(_dgx)/_T;
-	yGyroOffset = double(_dgy)/_T;
-	zGyroOffset = double(_dgz)/_T;
+	xGyroOffset = double(_dgx)/realCalibrationTime;
+	yGyroOffset = double(_dgy)/realCalibrationTime;
+	zGyroOffset = double(_dgz)/realCalibrationTime;
 	
-	xAccOffset = double(_dax)/_T;
-	yAccOffset = double(_day)/_T;
-	zAccOffset = double(_daz)/_T + (32768 / ACC_FS);
+	xAccOffset = double(_dax)/realCalibrationTime;
+	yAccOffset = double(_day)/realCalibrationTime;
+	zAccOffset = double(_daz)/realCalibrationTime + (32768 / ACC_FS);
+	
+	yaw = 0, pitch = 0, roll = 0;
 }
 
 
@@ -363,6 +372,7 @@ void mpu9250::updateAngles(double _time, bool flag1)
 	pitch = pitch * RAD2DEG - pitchOffset;
 	roll = roll * RAD2DEG - rollOffset;
 	yaw = yaw * RAD2DEG - yawOffset;
+	
 	while (pitch < -180) pitch += 360;
 	while (pitch > 180) pitch -= 360;
 	while (roll < -180) roll += 360;

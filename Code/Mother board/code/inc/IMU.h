@@ -96,7 +96,6 @@ void IMU::updateAnglesFromFIFO()
 void IMU::calibrate(uint32_t t)
 {
 	mpuSensor.calibrate(t);
-	//setZeroAngle();
 }
 
 

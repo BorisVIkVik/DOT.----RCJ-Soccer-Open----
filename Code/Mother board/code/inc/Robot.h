@@ -40,6 +40,8 @@ class Robot
 		void initLEDs();
 		void swithPowerOn();
 		void swithPowerOff();
+		void switch5vOn();
+		void switch5vOff();
 		void move(double velocity, double dir, double heading = 0, double acc = 4 /* m/(s^2) */, double smooth = 1 /* ob/s */);
 		void updateMenu();
 		void changePlayState();
@@ -64,7 +66,7 @@ void Robot::init()
 	
 	//Turn on 5V regulator
 	initPin(REG_5V_EN, OUTPUTPP);
-	setPin(REG_5V_EN, 1);
+	switch5vOff();
 	
 	//Initialize OLED screen on mother board and show init image
 	SSD1306 disp(DISPLAY_SPI, DISPLAY_DC, DISPLAY_RESET, DISPLAY_CS, DISPLAY_PWR_EN, DISPLAY_SCK, DISPLAY_MOSI);
@@ -80,7 +82,7 @@ void Robot::init()
 	initLEDs();
 	
 	//Initialize buttons on mother board
-	buttons.init(BUTTON_1, BUTTON_2, BUTTON_3, BUTTON_4);
+	buttons.init(BUTTON_1_ENTER, BUTTON_2_DOWN, BUTTON_3_UP, BUTTON_4_ESC);
 	
 	//Initialize IMU
 	imu.init(IMU_SPI, IMU_SPI_SS, IMU_PWR_EN);
@@ -259,6 +261,18 @@ void Robot::swithPowerOff()
 }
 
 
+void Robot::switch5vOn()
+{
+	setPin(REG_5V_EN, 1);
+}
+
+
+void Robot::switch5vOff()
+{
+	setPin(REG_5V_EN, 0);
+}
+
+
 void Robot::updateMenu()
 {
 	static int32_t lastUpdate = millis(); 
@@ -267,29 +281,29 @@ void Robot::updateMenu()
 	if ((int32_t)millis() - lastUpdate < 250)
 		return;
 	
-	if (!buttons.isPressed(0))
+	if (!buttons.isPressed(ENTER_BUTTON))
 		wasButtonUnpressed = true;
 	
-	if (buttons.isPressed(0) && wasButtonUnpressed)
+	if (buttons.isPressed(ENTER_BUTTON) && wasButtonUnpressed)
 	{
 		display.execute();
 		lastUpdate = millis();
 		wasButtonUnpressed = false;
 	}
 	
-	if (buttons.isPressed(1))
+	if (buttons.isPressed(DOWN_BUTTON))
 	{
 		display.scrollDown();
 		lastUpdate = millis();
 	}
 	
-	if (buttons.isPressed(2))
+	if (buttons.isPressed(UP_BUTTON))
 	{
 		display.scrollUp();
 		lastUpdate = millis();
 	}
 	
-	if (buttons.isPressed(3))
+	if (buttons.isPressed(ESC_BUTTON))
 	{
 		display.escape();
 		lastUpdate = millis();
@@ -316,7 +330,7 @@ void Robot::wait(uint32_t t)
 			GLOBAL_ERROR |= battery.update();
 			batteryUpdateTimer = millis();
 		}
-		if(millis() - cameraTimer > 50)
+		if(millis() - cameraTimer > 30)
 		{
 			GLOBAL_ERROR |= camera.update();
 		}

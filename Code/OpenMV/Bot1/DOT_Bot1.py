@@ -107,7 +107,7 @@ def realDistance(x):
         xTwo = ball_65cm
         yOne = 60
         yTwo = 65
-        if(ball_65cm <= xAbs and xAbs < ball_70cm):
+    elif(ball_65cm <= xAbs and xAbs < ball_70cm):
         xOne = ball_65cm
         xTwo = ball_70cm
         yOne = 65
@@ -195,27 +195,27 @@ def realDistance(x):
 
 import sensor, image, time, pyb
 from math import sqrt, atan2
-from pyb import UART
 from pyb import SPI
 EXPOSURE_TIME_SCALE = 0.4
 
-#txrx = UART(3, 115200, timeout_char = 1)
-#txrx.init(115200, bits=8, parity=None, stop=1,timeout_char = 1)
-#spi = SPI(2, SPI.SLAVE, polarity=0, phase=0, crc = 0x08)
 
-buf = bytearray(9)
+blue_yellow =       (38, 100, 3, 45, 30, 127)
+threshold_yellow =  (38, 100, 3, 45, 30, 127)
+threshold_ball =    (51, 71, 56, 113, 28, 58)
 
 
 cX = 149  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
 cY = 120  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
 
-
+buf = bytearray(10)
 ballX = 0
 ballY = 0
 yGoalX = 0
 yGoalY = 0
 bGoalX = 0
 bGoalY = 0
+
+spi = SPI(2, SPI.SLAVE, polarity=0, phase=0)
 
 sensor.reset()
 sensor.set_pixformat(sensor.RGB565)
@@ -231,7 +231,11 @@ sensor.set_auto_exposure(False)
 current_exposure_time_in_microseconds=  sensor.get_exposure_us()
 sensor.set_auto_exposure(False, \
     exposure_us = int(current_exposure_time_in_microseconds* EXPOSURE_TIME_SCALE))
+<<<<<<< HEAD
 sensor.skip_frames(time = 10000)
+=======
+sensor.skip_frames(time = 500)
+>>>>>>> 9fb510723d30dac31f10c4b33c9f72526f44dabb
 
 clock = time.clock()
 
@@ -249,9 +253,12 @@ def crc8(data, len):
     return crc
 
 
+<<<<<<< HEAD
 threshold_yellow=(32, 100, -21, 30, 34, 127)
 threshold_ball=(18, 84, 40, 127, 4, 125)
 #pyb.ExtInt(pyb.Pin("P3"), pyb.ExtInt.IRQ_FALLING, pyb.Pin.PULL_UP, nss_callback)
+=======
+>>>>>>> 9fb510723d30dac31f10c4b33c9f72526f44dabb
 while(True):
     clock.tick()
     img = sensor.snapshot()
@@ -355,20 +362,25 @@ while(True):
         print("GLXPixel: " + str(GLXPixel) + " GLYPixel: " + str(GLYPixel))
 
     except: pass
+
+
+    objects = 0
+    bGoalX = 0
+    bGoalY = 0
+
     spi = SPI(2, SPI.SLAVE, polarity=0, phase=0)
-    #print("kek")
     buf[0] = 0xBB
-    buf[1] = 6 #msg_length
-    buf[2] = ballX
-    buf[3] = ballY
-    buf[4] = yGoalX
-    buf[5] = yGoalY
-    buf[6] = 1
-    buf[7] = 1
-    buf[8] = crc8(buf, 8)
-
+    buf[1] = 7 #msg_length
+    buf[2] = objects
+    buf[3] = ballX
+    buf[4] = ballY
+    buf[5] = yGoalX
+    buf[6] = yGoalY
+    buf[7] = bGoalX
+    buf[8] = bGoalY
+    buf[9] = crc8(buf, 9)
     spi.write(buf)
-
     spi.deinit()
+
     img.draw_cross(cX, cY, (0,255,0))
-   # print(clock.fps())
+    print(clock.fps())

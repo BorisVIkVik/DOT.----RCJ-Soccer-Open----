@@ -17,7 +17,7 @@ class Camera
 		Camera();
 		void init(unsigned int spi, uint16_t ss);
 		unsigned int update();
-		int16_t ballX, ballY, yGoalX, yGoalY, bGoalX, bGoalY;
+		int16_t ballX, ballY, yGoalX, yGoalY, bGoalX, bGoalY, objects;
 	
 	
 	private:
@@ -27,6 +27,7 @@ class Camera
 
 Camera::Camera()
 {
+	objects = 0;
 	ballX = 0;
 	ballY = 0;
 	yGoalX = 0;
@@ -73,8 +74,8 @@ unsigned int Camera::update()
 
 	setPin(this->ss, 0);
 	uint8_t msgLen = writeSPI(spi, 47);
-	msgLen = 6;
-	uint8_t rxData[9];
+	msgLen = 7;
+	uint8_t rxData[10];
 	rxData[0] = 0xBB;
 	rxData[1] = msgLen;
 	for(int iter = 0; iter < msgLen; iter++)
@@ -84,13 +85,14 @@ unsigned int Camera::update()
 	
 	if(crc8(rxData, msgLen + 2) == recvCrc8)
 	{
-		setPin(LED_2, 1);				
-		ballX = (rxData[2] * 2) - 139;
-		ballY = (rxData[3] * 2) - 139;
-		yGoalX = (rxData[4] * 2) - 139;
-		yGoalY = (rxData[5] * 2) - 139;
-		bGoalX = (rxData[6] * 2) - 139;
-		bGoalY = (rxData[7] * 2) - 139;
+		setPin(LED_2, 1);
+		objects = rxData[2];
+		ballX = (rxData[3] * 2) - 139;
+		ballY = (rxData[4] * 2) - 139;
+		yGoalX = (rxData[5] * 2) - 139;
+		yGoalY = (rxData[6] * 2) - 139;
+		bGoalX = (rxData[7] * 2) - 139;
+		bGoalY = (rxData[8] * 2) - 139;
 	}
 	else
 	{

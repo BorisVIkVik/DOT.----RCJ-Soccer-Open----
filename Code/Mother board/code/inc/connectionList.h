@@ -15,10 +15,10 @@
 
 
 ///////////////////////////////		BUTTONS		//////////////////////////////
-#define BUTTON_1	PD9
-#define BUTTON_2	PD11
-#define BUTTON_3	PD10
-#define BUTTON_4 	PD13
+#define BUTTON_1_ENTER	PD9
+#define BUTTON_2_DOWN	PD11
+#define BUTTON_3_UP	PD10
+#define BUTTON_4_ESC 	PD13
 
 
 ///////////////////////////////		LEDS		////////////////////////////////
