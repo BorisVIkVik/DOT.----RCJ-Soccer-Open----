@@ -1,6 +1,6 @@
 # Untitled - By: boris - Сб ноя 16 2019
 #-------------------------------------------------
-#CX = 149; CY = 120
+#CX = 149; CY = 120 dobav k nazvaniyam peremenuh radius robota
 ball_0cm = 0
 ball_5cm = 7
 ball_10cm = 13
@@ -177,7 +177,7 @@ def realDistance(x):
         xTwo = ball_135cm
         yOne = 130
         yTwo = 135
-    elif(ball_135cm <= xAbs and xAbs < ball_140cm):
+    elif(ball_135cm <= xAbs):
         xOne = ball_135cm
         xTwo = ball_140cm
         yOne = 135
@@ -196,16 +196,16 @@ def realDistance(x):
 import sensor, image, time, pyb
 from math import sqrt, atan2
 from pyb import SPI
-EXPOSURE_TIME_SCALE = 0.4
+EXPOSURE_TIME_SCALE = 0.3
 
 
 threshold_blue =    (95, 100, -128, 127, -128, 127)
 threshold_yellow =  (38, 100, 3, 45, 30, 127)
-threshold_ball =    (51, 71, 56, 113, 28, 58)
+threshold_ball =    (37, 100, 43, 127, 19, 127)
 
 
-cX = 149  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
-cY = 120  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
+cX = 153  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
+cY = 123  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
 
 buf = bytearray(10)
 ballX = 0
@@ -231,11 +231,7 @@ sensor.set_auto_exposure(False)
 current_exposure_time_in_microseconds=  sensor.get_exposure_us()
 sensor.set_auto_exposure(False, \
     exposure_us = int(current_exposure_time_in_microseconds* EXPOSURE_TIME_SCALE))
-<<<<<<< HEAD
-sensor.skip_frames(time = 10000)
-=======
-sensor.skip_frames(time = 500)
->>>>>>> 9fb510723d30dac31f10c4b33c9f72526f44dabb
+sensor.skip_frames(time = 1000)
 
 clock = time.clock()
 
@@ -253,12 +249,6 @@ def crc8(data, len):
     return crc
 
 
-<<<<<<< HEAD
-threshold_yellow=(32, 100, -21, 30, 34, 127)
-threshold_ball=(18, 84, 40, 127, 4, 125)
-#pyb.ExtInt(pyb.Pin("P3"), pyb.ExtInt.IRQ_FALLING, pyb.Pin.PULL_UP, nss_callback)
-=======
->>>>>>> 9fb510723d30dac31f10c4b33c9f72526f44dabb
 while(True):
     clock.tick()
     img = sensor.snapshot()
@@ -278,21 +268,20 @@ while(True):
 #---Yellow-Goal-Finder-------------------------
     blobsPreviousMas = 0
     biggestYellowBlob = 0
-    count =0
+    countYellow =0
     blobsYellow=[]
-    for yellowBlob in img.find_blobs([threshold_yellow],roi=(0,0,319,239), pixels_threshold=10, area_threshold=10, merge=True):
+    for yellowBlob in img.find_blobs([threshold_yellow],roi=(0,0,319,239), pixels_threshold=100, area_threshold=100, merge=True):
         blobsYellow.append(yellowBlob)
         if(yellowBlob.area() > blobsPreviousMas):
-            biggestYellowBlob = count
+            biggestYellowBlob = countYellow
             blobsPreviosMas = yellowBlob.area()
-        count+=1
+        countYellow+=1
     try:
         img.draw_rectangle(blobsYellow[biggestYellowBlob].rect())
         img.draw_cross(blobsYellow[biggestYellowBlob].cx(),blobsYellow[biggestYellowBlob].cy(), 6)
     except: pass
     maxLeft = 320
     maxRight = 0
-    count = 0
     indL = 0
     indR = 0
     centerY = 0
@@ -313,6 +302,54 @@ while(True):
     except: pass
 #----------------------------------------------
 
+#---Blue-Goal-Values-------------------------
+    centerYBlue = -1
+    centerXBlue = -1
+    GLYBlue = -1
+    GLXBlue = -1
+    angleBlue = -1
+    lineBlue = -1
+    sideBlue = -1
+    distanceBlue = -1
+#--------------------------------------------
+
+#---Yellow-Goal-Finder-------------------------
+    blobsPreviousMas = 0
+    biggestBluewBlob = 0
+    countBlue = 0
+    blobsBlue=[]
+    for blueBlob in img.find_blobs([threshold_blue],roi=(0,0,319,239), pixels_threshold=100, area_threshold=100, merge=True):
+        blobsBlue.append(blueBlob)
+        if(blueBlob.area() > blobsPreviousMas):
+            biggestBlueBlob = countBlue
+            blobsPreviosMas = blueBlob.area()
+        countBlue+=1
+    try:
+        img.draw_rectangle(blobsBlue[biggestBlueBlob].rect())
+        img.draw_cross(blobsBlue[biggestBlueBlob].cx(),blobsBlue[biggestBlueBlob].cy(), 6)
+    except: pass
+    maxLeft = 320
+    maxRight = 0
+    indL = 0
+    indR = 0
+    centerY = 0
+    centerX = 0
+
+    try:
+        centerY = blobsBlue[biggestBlueBlob].cy()
+        centerX = blobsBlue[biggestBlueBlob].cx()
+        GLXPixel = -centerX + cX
+        GLYPixel = -centerY + cY
+        #print(GLYPixel)
+        angle = atan2(GLXPixel, GLYPixel)
+        angle = (angle*57)//1
+        angleBlue = angle
+        #print((GLXPixel + 139) // 2)
+        bGoalX = (GLXPixel + 139) // 2
+        bGoalY = (GLYPixel + 139) // 2
+    except: pass
+#----------------------------------------------
+
 #----------Ball-Values-------------------------
     centerYBall = -1
     centerXBall = -1
@@ -326,21 +363,20 @@ while(True):
 
     blobsPreviousMas = 0
     biggestBallBlob = 0
-    count =0
+    countBall =0
     blobsBall = []
     for ballBlob in img.find_blobs([threshold_ball],roi=(0,0,319,239), pixels_threshold=10, area_threshold=10, merge=True):
         blobsBall.append(ballBlob)
         if(ballBlob.area() > blobsPreviousMas):
-            biggestballBlob = count
+            biggestballBlob = countBall
             blobsPreviosMas = ballBlob.area()
-        count+=1
+        countBall+=1
     try:
         img.draw_rectangle(blobsBall[biggestBallBlob].rect())
-        img.draw_cross(blobsBall[biggestBallBlob].cx(),blobsBall[biggestBallBlob].cy(), 6)
+        img.draw_cross(blobsBall[biggestBallBlob].cx(),blobsBall[biggestBallBlob].cy(), (0,255,255))
     except: pass
     maxLeft = 320
     maxRight = 0
-    count = 0
     indL = 0
     indR = 0
     centerY = 0
@@ -351,6 +387,8 @@ while(True):
         centerX = blobsBall[biggestBallBlob].cx()
         GLXPixel = -centerX + cX
         GLYPixel = -centerY + cY
+        distance = sqrt(GLXPixel * GLXPixel + GLYPixel * GLYPixel) # pixels
+        #distance = realDistance(distance)   #cm
         #print(GLXPixel)
         angle = atan2(GLXPixel, GLYPixel)
         angle = (angle*57)//1
@@ -359,14 +397,12 @@ while(True):
         ballX = (GLXPixel + 139) // 2
         ballY = (GLYPixel + 139) // 2
 
-        print("GLXPixel: " + str(GLXPixel) + " GLYPixel: " + str(GLYPixel))
+        print("GLXPixel: " + str(GLXPixel) + " GLYPixel: " + str(GLYPixel) + " Distance: " + str(distance))
 
     except: pass
 
 
-    objects = 0
-    bGoalX = 0
-    bGoalY = 0
+    objects = (countBall > 0) + ((countYellow > 0) << 1) + ((countBlue > 0) << 2)
 
     spi = SPI(2, SPI.SLAVE, polarity=0, phase=0)
     buf[0] = 0xBB
@@ -383,4 +419,4 @@ while(True):
     spi.deinit()
 
     img.draw_cross(cX, cY, (0,255,0))
-    print(clock.fps())
+    #print(clock.fps())
