@@ -320,25 +320,6 @@ void BaseFunctional::turnCoord(double angle, int16_t x, int16_t y, int16_t& xtoC
     ytoChange = turnY;
 }
 
-pair<int32_t, int32_t> BaseFunctional::filterKalman(pair<int32_t, int32_t> sensorValue, pair<int32_t, int32_t> predictedValue, double coeffK)
-{
-    pair<int32_t, int32_t> res;
-    res.first = sensorValue.first * coeffK + (1 - coeffK) * (predictedValue.first);
-    res.second = sensorValue.second * coeffK + (1 - coeffK) * (predictedValue.second);
-    return res;
-}
-
-pair<int32_t, int32_t> BaseFunctional::predict(uint32_t delay, Object obj, pair<double, double> speedRV, double speedRW, pair<double, double> speedBV)
-{
-    double fi = speedRW * delay;
-    int32_t tmpX = obj.x + (speedBV.first - speedRV.first) * delay; 
-    int32_t tmpY = obj.y + (speedBV.second - speedRV.second) * delay; 
-    pair<int32_t, int32_t> res;
-    res.first = tmpX * cos(fi) - tmpY * sin(fi);
-    res.second = tmpX * sin(fi) + tmpY * cos(fi);
-    return res;
-}
-
 
 //void BaseFunctional::initVecField()
 //{

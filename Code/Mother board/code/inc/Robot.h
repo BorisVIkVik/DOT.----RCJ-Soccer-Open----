@@ -47,8 +47,9 @@ class Robot
 		void changePlayState();
 		void setPlayState(bool a);
 		bool playState();
-		void updateSelfPos(pair<int, int> yellow, pair<int, int> blue);
-		pair<int, int> getPos();
+		void updateSelfPos(pair<double, double> yellow, pair<double, double> blue);
+		pair<double, double> getPos();
+		pair<double, double> getV();
 		void wait(uint32_t t);
 		void handleErrors();
 		void logErrors();
@@ -57,7 +58,8 @@ class Robot
 	private:
 		bool playStateBool;
 		long long int playStateTimer;
-		pair<int, int> pos;
+		pair<double, double> pos;
+		pair<double, double> v;
 };
 
 
@@ -237,10 +239,10 @@ void Robot::move(double velocity, double dir, double heading, double acc, double
 	double tAngle = atan2(dy, dx) * RAD2DEG;
 	
 	int v1, v2, v3, v4;
-	v1 = vel * sin((tAngle + dAngle - 40.)  * DEG2RAD);
-	v2 = vel * sin((tAngle + dAngle - 140.) * DEG2RAD);
-	v3 = vel * sin((tAngle + dAngle + 140.) * DEG2RAD);
-	v4 = vel * sin((tAngle + dAngle + 40.)  * DEG2RAD);
+	v1 = vel * sin((tAngle + dAngle - 32.)  * DEG2RAD);
+	v2 = vel * sin((tAngle + dAngle - 135.) * DEG2RAD);
+	v3 = vel * sin((tAngle + dAngle + 135.) * DEG2RAD);
+	v4 = vel * sin((tAngle + dAngle + 32.)  * DEG2RAD);
 	
 	k = 1;//abs(vel) / max5(abs(v1), abs(v2), abs(v3), abs(v4), 1);
  
@@ -251,6 +253,9 @@ void Robot::move(double velocity, double dir, double heading, double acc, double
 	
 	motorDrivers.setMotors(v1, v2, v3, v4);
 	
+	v.X = velocity*sin(dir*DEG2RAD);
+	v.Y = velocity*cos(dir*DEG2RAD);
+
 	oldErr = err;
 }
 
@@ -279,7 +284,7 @@ void Robot::switch5vOff()
 }
 
 
-void Robot::updateSelfPos(pair<int, int> yellow, pair<int, int> blue)
+void Robot::updateSelfPos(pair<double, double> yellow, pair<double, double> blue)
 {	
 	double K = 0.5 - (sqrt(double(yellow.X*yellow.X + yellow.Y*yellow.Y)) - sqrt(double(blue.X*blue.X + blue.Y*blue.Y)))/134*0.5;
 	if(K > 1.0) K = 1.0;
@@ -293,9 +298,14 @@ void Robot::updateSelfPos(pair<int, int> yellow, pair<int, int> blue)
 }
 
 
-pair<int, int> Robot::getPos()
+pair<double, double> Robot::getPos()
 {
 	return pos;
+}
+
+pair<double, double> Robot::getV()
+{
+	return v;
 }
 
 void Robot::updateMenu()

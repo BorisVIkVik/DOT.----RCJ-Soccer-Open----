@@ -13,7 +13,7 @@ BaseFunctional basicFunc(&robot);
 
 #define SPEED_CALC_TIME	200
 
-void updateKalman(CameraObject &obj, double K, pair<int, int> objV, pair<int, int> rpV, double dt)
+void updateKalman(CameraObject &obj, double K, pair<double, double> objV, pair<double, double> rpV, double dt)
 {
 	dt /= 1000;
 	obj.pos.X = obj.pos.X*K + (obj.oldPos.X + (objV.X - rpV.X)*dt)*(1 - K);
@@ -21,7 +21,7 @@ void updateKalman(CameraObject &obj, double K, pair<int, int> objV, pair<int, in
 	obj.oldPos = obj.pos;
 }
 
-void updatePrediction(CameraObject &obj, pair<int, int> objV, pair<int, int> rpV, double dt)
+void updatePrediction(CameraObject &obj, pair<double, double> objV, pair<double, double> rpV, double dt)
 {
 	dt /= 1000;
 	obj.pos.X = obj.pos.X + (objV.X - rpV.X)*dt;
@@ -36,9 +36,7 @@ int main()
 
 {
 	sysStart();
-	
 	robot.init();
-	
 	setupScreens();
 	
 	writeStrUART(DEBUG_UART, "\r\nStart\r\n");
@@ -55,10 +53,10 @@ int main()
 	
 	PairSaver robotAngle, robotVelocity;
 	pair<double, double> robotA, robotV, ballV;
-	pair<int, int> robotGlobalPos;
+	pair<double, double> robotGlobalPos;
 
 	CameraObject camYellow, camBlue, camBall;
-	FieldObject ball = *(new FieldObject());
+	FieldObject ball;
 
 	volatile int check = 0;
 	robot.motorDrivers.disableMotors();
@@ -86,12 +84,12 @@ int main()
 		#ifdef KALMAN
 		updateKalman(camYellow, KALMAN_K, zero, robotV, dt);
 		updateKalman(camBlue, KALMAN_K, zero, robotV, dt);
-		updateKalman(camBall, KALMAN_K, ball.v, robotV, dt);
+		updateKalman(camBall, KALMAN_K, ballV, robotV, dt);
 		#endif
 		#ifdef PREDICTION
 		updatePrediction(camYellow, zero, robotV, CAMERA_LATENCY);
 		updatePrediction(camBlue, zero, robotV, CAMERA_LATENCY);
-		updatePrediction(camBall, ball.v, robotV, CAMERA_LATENCY);
+		updatePrediction(camBall, ballV, robotV, CAMERA_LATENCY);
 		#endif
 
 		robot.updateSelfPos(camYellow.pos, camBlue.pos);

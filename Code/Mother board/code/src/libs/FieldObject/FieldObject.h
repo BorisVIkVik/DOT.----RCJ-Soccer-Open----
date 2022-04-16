@@ -7,15 +7,11 @@
 
 using namespace std;
 
-#define GOAL_X 0
-#define GOAL_Y 103
-
-
 class FieldObject
 {
 	public:
-    	pair<int, int> globalPos;	//Position in Global coordinates
-		pair<int, int> v;		//Speed in Global coordinates
+    pair<double, double> globalPos;	//Position in Global coordinates
+		pair<double, double> v;		//Speed in Global coordinates
 		PairSaver posSaver;
 		PairSaver speedSaver;
 	
@@ -23,26 +19,23 @@ class FieldObject
 	public:
     FieldObject()
     {
-			posSaver = *(new PairSaver());
-			speedSaver = *(new PairSaver());
-			globalPos.X = 0;
-			globalPos.Y = 0;
-        v.X = 0;
-        v.Y = 0;
+		globalPos.X = 0;
+		globalPos.Y = 0;
+		v.X = 0;
+		v.Y = 0;
     }
 		
 		
-    void update(pair<int, int> localInput, pair<int, int> globalInput, uint32_t time, uint16_t cameraDelay)
+    void update(pair<double, double> localInput, pair<double, double> globalInput, uint32_t time, uint16_t calcTime)
     {
-
 		globalPos.X = globalInput.X + localInput.X;
 		globalPos.Y = globalInput.Y + localInput.Y;
 
-		posSaver.add(globalPos.X, time);
-		pair<int, int> oldPos = posSaver.pop(time - cameraDelay);
+		posSaver.add(globalPos, time);
+		pair<int, int> oldPos = posSaver.pop(time - calcTime);
 
-		v.X = (globalPos.X - oldPos.X)/(cameraDelay/1000);
-		v.Y = (globalPos.Y - oldPos.Y)/(cameraDelay/1000);
+		v.X = (globalPos.X - oldPos.X)/(calcTime/1000);
+		v.Y = (globalPos.Y - oldPos.Y)/(calcTime/1000);
 
 		speedSaver.add(v, time);
     }
