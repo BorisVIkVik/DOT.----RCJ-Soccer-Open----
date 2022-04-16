@@ -57,10 +57,10 @@ template<typename T> T sgn(T x)
   else return 0;
 }
 
-pair<int, int> rotate(pair<int, int> pos, double angle)
+pair<double, double> rotate(pair<double, double> pos, double angle)
 {
     angle *= DEG2RAD;
-    pair<int, int> tmpPos;
+    pair<double, double> tmpPos;
 
     tmpPos.X = pos.X*cos(angle) - pos.Y*sin(angle);
     tmpPos.Y = pos.X*sin(angle) + pos.Y*cos(angle);
