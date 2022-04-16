@@ -367,18 +367,19 @@ void mpu9250::updateAngles(double _time, bool flag1)
 
 	pitch = asin(2*(q0*q2 - q3*q1));
 	roll = atan2(2*(q0*q1 + q2*q3), 1 - 2*(q1*q1 + q2*q2));
-	yaw = -atan2(2*(q0*q3 + q1*q2), 1 - 2*(q2*q2 + q3*q3));
+	yaw = atan2(2*(q0*q3 + q1*q2), 1 - 2*(q2*q2 + q3*q3));
 	
 	pitch = pitch * RAD2DEG - pitchOffset;
 	roll = roll * RAD2DEG - rollOffset;
 	yaw = yaw * RAD2DEG - yawOffset;
-	
+	/*
 	while (pitch < -180) pitch += 360;
 	while (pitch > 180) pitch -= 360;
 	while (roll < -180) roll += 360;
 	while (roll > 180) roll -= 360;
 	while (yaw < -180) yaw += 360;
 	while (yaw > 180) yaw -= 360;
+	*/
 }
 
 

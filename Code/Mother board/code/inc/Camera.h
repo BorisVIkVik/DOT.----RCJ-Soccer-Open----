@@ -87,12 +87,12 @@ unsigned int Camera::update()
 	{
 		setPin(LED_2, 1);
 		objects = rxData[2];
-		ball.X = (rxData[3] * 2) - 139;
-		ball.Y = (rxData[4] * 2) - 139;
-		yellow.X = (rxData[5] * 2) - 139;
-		yellow.Y = (rxData[6] * 2) - 139;
-		blue.X = (rxData[7] * 2) - 139;
-		blue.Y = (rxData[8] * 2) - 139;
+		ball.X = (rxData[3] * 2) - 240;
+		ball.Y = (rxData[4] * 2) - 240;
+		yellow.X = (rxData[5] * 2) - 240;
+		yellow.Y = (rxData[6] * 2) - 240;
+		blue.X = (rxData[7] * 2) - 240;
+		blue.Y = (rxData[8] * 2) - 240;
 	}
 	else
 	{

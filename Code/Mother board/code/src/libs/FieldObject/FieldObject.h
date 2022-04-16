@@ -19,10 +19,12 @@ class FieldObject
 	public:
     FieldObject()
     {
-		globalPos.X = 0;
-		globalPos.Y = 0;
-		v.X = 0;
-		v.Y = 0;
+			posSaver.add(make_pair(0,0), 0);
+			speedSaver.add(make_pair(0,0), 0);
+			globalPos.X = 0;
+			globalPos.Y = 0;
+			v.X = 0;
+			v.Y = 0;
     }
 		
 		

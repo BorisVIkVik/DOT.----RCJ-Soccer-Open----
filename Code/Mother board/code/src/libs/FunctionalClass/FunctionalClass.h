@@ -28,17 +28,14 @@ class BaseFunctional
         int8_t              lineCheck();
         void                chargeShooter();
         void                shoot(uint8_t side, uint8_t power);
-        RobotParametrs      turnRC(RobotParametrs RP, int8_t angle, int8_t x, int8_t y);
+        //RobotParametrs      turnRC(RobotParametrs RP, int8_t angle, int8_t x, int8_t y);
 				void					      turnCoord(double angle, int16_t x, int16_t y, int16_t& xtoChange, int16_t& ytoChange);
-        RobotParametrs      setAngle(RobotParametrs RP, int8_t angle);
+        //RobotParametrs      setAngle(RobotParametrs RP, int8_t angle);
         bool                checkBall();
-        void                move1(int8_t x, int8_t y, RobotParametrs RP);
         //void                addObstacle(VecField* vF, VecField oF, int8_t x, int8_t y);
         void                move2(VectorToMove vtm, double heading);
         VectorToMove        genATMPoint(int16_t x, int16_t y, int8_t vecMod); 
         VectorToMove        genATMVecField(int16_t x, int16_t y);//, vector<Obstacle> obs);
-				pair<int32_t, int32_t> filterKalman(pair<int32_t, int32_t> sensorValue, pair<int32_t, int32_t> predictedValue, double coeffK);
-				pair<int32_t, int32_t> predict(uint32_t delay, Object obj, pair<double, double> speedRV, double speedRW, pair<double, double> speedBV);
 				
     private:
         Robot* _RC;
@@ -236,24 +233,24 @@ void BaseFunctional::dribblerSpeed(int8_t speed)
 //    _RC->updateDribblers(speed);
 }
 
-RobotParametrs BaseFunctional::setAngle(RobotParametrs RP, int8_t angle)
-{
-    RP.angle = angle;
-    return RP;
-}
+//RobotParametrs BaseFunctional::setAngle(RobotParametrs RP, int8_t angle)
+//{
+//    RP.angle = angle;
+//    return RP;
+//}
 
-RobotParametrs BaseFunctional::turnRC(RobotParametrs RP, int8_t angle, int8_t x, int8_t y)
-{
-    int8_t tmpX = RP.robot->_x - x;
-    int8_t tmpY = RP.robot->_y - y;
-    int8_t turnX = tmpX * cos(angle/57.3) - tmpY * sin(angle/57.3);
-    int8_t turnY = tmpX * sin(angle/57.3) + tmpY * cos(angle/57.3);
-    turnX = turnX + x;
-    turnY = turnY + y;
-    RP.robot->_x = turnX;
-    RP.robot->_y = turnY;
-    return RP;
-}
+//RobotParametrs BaseFunctional::turnRC(RobotParametrs RP, int8_t angle, int8_t x, int8_t y)
+//{
+//    int8_t tmpX = RP.robot->_x - x;
+//    int8_t tmpY = RP.robot->_y - y;
+//    int8_t turnX = tmpX * cos(angle/57.3) - tmpY * sin(angle/57.3);
+//    int8_t turnY = tmpX * sin(angle/57.3) + tmpY * cos(angle/57.3);
+//    turnX = turnX + x;
+//    turnY = turnY + y;
+//    RP.robot->_x = turnX;
+//    RP.robot->_y = turnY;
+//    return RP;
+//}
 
 VectorToMove BaseFunctional::genATMVecField(int16_t x, int16_t y)//, vector<Obstacle> obs)
 {
