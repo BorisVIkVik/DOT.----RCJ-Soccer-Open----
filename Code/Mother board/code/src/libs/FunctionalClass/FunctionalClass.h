@@ -244,14 +244,14 @@ RobotParametrs BaseFunctional::setAngle(RobotParametrs RP, int8_t angle)
 
 RobotParametrs BaseFunctional::turnRC(RobotParametrs RP, int8_t angle, int8_t x, int8_t y)
 {
-    int8_t tmpX = RP.robot->x - x;
-    int8_t tmpY = RP.robot->y - y;
+    int8_t tmpX = RP.robot->_x - x;
+    int8_t tmpY = RP.robot->_y - y;
     int8_t turnX = tmpX * cos(angle/57.3) - tmpY * sin(angle/57.3);
     int8_t turnY = tmpX * sin(angle/57.3) + tmpY * cos(angle/57.3);
     turnX = turnX + x;
     turnY = turnY + y;
-    RP.robot->x = turnX;
-    RP.robot->y = turnY;
+    RP.robot->_x = turnX;
+    RP.robot->_y = turnY;
     return RP;
 }
 

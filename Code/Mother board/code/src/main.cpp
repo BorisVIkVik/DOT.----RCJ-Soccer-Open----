@@ -63,53 +63,53 @@ int main()
 	while(1)
 	{
 
-		robot.wait(5);
+//		robot.wait(5);
 
-		time = millis();
-		dt = time - oldTime;
-		oldTime = time;
+//		time = millis();
+//		dt = time - oldTime;
+//		oldTime = time;
 
-		robotAngle.add(make_pair(robot.imu.getAngle(), 0), time);
-		robotVelocity.add(robot.getV(), time);
-		robotA = robotAngle.pop(time - CAMERA_LATENCY);
-		robotV = robotVelocity.pop(time - CAMERA_LATENCY);
-		robotV.X *= 100;
-		robotV.Y *= 100;
-		ballV = ball.speedSaver.pop(time - CAMERA_LATENCY);
+//		robotAngle.add(make_pair(robot.imu.getAngle(), 0), time);
+//		robotVelocity.add(robot.getV(), time);
+//		robotA = robotAngle.pop(time - CAMERA_LATENCY);
+//		robotV = robotVelocity.pop(time - CAMERA_LATENCY);
+//		robotV.X *= 100;
+//		robotV.Y *= 100;
+//		ballV = ball.speedSaver.pop(time - CAMERA_LATENCY);
 
-		camYellow.pos = rotate(robot.camera.yellow, robotA.first);
-		camBlue.pos = rotate(robot.camera.blue, robotA.first);
-		camBall.pos = rotate(robot.camera.ball, robotA.first);
+//		camYellow.pos = rotate(robot.camera.yellow, robotA.first);
+//		camBlue.pos = rotate(robot.camera.blue, robotA.first);
+//		camBall.pos = rotate(robot.camera.ball, robotA.first);
 
-		#ifdef KALMAN
-		updateKalman(camYellow, KALMAN_K, zero, robotV, dt);
-		updateKalman(camBlue, KALMAN_K, zero, robotV, dt);
-		updateKalman(camBall, KALMAN_K, ballV, robotV, dt);
-		#endif
-		#ifdef PREDICTION
-		updatePrediction(camYellow, zero, robotV, CAMERA_LATENCY);
-		updatePrediction(camBlue, zero, robotV, CAMERA_LATENCY);
-		updatePrediction(camBall, ballV, robotV, CAMERA_LATENCY);
-		#endif
+//		#ifdef KALMAN
+//		updateKalman(camYellow, KALMAN_K, zero, robotV, dt);
+//		updateKalman(camBlue, KALMAN_K, zero, robotV, dt);
+//		updateKalman(camBall, KALMAN_K, ballV, robotV, dt);
+//		#endif
+//		#ifdef PREDICTION
+//		updatePrediction(camYellow, zero, robotV, CAMERA_LATENCY);
+//		updatePrediction(camBlue, zero, robotV, CAMERA_LATENCY);
+//		updatePrediction(camBall, ballV, robotV, CAMERA_LATENCY);
+//		#endif
 
-		robot.updateSelfPos(camYellow.pos, camBlue.pos);
-		robotGlobalPos = robot.getPos();
-		ball.update(camBall.pos, robotGlobalPos, time, SPEED_CALC_TIME);
-		
-	/*
-		check = robot.camera.ballX;
-		if(robot.playState())
-		{
-			int xTmp = robot.camera.ballX;
-			int yTmp = -robot.camera.yGoalY - 62;
-		basicFunc.move2(basicFunc.genATMPoint(xTmp,yTmp,min2(2.0, 0.08 * sqrt(double(xTmp * xTmp + yTmp * yTmp)))), 0);
-		robot.wait(1);
-		}
-		else
-		{
-			robot.motorDrivers.setMotors(0,0,0,0);
-		}
-	*/
+//		robot.updateSelfPos(camYellow.pos, camBlue.pos);
+//		robotGlobalPos = robot.getPos();
+//		ball.update(camBall.pos, robotGlobalPos, time, SPEED_CALC_TIME);
+//		
+	
+//		check = ball.globalPos.X;
+//		if(robot.playState())
+//		{
+//			int xTmp = ball.globalPos.X - robotGlobalPos.X;
+//			int yTmp = robotGlobalPos.Y - 70;
+//		basicFunc.move2(basicFunc.genATMPoint(xTmp,yTmp,min2(2.0, 0.08 * sqrt(double(xTmp * xTmp + yTmp * yTmp)))), 0);
+//		robot.wait(1);
+//		}
+//		else
+//		{
+//			robot.motorDrivers.setMotors(0,0,0,0);
+//		}
+	
 		
 ///////////////////////////		USER INTERFACE		///////////////////////////
 		robot.display.update();

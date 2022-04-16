@@ -9,7 +9,7 @@ using namespace std;
 class PairSaver
 {
     public:
-        PairSaver();
+        PairSaver(){}
         void add(pair<double, double> speed, uint32_t time);
         pair<double, double> pop(uint32_t time);
 		
