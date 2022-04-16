@@ -1,6 +1,10 @@
 #ifndef TOOLS_LIB
 #define TOOLS_LIB
 
+#include <stdint.h>
+#include <utility>
+#include <math.h>
+
 /* CONSTANTS */
 #define Byte2Angle 	1.40625f
 #define DEG2RAD 		0.01745329251f
@@ -10,6 +14,11 @@
 #define NO_RATIONAL 1
 #define ST_RATIONAL 3
 #define LG_RATIONAL 6
+
+#define X		first
+#define Y		second
+
+using namespace std;
 
 /* cutting with boundaries */
 #define stp(x, val) (x > val ? val : (x < -val ? -val : x))
@@ -46,6 +55,17 @@ template<typename T> T sgn(T x)
   if (x > 0) return 1;
   else if (x < 0) return -1;
   else return 0;
+}
+
+pair<int, int> rotate(pair<int, int> pos, double angle)
+{
+    angle *= DEG2RAD;
+    pair<int, int> tmpPos;
+
+    tmpPos.X = pos.X*cos(angle) - pos.Y*sin(angle);
+    tmpPos.Y = pos.X*sin(angle) + pos.Y*cos(angle);
+
+    return tmpPos;
 }
 
 #endif

@@ -47,6 +47,8 @@ class Robot
 		void changePlayState();
 		void setPlayState(bool a);
 		bool playState();
+		void updateSelfPos(pair<int, int> yellow, pair<int, int> blue);
+		pair<int, int> getPos();
 		void wait(uint32_t t);
 		void handleErrors();
 		void logErrors();
@@ -55,6 +57,7 @@ class Robot
 	private:
 		bool playStateBool;
 		long long int playStateTimer;
+		pair<int, int> pos;
 };
 
 
@@ -123,6 +126,9 @@ void Robot::init()
 	//Some variables
 	dx = 0;
 	dy = 0;
+
+	pos.X = 0;
+	pos.Y = 0;
 	
 	batteryUpdateTimer = millis();
 	cameraTimer = millis();
@@ -272,6 +278,25 @@ void Robot::switch5vOff()
 	setPin(REG_5V_EN, 0);
 }
 
+
+void Robot::updateSelfPos(pair<int, int> yellow, pair<int, int> blue)
+{	
+	double K = 0.5 - (sqrt(double(yellow.X*yellow.X + yellow.Y*yellow.Y)) - sqrt(double(blue.X*blue.X + blue.Y*blue.Y)))/134*0.5;
+	if(K > 1.0) K = 1.0;
+	if(K < 0.0) K = 0.0;
+	
+	#define GOAL_X	0
+	#define GOAL_Y	103
+	
+	pos.X = (GOAL_X - yellow.X)*K + (GOAL_X - blue.X)*(1.0 - K);
+	pos.Y = (-GOAL_Y - yellow.Y)*K + (GOAL_Y - blue.Y)*(1.0 - K);
+}
+
+
+pair<int, int> Robot::getPos()
+{
+	return pos;
+}
 
 void Robot::updateMenu()
 {

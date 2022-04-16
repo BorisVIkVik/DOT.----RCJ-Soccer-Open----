@@ -17,8 +17,8 @@ class Camera
 		Camera();
 		void init(unsigned int spi, uint16_t ss);
 		unsigned int update();
-		int16_t ballX, ballY, yGoalX, yGoalY, bGoalX, bGoalY, objects;
-	
+		uint8_t objects;
+		pair<int, int> ball, blue, yellow;
 	
 	private:
 		unsigned int spi;
@@ -28,12 +28,12 @@ class Camera
 Camera::Camera()
 {
 	objects = 0;
-	ballX = 0;
-	ballY = 0;
-	yGoalX = 0;
-	yGoalY = 0;
-	bGoalX = 0;
-	bGoalY = 0;
+	ball.X = 0;
+	ball.Y = 0;
+	blue.X = 0;
+	blue.Y = 0;
+	yellow.X = 0;
+	yellow.Y = 0;
 }
 
 void Camera::init(unsigned int spi, uint16_t ss)
@@ -87,12 +87,12 @@ unsigned int Camera::update()
 	{
 		setPin(LED_2, 1);
 		objects = rxData[2];
-		ballX = (rxData[3] * 2) - 139;
-		ballY = (rxData[4] * 2) - 139;
-		yGoalX = (rxData[5] * 2) - 139;
-		yGoalY = (rxData[6] * 2) - 139;
-		bGoalX = (rxData[7] * 2) - 139;
-		bGoalY = (rxData[8] * 2) - 139;
+		ball.X = (rxData[3] * 2) - 139;
+		ball.Y = (rxData[4] * 2) - 139;
+		yellow.X = (rxData[5] * 2) - 139;
+		yellow.Y = (rxData[6] * 2) - 139;
+		blue.X = (rxData[7] * 2) - 139;
+		blue.Y = (rxData[8] * 2) - 139;
 	}
 	else
 	{

@@ -182,17 +182,18 @@ int State = 0;
  * @param  Size: Amount of data to be sent
  * @retval HAL status
 */
-HAL_StatusTypeDef softUARTTransmitDMA(uint8_t *pData, uint16_t Size)
+uint8_t softUARTTransmitDMA(uint8_t *pData, uint16_t Size)
 {
   uint32_t tmp = 0;
 
   tmp = State;
   if ((tmp == HAL_UART_EMUL_STATE_READY) || (tmp == HAL_UART_EMUL_STATE_BUSY_RX))
   {
-    huart->TxXferSize = Size;
-    huart->pTxBuffPtr = pData;
-    huart->TxXferCount = 1;
-    huart->ErrorCode = HAL_UART_EMUL_ERROR_NONE;
+    //huart->TxXferSize = Size;
+    //huart->pTxBuffPtr = pData;
+    //huart->TxXferCount = 1;
+    //huart->ErrorCode = HAL_UART_EMUL_ERROR_NONE;
+		TxXferCount = 1
 
     /* Check if a receive process is ongoing or not */
     if (State == HAL_UART_EMUL_STATE_BUSY_RX)

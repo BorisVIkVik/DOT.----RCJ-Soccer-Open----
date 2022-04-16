@@ -2,15 +2,13 @@
 
 #include "Robot.h"
 #include <RobotParametrs.h>
-#include <SpeedSaver.h>
 //#include <stdint.h>
 #include <Obstacle.h>
 #include <VTM.h>
 #include <VecField.h>
-#include <struct_Object.h>
 #include <vector>
 #include <math.h>
-#include <SpeedSaver.h>
+#include <PairSaver.h>
 
 using namespace std;
 

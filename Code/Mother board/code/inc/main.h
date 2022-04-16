@@ -20,6 +20,8 @@
 #include "tools.h"
 #include "Robot.h"
 #include <FunctionalClass.h>
+#include <FieldObject.h>
+#include <CameraObject.h>
 
 #define EMPTY_SCREEN 0
 #define MENU_SCREEN 1

@@ -5,6 +5,30 @@ BaseFunctional basicFunc(&robot);
 
 #include "callbacks.h"
 
+#define KALMAN
+#define KALMAN_K		0.5
+
+#define PREDICTION
+#define CAMERA_LATENCY	48
+
+#define SPEED_CALC_TIME	200
+
+void updateKalman(CameraObject &obj, double K, pair<int, int> objV, pair<int, int> rpV, double dt)
+{
+	dt /= 1000;
+	obj.pos.X = obj.pos.X*K + (obj.oldPos.X + (objV.X - rpV.X)*dt)*(1 - K);
+	obj.pos.Y = obj.pos.Y*K + (obj.oldPos.Y + (objV.Y - rpV.Y)*dt)*(1 - K);
+	obj.oldPos = obj.pos;
+}
+
+void updatePrediction(CameraObject &obj, pair<int, int> objV, pair<int, int> rpV, double dt)
+{
+	dt /= 1000;
+	obj.pos.X = obj.pos.X + (objV.X - rpV.X)*dt;
+	obj.pos.Y = obj.pos.Y + (objV.Y - rpV.Y)*dt;
+}
+
+
 void setupScreens();
 
 
@@ -19,29 +43,62 @@ int main()
 	
 	writeStrUART(DEBUG_UART, "\r\nStart\r\n");
 	
-	long long int notGameScreenTimer = millis();
-	long long int t = millis(), tt;
+	uint32_t notGameScreenTimer = millis();
+
+	uint32_t time = millis();
+	uint32_t oldTime = time;
+	uint16_t dt = time - oldTime;
 	
-	int16_t checlBallx = 0;
-	int16_t checlBally = 0;
-	volatile int cringe = 0;
-	int checlTime = 0;
-	volatile int checkX =0;
-	volatile int checkY =0;
+	pair<int, int> zero;
+	zero.X = 0;
+	zero.Y = 0;
 	
-	volatile int goalYellowX =0;
-	volatile int goalYellowY =0;
-	
-	
-	int32_t kickTime = 0;
-	volatile int8_t state = 0;
-	tt = millis() - t;
-	t = millis();
-	
+	PairSaver robotAngle, robotVelocity;
+	pair<double, double> robotA, robotV, ballV;
+	pair<int, int> robotGlobalPos;
+
+	CameraObject camYellow, camBlue, camBall;
+	FieldObject ball = *(new FieldObject());
+
 	volatile int check = 0;
 	robot.motorDrivers.disableMotors();
 	while(1)
 	{
+
+		robot.wait(5);
+
+		time = millis();
+		dt = time - oldTime;
+		oldTime = time;
+
+		robotAngle.add(make_pair(robot.imu.getAngle(), 0), time);
+		robotVelocity.add(robot.getV(), time);
+		robotA = robotAngle.pop(time - CAMERA_LATENCY);
+		robotV = robotVelocity.pop(time - CAMERA_LATENCY);
+		robotV.X *= 100;
+		robotV.Y *= 100;
+		ballV = ball.speedSaver.pop(time - CAMERA_LATENCY);
+
+		camYellow.pos = rotate(robot.camera.yellow, robotA.first);
+		camBlue.pos = rotate(robot.camera.blue, robotA.first);
+		camBall.pos = rotate(robot.camera.ball, robotA.first);
+
+		#ifdef KALMAN
+		updateKalman(camYellow, KALMAN_K, zero, robotV, dt);
+		updateKalman(camBlue, KALMAN_K, zero, robotV, dt);
+		updateKalman(camBall, KALMAN_K, ball.v, robotV, dt);
+		#endif
+		#ifdef PREDICTION
+		updatePrediction(camYellow, zero, robotV, CAMERA_LATENCY);
+		updatePrediction(camBlue, zero, robotV, CAMERA_LATENCY);
+		updatePrediction(camBall, ball.v, robotV, CAMERA_LATENCY);
+		#endif
+
+		robot.updateSelfPos(camYellow.pos, camBlue.pos);
+		robotGlobalPos = robot.getPos();
+		ball.update(camBall.pos, robotGlobalPos, time, SPEED_CALC_TIME);
+		
+	/*
 		check = robot.camera.ballX;
 		if(robot.playState())
 		{
@@ -54,7 +111,7 @@ int main()
 		{
 			robot.motorDrivers.setMotors(0,0,0,0);
 		}
-		
+	*/
 		
 ///////////////////////////		USER INTERFACE		///////////////////////////
 		robot.display.update();
@@ -109,9 +166,9 @@ int main()
 				robot.display.print(robot.imu.getAngle(), 1, 11);
 				robot.display.print(robot.ADC_2.read(BALL_SENSOR), 2, 1);
 				robot.display.print("ballX: ", 2, 1);
-				robot.display.print(robot.camera.ballX, 2, 9);
+				//robot.display.print(robot.camera.ballX, 2, 9);
 				robot.display.print("ballY: ", 3, 1);
-				robot.display.print(robot.camera.ballY, 3, 9);
+				//robot.display.print(robot.camera.ballY, 3, 9);
 				robot.display.print(int(millis()), 3, 15);
 			
 				break;
@@ -156,8 +213,6 @@ int main()
 		
 		robot.display.show();
 		robot.display.clear();
-		
-		robot.wait(5);
 	}
 }
 
