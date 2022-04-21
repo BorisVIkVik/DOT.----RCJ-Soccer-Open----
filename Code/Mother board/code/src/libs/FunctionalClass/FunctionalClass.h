@@ -36,6 +36,7 @@ class BaseFunctional
         void                move2(VectorToMove vtm, double heading);
         VectorToMove        genATMPoint(int16_t x, int16_t y, int8_t vecMod); 
         VectorToMove        genATMVecField(int16_t x, int16_t y);//, vector<Obstacle> obs);
+				VectorToMove 				genVTMGlobalPoint(pair<int16_t, int16_t> toGoCoords, pair<int16_t, int16_t> robotCoords, double vecMod);
 				
     private:
         Robot* _RC;
@@ -317,18 +318,11 @@ void BaseFunctional::turnCoord(double angle, int16_t x, int16_t y, int16_t& xtoC
     ytoChange = turnY;
 }
 
-
-//void BaseFunctional::initVecField()
-//{
-//    for(int iter = 0; iter < vecNum; iter++)
-//    {
-//        map[iter] = new int8_t[infNum];
-//    }
-//    for(int iter = 0; iter < vecNum; iter++)
-//    {
-//        for(int jter = 0; jter < infNum; jter++)
-//        {
-//            map[iter][jter] = firstField[iter][jter];
-//        }
-//    }
-//}
+VectorToMove BaseFunctional::genVTMGlobalPoint(pair<int16_t, int16_t> toGoCoords, pair<int16_t, int16_t> robotCoords, double vecMod)
+{
+    int16_t tmpX = toGoCoords.Y - robotCoords.Y;
+    int16_t tmpY = toGoCoords.X - robotCoords.X;
+    int16_t atm = atan2(double(tmpY), double(-tmpX)) * 57.3;
+	VectorToMove res(atm, min2(2.0, 0.08 * sqrt(double(tmpX * tmpX + tmpY * tmpY))));
+	return res;
+}

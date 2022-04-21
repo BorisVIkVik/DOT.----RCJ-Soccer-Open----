@@ -288,10 +288,11 @@ void Robot::switch5vOff()
 
 void Robot::updateSelfPos(pair<double, double> yellow, pair<double, double> blue)
 {	
-	double K = 0.5 - (sqrt(double(yellow.X*yellow.X + yellow.Y*yellow.Y)) - sqrt(double(blue.X*blue.X + blue.Y*blue.Y)))/134*0.5;
+	double K = 0.5 + 0.5;//- (sqrt(double(yellow.X*yellow.X + yellow.Y*yellow.Y)) - sqrt(double(blue.X*blue.X + blue.Y*blue.Y)))/134*0.5;
 	if(K > 1.0) K = 1.0;
 	if(K < 0.0) K = 0.0;
-	
+	display.print("K: ", 1, 1);
+	display.print(K, 1, 5);
 	#define GOAL_X	0
 	#define GOAL_Y	103
 	

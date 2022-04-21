@@ -81,7 +81,7 @@ unsigned int IMU::update()
 	if(!working) return IMU_POWER_OFF;
 	
 	updateAnglesFromFIFO();
-	angle = -mpuSensor.yaw*0.94;	
+	angle = -mpuSensor.yaw;	
 	adduction(angle);
 	return 0;
 }

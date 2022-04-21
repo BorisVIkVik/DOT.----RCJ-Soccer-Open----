@@ -32,6 +32,74 @@ void updatePrediction(CameraObject &obj, pair<double, double> objV, pair<double,
 void setupScreens();
 
 
+
+
+//TEST AREA-------------------------------------------------------------
+	struct pt {
+		double x, y;
+	};
+	 
+	struct line {
+		double a, b, c;
+	};
+	 
+	struct segment {
+		double a, b, c, leftX, rightX, downY, upY;
+	}; 
+
+	double distanceVec(pair<double, double> f, pair<double, double> s)
+	{
+		return sqrt((f.X - s.X) * (f.X - s.X) + (f.Y - s.Y) * (f.Y - s.Y));
+	}
+	const double EPS = 1e-9;
+	 
+	double det (double a, double b, double c, double d) {
+		return a * d - b * c;
+	}
+	 
+	bool intersect (segment m, line n, pt & res) {
+		double zn = det (m.a, m.b, n.a, n.b);
+		if (abs (zn) < EPS)
+			return false;
+		pt tmp;
+		tmp.x = - det (m.c, m.b, n.c, n.b) / zn;
+		tmp.y = - det (m.a, m.c, n.a, n.c) / zn;
+			if (m.leftX != m.rightX && !(m.leftX <= tmp.x && tmp.x <= m.rightX)) 
+					return false;
+			if (m.downY != m.upY && !(m.downY <= tmp.y && tmp.y <= m.upY))  
+					return false;
+		res = tmp;
+		return true;
+	}
+	 
+	pt goalPoints[6] = {{70, -97}, {70, -89}, {55, -74}, {-55, -74}, {-70, -89}, {-70, -97}};
+	segment goalLines[5] = {{0, 1, 60, -25, 25, 0, 0}, {2, 5, 250, 25, 50, 0, 0}, {-2, 5, 250, -50, -25, 0, 0}, {1, 0, 50, 0, 0, -90, -70}, {1, 0, -50, 0, 0, -90, -70}};
+
+	//(y2 - y1)*x + y * (x1 - x2) +  y1 * (x2 - x1) - (y2 - y1)*x1 = 0 
+	//A = (y2 - y1); B = (x1 - x2); C = y1 * (x2 - x1) - (y2 - y1) * x1
+
+	// int A = (robot.camera.ballY + 97);
+	// int B = (0 - robot.camera.ballX);
+	// int C = (-97 * (robot.camera.ballX - 0) - (robot.camera.ballY + 97) * 0);
+
+
+
+	
+	
+	//TEST AREA-------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
 int main()
 
 {
@@ -61,6 +129,33 @@ int main()
 	
 	volatile int check = 0;
 	robot.motorDrivers.disableMotors();
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	pt toGo = {0, 0};
+	
+	PairSaver ballPosSave;
+	pair<double, double> old = make_pair(0,0);
+	uint32_t predictTime = 0;
 	while(1)
 	{
 
@@ -97,6 +192,7 @@ int main()
 		robotGlobalPos = robot.getPos();
 		ball.update(camBall.pos, robotGlobalPos, time, SPEED_CALC_TIME);
 		
+		ballPosSave.add(ball.globalPos, time);
 	/*
 		check = ball.globalPos.X;
 		if(robot.playState())
@@ -111,6 +207,111 @@ int main()
 			robot.motorDrivers.setMotors(0,0,0,0);
 		}
 	*/
+	line goalToRobot;
+	int lineA = 0;
+	int lineB = 0;
+	int lineC = 0;
+	//TEST AREA-------------------------------------------------------------
+	int timeBack = 200;
+	if(millis() - predictTime > 500)
+	{
+		old = ball.globalPos;
+		predictTime = millis();
+	}
+	if(distanceVec(old, ball.globalPos) > 5)
+	{
+//		lineA = 0 + 20;
+//		lineB = 22 - 21;
+//		lineC = 22 * 20;
+		//A = (y2 - y1); B = (x1 - x2); C = y1 * (x2 - x1) - (y2 - y1) * x1
+//		lineA = (ball.globalPos.Y - ballPosSave.pop(time - timeBack).Y);
+	lineA = (ball.globalPos.Y - old.Y);
+	lineB = (old.X - ball.globalPos.X);
+	lineC = old.Y * (ball.globalPos.X - old.X) - (ball.globalPos.Y - old.Y) * old.X;
+	}
+//		lineB = (ballPosSave.pop(time - timeBack).X - ball.globalPos.X);
+//		lineC = ballPosSave.pop(time - timeBack).Y * (ball.globalPos.X - ballPosSave.pop(time - timeBack).X) - (ball.globalPos.Y - ballPosSave.pop(time - timeBack).Y) * ballPosSave.pop(time - timeBack).X;
+//	}
+	else
+	{
+		lineA = (ball.globalPos.Y + 97);
+		lineB = (0 - ball.globalPos.X);
+		lineC = (-97 * ball.globalPos.X);
+	}
+
+	
+	goalToRobot.a = lineA;
+	goalToRobot.b = lineB;
+	goalToRobot.c = lineC;
+	
+	bool foundToGoPoint = false;
+  
+		if(abs(ball.globalPos.Y) < 75)
+		{
+
+			
+			if(intersect(goalLines[0], goalToRobot, toGo))
+			{
+					foundToGoPoint = true;
+			}
+			else if(intersect(goalLines[1], goalToRobot, toGo))
+			{
+					pt checkPoint;
+					if(intersect(goalLines[2], goalToRobot, checkPoint))
+					{
+							double distance1 = sqrt(double((checkPoint.x - ball.globalPos.X) * (checkPoint.x - ball.globalPos.X) + (checkPoint.y - ball.globalPos.Y) * (checkPoint.y - ball.globalPos.Y)));
+							double distance2 = sqrt(double((toGo.x - ball.globalPos.X) * (toGo.x - ball.globalPos.X) + (toGo.y - ball.globalPos.Y) * (toGo.y - ball.globalPos.Y)));        
+							if(distance2 > distance1)
+									toGo = checkPoint; 
+					}
+					foundToGoPoint = true;
+			}
+			else if(intersect(goalLines[2], goalToRobot, toGo))
+			{
+					foundToGoPoint = true;
+			}
+			else if(intersect(goalLines[3], goalToRobot, toGo))
+			{
+					pt checkPoint;
+					if(intersect(goalLines[4], goalToRobot, checkPoint))
+					{
+							double distance1 = sqrt(double((checkPoint.x - ball.globalPos.X) * (checkPoint.x - ball.globalPos.X) + (checkPoint.y - ball.globalPos.Y) * (checkPoint.y - ball.globalPos.Y)));
+							double distance2 = sqrt(double((toGo.x - ball.globalPos.X) * (toGo.x - ball.globalPos.X) + (toGo.y - ball.globalPos.Y) * (toGo.y - ball.globalPos.Y)));        
+					    if(distance2 > distance1)
+					        toGo = checkPoint; 
+					}
+					foundToGoPoint = true;
+			}
+			else if(intersect(goalLines[4], goalToRobot, toGo))
+			{
+					foundToGoPoint = true;
+			}
+		}
+		else
+		{
+//			 toGo.x = 0;
+//			 toGo.y = -60;
+			 foundToGoPoint = true;
+		}
+
+//    if(!foundToGoPoint)
+//    {
+//        double distance = sqrt(double((goalPoints[0].x - robot.camera.ball.X) * (goalPoints[0].x - robot.camera.ball.X) + (goalPoints[0].y - robot.camera.ball.Y) * (goalPoints[0].y - robot.camera.ball.Y)));
+
+//        for(int i = 1; i < 6; i++)
+//        {
+//            //distance1 = sqrt(double((goalLines[i]. - robot.camera.ball.X) * (checkPoint.x - robot.camera.ball.X) + (checkPoint.y - robot.camera.ball.Y) * (checkPoint.y - robot.camera.ball.Y)));
+//        }
+//    }
+
+		
+		if(robot.playState())
+		{
+			check = basicFunc.genVTMGlobalPoint(make_pair(toGo.x, toGo.y), robot.getPos(), 1)._angle;
+			basicFunc.move2(basicFunc.genVTMGlobalPoint(make_pair(toGo.x, toGo.y), robot.getPos(), 0.8), 0);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
+		}
+		
+		//TEST AREA-------------------------------------------------------------
 		
 ///////////////////////////		USER INTERFACE		///////////////////////////
 		robot.display.update();
@@ -147,6 +348,10 @@ int main()
 				
 				robot.display.print("Yaw angle: ", 2, 1);
 				robot.display.print(robot.imu.getAngle(), 2, 11);
+				robot.display.print("Ball x: ", 3, 1);
+				robot.display.print(ball.globalPos.X, 3, 11);
+				robot.display.print("Ball y: ", 4, 1);
+				robot.display.print(ball.globalPos.Y, 4, 11);
 				break;
 			
 			case CALIBRATIONS_SCREEN:
