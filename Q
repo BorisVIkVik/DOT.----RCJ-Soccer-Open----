@@ -1,0 +1,206 @@
+[33mcommit fb2cc29f936ba404f8131ac326f62aea7f48ebf6[m[33m ([m[1;36mHEAD[m[33m)[m
+Author: BW <boris@victorov.com>
+Date:   Thu Apr 21 22:30:35 2022 +0300
+
+    Goalkeeper Beta version with predict
+
+[33mcommit fdf3625bb24d8246907e23bc5e1587cf47f438c9[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: BW <boris@victorov.com>
+Date:   Sun Apr 17 00:50:58 2022 +0300
+
+    Getting Cam Coordinates
+
+[33mcommit 13b0691aa8163f1996abf8debb4da0c665b83749[m[33m ([m[1;32mmain[m[33m)[m
+Author: BW <boris@victorov.com>
+Date:   Sat Apr 16 18:32:17 2022 +0300
+
+    Test kalman/goalkeeper
+
+[33mcommit 34681cfd4d770969d3f883a0937ee0f06c2c938a[m
+Author: ilust <ilust.d@gmail.com>
+Date:   Sat Apr 16 15:54:23 2022 +0300
+
+    tools update
+
+[33mcommit c71b24f4f2030070667ff2b9a496282a0922bcfa[m
+Author: ilust <ilust.d@gmail.com>
+Date:   Sat Apr 16 15:50:05 2022 +0300
+
+    Kalman and prediction alpha version
+
+[33mcommit 3540849020f425cc378d78bbc17391d4a2c795fc[m
+Author: ilust <ilust.d@gmail.com>
+Date:   Sat Apr 16 07:29:16 2022 +0300
+
+    Genius prediction with Kalman are almost done
+
+[33mcommit c3a9393592922f9918e0905749f510aeee77babf[m
+Author: BW <boris@victorov.com>
+Date:   Sat Apr 16 00:41:39 2022 +0300
+
+    Object class upgrade
+
+[33mcommit dc569318bf3c0f450e31e040645e336a3f41f1d4[m
+Merge: 6c68177 9e2722f
+Author: BW <boris@victorov.com>
+Date:   Fri Apr 15 02:12:32 2022 +0300
+
+    Merge branch 'main' of https://github.com/BorisVIkVik/DOT.----RCJ-Soccer-Open---- into main
+
+[33mcommit 6c68177cddedb92f13766aefc9a84a3a401d3959[m
+Author: BW <boris@victorov.com>
+Date:   Fri Apr 15 02:12:17 2022 +0300
+
+    SpeedSaver class added
+
+[33mcommit 9e2722f0b67fcb9d58d7cb3b78f1c43e53f7f4dc[m
+Author: ilust <ilust.d@gmail.com>
+Date:   Thu Apr 14 20:20:09 2022 +0300
+
+    BLue goal detection added to camera
+
+[33mcommit ee434b7013a7041f86a8f0468c8f920a387bbead[m
+Merge: 0fcb981 b29da2d
+Author: ilust <ilust.d@gmail.com>
+Date:   Thu Apr 14 19:51:12 2022 +0300
+
+    Merge remote-tracking branch 'refs/remotes/origin/main'
+
+[33mcommit 0fcb98184b0998c2b20388fdb7b50e9c9c273000[m
+Author: ilust <ilust.d@gmail.com>
+Date:   Thu Apr 14 19:48:08 2022 +0300
+
+    .
+
+[33mcommit b29da2dabd0af629b8b5979baf94c423ac475349[m
+Merge: 5b7385f 9fb5107
+Author: BW <boris@victorov.com>
+Date:   Thu Apr 14 19:23:18 2022 +0300
+
+    OpenMV code for linearization
+
+[33mcommit 5b7385f486d2bb61796d4564d72a0618cd8d62cc[m
+Author: BW <boris@victorov.com>
+Date:   Thu Apr 14 19:20:54 2022 +0300
+
+    OpenMV code for linearization
+
+[33mcommit 9fb510723d30dac31f10c4b33c9f72526f44dabb[m
+Author: ilust <ilust.d@gmail.com>
+Date:   Tue Apr 12 16:36:55 2022 +0300
+
+    GUI and UX fixed
+
+[33mcommit 47628ccbb7c47f49ac55e7951efff63c35bc3cc5[m
+Author: ilust <ilust.d@gmail.com>
+Date:   Tue Apr 12 01:19:40 2022 +0300
+
+    Load screen updated
+
+[33mcommit 22249479ae73e81cd8fc05fa4e7bce2712af2c3f[m
+Author: ilust <ilust.d@gmail.com>
+Date:   Mon Apr 11 23:32:20 2022 +0300
+
+    Camera code cleaned
+
+[33mcommit 545ca02942693da8574765017e7cd4045ef3aad8[m
+Author: ilust <ilust.d@gmail.com>
+Date:   Mon Apr 11 22:19:37 2022 +0300
+
+    IMU uses timer for calibration
+
+[33mcommit af2119f258c95a889524b75c6a2bcaa447ea3b5e[m
+Author: ilust <ilust.d@gmail.com>
+Date:   Mon Apr 11 22:01:18 2022 +0300
+
+    Issues fixed
+
+[33mcommit eb1f7efbd7e98b75301300fd2ba68c37dab93ab2[m
+Author: BW <boris@victorov.com>
+Date:   Mon Apr 11 02:36:24 2022 +0300
+
+    Alpha version of goalkeeper
+
+[33mcommit b339a59246aa84e3fc6e5561781fd7241bfd0d4a[m
+Author: BW <boris@victorov.com>
+Date:   Fri Apr 8 19:18:27 2022 +0300
+
+    Stack/Heap problem solved(needs testing)
+
+[33mcommit 007090f062eb75d9b69e4880eee2c229fe30ea68[m
+Author: ilust <ilust.d@gmail.com>
+Date:   Tue Apr 5 00:53:38 2022 +0300
+
+    Nothing works
+
+[33mcommit dfb9acb4c10040062b926f419e42e456cacd2ab4[m
+Author: ilust <ilust.d@gmail.com>
+Date:   Mon Apr 4 04:09:26 2022 +0300
+
+    function.h separeted to multiple files. For each module created own .h file. Code modified for 2022 robot.
+
+[33mcommit 33a46a27522a91ebc0bffada9348326b6cc13b4c[m
+Author: ilust <ilust.d@gmail.com>
+Date:   Sun Apr 3 15:05:55 2022 +0300
+
+    Fixed mother board dependencies
+
+[33mcommit 4612ba8637090d4dd74b4b63f8cf60bb3f63ea91[m
+Author: BW <boris@victorov.com>
+Date:   Sun Apr 3 14:44:42 2022 +0300
+
+    Fixed issues
+
+[33mcommit 2b06cc5ac6ac3ece674ce1f916e9d3b79a65da7f[m
+Author: BW <boris@victorov.com>
+Date:   Sun Apr 3 14:35:28 2022 +0300
+
+    Fixed subrepository issues
+
+[33mcommit e255e1968616373f237678cef4b2d533dea6b3aa[m
+Author: ilust <ilust.d@gmail.com>
+Date:   Sun Apr 3 05:27:08 2022 +0300
+
+    Mother board project updated
+
+[33mcommit 851bf5f2c422b48f951b1cc772d7ea48903ab466[m
+Author: ilust <ilust.d@gmail.com>
+Date:   Sun Apr 3 05:18:21 2022 +0300
+
+    SSD1306 library moved
+
+[33mcommit 02abf3a8b373119994d19c4e431efbeb5867824d[m
+Author: ilust <ilust.d@gmail.com>
+Date:   Sun Apr 3 05:03:36 2022 +0300
+
+    mpu9250 library added to repo
+
+[33mcommit f544e783ffc29586bfb4ad085f04e2d60fdba5af[m
+Author: ilust <ilust.d@gmail.com>
+Date:   Sun Apr 3 04:53:51 2022 +0300
+
+    Add ibraries and STM documentation to repository
+
+[33mcommit b1987ca7dab831acdc65c46d1b510db627b189ee[m
+Author: ilust <ilust.d@gmail.com>
+Date:   Sun Apr 3 04:20:50 2022 +0300
+
+    garbage cleaned
+
+[33mcommit 11806193c2722e000ff4fe6eed07d0388f5cb275[m
+Author: ilust <ilust.d@gmail.com>
+Date:   Sun Apr 3 03:46:25 2022 +0300
+
+    Mother board code moved to another directory
+
+[33mcommit df958f219fca1d29cc4a0a680256365a55065ffa[m
+Author: BW <boris@victorov.com>
+Date:   Sat Apr 2 18:47:00 2022 +0300
+
+    First Code Commit for Ilyha
+
+[33mcommit a3346b980e789405f3c06d6be1793e56590d4fde[m
+Author: BW <boris@victorov.com>
+Date:   Sat Apr 2 18:44:40 2022 +0300
+
+    first commit

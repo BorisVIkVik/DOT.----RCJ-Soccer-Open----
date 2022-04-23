@@ -241,10 +241,10 @@ void Robot::move(double velocity, double dir, double heading, double acc, double
 	double tAngle = atan2(dy, dx) * RAD2DEG;
 	
 	int v1, v2, v3, v4;
-	v1 = vel * sin((tAngle + dAngle - 32.)  * DEG2RAD);
+	v1 = vel * sin((tAngle + dAngle - 58.)  * DEG2RAD);
 	v2 = vel * sin((tAngle + dAngle - 135.) * DEG2RAD);
 	v3 = vel * sin((tAngle + dAngle + 135.) * DEG2RAD);
-	v4 = vel * sin((tAngle + dAngle + 32.)  * DEG2RAD);
+	v4 = vel * sin((tAngle + dAngle + 58.)  * DEG2RAD);
 	
 	k = 1;//abs(vel) / max5(abs(v1), abs(v2), abs(v3), abs(v4), 1);
  
@@ -288,7 +288,13 @@ void Robot::switch5vOff()
 
 void Robot::updateSelfPos(pair<double, double> yellow, pair<double, double> blue)
 {	
-	double K = 0.5 + 0.5;//- (sqrt(double(yellow.X*yellow.X + yellow.Y*yellow.Y)) - sqrt(double(blue.X*blue.X + blue.Y*blue.Y)))/134*0.5;
+	double K = 0.0;
+	if((camera.objects & 2) && (camera.objects & 4))
+		K = 0.5 - (sqrt(double(yellow.X*yellow.X + yellow.Y*yellow.Y)) - sqrt(double(blue.X*blue.X + blue.Y*blue.Y)))/134*0.5;
+	else if(camera.objects & 2)
+		K = 1.0;
+	else if(camera.objects & 4)
+		K = 0.0;		
 	if(K > 1.0) K = 1.0;
 	if(K < 0.0) K = 0.0;
 	display.print("K: ", 1, 1);

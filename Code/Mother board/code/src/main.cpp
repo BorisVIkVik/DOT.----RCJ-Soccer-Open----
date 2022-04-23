@@ -156,6 +156,10 @@ int main()
 	PairSaver ballPosSave;
 	pair<double, double> old = make_pair(0,0);
 	uint32_t predictTime = 0;
+	uint32_t strikeTime = 0;
+	uint32_t stateTime = 0;
+	uint32_t angleCheckTest = 0;
+	bool strike = false;
 	while(1)
 	{
 
@@ -213,13 +217,15 @@ int main()
 	int lineC = 0;
 	//TEST AREA-------------------------------------------------------------
 	int timeBack = 200;
-	if(millis() - predictTime > 500)
+	if(millis() - predictTime > 200)
 	{
 		old = ball.globalPos;
 		predictTime = millis();
 	}
-	if(distanceVec(old, ball.globalPos) > 5)
+	if(distanceVec(old, ball.globalPos) > 5 && !strike)
 	{
+		strikeTime = millis();
+		strike = false;
 //		lineA = 0 + 20;
 //		lineB = 22 - 21;
 //		lineC = 22 * 20;
@@ -234,6 +240,11 @@ int main()
 //	}
 	else
 	{
+		if(millis() - strikeTime > 5000 && !strike)
+		{
+			strikeTime = millis();
+			strike = true;
+		}
 		lineA = (ball.globalPos.Y + 97);
 		lineB = (0 - ball.globalPos.X);
 		lineC = (-97 * ball.globalPos.X);
@@ -304,11 +315,47 @@ int main()
 //        }
 //    }
 
-		
+//		if(millis() - stateTime > 3000)
+//		{ 
+//			stateTime = millis();
+//			angleCheckTest += 90;
+//			angleCheckTest %= 360;
+//			if(angleCheckTest == 90)
+//			{
+//				toGo.x = 20;
+//				toGo.y = -40;
+//			}
+//			else if (angleCheckTest == 180)
+//			{
+//				toGo.x = 20;
+//				toGo.y = 40;
+//			}
+//			else if(angleCheckTest == 270)
+//			{
+//				toGo.x = -20;
+//				toGo.y = 40;
+//			}
+//			else if (angleCheckTest == 0)
+//			{
+//				toGo.x = -20;
+//				toGo.y = -40;
+//			}
+//		}
+		if(strike)
+		{
+			toGo.x = ball.globalPos.X;
+			toGo.y = ball.globalPos.Y;
+			if(millis() - strikeTime > 3000 || !basicFunc.checkBounds(make_pair(-30, -80), make_pair(30, 0), robot.getPos()))
+			{
+				strikeTime = millis();
+				strike = false;
+			}
+		}
 		if(robot.playState())
 		{
 			check = basicFunc.genVTMGlobalPoint(make_pair(toGo.x, toGo.y), robot.getPos(), 1)._angle;
-			basicFunc.move2(basicFunc.genVTMGlobalPoint(make_pair(toGo.x, toGo.y), robot.getPos(), 0.8), 0);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
+			//robot.move(0.8, angleCheckTest);
+			basicFunc.move2(basicFunc.genVTMGlobalPoint(make_pair(toGo.x, toGo.y), robot.getPos(), 2.5), 0);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
 		}
 		
 		//TEST AREA-------------------------------------------------------------

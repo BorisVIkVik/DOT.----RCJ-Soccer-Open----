@@ -16,13 +16,14 @@ int16_t vecNum = 10800;
 int8_t infNum = 2;
 //int8_t** map = new int8_t*[vecNum];
 
-
+#define KOEF_P	0.1
+#define KOEF_D	0.6
 
 
 class BaseFunctional
 {
     public:
-                            BaseFunctional(Robot* RC):_RC(RC){}
+                            BaseFunctional(Robot* RC):_RC(RC),errorOld(0){}
         void                dribblerSpeed(int8_t speed);
         //void                initVecField();
         int8_t              lineCheck();
@@ -37,8 +38,10 @@ class BaseFunctional
         VectorToMove        genATMPoint(int16_t x, int16_t y, int8_t vecMod); 
         VectorToMove        genATMVecField(int16_t x, int16_t y);//, vector<Obstacle> obs);
 				VectorToMove 				genVTMGlobalPoint(pair<int16_t, int16_t> toGoCoords, pair<int16_t, int16_t> robotCoords, double vecMod);
+				bool 								checkBounds(pair<double, double> nizLF, pair<double, double> verxPR, pair<double, double> pointToCheck);
 				
     private:
+				double errorOld;
         Robot* _RC;
 };
 
@@ -318,11 +321,28 @@ void BaseFunctional::turnCoord(double angle, int16_t x, int16_t y, int16_t& xtoC
     ytoChange = turnY;
 }
 
-VectorToMove BaseFunctional::genVTMGlobalPoint(pair<int16_t, int16_t> toGoCoords, pair<int16_t, int16_t> robotCoords, double vecMod)
+VectorToMove BaseFunctional::genVTMGlobalPoint(pair<int16_t, int16_t> toGoCoords, pair<int16_t, int16_t> robotCoords, double maxVecMod)
 {
     int16_t tmpX = toGoCoords.Y - robotCoords.Y;
     int16_t tmpY = toGoCoords.X - robotCoords.X;
     int16_t atm = atan2(double(tmpY), double(-tmpX)) * 57.3;
-	VectorToMove res(atm, min2(2.0, 0.08 * sqrt(double(tmpX * tmpX + tmpY * tmpY))));
+		double error = sqrt(double(tmpX * tmpX + tmpY * tmpY));
+		double p = error * KOEF_P;
+		double d = (error - errorOld) * KOEF_D;
+		double u = p + d;
+		errorOld = error;
+	VectorToMove res(atm, min2(maxVecMod, u));
 	return res;
+}
+
+bool BaseFunctional::checkBounds(pair<double, double> nizLF, pair<double, double> verxPR, pair<double, double> pointToCheck)
+{
+	if((nizLF.Y < pointToCheck.Y && pointToCheck.Y < verxPR.Y) && (nizLF.X < pointToCheck.X && pointToCheck.X < verxPR.X))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
