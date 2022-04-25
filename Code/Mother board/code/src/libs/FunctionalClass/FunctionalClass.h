@@ -39,7 +39,7 @@ class BaseFunctional
         VectorToMove        genATMVecField(int16_t x, int16_t y);//, vector<Obstacle> obs);
 				VectorToMove 				genVTMGlobalPoint(pair<int16_t, int16_t> toGoCoords, pair<int16_t, int16_t> robotCoords, double vecMod);
 				bool 								checkBounds(pair<double, double> nizLF, pair<double, double> verxPR, pair<double, double> pointToCheck);
-				
+				Robot*							getRobotClass();
     private:
 				double errorOld;
         Robot* _RC;
@@ -345,4 +345,9 @@ bool BaseFunctional::checkBounds(pair<double, double> nizLF, pair<double, double
 	{
 		return false;
 	}
+}
+
+Robot* BaseFunctional::getRobotClass()
+{
+	return _RC;
 }

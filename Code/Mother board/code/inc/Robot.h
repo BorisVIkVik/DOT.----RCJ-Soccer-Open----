@@ -16,6 +16,12 @@
 
 #include "Errors.h"
 
+
+//#define PREDICTION
+#define CAMERA_LATENCY	48
+
+#define SPEED_CALC_TIME	200
+
 using namespace std;
 
 /* ROBOT */

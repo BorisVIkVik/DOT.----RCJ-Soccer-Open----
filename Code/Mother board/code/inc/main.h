@@ -22,6 +22,7 @@
 #include <FunctionalClass.h>
 #include <FieldObject.h>
 #include <CameraObject.h>
+#include <Strategy.h>
 
 #define EMPTY_SCREEN 0
 #define MENU_SCREEN 1
