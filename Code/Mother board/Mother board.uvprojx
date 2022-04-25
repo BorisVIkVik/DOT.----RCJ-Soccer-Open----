@@ -407,6 +407,11 @@
               <FileType>5</FileType>
               <FilePath>.\code\inc\Strategy.h</FilePath>
             </File>
+            <File>
+              <FileName>goalkeeper.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\code\src\goalkeeper.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
