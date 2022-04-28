@@ -68,4 +68,42 @@ pair<double, double> rotate(pair<double, double> pos, double angle)
     return tmpPos;
 }
 
+
+struct pt {
+		double x, y;
+	};
+	 
+	struct line {
+		double a, b, c;
+	};
+	 
+	struct segment {
+		double a, b, c, leftX, rightX, downY, upY;
+	}; 
+
+	double distanceVec(pair<double, double> f, pair<double, double> s)
+	{
+		return sqrt((f.X - s.X) * (f.X - s.X) + (f.Y - s.Y) * (f.Y - s.Y));
+	}
+	const double EPS = 1e-9;
+	 
+	double det (double a, double b, double c, double d) {
+		return a * d - b * c;
+	}
+	 
+	bool intersect (segment m, line n, pt & res) {
+		double zn = det (m.a, m.b, n.a, n.b);
+		if (abs (zn) < EPS)
+			return false;
+		pt tmp;
+		tmp.x = - det (m.c, m.b, n.c, n.b) / zn;
+		tmp.y = - det (m.a, m.c, n.a, n.c) / zn;
+			if (m.leftX != m.rightX && !(m.leftX <= tmp.x && tmp.x <= m.rightX)) 
+					return false;
+			if (m.downY != m.upY && !(m.downY <= tmp.y && tmp.y <= m.upY))  
+					return false;
+		res = tmp;
+		return true;
+	}
+
 #endif

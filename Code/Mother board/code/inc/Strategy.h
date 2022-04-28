@@ -250,8 +250,8 @@ class Functional:  public BaseFunctional
 					{
 						flex = -1/(flex - 100);
 						flex *= 2;
-						if(getRobotClass()->lineSensors.getLine() > 4)
-							setMoveCoords(goalYellowX, DEFAULT_MOVE_Y);
+//						if(getRobotClass()->lineSensors.getLine() > 4)
+//							setMoveCoords(goalYellowX, DEFAULT_MOVE_Y);
 					}
 					else if(flex < 120.0)
 					{
@@ -280,7 +280,7 @@ class Functional:  public BaseFunctional
 //					}
 					
 					//if(flex > 2500) flex = 2500;
-					move2(trajectoryFollowing(flex, goalYellowX, goalYellowY), -90);
+	//				move2(trajectoryFollowing(flex, goalYellowX, goalYellowY), -90);
 					printUART(DEBUG_UART, flex);
 					
 						
@@ -379,5 +379,7 @@ class Functional:  public BaseFunctional
 		pair<double, double> robotGlobalPos;
 		FieldObject ball;
 		PairSaver ballPosSave;
+		//pt goalPoints[6] = {{70, -97}, {70, -89}, {55, -74}, {-55, -74}, {-70, -89}, {-70, -97}};
+		//segment goalLines[5] = {{0, 1, 60, -25, 25, 0, 0}, {2, 5, 250, 25, 50, 0, 0}, {-2, 5, 250, -50, -25, 0, 0}, {1, 0, 50, 0, 0, -90, -70}, {1, 0, -50, 0, 0, -90, -70}};
 };
 	

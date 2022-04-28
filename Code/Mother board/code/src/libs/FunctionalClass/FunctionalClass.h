@@ -351,3 +351,22 @@ Robot* BaseFunctional::getRobotClass()
 {
 	return _RC;
 }
+
+VectorToMove BaseFunctional::trajectoryFollowingDots(int16_t& oldPosIndex, double distance)
+{
+    int toGoPosIndex = oldPosIndex;
+    for(; toGoPosIndex < TRAJECTORY1_SIZE; toGoPosIndex++)
+    {
+        pair<int16_t, int16_t> tmpMovedVec = make_pair(trajectory1[toGoPosIndex][0] - trajectory1[oldPos][0], trajectory1[toGoPosIndex][1] - trajectory1[oldPos][1]);
+        double tmpDistance = sqrt(tmpMovedVec.X * tmpMovedVec.X + tmpMovedVec.Y * tmpMovedVec.Y);
+        if(distance <= tmpDistance)
+            break;
+    }
+    pair<int16_t, int16_t> toGo = make_pair(trajectory1[toGoPosIndex][0] - _RC.globalPos.X, trajectory1[toGoPosIndex][1] - _RC.globalPos.Y);
+    toGo.X += 
+    toGo.Y +=
+    double angleToMove = atan2(toGo.X, toGo.Y) * 57.3;
+    double vecMod = SPEED_TRAJ_FOLLOW_M_S;
+    VectorToMove res(angleToMove, vecMod);
+    return res;
+}

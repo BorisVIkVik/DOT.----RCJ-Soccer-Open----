@@ -18,6 +18,7 @@ class BallSensor
 		void init(PL_ADC *adc, uint16_t s, uint16_t en);
 		unsigned int update();
 		bool getValue();
+		uint16_t getSensorValue();
 		void turnOn();
 		void turnOff();
 	
@@ -25,6 +26,7 @@ class BallSensor
 		uint16_t s, en;
 		PL_ADC *adc;
 		bool value;
+		volatile uint16_t valueOfSensor;
 		bool working;
 };
 
@@ -32,6 +34,7 @@ class BallSensor
 void BallSensor::init(PL_ADC *adc, uint16_t s, uint16_t en)
 {
 	this->adc = adc;
+	this->s = s;
 	adc->add(s);
 	adc->start();
 	
@@ -46,7 +49,7 @@ void BallSensor::init(PL_ADC *adc, uint16_t s, uint16_t en)
 unsigned int BallSensor::update()
 {
 	if(!working) return BALL_SENSOR_POWER_OFF;
-	
+	valueOfSensor = adc->read(s);
 	value = adc->read(s) > TRESHOLD_VALUE;
 	return 0;
 }
@@ -68,6 +71,11 @@ void BallSensor::turnOff()
 {
 	setPin(en, 0);
 	working = 0;
+}
+
+uint16_t BallSensor::getSensorValue()
+{
+	return valueOfSensor;
 }
 
 #endif

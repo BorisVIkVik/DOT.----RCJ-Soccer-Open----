@@ -35,42 +35,42 @@ void setupScreens();
 
 
 //TEST AREA-------------------------------------------------------------
-	struct pt {
-		double x, y;
-	};
-	 
-	struct line {
-		double a, b, c;
-	};
-	 
-	struct segment {
-		double a, b, c, leftX, rightX, downY, upY;
-	}; 
+//	struct pt {
+//		double x, y;
+//	};
+//	 
+//	struct line {
+//		double a, b, c;
+//	};
+//	 
+//	struct segment {
+//		double a, b, c, leftX, rightX, downY, upY;
+//	}; 
 
-	double distanceVec(pair<double, double> f, pair<double, double> s)
-	{
-		return sqrt((f.X - s.X) * (f.X - s.X) + (f.Y - s.Y) * (f.Y - s.Y));
-	}
-	const double EPS = 1e-9;
-	 
-	double det (double a, double b, double c, double d) {
-		return a * d - b * c;
-	}
-	 
-	bool intersect (segment m, line n, pt & res) {
-		double zn = det (m.a, m.b, n.a, n.b);
-		if (abs (zn) < EPS)
-			return false;
-		pt tmp;
-		tmp.x = - det (m.c, m.b, n.c, n.b) / zn;
-		tmp.y = - det (m.a, m.c, n.a, n.c) / zn;
-			if (m.leftX != m.rightX && !(m.leftX <= tmp.x && tmp.x <= m.rightX)) 
-					return false;
-			if (m.downY != m.upY && !(m.downY <= tmp.y && tmp.y <= m.upY))  
-					return false;
-		res = tmp;
-		return true;
-	}
+//	double distanceVec(pair<double, double> f, pair<double, double> s)
+//	{
+//		return sqrt((f.X - s.X) * (f.X - s.X) + (f.Y - s.Y) * (f.Y - s.Y));
+//	}
+//	const double EPS = 1e-9;
+//	 
+//	double det (double a, double b, double c, double d) {
+//		return a * d - b * c;
+//	}
+//	 
+//	bool intersect (segment m, line n, pt & res) {
+//		double zn = det (m.a, m.b, n.a, n.b);
+//		if (abs (zn) < EPS)
+//			return false;
+//		pt tmp;
+//		tmp.x = - det (m.c, m.b, n.c, n.b) / zn;
+//		tmp.y = - det (m.a, m.c, n.a, n.c) / zn;
+//			if (m.leftX != m.rightX && !(m.leftX <= tmp.x && tmp.x <= m.rightX)) 
+//					return false;
+//			if (m.downY != m.upY && !(m.downY <= tmp.y && tmp.y <= m.upY))  
+//					return false;
+//		res = tmp;
+//		return true;
+//	}
 	 
 	pt goalPoints[6] = {{70, -97}, {70, -89}, {55, -74}, {-55, -74}, {-70, -89}, {-70, -97}};
 	segment goalLines[5] = {{0, 1, 60, -25, 25, 0, 0}, {2, 5, 250, 25, 50, 0, 0}, {-2, 5, 250, -50, -25, 0, 0}, {1, 0, 50, 0, 0, -90, -70}, {1, 0, -50, 0, 0, -90, -70}};
@@ -259,8 +259,10 @@ int main()
 				robot.display.print("x: ", 2, 1);
 				robot.display.print(robot.getPos().X, 2, 9);
 				//robot.display.print(robot.camera.yellow.X, 2, 9);
-				robot.display.print("y: ", 3, 1);
-				robot.display.print(robot.getPos().Y, 3, 9);
+				//robot.display.print("y: ", 3, 1);
+				//robot.display.print(robot.getPos().Y, 3, 9);
+				robot.display.print("Ball sens: ", 3, 1);
+				robot.display.print(robot.ballSensor.getSensorValue(), 3, 14);
 				//robot.display.print(robot.camera.yellow.Y, 3, 9);
 				//robot.display.print(int(millis()), 3, 15);
 			
