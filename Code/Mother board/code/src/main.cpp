@@ -2,7 +2,7 @@
 
 Robot robot;
 BaseFunctional basicFunc(&robot);
-
+Functional func(&robot);
 #include "callbacks.h"
 
 //#define KALMAN
@@ -120,12 +120,12 @@ int main()
 	zero.X = 0;
 	zero.Y = 0;
 	
-	PairSaver robotAngle, robotVelocity;
-	pair<double, double> robotA, robotV, ballV;
-	pair<double, double> robotGlobalPos;
+	//PairSaver robotAngle, robotVelocity;
+	//pair<double, double> robotA, robotV, ballV;
+	//pair<double, double> robotGlobalPos;
 
-	CameraObject camYellow, camBlue, camBall;
-	FieldObject ball;
+	//CameraObject camYellow, camBlue, camBall;
+	//FieldObject ball;
 	
 	volatile int check = 0;
 	robot.motorDrivers.disableMotors();
@@ -160,43 +160,48 @@ int main()
 	uint32_t stateTime = 0;
 	uint32_t angleCheckTest = 0;
 	bool strike = false;
+	uint32_t mainTime = 0;
+	volatile uint32_t cycleTime = 0;
 	while(1)
 	{
-
+		cycleTime = millis() - mainTime;
+		mainTime = millis();
 		robot.wait(5);
-		time = millis();
-		dt = time - oldTime;
-		oldTime = time;
+		func.posCalc();
+		func.strategy2();
+//		time = millis();
+//		dt = time - oldTime;
+//		oldTime = time;
 
-		robotAngle.add(make_pair(robot.imu.getAngle(), 0), time);
-		robotVelocity.add(robot.getV(), time);
-		robotA = robotAngle.pop(time - CAMERA_LATENCY);
-		robotV = robotVelocity.pop(time - CAMERA_LATENCY);
-		robotV.X *= 100;
-		robotV.Y *= 100;
-		
-		ballV = ball.speedSaver.pop(time - CAMERA_LATENCY);
+//		robotAngle.add(make_pair(robot.imu.getAngle(), 0), time);
+//		robotVelocity.add(robot.getV(), time);
+//		robotA = robotAngle.pop(time - CAMERA_LATENCY);
+//		robotV = robotVelocity.pop(time - CAMERA_LATENCY);
+//		robotV.X *= 100;
+//		robotV.Y *= 100;
+//		
+//		ballV = ball.speedSaver.pop(time - CAMERA_LATENCY);
 
-		camYellow.pos = rotate(robot.camera.yellow, -robotA.first);
-		camBlue.pos = rotate(robot.camera.blue, -robotA.first);
-		camBall.pos = rotate(robot.camera.ball, -robotA.first);
+//		camYellow.pos = rotate(robot.camera.yellow, -robotA.first);
+//		camBlue.pos = rotate(robot.camera.blue, -robotA.first);
+//		camBall.pos = rotate(robot.camera.ball, -robotA.first);
 
-		#ifdef KALMAN
-		updateKalman(camYellow, KALMAN_K, zero, robotV, dt);
-		updateKalman(camBlue, KALMAN_K, zero, robotV, dt);
-		updateKalman(camBall, KALMAN_K, ballV, robotV, dt);
-		#endif
-		#ifdef PREDICTION
-		updatePrediction(camYellow, zero, robotV, CAMERA_LATENCY);
-		updatePrediction(camBlue, zero, robotV, CAMERA_LATENCY);
-		updatePrediction(camBall, ballV, robotV, CAMERA_LATENCY);
-		#endif
+//		#ifdef KALMAN
+//		updateKalman(camYellow, KALMAN_K, zero, robotV, dt);
+//		updateKalman(camBlue, KALMAN_K, zero, robotV, dt);
+//		updateKalman(camBall, KALMAN_K, ballV, robotV, dt);
+//		#endif
+//		#ifdef PREDICTION
+//		updatePrediction(camYellow, zero, robotV, CAMERA_LATENCY);
+//		updatePrediction(camBlue, zero, robotV, CAMERA_LATENCY);
+//		updatePrediction(camBall, ballV, robotV, CAMERA_LATENCY);
+//		#endif
 
-		robot.updateSelfPos(camYellow.pos, camBlue.pos);
-		robotGlobalPos = robot.getPos();
-		ball.update(camBall.pos, robotGlobalPos, time, SPEED_CALC_TIME);
-		
-		ballPosSave.add(ball.globalPos, time);
+//		robot.updateSelfPos(camYellow.pos, camBlue.pos);
+//		robotGlobalPos = robot.getPos();
+//		ball.update(camBall.pos, robotGlobalPos, time, SPEED_CALC_TIME);
+//		
+//		ballPosSave.add(ball.globalPos, time);
 
 		//TEST AREA-------------------------------------------------------------
 		
@@ -233,12 +238,13 @@ int main()
 				if (robot.playState()) robot.display.print("playing", 0, 6);
 				else robot.display.print("waiting", 0, 6);
 				
+				robot.display.print(cycleTime, 0, 15);
 				robot.display.print("Yaw angle: ", 2, 1);
 				robot.display.print(robot.imu.getAngle(), 2, 11);
 				robot.display.print("Ball x: ", 3, 1);
-				robot.display.print(ball.globalPos.X, 3, 11);
+				robot.display.print(func.ball.globalPos.X, 3, 11);
 				robot.display.print("Ball y: ", 4, 1);
-				robot.display.print(ball.globalPos.Y, 4, 11);
+				robot.display.print(func.ball.globalPos.Y, 4, 11);
 				break;
 			
 			case CALIBRATIONS_SCREEN:
@@ -259,8 +265,8 @@ int main()
 				robot.display.print("x: ", 2, 1);
 				robot.display.print(robot.getPos().X, 2, 9);
 				//robot.display.print(robot.camera.yellow.X, 2, 9);
-				//robot.display.print("y: ", 3, 1);
-				//robot.display.print(robot.getPos().Y, 3, 9);
+				robot.display.print("y: ", 3, 1);
+				robot.display.print(robot.getPos().Y, 3, 9);
 				robot.display.print("Ball sens: ", 3, 1);
 				robot.display.print(robot.ballSensor.getSensorValue(), 3, 14);
 				//robot.display.print(robot.camera.yellow.Y, 3, 9);

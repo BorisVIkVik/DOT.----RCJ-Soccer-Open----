@@ -9,6 +9,7 @@
 #include <vector>
 #include <math.h>
 #include <PairSaver.h>
+#include <trajectory.h>
 
 using namespace std;
 
@@ -40,6 +41,7 @@ class BaseFunctional
 				VectorToMove 				genVTMGlobalPoint(pair<int16_t, int16_t> toGoCoords, pair<int16_t, int16_t> robotCoords, double vecMod);
 				bool 								checkBounds(pair<double, double> nizLF, pair<double, double> verxPR, pair<double, double> pointToCheck);
 				Robot*							getRobotClass();
+				VectorToMove 				trajectoryFollowingDots(int16_t& oldPosIndex, double distance);
     private:
 				double errorOld;
         Robot* _RC;
@@ -269,11 +271,11 @@ VectorToMove BaseFunctional::genATMVecField(int16_t x, int16_t y)//, vector<Obst
     //int8_t atm = vF[vecNum][0] * 2;
     //int8_t atmMod = vF[vecNum][1];
 		int16_t atm = 0;
-    int8_t atmMod = 0;
+    double atmMod = 0;
 		if(vecNum >= 0 && vecNum < 10800)
 		{
 			atm = firstField[vecNum][0] * 2 - 180 - 90;
-			atmMod = firstField[vecNum][1];
+			atmMod = firstField[vecNum][1] * 1.5;
 		}
 		
 	
@@ -357,16 +359,16 @@ VectorToMove BaseFunctional::trajectoryFollowingDots(int16_t& oldPosIndex, doubl
     int toGoPosIndex = oldPosIndex;
     for(; toGoPosIndex < TRAJECTORY1_SIZE; toGoPosIndex++)
     {
-        pair<int16_t, int16_t> tmpMovedVec = make_pair(trajectory1[toGoPosIndex][0] - trajectory1[oldPos][0], trajectory1[toGoPosIndex][1] - trajectory1[oldPos][1]);
-        double tmpDistance = sqrt(tmpMovedVec.X * tmpMovedVec.X + tmpMovedVec.Y * tmpMovedVec.Y);
+        pair<int16_t, int16_t> tmpMovedVec = make_pair(trajectory1[toGoPosIndex][0] - trajectory1[oldPosIndex][0], trajectory1[toGoPosIndex][1] - trajectory1[oldPosIndex][1]);
+        double tmpDistance = sqrt(double(tmpMovedVec.X * tmpMovedVec.X + tmpMovedVec.Y * tmpMovedVec.Y));
         if(distance <= tmpDistance)
             break;
     }
-    pair<int16_t, int16_t> toGo = make_pair(trajectory1[toGoPosIndex][0] - _RC.globalPos.X, trajectory1[toGoPosIndex][1] - _RC.globalPos.Y);
-    toGo.X += 
-    toGo.Y +=
-    double angleToMove = atan2(toGo.X, toGo.Y) * 57.3;
-    double vecMod = SPEED_TRAJ_FOLLOW_M_S;
+    pair<int16_t, int16_t> toGo = make_pair(trajectory1[toGoPosIndex][0] - _RC->getPos().X, trajectory1[toGoPosIndex][1] - _RC->getPos().Y);
+    //toGo.X += 
+    //toGo.Y +=
+    double angleToMove = atan2(double(toGo.X), double(toGo.Y)) * 57.3;
+    double vecMod = 1.0;//SPEED_TRAJ_FOLLOW_M_S;
     VectorToMove res(angleToMove, vecMod);
     return res;
 }

@@ -412,6 +412,11 @@
               <FileType>8</FileType>
               <FilePath>.\code\src\goalkeeper.cpp</FilePath>
             </File>
+            <File>
+              <FileName>trajectory.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\code\inc\trajectory.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

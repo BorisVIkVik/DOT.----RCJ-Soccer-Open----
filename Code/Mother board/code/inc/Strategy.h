@@ -9,6 +9,7 @@ class Functional:  public BaseFunctional
 {
 	public: 
 		int32_t kickTime;
+		FieldObject ball;
 		int32_t trajectoryTime;
 		int8_t state;
 		Functional(Robot* RC):BaseFunctional(RC)
@@ -214,20 +215,21 @@ class Functional:  public BaseFunctional
 				//cringe = basicFunc.genATMPoint(checlBallx, checlBally, 1)._angle;
 				//vector<Obstacle> ryadCringa(0, {});
 				//cringe = basicFunc.genATMVecField(checlBallx, checlBally)._angle;
-				double avatarAngToBall = 90 - atan2(double(camBall.pos.Y), double(camBall.pos.X)) * 57.3;
+				double avatarAngToBall = -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
 			//	basicFunc.turnCoord(-90, 0, 0, checlBallx, checlBally);
 				//checkX = checlBallx;
 				//checkY = checlBally;
 				if(state == 0)
 				{
-					if(abs(double(camBall.pos.X)) < 8.0 && abs(double(camBall.pos.Y)) < 2.0)
-					{
-						getRobotClass()->move(0.5, (camBall.pos.X > 0 ? 1 : -1) * 90, -90);
-					}
-					else
-					{
-						move2(genATMVecField(camBall.pos.X, camBall.pos.Y), -90);
-					}
+//					if(abs(double(camBall.pos.X)) < 8.0 && abs(double(camBall.pos.Y)) < 2.0)
+//					{
+//						//getRobotClass()->move(0.5, (camBall.pos.X < 0 ? 1 : -1) * 90, -90);
+//						
+//					}
+//					else
+//					{
+						move2(genATMVecField(camBall.pos.X/2, -camBall.pos.Y/2), avatarAngToBall);//-90);
+					//}
 					
 					if(abs(double(camBall.pos.X)) < 20 && abs(double(camBall.pos.Y)) < 20)
 					{
@@ -239,7 +241,8 @@ class Functional:  public BaseFunctional
 					}
 					if(getRobotClass()->ballSensor.getValue())// || robot.ball[1])
 					{
-						state = 1;
+						getRobotClass()->motorDrivers.setMotors(0,0,0,0);
+					//	state = 1;
 						trajectoryTime = millis();
 					}
 				}
@@ -365,7 +368,8 @@ class Functional:  public BaseFunctional
 			}
 			else
 			{
-				getRobotClass()->motorDrivers.setMotor(4, 0);
+				getRobotClass()->motorDrivers.setMotors(0,0,0,0,0);
+				//getRobotClass()->motorDrivers.setMotor(4, 0);
 			}
 		}
 		///
@@ -377,7 +381,7 @@ class Functional:  public BaseFunctional
 		PairSaver robotAngle, robotVelocity;
 		pair<double, double> robotA, robotV, ballV;
 		pair<double, double> robotGlobalPos;
-		FieldObject ball;
+		
 		PairSaver ballPosSave;
 		//pt goalPoints[6] = {{70, -97}, {70, -89}, {55, -74}, {-55, -74}, {-70, -89}, {-70, -97}};
 		//segment goalLines[5] = {{0, 1, 60, -25, 25, 0, 0}, {2, 5, 250, 25, 50, 0, 0}, {-2, 5, 250, -50, -25, 0, 0}, {1, 0, 50, 0, 0, -90, -70}, {1, 0, -50, 0, 0, -90, -70}};
