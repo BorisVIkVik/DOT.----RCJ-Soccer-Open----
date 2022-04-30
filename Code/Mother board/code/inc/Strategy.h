@@ -17,6 +17,8 @@ class Functional:  public BaseFunctional
 			kickTime = 0;
 			state = 0;
 			trajectoryTime = 0;
+			attackerStopTime = 0;
+			attackerStop = false;
 		}
 		void posCalc()
 		{
@@ -193,43 +195,27 @@ class Functional:  public BaseFunctional
 		///
 		void strategy2()
 		{
-		//	setPin(LED_3, _RC.playState());
-		
-//		_RC.imu.updateAnglesFromFIFO();
-		//int32_t goalYellowX = ((getRobotClass()->target.yGoalY * 2) - 130);
-		//int32_t goalYellowY = ((getRobotClass()->target.yGoalX * 2) - 130);
-		//robot.driblerSpeed1 = -10;
-		//robot.setMotors(100, 100, 100, 100);
-	//	robot.move(1, 0);
-//		if( !((GLOBAL_ERROR & VIM_CONNECTION_ERROR) || (GLOBAL_ERROR & VIM_DATA_ERROR) || (GLOBAL_ERROR & LOW_BATTERY_POWER)) )		//if everything ok
-//		{
-			if(getRobotClass()->playState())		//playing
+			if(millis() - attackerStopTime > 1000)
+				attackerStop = true;
+			if(getRobotClass()->ballSensor.getValue() || (getRobotClass()->camera.objects & 1))
 			{
-				//if((abs(double((robot.target.ballY * 2) - 130 - checlBallx)) < 60 && abs(double((robot.target.ballX * 2) - 130 - checlBally)) < 60) || t - checlTime > 1000)
-				//{
-				//VectorToMove vectres(0, 1);
-					//int32_t checlBallx = ((getRobotClass()->target.ballY * 2) - 130) / 2;
-					//int32_t checlBally = ((getRobotClass()->target.ballX * 2) - 130) / 2;
-				//	checlTime = t;
-			//	}
-				//cringe = basicFunc.genATMPoint(checlBallx, checlBally, 1)._angle;
-				//vector<Obstacle> ryadCringa(0, {});
-				//cringe = basicFunc.genATMVecField(checlBallx, checlBally)._angle;
+				attackerStop = false;
+				attackerStopTime = millis();
+			}
+			if(getRobotClass()->playState() && !attackerStop)		//playing
+			{
 				double avatarAngToBall = -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
-			//	basicFunc.turnCoord(-90, 0, 0, checlBallx, checlBally);
-				//checkX = checlBallx;
-				//checkY = checlBally;
 				if(state == 0)
 				{
-//					if(abs(double(camBall.pos.X)) < 8.0 && abs(double(camBall.pos.Y)) < 2.0)
-//					{
-//						//getRobotClass()->move(0.5, (camBall.pos.X < 0 ? 1 : -1) * 90, -90);
-//						
-//					}
-//					else
-//					{
+					if((abs(double(camBall.pos.X)) < 10.0 && abs(double(camBall.pos.Y)) < 10.0) || (abs(double(camBall.pos.X)) >= 90.0 && abs(double(camBall.pos.Y)) >= 120.0))
+					{
+						move2(genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 2.0), avatarAngToBall);//move(0.5, (camBall.pos.X < 0 ? 1 : -1) * 90, -90);
+					}
+					else 
+					{
 						move2(genATMVecField(camBall.pos.X/2, -camBall.pos.Y/2), avatarAngToBall);//-90);
-					//}
+					}
+					
 					
 					if(abs(double(camBall.pos.X)) < 20 && abs(double(camBall.pos.Y)) < 20)
 					{
@@ -267,40 +253,8 @@ class Functional:  public BaseFunctional
 						kickTime = millis();
 						state = 3;
 					}
-					//flex = 1.0*(double(millis()) - double(trajectoryTime))/1000.0 + 1;
-//					if((double(millis()) - double(trajectoryTime))/1000.0 < 4)
-//					{
-//						flex = 1.0 * (double(millis()) - double(trajectoryTime)) / 1000.0 + 1;
-//					}
-//					else
-//					{
-//						flex = 1.0 * (double(millis()) - double(trajectoryTime)) / 2.0 + 1;
-//					}
-//					if(flex > 2550)
-//					{
-//						state = 3;
-//						kickTime = millis();
-//					}
-					
-					//if(flex > 2500) flex = 2500;
 	//				move2(trajectoryFollowing(flex, goalYellowX, goalYellowY), -90);
 					printUART(DEBUG_UART, flex);
-					
-						
-						
-//					_RC->driblerSpeed1 = -22;
-//					if(_RC->target.yGoalY > 0)
-//					{
-//						_RC->move(0.5, 90, 90);
-//					}
-//					else
-//					{
-//						_RC->move(0.5, -90, 90);
-//					}
-//					if(_RC->line > 2)
-//					{
-//						state = 2;
-//					}
 				}
 				else if(state == 2)
 				{
@@ -331,10 +285,7 @@ class Functional:  public BaseFunctional
 					getRobotClass()->motorDrivers.setMotors(0, 0, 0, 0);
 					if(millis() - kickTime > 7)
 					{
-						//robot.kick1 = true;
-						//robot.kick2 = true;
 						kickTime = millis();
-						//for(int i = 0; i < 1000; i++);
 						state = 5;
 					}
 				}
@@ -344,27 +295,10 @@ class Functional:  public BaseFunctional
 					{
 						getRobotClass()->kickerModule.kick(true, true);
 						kickTime = millis();
-						//for(int i = 0; i < 1000; i++);
 						state = 0;
 					}
 				}
 				
-				//robot.move(1, -90);
-				
-//				setPin(PE14, 1);
-				//for(int i = 0; i < 200000000; i++){}
-				//setPin(PE1, 0);
-				//for(int i = 0; i < 200000000; i++){}
-//				setPin(LED_3, 0);
-//				for(int i = 0; i < 10000000; i++){}
-//				setPin(LED_1, 0);
-//				setPin(LED_2, 1);
-//				for(int i = 0; i < 10000000; i++){}
-//				setPin(LED_2, 0);
-//				setPin(LED_3, 1);
-//				for(int i = 0; i < 10000000; i++){}
-//				robot.motors[4].setVelocity(100);//Ponyat cho ne tak
-//				//robot.move(robot.target.vel, robot.target.dir, robot.target.heading, robot.target.acc);//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			}
 			else
 			{
@@ -381,7 +315,8 @@ class Functional:  public BaseFunctional
 		PairSaver robotAngle, robotVelocity;
 		pair<double, double> robotA, robotV, ballV;
 		pair<double, double> robotGlobalPos;
-		
+		uint32_t attackerStopTime;
+		bool attackerStop;
 		PairSaver ballPosSave;
 		//pt goalPoints[6] = {{70, -97}, {70, -89}, {55, -74}, {-55, -74}, {-70, -89}, {-70, -97}};
 		//segment goalLines[5] = {{0, 1, 60, -25, 25, 0, 0}, {2, 5, 250, 25, 50, 0, 0}, {-2, 5, 250, -50, -25, 0, 0}, {1, 0, 50, 0, 0, -90, -70}, {1, 0, -50, 0, 0, -90, -70}};

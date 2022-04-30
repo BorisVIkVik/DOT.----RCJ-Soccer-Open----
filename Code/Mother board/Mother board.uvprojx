@@ -417,6 +417,11 @@
               <FileType>5</FileType>
               <FilePath>.\code\inc\trajectory.h</FilePath>
             </File>
+            <File>
+              <FileName>Border.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\code\inc\Border.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

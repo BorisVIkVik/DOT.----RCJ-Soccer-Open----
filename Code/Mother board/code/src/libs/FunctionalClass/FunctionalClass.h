@@ -292,22 +292,23 @@ VectorToMove BaseFunctional::genATMVecField(int16_t x, int16_t y)//, vector<Obst
 //            atm = atan2(double(tmpATMY), double(tmpATMX));
 //        }
 //    }
-		VectorToMove res(atm, atmMod);
+		VectorToMove res(sin(double(atm/57.3))*atmMod, cos(double(atm/57.3))*atmMod, atmMod);
     return res;
 }
 
 VectorToMove BaseFunctional::genATMPoint(int16_t x, int16_t y, int8_t vecMod)
 {
-    int16_t tmpX = y;
-    int16_t tmpY = x;
-    int16_t atm = atan2(double(tmpY), double(tmpX)) * 57.3;
-		VectorToMove res(atm, vecMod);
+    //int16_t tmpX = x;
+    //int16_t tmpY = y;
+    //int16_t atm = atan2(double(), double()) * 57.3;
+		VectorToMove res(x, y, vecMod);
 		return res;
 }
 
 void BaseFunctional::move2(VectorToMove vtm, double heading)
 {
-    _RC->move(0.5 * vtm._mod, vtm._angle, heading);
+		int16_t atm = atan2(double(vtm._x), double(vtm._y)) * 57.3;
+    _RC->move(0.5 * vtm._mod, atm, heading);
 }
 
 
@@ -325,15 +326,15 @@ void BaseFunctional::turnCoord(double angle, int16_t x, int16_t y, int16_t& xtoC
 
 VectorToMove BaseFunctional::genVTMGlobalPoint(pair<int16_t, int16_t> toGoCoords, pair<int16_t, int16_t> robotCoords, double maxVecMod)
 {
-    int16_t tmpX = toGoCoords.Y - robotCoords.Y;
-    int16_t tmpY = toGoCoords.X - robotCoords.X;
-    int16_t atm = atan2(double(tmpY), double(-tmpX)) * 57.3;
+    int16_t tmpX = toGoCoords.X - robotCoords.X;
+    int16_t tmpY = -toGoCoords.Y + robotCoords.Y;
+    //int16_t atm = atan2(double(), double()) * 57.3;
 		double error = sqrt(double(tmpX * tmpX + tmpY * tmpY));
 		double p = error * KOEF_P;
 		double d = (error - errorOld) * KOEF_D;
 		double u = p + d;
 		errorOld = error;
-	VectorToMove res(atm, min2(maxVecMod, u));
+	VectorToMove res(tmpX, tmpY, min2(maxVecMod, u));
 	return res;
 }
 
@@ -367,8 +368,8 @@ VectorToMove BaseFunctional::trajectoryFollowingDots(int16_t& oldPosIndex, doubl
     pair<int16_t, int16_t> toGo = make_pair(trajectory1[toGoPosIndex][0] - _RC->getPos().X, trajectory1[toGoPosIndex][1] - _RC->getPos().Y);
     //toGo.X += 
     //toGo.Y +=
-    double angleToMove = atan2(double(toGo.X), double(toGo.Y)) * 57.3;
+    //double angleToMove = atan2(double(), double()) * 57.3;
     double vecMod = 1.0;//SPEED_TRAJ_FOLLOW_M_S;
-    VectorToMove res(angleToMove, vecMod);
+    VectorToMove res(toGo.X, toGo.Y, vecMod);
     return res;
 }

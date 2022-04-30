@@ -34,59 +34,11 @@ void setupScreens();
 
 
 
-//TEST AREA-------------------------------------------------------------
-//	struct pt {
-//		double x, y;
-//	};
-//	 
-//	struct line {
-//		double a, b, c;
-//	};
-//	 
-//	struct segment {
-//		double a, b, c, leftX, rightX, downY, upY;
-//	}; 
-
-//	double distanceVec(pair<double, double> f, pair<double, double> s)
-//	{
-//		return sqrt((f.X - s.X) * (f.X - s.X) + (f.Y - s.Y) * (f.Y - s.Y));
-//	}
-//	const double EPS = 1e-9;
-//	 
-//	double det (double a, double b, double c, double d) {
-//		return a * d - b * c;
-//	}
-//	 
-//	bool intersect (segment m, line n, pt & res) {
-//		double zn = det (m.a, m.b, n.a, n.b);
-//		if (abs (zn) < EPS)
-//			return false;
-//		pt tmp;
-//		tmp.x = - det (m.c, m.b, n.c, n.b) / zn;
-//		tmp.y = - det (m.a, m.c, n.a, n.c) / zn;
-//			if (m.leftX != m.rightX && !(m.leftX <= tmp.x && tmp.x <= m.rightX)) 
-//					return false;
-//			if (m.downY != m.upY && !(m.downY <= tmp.y && tmp.y <= m.upY))  
-//					return false;
-//		res = tmp;
-//		return true;
-//	}
 	 
 	pt goalPoints[6] = {{70, -97}, {70, -89}, {55, -74}, {-55, -74}, {-70, -89}, {-70, -97}};
 	segment goalLines[5] = {{0, 1, 60, -25, 25, 0, 0}, {2, 5, 250, 25, 50, 0, 0}, {-2, 5, 250, -50, -25, 0, 0}, {1, 0, 50, 0, 0, -90, -70}, {1, 0, -50, 0, 0, -90, -70}};
 
-	//(y2 - y1)*x + y * (x1 - x2) +  y1 * (x2 - x1) - (y2 - y1)*x1 = 0 
-	//A = (y2 - y1); B = (x1 - x2); C = y1 * (x2 - x1) - (y2 - y1) * x1
 
-	// int A = (robot.camera.ballY + 97);
-	// int B = (0 - robot.camera.ballX);
-	// int C = (-97 * (robot.camera.ballX - 0) - (robot.camera.ballY + 97) * 0);
-
-
-
-	
-	
-	//TEST AREA-------------------------------------------------------------
 
 
 
@@ -169,41 +121,7 @@ int main()
 		robot.wait(5);
 		func.posCalc();
 		func.strategy2();
-//		time = millis();
-//		dt = time - oldTime;
-//		oldTime = time;
 
-//		robotAngle.add(make_pair(robot.imu.getAngle(), 0), time);
-//		robotVelocity.add(robot.getV(), time);
-//		robotA = robotAngle.pop(time - CAMERA_LATENCY);
-//		robotV = robotVelocity.pop(time - CAMERA_LATENCY);
-//		robotV.X *= 100;
-//		robotV.Y *= 100;
-//		
-//		ballV = ball.speedSaver.pop(time - CAMERA_LATENCY);
-
-//		camYellow.pos = rotate(robot.camera.yellow, -robotA.first);
-//		camBlue.pos = rotate(robot.camera.blue, -robotA.first);
-//		camBall.pos = rotate(robot.camera.ball, -robotA.first);
-
-//		#ifdef KALMAN
-//		updateKalman(camYellow, KALMAN_K, zero, robotV, dt);
-//		updateKalman(camBlue, KALMAN_K, zero, robotV, dt);
-//		updateKalman(camBall, KALMAN_K, ballV, robotV, dt);
-//		#endif
-//		#ifdef PREDICTION
-//		updatePrediction(camYellow, zero, robotV, CAMERA_LATENCY);
-//		updatePrediction(camBlue, zero, robotV, CAMERA_LATENCY);
-//		updatePrediction(camBall, ballV, robotV, CAMERA_LATENCY);
-//		#endif
-
-//		robot.updateSelfPos(camYellow.pos, camBlue.pos);
-//		robotGlobalPos = robot.getPos();
-//		ball.update(camBall.pos, robotGlobalPos, time, SPEED_CALC_TIME);
-//		
-//		ballPosSave.add(ball.globalPos, time);
-
-		//TEST AREA-------------------------------------------------------------
 		
 ///////////////////////////		USER INTERFACE		///////////////////////////
 		robot.display.update();

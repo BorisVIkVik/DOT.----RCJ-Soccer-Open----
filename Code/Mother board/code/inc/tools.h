@@ -23,7 +23,7 @@ using namespace std;
 /* cutting with boundaries */
 #define stp(x, val) (x > val ? val : (x < -val ? -val : x))
 
-#define adduction(x) {while(x>180)x-=360;while(x<-180)x+=360;}
+#define adduction(x) {while(x>=180)x-=360;while(x<-180)x+=360;}
 
 template<typename T> T abs(T x) { return (x > 0 ? x : -x); }
 
