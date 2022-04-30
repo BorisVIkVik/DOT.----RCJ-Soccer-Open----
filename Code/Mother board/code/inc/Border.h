@@ -3,7 +3,8 @@
 #include <stdint.h>
 #include <utility>
 #include <VTM.h>
-#include <main.h>
+
+//#include <main.h>
 
 using namespace std;
 class Border
@@ -25,20 +26,20 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm)
         int32_t error = pos.X - _start;
         double p = (error * 1.0)/(_end - _start);
         double u = abs(double(p));
-        if(_side == '+' && _start < pos.X && vtm.x > 0)
-            vtm.x -= u * vtm.x;
-        else if(_side == '-' && pos.X < _start && vtm.x < 0)
-            vtm.x -= u * vtm.x;
+        if(_side == '+' && _start < pos.X && vtm._x > 0)
+            vtm._x -= u * vtm._x;
+        else if(_side == '-' && pos.X < _start && vtm._x < 0)
+            vtm._x -= u * vtm._x;
     }
     else 
     {
         int32_t error = pos.Y - _start;
         double p = (error * 1.0)/(_end - _start);
         double u = abs(double(p));
-        if(_side == '+' && _start < pos.Y && vtm.y > 0)
-            vtm.y -= u * vtm.y;
-        else if(_side == '-' && pos.Y < _start && vtm.y < 0)
-            vtm.y -= u * vtm.y;
+        if(_side == '+' && _start < pos.Y && vtm._y < 0)
+            vtm._y -= u * vtm._y;
+        else if(_side == '-' && pos.Y < _start && vtm._y > 0)
+            vtm._y -= u * vtm._y;
     }
 }
 

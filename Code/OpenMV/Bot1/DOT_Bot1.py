@@ -114,12 +114,12 @@ def realDistance(x, coordsArr):
 import sensor, image, time, pyb
 from math import sqrt, atan2
 from pyb import SPI
-EXPOSURE_TIME_SCALE = 0.6
+EXPOSURE_TIME_SCALE = 0.5
 
 
-threshold_blue =    (5, 23, -128, 25, -128, -14)
-threshold_yellow =  (0, 100, -35, 127, 35, 127)
-threshold_ball =    (0, 100, 55, 127, 29, 127)#(50, 65, 49, 127, 23, 127)
+threshold_blue =    (6, 21, -128, 19, -128, -15)
+threshold_yellow =  (51, 100, -27, 127, 39, 127)
+threshold_ball =    (52, 100, 44, 127, 22, 127)#(50, 65, 49, 127, 23, 127)
 
 
 cX = 165  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
@@ -188,7 +188,7 @@ while(True):
     biggestYellowBlob = 0
     countYellow =0
     blobsYellow=[]
-    for yellowBlob in img.find_blobs([threshold_yellow],roi=(0,0,319,239), pixels_threshold=300, area_threshold=100, merge=True):
+    for yellowBlob in img.find_blobs([threshold_yellow],roi=(0,0,319,239), pixels_threshold=300, area_threshold=100, merge=True, margin = 15):
         blobsYellow.append(yellowBlob)
         if(yellowBlob.area() > blobsPreviousMas):
             biggestYellowBlob = countYellow
@@ -290,7 +290,7 @@ while(True):
     biggestBallBlob = 0
     countBall =0
     blobsBall = []
-    for ballBlob in img.find_blobs([threshold_ball],roi=(0,0,319,239), pixels_threshold=5, area_threshold=5, merge=True):
+    for ballBlob in img.find_blobs([threshold_ball],roi=(0,0,319,239), pixels_threshold=4, area_threshold=4, merge=True, margin = 5):
         blobsBall.append(ballBlob)
         if(ballBlob.area() > blobsPreviousMas):
             biggestballBlob = countBall

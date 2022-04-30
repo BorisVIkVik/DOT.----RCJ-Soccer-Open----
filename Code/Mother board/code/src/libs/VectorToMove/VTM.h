@@ -5,7 +5,7 @@ struct VectorToMove
 {
     //double _angle;
     double _mod;
-		int16_t _x;
-		int16_t _y;
-		VectorToMove(int16_t x, int16_t y, double mod):_x(x), _y(y), _mod(mod){} //double angle, double mod)
+		double _x;
+		double _y;
+		VectorToMove(double x, double y, double mod):_x(x), _y(y), _mod(mod){} //double angle, double mod)
 };

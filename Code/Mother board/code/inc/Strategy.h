@@ -1,9 +1,18 @@
+#pragma once
+
 #include <CameraObject.h>
 #include <FieldObject.h>
 #include <FunctionalClass.h>
+#include <Border.h>
+//#include <VTM.h>
 
 #define SPEED_TRAJ_FOLLOW_M_S									1.0
-#define SPEED_TRAJ_FOLLOW_CM_MILLIS						SPEED_TRA 
+#define SPEED_TRAJ_FOLLOW_CM_MILLIS						SPEED_TRAJ_FOLLOW_M_S * 0.1 
+
+Border b1('x', '-', -30, -35);
+Border b2('x', '+', 30, 35);
+Border b3('y', '-', -50, -60);
+Border b4('y', '+', 50, 60);
 
 class Functional:  public BaseFunctional 
 {
@@ -188,7 +197,25 @@ class Functional:  public BaseFunctional
 		}
 		
 		
-		
+		void testBorder()
+		{
+			if(getRobotClass()->playState())	
+			{
+			VectorToMove res(0,0,0);
+			res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 2.0);
+			//getRobotClass()->move(1, 90);
+			b1.dempher(getRobotClass()->getPos(), res);
+			b2.dempher(getRobotClass()->getPos(), res);
+			b3.dempher(getRobotClass()->getPos(), res);
+			b4.dempher(getRobotClass()->getPos(), res);
+			move2(res, 0);
+			}
+			else
+			{
+				getRobotClass()->motorDrivers.setMotors(0,0,0,0,0);
+			}
+			
+		}
 		
 		
 		
@@ -207,14 +234,14 @@ class Functional:  public BaseFunctional
 				double avatarAngToBall = -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
 				if(state == 0)
 				{
-					if((abs(double(camBall.pos.X)) < 10.0 && abs(double(camBall.pos.Y)) < 10.0) || (abs(double(camBall.pos.X)) >= 90.0 && abs(double(camBall.pos.Y)) >= 120.0))
-					{
-						move2(genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 2.0), avatarAngToBall);//move(0.5, (camBall.pos.X < 0 ? 1 : -1) * 90, -90);
-					}
-					else 
-					{
+//					if((abs(double(camBall.pos.X)) < 10.0 && abs(double(camBall.pos.Y)) < 10.0) || (abs(double(camBall.pos.X)) >= 90.0 && abs(double(camBall.pos.Y)) >= 120.0))
+//					{
+//						move2(genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 2.0), avatarAngToBall);//move(0.5, (camBall.pos.X < 0 ? 1 : -1) * 90, -90);
+//					}
+//					else 
+//					{
 						move2(genATMVecField(camBall.pos.X/2, -camBall.pos.Y/2), avatarAngToBall);//-90);
-					}
+					//}
 					
 					
 					if(abs(double(camBall.pos.X)) < 20 && abs(double(camBall.pos.Y)) < 20)
