@@ -9,10 +9,20 @@
 #define SPEED_TRAJ_FOLLOW_M_S									1.0
 #define SPEED_TRAJ_FOLLOW_CM_MILLIS						SPEED_TRAJ_FOLLOW_M_S * 0.1 
 
-Border b1('x', '-', -30, -35);
-Border b2('x', '+', 30, 35);
-Border b3('y', '-', -50, -60);
-Border b4('y', '+', 50, 60);
+Border b1('x', '-', -30, -35, -90, 90);
+Border b2('x', '+', 30, 35, -90, 90);
+Border b3('y', '-', -50, -60, -30, 30);
+Border b4('y', '+', 50, 60, -30, 30);
+
+Border b5('x', '+', -20, -15, -90, -60);
+Border b6('x', '-', 20, 15, -90, -60);
+Border b7('x', '+', -20, -15, 60, 90);
+Border b8('x', '-', 20, 15, 60, 90);
+
+Border b9('y', '-', -80, -90, -35, -20);
+Border b10('y', '-', -80, -90, 20, 35);
+Border b11('y', '+', 80, 90, -35, -20);
+Border b12('y', '+', 80, 90, 20, 35);
 
 class Functional:  public BaseFunctional 
 {
@@ -208,6 +218,14 @@ class Functional:  public BaseFunctional
 			b2.dempher(getRobotClass()->getPos(), res);
 			b3.dempher(getRobotClass()->getPos(), res);
 			b4.dempher(getRobotClass()->getPos(), res);
+//			b5.dempher(getRobotClass()->getPos(), res);
+//			b6.dempher(getRobotClass()->getPos(), res);
+//			b7.dempher(getRobotClass()->getPos(), res);
+//			b8.dempher(getRobotClass()->getPos(), res);
+//			b9.dempher(getRobotClass()->getPos(), res);
+//			b10.dempher(getRobotClass()->getPos(), res);
+//			b11.dempher(getRobotClass()->getPos(), res);
+			b12.dempher(getRobotClass()->getPos(), res);
 			move2(res, 0);
 			}
 			else
@@ -224,14 +242,16 @@ class Functional:  public BaseFunctional
 		{
 			if(millis() - attackerStopTime > 1000)
 				attackerStop = true;
-			if(getRobotClass()->ballSensor.getValue() || (getRobotClass()->camera.objects & 1))
+			if(/*getRobotClass()->ballSensor.getValue()|| */(getRobotClass()->camera.objects & 1))
 			{
 				attackerStop = false;
 				attackerStopTime = millis();
 			}
 			if(getRobotClass()->playState() && !attackerStop)		//playing
 			{
-				double avatarAngToBall = -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
+				double avatarAngToBall = 0;
+				if(getRobotClass()->camera.objects & 1)
+					avatarAngToBall = -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
 				if(state == 0)
 				{
 //					if((abs(double(camBall.pos.X)) < 10.0 && abs(double(camBall.pos.Y)) < 10.0) || (abs(double(camBall.pos.X)) >= 90.0 && abs(double(camBall.pos.Y)) >= 120.0))
@@ -240,7 +260,13 @@ class Functional:  public BaseFunctional
 //					}
 //					else 
 //					{
-						move2(genATMVecField(camBall.pos.X/2, -camBall.pos.Y/2), avatarAngToBall);//-90);
+					VectorToMove res(0,0,0);
+					res = genATMVecField(camBall.pos.X/2, -camBall.pos.Y/2);
+					b1.dempher(getRobotClass()->getPos(), res);
+					b2.dempher(getRobotClass()->getPos(), res);
+					b3.dempher(getRobotClass()->getPos(), res);
+					b4.dempher(getRobotClass()->getPos(), res);
+					move2(res, avatarAngToBall);//-90);
 					//}
 					
 					

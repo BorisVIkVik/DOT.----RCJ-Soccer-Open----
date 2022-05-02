@@ -42,7 +42,7 @@ void IMU::init(unsigned int spi, uint16_t ss, uint16_t en)
 	this->en = en;
 	
 	turnOn();
-	delay(10);
+	delay(100);
 	mpuSensor.initIMU(spi, ss);
 	delay(100);
 	
@@ -103,7 +103,7 @@ void IMU::calibrate(uint32_t t)
 double IMU::getAngle()
 {
 	double a = angle-zeroAngle;
-	//adduction(a)
+	adduction(a)
 	return a;
 }
 

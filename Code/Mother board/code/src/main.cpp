@@ -120,8 +120,8 @@ int main()
 		mainTime = millis();
 		robot.wait(5);
 		func.posCalc();
-		func.testBorder();
-		//func.strategy2();
+		//func.testBorder();
+		func.strategy2();
 
 		
 ///////////////////////////		USER INTERFACE		///////////////////////////
