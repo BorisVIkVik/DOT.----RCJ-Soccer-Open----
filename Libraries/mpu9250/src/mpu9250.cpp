@@ -48,7 +48,7 @@ void mpu9250::initIMU(unsigned int _spi, int _ssPin)
 	
 	mpuSPI = _spi;
 	mpuSSPin = _ssPin;
-	xGyroOffset = 0, yGyroOffset = 0, zGyroOffset = 0;
+	xGyroOffset = 0.0235, yGyroOffset = 0.0155, zGyroOffset = 3.1545;
 	xAccOffset = 0.001, yAccOffset = 0.001, zAccOffset = 0.001;
 	pitchOffset = 0, rollOffset = 0, yawOffset = 0;
 	

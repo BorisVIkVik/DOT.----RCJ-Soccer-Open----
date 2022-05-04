@@ -31,9 +31,10 @@ class IMU
 		double getXg();
 		double getYg();
 		double getZg();
+		mpu9250 mpuSensor;
 	
 	private:
-		mpu9250 mpuSensor;
+		
 		unsigned int spi;
 		uint16_t en, ss;
 		volatile double angle, zeroAngle;
@@ -142,5 +143,6 @@ double IMU::getZg()
 {
 	return mpuSensor.getZg();
 }
+
 
 #endif

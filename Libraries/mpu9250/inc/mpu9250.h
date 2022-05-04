@@ -245,6 +245,8 @@ public:
 	double q0, q1, q2, q3;
 	double pitch, roll, yaw;
 	double pitchOffset, rollOffset, yawOffset;
+
+	
 	
 	void initIMU(unsigned int _spi, int _ssPin);
 	void readAcc();
@@ -266,16 +268,19 @@ public:
 	double getXg();
 	double getYg();
 	double getZg();
+	double xGyroOffset, yGyroOffset, zGyroOffset;
+	double xAccOffset, yAccOffset, zAccOffset;
+	
 	
 private:
 	unsigned int mpuSPI;
 	int mpuSSPin;
 	double ACC_DIV, GYRO_DIV;
-	double xGyroOffset, yGyroOffset, zGyroOffset;
-	double xAccOffset, yAccOffset, zAccOffset;
+	
 	long long int time;
 	long long int correctionTimer;
 	unsigned char fifo_data[32];
+	
 	
 	inline int convert(uint16_t msb, uint8_t lsb);
 	int readReg(int regAddr, int * data = 0, int q = 0);

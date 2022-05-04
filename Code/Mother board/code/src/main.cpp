@@ -183,12 +183,19 @@ int main()
 				//robot.display.print(robot.lineSensors.getLine(), 0, 11);
 				robot.display.print("Yaw angle: ", 0, 1);
 				robot.display.print(robot.imu.getAngle(), 0, 11);
-				robot.display.print("AX: ", 1, 1);
-				robot.display.print(double(func.getRobotClass()->imu.getXa()), 1, 5);
-				robot.display.print("AY: ", 2, 1);
-				robot.display.print(double(func.getRobotClass()->imu.getYa()), 2, 5);
-				robot.display.print("AZ: ", 3, 1);
-				robot.display.print(double(func.getRobotClass()->imu.getZa()), 3, 5);
+//				robot.display.print("AX: ", 1, 1);
+//				robot.display.print(double(func.getRobotClass()->imu.getXa()), 1, 5);
+//				robot.display.print("AY: ", 2, 1);
+//				robot.display.print(double(func.getRobotClass()->imu.getYa()), 2, 5);
+//				robot.display.print("AZ: ", 3, 1);
+//				robot.display.print(double(func.getRobotClass()->imu.getZa()), 3, 5);
+			
+						robot.display.print("GX: ", 1, 1);
+				robot.display.print(robot.imu.mpuSensor.xGyroOffset, 1, 5);
+				robot.display.print("GY: ", 2, 1);
+				robot.display.print(robot.imu.mpuSensor.yGyroOffset, 2, 5);
+				robot.display.print("GZ: ", 3, 1);
+				robot.display.print(robot.imu.mpuSensor.zGyroOffset, 3, 5);
 			
 			robot.display.print("GX: ", 1, 10);
 				robot.display.print(robot.imu.getXg(), 1, 14);
