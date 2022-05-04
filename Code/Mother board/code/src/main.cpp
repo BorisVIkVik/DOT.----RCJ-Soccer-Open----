@@ -114,15 +114,18 @@ int main()
 	bool strike = false;
 	uint32_t mainTime = 0;
 	volatile uint32_t cycleTime = 0;
+	volatile double v1 = 0, v2 = 0, v3 = 0;
 	while(1)
 	{
 		cycleTime = millis() - mainTime;
 		mainTime = millis();
 		robot.wait(5);
-		func.posCalc();
+		//func.posCalc();
 		//func.testBorder();
-		func.strategy2();
-
+		//func.strategy2();
+		v1 = func.getRobotClass()->imu.getXa();
+		v2 = func.getRobotClass()->imu.getYa();
+		v3 = func.getRobotClass()->imu.getZa();
 		
 ///////////////////////////		USER INTERFACE		///////////////////////////
 		robot.display.update();
@@ -176,18 +179,31 @@ int main()
 				break;
 			
 			case DEBUG_DATA_SCREEN:
-				robot.display.print("Line data: ", 0, 1);
-				robot.display.print(robot.lineSensors.getLine(), 0, 11);
-				robot.display.print("Yaw angle: ", 1, 1);
-				robot.display.print(robot.imu.getAngle(), 1, 11);
-				//robot.display.print(robot.ADC_2.read(BALL_SENSOR), 2, 1);
-				robot.display.print("x: ", 2, 1);
-				robot.display.print(robot.getPos().X, 2, 9);
-				//robot.display.print(robot.camera.yellow.X, 2, 9);
-				robot.display.print("y: ", 3, 1);
-				robot.display.print(robot.getPos().Y, 3, 9);
-				robot.display.print("Ball sens: ", 3, 1);
-				robot.display.print(robot.ballSensor.getSensorValue(), 3, 14);
+				//robot.display.print("Line data: ", 0, 1);
+				//robot.display.print(robot.lineSensors.getLine(), 0, 11);
+				robot.display.print("Yaw angle: ", 0, 1);
+				robot.display.print(robot.imu.getAngle(), 0, 11);
+				robot.display.print("AX: ", 1, 1);
+				robot.display.print(double(func.getRobotClass()->imu.getXa()), 1, 5);
+				robot.display.print("AY: ", 2, 1);
+				robot.display.print(double(func.getRobotClass()->imu.getYa()), 2, 5);
+				robot.display.print("AZ: ", 3, 1);
+				robot.display.print(double(func.getRobotClass()->imu.getZa()), 3, 5);
+			
+			robot.display.print("GX: ", 1, 10);
+				robot.display.print(robot.imu.getXg(), 1, 14);
+				robot.display.print("GY: ", 2, 10);
+				robot.display.print(robot.imu.getYg(), 2, 14);
+				robot.display.print("GZ: ", 3, 10);
+				robot.display.print(robot.imu.getZg(), 3, 14);
+//				//robot.display.print(robot.ADC_2.read(BALL_SENSOR), 2, 1);
+//				robot.display.print("x: ", 2, 1);
+////				robot.display.print(robot.getPos().X, 2, 9);
+////				//robot.display.print(robot.camera.yellow.X, 2, 9);
+////				robot.display.print("y: ", 3, 1);
+////				robot.display.print(robot.getPos().Y, 3, 9);
+////				robot.display.print("Ball sens: ", 3, 1);
+////				robot.display.print(robot.ballSensor.getSensorValue(), 3, 14);
 				//robot.display.print(robot.camera.yellow.Y, 3, 9);
 				//robot.display.print(int(millis()), 3, 15);
 			

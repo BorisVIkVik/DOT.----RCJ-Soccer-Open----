@@ -303,8 +303,8 @@ void Robot::updateSelfPos(pair<double, double> yellow, pair<double, double> blue
 		K = 0.0;		
 	if(K > 1.0) K = 1.0;
 	if(K < 0.0) K = 0.0;
-	display.print("K: ", 1, 1);
-	display.print(K, 1, 5);
+	//display.print("K: ", 1, 1);
+	//display.print(K, 1, 5);
 	#define GOAL_X	0
 	#define GOAL_Y	103
 	
@@ -411,16 +411,16 @@ void Robot::handleErrors()
 	if (GLOBAL_ERROR) setPin(ERROR_LED, 1);
 	else setPin(ERROR_LED, millis() % 200 < 100);
 	
-	if(GLOBAL_ERROR & LOW_BATTERY_POWER)
-	{
-		motorDrivers.setMotors(0, 0, 0, 0, 0);
-		display.clear();
-		display.print("LOW BATTERY VOLTAGE", 1, 0);
-		display.print("TURNING OFF", 2, 0);
-		display.show();
-		swithPowerOff();
-		while(1);
-	}
+//	if(GLOBAL_ERROR & LOW_BATTERY_POWER)
+//	{
+//		motorDrivers.setMotors(0, 0, 0, 0, 0);
+//		display.clear();
+//		display.print("LOW BATTERY VOLTAGE", 1, 0);
+//		display.print("TURNING OFF", 2, 0);
+//		display.show();
+//		swithPowerOff();
+//		while(1);
+//	}
 }
 
 

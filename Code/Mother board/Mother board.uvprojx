@@ -338,7 +338,7 @@
               <MiscControls>--cpp</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\Libraries\stm32f407\periph_library\inc;.\CMSIS\inc;.\code\inc;..\Mother board;..\..\Libraries\mpu9250\inc;.\code\src\libs\FunctionalClass;.\code\src\libs\Obstacle;.\code\src\libs\Robot;.\code\src\libs\RobotParametrs;.\code\src\libs\CameraObject;.\code\src\libs\VecField;.\code\src\libs\VectorToMove;..\..\Libraries\SSD1306\inc;.\code\src\libs\FieldObject</IncludePath>
+              <IncludePath>..\..\Libraries\stm32f407\periph_library\inc;.\CMSIS\inc;.\code\inc;..\Mother board;..\..\Libraries\mpu9250\inc;.\code\src\libs\FunctionalClass;.\code\src\libs\Obstacle;.\code\src\libs\Robot;.\code\src\libs\RobotParametrs;.\code\src\libs\CameraObject;.\code\src\libs\VecField;.\code\src\libs\VectorToMove;..\..\Libraries\SSD1306\inc;.\code\src\libs\FieldObject;.\code\src\gyroSparkfun;.\code\src\gyroSparkfun\util</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -476,6 +476,11 @@
               <FileName>mpu9250.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\..\Libraries\mpu9250\src\mpu9250.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>hz.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\code\inc\hz.h</FilePath>
             </File>
           </Files>
         </Group>

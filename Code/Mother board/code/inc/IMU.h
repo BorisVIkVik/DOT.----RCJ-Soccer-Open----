@@ -25,6 +25,12 @@ class IMU
 		double getAngle();
 		double imuFloatValue, angleChange;
 		long long int imuFloatTime;
+		double getXa();
+		double getYa();
+		double getZa();
+		double getXg();
+		double getYg();
+		double getZg();
 	
 	private:
 		mpu9250 mpuSensor;
@@ -105,6 +111,36 @@ double IMU::getAngle()
 	double a = angle-zeroAngle;
 	adduction(a)
 	return a;
+}
+
+double IMU::getXa()
+{
+	return mpuSensor.getXa();
+}
+
+double IMU::getYa()
+{
+	return mpuSensor.getYa();
+}
+
+double IMU::getZa()
+{
+	return mpuSensor.getZa();
+}
+
+double IMU::getXg()
+{
+	return mpuSensor.getXg();
+}
+
+double IMU::getYg()
+{
+	return mpuSensor.getYg();
+}
+
+double IMU::getZg()
+{
+	return mpuSensor.getZg();
 }
 
 #endif
