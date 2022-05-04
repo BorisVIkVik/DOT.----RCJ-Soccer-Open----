@@ -4,7 +4,7 @@
 
 #define RAD2DEG	57.2957795130823208767
 #define DEG2RAD	0.01745329251994329576
-#define beta		0.01f		// 2 * proportional gain
+#define beta		1.0f		// 2 * proportional gain
 
 
 
@@ -49,7 +49,7 @@ void mpu9250::initIMU(unsigned int _spi, int _ssPin)
 	mpuSPI = _spi;
 	mpuSSPin = _ssPin;
 	xGyroOffset = 0, yGyroOffset = 0, zGyroOffset = 0;
-	xAccOffset = 0, yAccOffset = 0, zAccOffset = 0;
+	xAccOffset = 0.001, yAccOffset = 0.001, zAccOffset = 0.001;
 	pitchOffset = 0, rollOffset = 0, yawOffset = 0;
 	
 	xa = 0, ya = 0, za = 0;
@@ -128,9 +128,9 @@ void mpu9250::readAcc( )						//reads data directly from accelerometer registers
 {
 	int data[6];
 	readReg(ACCEL_XOUT_H, data, 6);
-	xa = double(convert(data[0], data[1]) - xAccOffset) / ACC_DIV;
-	ya = double(convert(data[2], data[3]) - yAccOffset) / ACC_DIV;
-	za = double(convert(data[4], data[5]) - zAccOffset) / ACC_DIV;
+	xa = double(convert(data[0], data[1])) / ACC_DIV - xAccOffset;
+	ya = double(convert(data[2], data[3])) / ACC_DIV - yAccOffset;
+	za = double(convert(data[4], data[5])) / ACC_DIV - zAccOffset;
 }
 
 
@@ -139,9 +139,9 @@ void mpu9250::readGyro()					//reads data directly from gyroscope registers. Ret
 {
 	int data[6];
 	readReg(GYRO_XOUT_H, data, 6);
-	xg = double(convert(data[0], data[1]) - xGyroOffset) / GYRO_DIV;
-	yg = double(convert(data[2], data[3]) - yGyroOffset) / GYRO_DIV;
-	zg = double(convert(data[4], data[5]) - zGyroOffset) / GYRO_DIV;
+	xg = double(convert(data[0], data[1])) / GYRO_DIV - xGyroOffset;
+	yg = double(convert(data[2], data[3])) / GYRO_DIV - yGyroOffset;
+	zg = double(convert(data[4], data[5])) / GYRO_DIV - zGyroOffset;
 }
 
 
@@ -218,48 +218,27 @@ void mpu9250::setAccOffset(int xOffset, int yOffset, int zOffset)				//sets hard
 void mpu9250::calibrate(int _T)
 {
 	xGyroOffset = 0, yGyroOffset = 0, zGyroOffset = 0;
-	xAccOffset = 0, yAccOffset = 0, zAccOffset = 0;
-	ACC_DIV = 1;
-	GYRO_DIV = 1;
-	long long int _dgx = 0, _dgy = 0, _dgz = 0;
-	long long int _dax = 0, _day = 0, _daz = 0;
+	double _dgx = 0, _dgy = 0, _dgz = 0;
+
 	
-	setGyroOffset(0, 0, 0);
-	setAccOffset(0, 0, 0);
+	delay(1000);
 	
-	long long int realCalibrationTimer = millis();
+	int num = 100;
 	
-	for(int i = 0; i < _T; i++)
+	for(int i = 0; i < num; i++)
 	{
 		readGyro();
-		readAcc();
 		
 		_dgx += xg;
 		_dgy += yg;
 		_dgz += zg;
-		
-		_dax += xa;
-		_day += ya;
-		_daz += za;
+
 		delay(1);
 	}
-	
-	int realCalibrationTime = millis() - realCalibrationTimer;
-	
-	correctionTimer = millis();
-	
-	ACC_DIV = 32768 / ACC_FS;
-	GYRO_DIV = 32768 / GYRO_FS / DEG2RAD;
 
-	xGyroOffset = _dgx/realCalibrationTime;
-	yGyroOffset = _dgy/realCalibrationTime;
-	zGyroOffset = _dgz/realCalibrationTime;
-	
-	xAccOffset = _dax/realCalibrationTime;
-	yAccOffset = _day/realCalibrationTime;
-	zAccOffset = _daz/realCalibrationTime + (32768 / ACC_FS);
-	
-	yaw = 0, pitch = 0, roll = 0;
+	xGyroOffset = _dgx/num;
+	yGyroOffset = _dgy/num;
+	zGyroOffset = _dgz/num;
 }
 
 

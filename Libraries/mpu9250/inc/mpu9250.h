@@ -271,8 +271,8 @@ private:
 	unsigned int mpuSPI;
 	int mpuSSPin;
 	double ACC_DIV, GYRO_DIV;
-	long int xGyroOffset, yGyroOffset, zGyroOffset;
-	long int xAccOffset, yAccOffset, zAccOffset;
+	double xGyroOffset, yGyroOffset, zGyroOffset;
+	double xAccOffset, yAccOffset, zAccOffset;
 	long long int time;
 	long long int correctionTimer;
 	unsigned char fifo_data[32];
