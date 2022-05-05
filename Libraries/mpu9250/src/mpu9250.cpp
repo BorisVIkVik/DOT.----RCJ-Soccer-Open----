@@ -4,7 +4,7 @@
 
 #define RAD2DEG	57.2957795130823208767
 #define DEG2RAD	0.01745329251994329576
-#define beta		1.0f		// 2 * proportional gain
+#define beta		0.25f		// 2 * proportional gain
 
 
 

@@ -334,7 +334,7 @@ VectorToMove BaseFunctional::genVTMGlobalPoint(pair<int16_t, int16_t> toGoCoords
 		double d = (error - errorOld) * KOEF_D;
 		double u = p + d;
 		errorOld = error;
-	VectorToMove res(tmpX, tmpY, min2(maxVecMod, u));
+	VectorToMove res(tmpX, tmpY, min2(maxVecMod, abs(u)));
 	return res;
 }
 

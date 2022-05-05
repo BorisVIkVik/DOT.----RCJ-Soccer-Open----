@@ -114,12 +114,12 @@ def realDistance(x, coordsArr):
 import sensor, image, time, pyb
 from math import sqrt, atan2
 from pyb import SPI
-EXPOSURE_TIME_SCALE = 0.7
+EXPOSURE_TIME_SCALE = 0.6
 
 
 threshold_blue =    (17, 45, -2, 54, -128, -20)
 threshold_yellow =  (41, 100, -1, 33, 31, 127)
-threshold_ball =    (0, 100, 53, 127, -128, 127)#(50, 65, 49, 127, 23, 127)
+threshold_ball =    (0, 86, 47, 127, 21, 127)#(50, 65, 49, 127, 23, 127)
 
 
 cX = 166  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
@@ -316,7 +316,7 @@ while(True):
         distance = sqrt(GLXPixel * GLXPixel + GLYPixel * GLYPixel) # pixels
         distance = realDistance(distance, ballCoords)   #cm
         #print("GLXPixel: " + str(GLXPixel) + " GLYPixel: " + str(GLYPixel) + " Distance: " + str(distance))
-        #print("BLX: " + str(int(realDistance(GLXPixel, ballCoords))) + " BLY: " + str(int(realDistance(GLYPixel, ballCoords))))
+        print("BLX: " + str(int(realDistance(GLXPixel, ballCoords))) + " BLY: " + str(int(realDistance(GLYPixel, ballCoords))))
         angle = atan2(GLXPixel, GLYPixel)
         angle = (angle*57)//1
         angleBall = angle

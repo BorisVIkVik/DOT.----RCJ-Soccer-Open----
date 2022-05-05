@@ -90,7 +90,7 @@ unsigned int IMU::update()
 	updateAnglesFromFIFO();
 	double neangle = mpuSensor.yaw;
 	angle = neangle;
-	//adduction(angle);
+	adduction(angle);
 	return 0;
 }
 
@@ -111,7 +111,7 @@ double IMU::getAngle()
 {
 	double a = angle-zeroAngle;
 	adduction(a)
-	return a;
+	return -a;
 }
 
 double IMU::getXa()

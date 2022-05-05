@@ -242,7 +242,7 @@ class Functional:  public BaseFunctional
 		{
 			if(millis() - attackerStopTime > 1000)
 				attackerStop = true;
-			if(/*getRobotClass()->ballSensor.getValue()|| */(getRobotClass()->camera.objects & 1))
+			if(getRobotClass()->ballSensor.getValue() || (getRobotClass()->camera.objects & 1))
 			{
 				attackerStop = false;
 				attackerStopTime = millis();
@@ -254,20 +254,30 @@ class Functional:  public BaseFunctional
 					avatarAngToBall = -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
 				if(state == 0)
 				{
-//					if((abs(double(camBall.pos.X)) < 10.0 && abs(double(camBall.pos.Y)) < 10.0) || (abs(double(camBall.pos.X)) >= 90.0 && abs(double(camBall.pos.Y)) >= 120.0))
-//					{
-//						move2(genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 2.0), avatarAngToBall);//move(0.5, (camBall.pos.X < 0 ? 1 : -1) * 90, -90);
-//					}
+					if((abs(double(camBall.pos.X)) < 20.0 && abs(double(camBall.pos.Y)) < 20.0) || (abs(double(camBall.pos.X)) >= 80.0 || abs(double(camBall.pos.Y)) >= 100.0))
+					{
+						VectorToMove res(0,0,0);
+						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 1.0);
+						b1.dempher(getRobotClass()->getPos(), res);
+						b2.dempher(getRobotClass()->getPos(), res);
+						b3.dempher(getRobotClass()->getPos(), res);
+						b4.dempher(getRobotClass()->getPos(), res);
+						move2(res, avatarAngToBall);//move(0.5, (camBall.pos.X < 0 ? 1 : -1) * 90, -90);
+					}
+					else
+					{
+						getRobotClass()->motorDrivers.setMotors(0,0,0,0,0);
+					}
 //					else 
 //					{
-					VectorToMove res(0,0,0);
-					res = genATMVecField(camBall.pos.X/2, -camBall.pos.Y/2);
-					b1.dempher(getRobotClass()->getPos(), res);
-					b2.dempher(getRobotClass()->getPos(), res);
-					b3.dempher(getRobotClass()->getPos(), res);
-					b4.dempher(getRobotClass()->getPos(), res);
-					move2(res, avatarAngToBall);//-90);
-					//}
+//						VectorToMove res(0,0,0);
+//						res = genATMVecField(camBall.pos.X/2, -camBall.pos.Y/2);
+//						b1.dempher(getRobotClass()->getPos(), res);
+//						b2.dempher(getRobotClass()->getPos(), res);
+//						b3.dempher(getRobotClass()->getPos(), res);
+//						b4.dempher(getRobotClass()->getPos(), res);
+//						//move2(res, avatarAngToBall);//-90);
+//					}
 					
 					
 					if(abs(double(camBall.pos.X)) < 20 && abs(double(camBall.pos.Y)) < 20)
@@ -360,8 +370,9 @@ class Functional:  public BaseFunctional
 			}
 		}
 		///
-	private:
 		CameraObject camYellow, camBlue, camBall;
+	private:
+		
 		uint32_t time;
 		uint32_t dt;
 		uint32_t oldTime;
