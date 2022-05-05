@@ -42,6 +42,7 @@ class BaseFunctional
 				bool 								checkBounds(pair<double, double> nizLF, pair<double, double> verxPR, pair<double, double> pointToCheck);
 				Robot*							getRobotClass();
 				VectorToMove 				trajectoryFollowingDots(int16_t& oldPosIndex, double distance);
+				int16_t 						findStartOfTrajectory(pair<int16_t, int16_t> pos);
     private:
 				double errorOld;
         Robot* _RC;
@@ -264,7 +265,7 @@ VectorToMove BaseFunctional::genATMVecField(int16_t x, int16_t y)//, vector<Obst
     ////int16_t cY = RP.robot->_y - (ob._y + 44);
 
 		int16_t cX = 44 + x;
-    int16_t cY = 59 - y;
+    int16_t cY = 58 - y;
 
 	
     int16_t vecNum = 120 * (cX) + cY;//90 * (cY) + cX - 1;
@@ -275,7 +276,12 @@ VectorToMove BaseFunctional::genATMVecField(int16_t x, int16_t y)//, vector<Obst
 		if(vecNum >= 0 && vecNum < 10800)
 		{
 			atm = firstField[vecNum][0] * 2 - 180 - 90;
-			atmMod = firstField[vecNum][1] * 1.5;
+			double error = sqrt(double(cX * cX + cY * cY));
+			double p = error * KOEF_P;
+			//double d = (error - errorOld) * KOEF_D;
+			double u = p;
+			//errorOld = error;
+			atmMod = min2(2.0, abs(u));
 		}
 		
 	
@@ -358,18 +364,34 @@ Robot* BaseFunctional::getRobotClass()
 VectorToMove BaseFunctional::trajectoryFollowingDots(int16_t& oldPosIndex, double distance)
 {
     int toGoPosIndex = oldPosIndex;
-    for(; toGoPosIndex < TRAJECTORY1_SIZE; toGoPosIndex++)
+    for(; toGoPosIndex < TRAJECTORY1_SIZE - 1; toGoPosIndex++)
     {
         pair<int16_t, int16_t> tmpMovedVec = make_pair(trajectory1[toGoPosIndex][0] - trajectory1[oldPosIndex][0], trajectory1[toGoPosIndex][1] - trajectory1[oldPosIndex][1]);
         double tmpDistance = sqrt(double(tmpMovedVec.X * tmpMovedVec.X + tmpMovedVec.Y * tmpMovedVec.Y));
         if(distance <= tmpDistance)
             break;
     }
-    pair<int16_t, int16_t> toGo = make_pair(trajectory1[toGoPosIndex][0] - _RC->getPos().X, trajectory1[toGoPosIndex][1] - _RC->getPos().Y);
+    //pair<int16_t, int16_t> toGo = make_pair(trajectory1[toGoPosIndex][0] - _RC->getPos().X, trajectory1[toGoPosIndex][1] - _RC->getPos().Y);
+		_RC->display.print("GP:", 1, 1);
+		_RC->display.print(toGoPosIndex, 1, 5);
     //toGo.X += 
     //toGo.Y +=
     //double angleToMove = atan2(double(), double()) * 57.3;
-    double vecMod = 1.0;//SPEED_TRAJ_FOLLOW_M_S;
-    VectorToMove res(toGo.X, toGo.Y, vecMod);
+		oldPosIndex = toGoPosIndex;
+    double vecMod = 2.0;//SPEED_TRAJ_FOLLOW_M_S;
+    VectorToMove res(0, 0, 0);
+		res = genVTMGlobalPoint(make_pair(trajectory1[toGoPosIndex][0], trajectory1[toGoPosIndex][1]), _RC->getPos(), vecMod);
     return res;
+}
+
+
+int16_t BaseFunctional::findStartOfTrajectory(pair<int16_t, int16_t> pos)
+{
+	int iter = 0;
+	for(; iter < TRAJECTORY1_SIZE - 1; iter++)
+	{
+		if(pos.Y <= trajectory1[iter][1])
+			break;
+	}
+	return iter;
 }

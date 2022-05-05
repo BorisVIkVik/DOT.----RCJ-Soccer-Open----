@@ -114,12 +114,13 @@ def realDistance(x, coordsArr):
 import sensor, image, time, pyb
 from math import sqrt, atan2
 from pyb import SPI
-EXPOSURE_TIME_SCALE = 0.7
+EXPOSURE_TIME_SCALE = 1.1
 
 
-threshold_blue =    (17, 45, -2, 54, -128, -20)
+
+threshold_blue =    (23, 48, -2, 35, -44, -8)
 threshold_yellow =  (41, 100, -1, 33, 31, 127)
-threshold_ball =    (0, 100, 53, 127, -128, 127)#(50, 65, 49, 127, 23, 127)
+threshold_ball =    (47, 100, 39, 127, 13, 52)#(50, 65, 49, 127, 23, 127)
 
 
 cX = 166  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
@@ -138,12 +139,12 @@ spi = SPI(2, SPI.SLAVE, polarity=0, phase=0)
 sensor.reset()
 sensor.set_pixformat(sensor.RGB565)
 sensor.set_framesize(sensor.QVGA)
-sensor.set_auto_gain(True)
-sensor.set_auto_exposure(True)
-sensor.set_auto_whitebal(True)
-sensor.skip_frames(time = 500)
+#sensor.set_auto_gain(True)
+#sensor.set_auto_exposure(True)
+#sensor.set_auto_whitebal(True)
+sensor.skip_frames(time = 1000)
 
-sensor.set_auto_whitebal(True)
+#sensor.set_auto_whitebal(True)
 sensor.set_auto_gain(False)
 sensor.set_auto_exposure(False)
 current_exposure_time_in_microseconds=  sensor.get_exposure_us()
@@ -188,7 +189,7 @@ while(True):
     biggestYellowBlob = 0
     countYellow =0
     blobsYellow=[]
-    for yellowBlob in img.find_blobs([threshold_yellow],roi=(0,0,319,239), pixels_threshold=300, area_threshold=100, merge=True, margin = 15):
+    for yellowBlob in img.find_blobs([threshold_yellow],roi=(0,0,319,239), pixels_threshold=300, area_threshold=100, merge=True, margin = 20):
         blobsYellow.append(yellowBlob)
         if(yellowBlob.area() > blobsPreviousMas):
             biggestYellowBlob = countYellow
@@ -210,10 +211,11 @@ while(True):
         centerX = blobsYellow[biggestYellowBlob].cx()
         GLXPixel = -centerX + cX
         GLYPixel = -centerY + cY
-        #distanceYellow = sqrt(GLXPixel * GLXPixel + GLYPixel * GLYPixel) # pixels
+        distanceYellow = sqrt(GLXPixel * GLXPixel + GLYPixel * GLYPixel) # pixels
         #print("Yellow: " + str(distanceYellow))
         #distanceYellow = realDistance(distanceYellow, goalCoords)   #cm
         #print("GLX Pixel: " + str(GLXPixel) + " GLY Pixel: " + str(GLYPixel) + " DistanceYellow: " + str(distanceYellow))
+        #print("YLX: " + str(int(realDistance(GLXPixel, ballCoords))) + " YLY: " + str(int(realDistance(GLYPixel, ballCoords))))
         #print(GLYPixel)
         angle = atan2(GLXPixel, GLYPixel)
         angle = (angle*57)//1
@@ -240,7 +242,7 @@ while(True):
     biggestBluewBlob = 0
     countBlue = 0
     blobsBlue=[]
-    for blueBlob in img.find_blobs([threshold_blue],roi=(0,0,319,239), pixels_threshold=150, area_threshold=100, merge=True, margin = 5):
+    for blueBlob in img.find_blobs([threshold_blue],roi=(0,0,319,239), pixels_threshold=100, area_threshold=100, merge=True, margin = 20):
         blobsBlue.append(blueBlob)
         if(blueBlob.area() > blobsPreviousMas):
             biggestBlueBlob = countBlue
@@ -266,6 +268,7 @@ while(True):
         distanceBlue = sqrt(GLXPixel * GLXPixel + GLYPixel * GLYPixel) # pixels
         #print("Blue: " + str(distanceBlue))
         distanceBlue = realDistance(distanceBlue, goalCoords)   #cm
+
         #print(GLYPixel)
         angle = atan2(GLXPixel, GLYPixel)
         angle = (angle*57)//1
@@ -347,3 +350,4 @@ while(True):
 
     img.draw_cross(cX, cY, (0,255,0))
     #print(objects)
+    print("Yellow: " + str(distanceYellow) + " Blue: " + str(distanceBlue))

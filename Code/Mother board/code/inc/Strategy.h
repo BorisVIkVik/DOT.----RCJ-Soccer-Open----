@@ -9,8 +9,8 @@
 #define SPEED_TRAJ_FOLLOW_M_S									1.0
 #define SPEED_TRAJ_FOLLOW_CM_MILLIS						SPEED_TRAJ_FOLLOW_M_S * 0.1 
 
-Border b1('x', '-', -30, -35, -90, 90);
-Border b2('x', '+', 30, 35, -90, 90);
+Border b1('x', '-', -28, -35, -90, 90);
+Border b2('x', '+', 28, 35, -90, 90);
 Border b3('y', '-', -50, -55, -30, 30);
 Border b4('y', '+', 50, 55, -30, 30);
 
@@ -23,6 +23,9 @@ Border b9('y', '-', -80, -90, -35, -20);
 Border b10('y', '-', -80, -90, 20, 35);
 Border b11('y', '+', 80, 90, -35, -20);
 Border b12('y', '+', 80, 90, 20, 35);
+
+	pt goalPoints[6] = {{70, -97}, {70, -89}, {55, -74}, {-55, -74}, {-70, -89}, {-70, -97}};
+	segment goalLines[5] = {{0, 1, 60, -25, 25, 0, 0}, {2, 5, 250, 25, 50, 0, 0}, {-2, 5, 250, -50, -25, 0, 0}, {1, 0, 50, 0, 0, -90, -70}, {1, 0, -50, 0, 0, -90, -70}};
 
 class Functional:  public BaseFunctional 
 {
@@ -37,8 +40,18 @@ class Functional:  public BaseFunctional
 			state = 0;
 			trajectoryTime = 0;
 			attackerStopTime = 0;
+			oldPosIndex = 0;
 			attackerStop = false;
+			///-------------------------
+			old = make_pair(0,0);
+			predictTime = 0;
+			strikeTime = 0;
+			stateTime = 0;
+			angleCheckTest = 0;
+			strike = false;
 		}
+		
+		
 		void posCalc()
 		{
 			time = millis();
@@ -240,7 +253,7 @@ class Functional:  public BaseFunctional
 		///
 		void strategy2()
 		{
-			if(millis() - attackerStopTime > 1000)
+			if(millis() - attackerStopTime > 500)
 				attackerStop = true;
 			if(getRobotClass()->ballSensor.getValue() || (getRobotClass()->camera.objects & 1))
 			{
@@ -251,13 +264,13 @@ class Functional:  public BaseFunctional
 			{
 				double avatarAngToBall = 0;
 				if(getRobotClass()->camera.objects & 1)
-					avatarAngToBall = -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
+					avatarAngToBall = -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3 - 1;
 				if(state == 0)
 				{
-					if((abs(double(camBall.pos.X)) < 30.0 && abs(double(camBall.pos.Y)) < 30.0) || (abs(double(camBall.pos.X)) >= 80.0 || abs(double(camBall.pos.Y)) >= 100.0))
+					if((abs(double(camBall.pos.X)) < 20.0 && abs(double(camBall.pos.Y)) < 20.0) || (abs(double(camBall.pos.X)) >= 80.0 || abs(double(camBall.pos.Y)) >= 105.0))
 					{
 						VectorToMove res(0,0,0);
-						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 1.0);
+						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 2.0);
 						b1.dempher(getRobotClass()->getPos(), res);
 						b2.dempher(getRobotClass()->getPos(), res);
 						b3.dempher(getRobotClass()->getPos(), res);
@@ -287,32 +300,21 @@ class Functional:  public BaseFunctional
 					if(getRobotClass()->ballSensor.getValue())// || robot.ball[1])
 					{
 						getRobotClass()->motorDrivers.setMotors(0,0,0,0);
-					//	state = 1;
+						//state = 1;
 						trajectoryTime = millis();
+						oldPosIndex = findStartOfTrajectory(getRobotClass()->getPos());
 					}
 				}
 				else if (state == 1)
 				{
-					double flex = 1.0*(double(millis()) - double(trajectoryTime))/30.0;
-					if (flex < 98.0)
-					{
-						flex = -1/(flex - 100);
-						flex *= 2;
-//						if(getRobotClass()->lineSensors.getLine() > 4)
-//							setMoveCoords(goalYellowX, DEFAULT_MOVE_Y);
-					}
-					else if(flex < 120.0)
-					{
-						//flex = flex;
-						flex = (flex - 97);
-						//flex *= 2;
-					}
-					else
-					{
-						kickTime = millis();
-						state = 3;
-					}
-	//				move2(trajectoryFollowing(flex, goalYellowX, goalYellowY), -90);
+					double flex = 1;/*(millis() - trajectoryTime)*/ //* SPEED_TRAJ_FOLLOW_CM_MILLIS;
+//					if(oldPosIndex > constanta)
+//					{
+//						kickTime = millis();
+//						state = 3;
+//					}
+					
+					move2(trajectoryFollowingDots(oldPosIndex, flex), -90);
 					printUART(DEBUG_UART, flex);
 				}
 				else if(state == 2)
@@ -367,8 +369,156 @@ class Functional:  public BaseFunctional
 		}
 		///
 		CameraObject camYellow, camBlue, camBall;
-	private:
 		
+		
+	
+	void goalkeeper()
+	{
+		line goalToRobot;
+		int lineA = 0;
+		int lineB = 0;
+		int lineC = 0;
+		//TEST AREA-------------------------------------------------------------
+		int timeBack = 200;
+		if(millis() - predictTime > 200)
+		{
+			old = ball.globalPos;
+			predictTime = millis();
+		}
+		if(distanceVec(old, ball.globalPos) > 5 && !strike)
+		{
+			strikeTime = millis();
+			strike = false;
+		lineA = (ball.globalPos.Y - old.Y);
+		lineB = (old.X - ball.globalPos.X);
+		lineC = old.Y * (ball.globalPos.X - old.X) - (ball.globalPos.Y - old.Y) * old.X;
+		}
+	//		lineB = (ballPosSave.pop(time - timeBack).X - ball.globalPos.X);
+	//		lineC = ballPosSave.pop(time - timeBack).Y * (ball.globalPos.X - ballPosSave.pop(time - timeBack).X) - (ball.globalPos.Y - ballPosSave.pop(time - timeBack).Y) * ballPosSave.pop(time - timeBack).X;
+	//	}
+		else
+		{
+			if(millis() - strikeTime > 5000 && !strike)
+			{
+				strikeTime = millis();
+				strike = true;
+			}
+			lineA = (ball.globalPos.Y + 97);
+			lineB = (0 - ball.globalPos.X);
+			lineC = (-97 * ball.globalPos.X);
+		}
+
+		
+		goalToRobot.a = lineA;
+		goalToRobot.b = lineB;
+		goalToRobot.c = lineC;
+		
+		bool foundToGoPoint = false;
+		
+			if(abs(ball.globalPos.Y) < 75)
+			{
+
+				
+				if(intersect(goalLines[0], goalToRobot, toGo))
+				{
+						foundToGoPoint = true;
+				}
+				else if(intersect(goalLines[1], goalToRobot, toGo))
+				{
+						pt checkPoint;
+						if(intersect(goalLines[2], goalToRobot, checkPoint))
+						{
+								double distance1 = sqrt(double((checkPoint.x - ball.globalPos.X) * (checkPoint.x - ball.globalPos.X) + (checkPoint.y - ball.globalPos.Y) * (checkPoint.y - ball.globalPos.Y)));
+								double distance2 = sqrt(double((toGo.x - ball.globalPos.X) * (toGo.x - ball.globalPos.X) + (toGo.y - ball.globalPos.Y) * (toGo.y - ball.globalPos.Y)));        
+								if(distance2 > distance1)
+										toGo = checkPoint; 
+						}
+						foundToGoPoint = true;
+				}
+				else if(intersect(goalLines[2], goalToRobot, toGo))
+				{
+						foundToGoPoint = true;
+				}
+				else if(intersect(goalLines[3], goalToRobot, toGo))
+				{
+						pt checkPoint;
+						if(intersect(goalLines[4], goalToRobot, checkPoint))
+						{
+								double distance1 = sqrt(double((checkPoint.x - ball.globalPos.X) * (checkPoint.x - ball.globalPos.X) + (checkPoint.y - ball.globalPos.Y) * (checkPoint.y - ball.globalPos.Y)));
+								double distance2 = sqrt(double((toGo.x - ball.globalPos.X) * (toGo.x - ball.globalPos.X) + (toGo.y - ball.globalPos.Y) * (toGo.y - ball.globalPos.Y)));        
+								if(distance2 > distance1)
+										toGo = checkPoint; 
+						}
+						foundToGoPoint = true;
+				}
+				else if(intersect(goalLines[4], goalToRobot, toGo))
+				{
+						foundToGoPoint = true;
+				}
+			}
+			else
+			{
+	//			 toGo.x = 0;
+	//			 toGo.y = -60;
+				 foundToGoPoint = true;
+			}
+
+	//    if(!foundToGoPoint)
+	//    {
+	//        double distance = sqrt(double((goalPoints[0].x - robot.camera.ball.X) * (goalPoints[0].x - robot.camera.ball.X) + (goalPoints[0].y - robot.camera.ball.Y) * (goalPoints[0].y - robot.camera.ball.Y)));
+
+	//        for(int i = 1; i < 6; i++)
+	//        {
+	//            //distance1 = sqrt(double((goalLines[i]. - robot.camera.ball.X) * (checkPoint.x - robot.camera.ball.X) + (checkPoint.y - robot.camera.ball.Y) * (checkPoint.y - robot.camera.ball.Y)));
+	//        }
+	//    }
+
+	//		if(millis() - stateTime > 3000)
+	//		{ 
+	//			stateTime = millis();
+	//			angleCheckTest += 90;
+	//			angleCheckTest %= 360;
+	//			if(angleCheckTest == 90)
+	//			{
+	//				toGo.x = 20;
+	//				toGo.y = -40;
+	//			}
+	//			else if (angleCheckTest == 180)
+	//			{
+	//				toGo.x = 20;
+	//				toGo.y = 40;
+	//			}
+	//			else if(angleCheckTest == 270)
+	//			{
+	//				toGo.x = -20;
+	//				toGo.y = 40;
+	//			}
+	//			else if (angleCheckTest == 0)
+	//			{
+	//				toGo.x = -20;
+	//				toGo.y = -40;
+	//			}
+	//		}
+			if(strike)
+			{
+				toGo.x = ball.globalPos.X;
+				toGo.y = ball.globalPos.Y;
+				if(millis() - strikeTime > 3000 || !checkBounds(make_pair(-30, -80), make_pair(30, 0), getRobotClass()->getPos()))
+				{
+					strikeTime = millis();
+					strike = false;
+				}
+			}
+			if(getRobotClass()->playState())
+			{
+				move2(genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 2.5), 0);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
+			}
+			
+			//TEST AREA-------------------------------------------------------------
+	}
+	private:
+		//Attacker
+		int16_t oldPosIndex;
 		uint32_t time;
 		uint32_t dt;
 		uint32_t oldTime;
@@ -378,7 +528,16 @@ class Functional:  public BaseFunctional
 		uint32_t attackerStopTime;
 		bool attackerStop;
 		PairSaver ballPosSave;
-		//pt goalPoints[6] = {{70, -97}, {70, -89}, {55, -74}, {-55, -74}, {-70, -89}, {-70, -97}};
-		//segment goalLines[5] = {{0, 1, 60, -25, 25, 0, 0}, {2, 5, 250, 25, 50, 0, 0}, {-2, 5, 250, -50, -25, 0, 0}, {1, 0, 50, 0, 0, -90, -70}, {1, 0, -50, 0, 0, -90, -70}};
+		//Attacker
+	
+		//Goalkeeper
+			pt toGo;
+			pair<double, double> old;
+			uint32_t predictTime;
+			uint32_t strikeTime; 
+			uint32_t stateTime;
+			uint32_t angleCheckTest;
+			bool strike;
+		//Goalkeeper
 };
 	

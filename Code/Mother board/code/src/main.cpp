@@ -35,8 +35,7 @@ void setupScreens();
 
 
 	 
-	pt goalPoints[6] = {{70, -97}, {70, -89}, {55, -74}, {-55, -74}, {-70, -89}, {-70, -97}};
-	segment goalLines[5] = {{0, 1, 60, -25, 25, 0, 0}, {2, 5, 250, 25, 50, 0, 0}, {-2, 5, 250, -50, -25, 0, 0}, {1, 0, 50, 0, 0, -90, -70}, {1, 0, -50, 0, 0, -90, -70}};
+	
 
 
 
@@ -103,26 +102,27 @@ int main()
 	
 	
 	
-	pt toGo = {0, 0};
-	
-	PairSaver ballPosSave;
-	pair<double, double> old = make_pair(0,0);
-	uint32_t predictTime = 0;
-	uint32_t strikeTime = 0;
-	uint32_t stateTime = 0;
-	uint32_t angleCheckTest = 0;
-	bool strike = false;
-	uint32_t mainTime = 0;
-	volatile uint32_t cycleTime = 0;
-	volatile double v1 = 0, v2 = 0, v3 = 0;
+//	pt toGo = {0, 0};
+//	
+//	PairSaver ballPosSave;
+//	pair<double, double> old = make_pair(0,0);
+//	uint32_t predictTime = 0;
+//	uint32_t strikeTime = 0;
+//	uint32_t stateTime = 0;
+//	uint32_t angleCheckTest = 0;
+//	bool strike = false;
+//	uint32_t mainTime = 0;
+//	volatile uint32_t cycleTime = 0;
+//	volatile double v1 = 0, v2 = 0, v3 = 0;
 	while(1)
 	{
-		cycleTime = millis() - mainTime;
-		mainTime = millis();
+//		cycleTime = millis() - mainTime;
+//		mainTime = millis();
 		robot.wait(5);
 		func.posCalc();
 		//func.testBorder();
-		func.strategy2();
+		//func.strategy2();
+		func.goalkeeper();
 		//v1 = func.getRobotClass()->imu.getXa();
 		//v2 = func.getRobotClass()->imu.getYa();
 		//v3 = func.getRobotClass()->imu.getZa();
@@ -164,7 +164,7 @@ int main()
 				if (robot.playState()) robot.display.print("playing", 0, 6);
 				else robot.display.print("waiting", 0, 6);
 				
-				robot.display.print(cycleTime, 0, 15);
+//				robot.display.print(cycleTime, 0, 15);
 				robot.display.print("Yaw angle: ", 2, 1);
 				robot.display.print(robot.imu.getAngle(), 2, 11);
 				robot.display.print("Ball x: ", 3, 1);
