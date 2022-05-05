@@ -11,8 +11,8 @@
 
 Border b1('x', '-', -30, -35, -90, 90);
 Border b2('x', '+', 30, 35, -90, 90);
-Border b3('y', '-', -50, -60, -30, 30);
-Border b4('y', '+', 50, 60, -30, 30);
+Border b3('y', '-', -50, -55, -30, 30);
+Border b4('y', '+', 50, 55, -30, 30);
 
 Border b5('x', '+', -20, -15, -90, -60);
 Border b6('x', '-', 20, 15, -90, -60);
@@ -254,7 +254,7 @@ class Functional:  public BaseFunctional
 					avatarAngToBall = -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
 				if(state == 0)
 				{
-					if((abs(double(camBall.pos.X)) < 20.0 && abs(double(camBall.pos.Y)) < 20.0) || (abs(double(camBall.pos.X)) >= 80.0 || abs(double(camBall.pos.Y)) >= 100.0))
+					if((abs(double(camBall.pos.X)) < 30.0 && abs(double(camBall.pos.Y)) < 30.0) || (abs(double(camBall.pos.X)) >= 80.0 || abs(double(camBall.pos.Y)) >= 100.0))
 					{
 						VectorToMove res(0,0,0);
 						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 1.0);
@@ -264,20 +264,16 @@ class Functional:  public BaseFunctional
 						b4.dempher(getRobotClass()->getPos(), res);
 						move2(res, avatarAngToBall);//move(0.5, (camBall.pos.X < 0 ? 1 : -1) * 90, -90);
 					}
-					else
+					else 
 					{
-						getRobotClass()->motorDrivers.setMotors(0,0,0,0,0);
+						VectorToMove res(0,0,0);
+						res = genATMVecField(camBall.pos.X/2, -camBall.pos.Y/2);
+						b1.dempher(getRobotClass()->getPos(), res);
+						b2.dempher(getRobotClass()->getPos(), res);
+						b3.dempher(getRobotClass()->getPos(), res);
+						b4.dempher(getRobotClass()->getPos(), res);
+						move2(res, avatarAngToBall);//-90);
 					}
-//					else 
-//					{
-//						VectorToMove res(0,0,0);
-//						res = genATMVecField(camBall.pos.X/2, -camBall.pos.Y/2);
-//						b1.dempher(getRobotClass()->getPos(), res);
-//						b2.dempher(getRobotClass()->getPos(), res);
-//						b3.dempher(getRobotClass()->getPos(), res);
-//						b4.dempher(getRobotClass()->getPos(), res);
-//						//move2(res, avatarAngToBall);//-90);
-//					}
 					
 					
 					if(abs(double(camBall.pos.X)) < 20 && abs(double(camBall.pos.Y)) < 20)
