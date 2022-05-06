@@ -9,20 +9,20 @@
 #define SPEED_TRAJ_FOLLOW_M_S									1.0
 #define SPEED_TRAJ_FOLLOW_CM_MILLIS						SPEED_TRAJ_FOLLOW_M_S * 0.1 
 
-Border b1('x', '-', -28, -35, -90, 90);
-Border b2('x', '+', 28, 35, -90, 90);
-Border b3('y', '-', -50, -55, -30, 30);
-Border b4('y', '+', 50, 55, -30, 30);
+Border b1(1.0, 'x', '-', -23, -28, -90, 90);
+Border b2(1.0, 'x', '+', 23, 28, -90, 90);
+Border b3(1.0, 'y', '-', -50, -55, -30, 30);
+Border b4(1.0, 'y', '+', 50, 55, -30, 30);
 
-Border b5('x', '+', -20, -15, -90, -60);
-Border b6('x', '-', 20, 15, -90, -60);
-Border b7('x', '+', -20, -15, 60, 90);
-Border b8('x', '-', 20, 15, 60, 90);
+//Border b5('x', '+', -20, -15, -90, -60);
+//Border b6('x', '-', 20, 15, -90, -60);
+//Border b7('x', '+', -20, -15, 60, 90);
+//Border b8('x', '-', 20, 15, 60, 90);
 
-Border b9('y', '-', -80, -90, -35, -20);
-Border b10('y', '-', -80, -90, 20, 35);
-Border b11('y', '+', 80, 90, -35, -20);
-Border b12('y', '+', 80, 90, 20, 35);
+//Border b9('y', '-', -80, -90, -35, -20);
+//Border b10('y', '-', -80, -90, 20, 35);
+//Border b11('y', '+', 80, 90, -35, -20);
+//Border b12('y', '+', 80, 90, 20, 35);
 
 //pt goalPoints[6] = {{70, -97}, {70, -89}, {55, -74}, {-55, -74}, {-70, -89}, {-70, -97}};
 segment goalLines[5] = {{0, 1, 40, -18, 18, 0, 0}, {2, 5, 164, 18, 30, 0, 0}, {-2, 5, 164, -30, -18, 0, 0}, {1, 0, 30, 0, 0, -75, -44.8}, {1, 0, -30, 0, 0, -75, -44.8}};
@@ -42,6 +42,7 @@ class Functional:  public BaseFunctional
 			attackerStopTime = 0;
 			oldPosIndex = 0;
 			attackerStop = false;
+			side = 'r';
 			///-------------------------
 			old = make_pair(0,0);
 			predictTime = 0;
@@ -98,8 +99,8 @@ class Functional:  public BaseFunctional
 			
 			ballPosSave.add(ball.globalPos, time);
 			
-			getRobotClass()->display.print("RAZ:", 1, 1);
-			getRobotClass()->display.print(getRobotClass()->imu.getAngle() - robotA.X, 1, 7);
+			//getRobotClass()->display.print("RAZ:", 1, 1);
+			//getRobotClass()->display.print(getRobotClass()->imu.getAngle() - robotA.X, 1, 7);
 
 		}
 		void strategy1()
@@ -251,7 +252,7 @@ class Functional:  public BaseFunctional
 //			b9.dempher(getRobotClass()->getPos(), res);
 //			b10.dempher(getRobotClass()->getPos(), res);
 //			b11.dempher(getRobotClass()->getPos(), res);
-			b12.dempher(getRobotClass()->getPos(), res);
+//			b12.dempher(getRobotClass()->getPos(), res);
 			move2(res, 0);
 			}
 			else
@@ -289,6 +290,10 @@ class Functional:  public BaseFunctional
 					{
 						res = Parabola(ball.globalPos, getRobotClass()->getPos(), 2.0);
 					}
+					b1.dempher(getRobotClass()->getPos(), res);
+					b2.dempher(getRobotClass()->getPos(), res);
+					b3.dempher(getRobotClass()->getPos(), res);
+					b4.dempher(getRobotClass()->getPos(), res);
 					move2(res, avatarAngToBall);
 					
 //						VectorToMove res(0,0,0);
@@ -322,32 +327,45 @@ class Functional:  public BaseFunctional
 					if(getRobotClass()->ballSensor.getValue())// || robot.ball[1])
 					{
 						getRobotClass()->motorDrivers.setMotors(0,0,0,0);
-						//state = 1;
+						state = 1;
 						trajectoryTime = millis();
+						if(getRobotClass()->getPos().X > 0)
+						{
+							side = 'r';
+						}
+						else
+						{
+							side = 'l';
+						}
 						oldPosIndex = findStartOfTrajectory(getRobotClass()->getPos());
 					}
 				}
 				else if (state == 1)
 				{
-					double flex = 1;/*(millis() - trajectoryTime)*/ //* SPEED_TRAJ_FOLLOW_CM_MILLIS;
-//					if(oldPosIndex > constanta)
-//					{
-//						kickTime = millis();
-//						state = 3;
-//					}
-					
-					move2(trajectoryFollowingDots(oldPosIndex, flex), -90);
+					double avatarAngToGoalBlue = 180-atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3;
+					double flex = (millis() - trajectoryTime) * SPEED_TRAJ_FOLLOW_CM_MILLIS * 0.00000001;
+					if(oldPosIndex > 190 && checkBounds(make_pair(-30, 50), make_pair(30, 70), getRobotClass()->getPos()))
+					{
+						kickTime = millis();
+						state = 2;
+					}
+					if(side == 'r')
+						move2(trajectoryFollowingDots(oldPosIndex, flex, side), -90);
+					else
+						move2(trajectoryFollowingDots(oldPosIndex, flex, side), 90);
+						
 					printUART(DEBUG_UART, flex);
 				}
 				else if(state == 2)
 				{
-					getRobotClass()->motorDrivers.setMotor(4, -22);
-					getRobotClass()->move(0.5, 0, 90);
-					if(robotGlobalPos.Y > 45)
-					{
-						state = 3;
-						kickTime = millis();
-					}
+					getRobotClass()->motorDrivers.setMotors(-100, -100, -100, -100);
+//					getRobotClass()->motorDrivers.setMotor(4, -22);
+//					getRobotClass()->move(0.5, 0, 90);
+//					if(robotGlobalPos.Y > 45)
+//					{
+//						state = 3;
+//						kickTime = millis();
+//					}
 				}
 				else if(state == 3)
 				{
@@ -566,6 +584,7 @@ class Functional:  public BaseFunctional
 		uint32_t attackerStopTime;
 		bool attackerStop;
 		PairSaver ballPosSave;
+		char side;
 		//Attacker
 	
 		//Goalkeeper

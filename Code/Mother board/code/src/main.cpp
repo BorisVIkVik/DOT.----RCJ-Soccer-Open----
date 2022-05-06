@@ -209,10 +209,10 @@ int main()
 //				robot.display.print(robot.imu.getZg(), 3, 14);
 //				//robot.display.print(robot.ADC_2.read(BALL_SENSOR), 2, 1);
 				robot.display.print("x: ", 2, 1);
-				robot.display.print(func.camYellow.pos.X, 2, 9);
+				robot.display.print(robot.getPos().X, 2, 9);
 ////				//robot.display.print(robot.camera.yellow.X, 2, 9);
 				robot.display.print("y: ", 3, 1);
-				robot.display.print(func.camYellow.pos.Y, 3, 9);
+				robot.display.print(robot.getPos().Y, 3, 9);
 ////				robot.display.print("Ball sens: ", 3, 1);
 ////				robot.display.print(robot.ballSensor.getSensorValue(), 3, 14);
 				//robot.display.print(robot.camera.yellow.Y, 3, 9);

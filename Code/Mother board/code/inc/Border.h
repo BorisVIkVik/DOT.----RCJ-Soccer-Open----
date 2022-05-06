@@ -10,9 +10,10 @@ using namespace std;
 class Border
 {
     public:
-        Border(char coord, char side, int16_t start, int16_t end, int16_t minLimit, int16_t maxLimit):_coord(coord), _side(side), _start(start), _end(end), _minLimit(minLimit), _maxLimit(maxLimit){}
+        Border(double speed, char coord, char side, int16_t start, int16_t end, int16_t minLimit, int16_t maxLimit):_speed(speed), _coord(coord), _side(side), _start(start), _end(end), _minLimit(minLimit), _maxLimit(maxLimit){}
         void dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm);
     private:
+				double _speed;
         char _coord;
         char _side;
         int16_t _start;
@@ -29,12 +30,18 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm)
 		//	if(_minLimit < pos.Y && pos.Y < _maxLimit)
 		//	{
         int32_t error = pos.X - _start;
-        double p = (error * 1.0)/(_end - _start);
+        double p = (error * 3.0)/(_end - _start);
         double u = abs(double(p));
         if(_side == '+' && _start < pos.X && vtm._x > 0)
+				{
             vtm._x -= u * vtm._x;
+						vtm._mod = _speed;
+				}
         else if(_side == '-' && pos.X < _start && vtm._x < 0)
+				{
             vtm._x -= u * vtm._x;
+						vtm._mod = _speed;
+				}
 			//}
     }
     else 
@@ -45,9 +52,15 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm)
         double p = (error * 1.0)/(_end - _start);
         double u = abs(double(p));
         if(_side == '+' && _start < pos.Y && vtm._y < 0)
+				{
             vtm._y -= u * vtm._y;
+						vtm._mod = _speed;
+				}
         else if(_side == '-' && pos.Y < _start && vtm._y > 0)
+				{
             vtm._y -= u * vtm._y;
+						vtm._mod = _speed;
+				}
 		//	}
     }
 }
