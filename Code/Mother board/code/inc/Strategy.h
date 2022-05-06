@@ -281,10 +281,16 @@ class Functional:  public BaseFunctional
 				if(state == 0)
 				{
 					VectorToMove res(0,0,0);
-					res = Parabola(ball.globalPos, getRobotClass()->getPos(), 2.0);
+					if((abs(double(camBall.pos.X)) < 30.0 && abs(double(camBall.pos.Y)) < 30.0))
+					{
+						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 1.2);
+					}
+					else
+					{
+						res = Parabola(ball.globalPos, getRobotClass()->getPos(), 2.0);
+					}
 					move2(res, avatarAngToBall);
-//					if((abs(double(camBall.pos.X)) < 20.0 && abs(double(camBall.pos.Y)) < 20.0) || (abs(double(camBall.pos.X)) >= 80.0 || abs(double(camBall.pos.Y)) >= 105.0))
-//					{
+					
 //						VectorToMove res(0,0,0);
 //						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 2.0);
 //						b1.dempher(getRobotClass()->getPos(), res);
