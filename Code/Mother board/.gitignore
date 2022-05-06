@@ -1,3 +1,4 @@
 *.uvguix.*
 /code/src/libs/.vscode
 /Objects/*
+/Mother board.uvguix.boris
