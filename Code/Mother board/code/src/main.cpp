@@ -1,7 +1,7 @@
 #include "main.h"
 
 Robot robot;
-BaseFunctional basicFunc(&robot);
+//BaseFunctional basicFunc(&robot);
 Functional func(&robot);
 #include "callbacks.h"
 
@@ -168,9 +168,9 @@ int main()
 				robot.display.print("Yaw angle: ", 2, 1);
 				robot.display.print(robot.imu.getAngle(), 2, 11);
 				robot.display.print("Ball x: ", 3, 1);
-				robot.display.print(func.camBall.pos.X, 3, 11);
+				robot.display.print(func.ball.globalPos.X, 3, 11);
 				robot.display.print("Ball y: ", 4, 1);
-				robot.display.print(func.camBall.pos.Y, 4, 11);
+				robot.display.print(func.ball.globalPos.Y, 4, 11);
 				break;
 			
 			case CALIBRATIONS_SCREEN:
@@ -209,10 +209,10 @@ int main()
 //				robot.display.print(robot.imu.getZg(), 3, 14);
 //				//robot.display.print(robot.ADC_2.read(BALL_SENSOR), 2, 1);
 				robot.display.print("x: ", 2, 1);
-				robot.display.print(robot.getPos().X, 2, 9);
+				robot.display.print(func.camYellow.pos.X, 2, 9);
 ////				//robot.display.print(robot.camera.yellow.X, 2, 9);
 				robot.display.print("y: ", 3, 1);
-				robot.display.print(robot.getPos().Y, 3, 9);
+				robot.display.print(func.camYellow.pos.Y, 3, 9);
 ////				robot.display.print("Ball sens: ", 3, 1);
 ////				robot.display.print(robot.ballSensor.getSensorValue(), 3, 14);
 				//robot.display.print(robot.camera.yellow.Y, 3, 9);

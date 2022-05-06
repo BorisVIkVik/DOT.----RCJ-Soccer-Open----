@@ -66,11 +66,21 @@ class Functional:  public BaseFunctional
 			robotV.Y *= 100;
 			
 			ballV = ball.speedSaver.pop(time - CAMERA_LATENCY);
-
+			/*
+			camYellow.pos = rotate(getRobotClass()->camera.yellow, 0);
+			camBlue.pos = rotate(getRobotClass()->camera.blue, 0);
+			camBall.pos = rotate(getRobotClass()->camera.ball, 0);
+			*/
+			/*
+			camYellow.pos = rotate(getRobotClass()->camera.yellow, -getRobotClass()->imu.getAngle());
+			camBlue.pos = rotate(getRobotClass()->camera.blue, -getRobotClass()->imu.getAngle());
+			camBall.pos = rotate(getRobotClass()->camera.ball, -getRobotClass()->imu.getAngle());
+			*/
+			
 			camYellow.pos = rotate(getRobotClass()->camera.yellow, -robotA.first);
 			camBlue.pos = rotate(getRobotClass()->camera.blue, -robotA.first);
 			camBall.pos = rotate(getRobotClass()->camera.ball, -robotA.first);
-
+			
 			#ifdef KALMAN
 			updateKalman(camYellow, KALMAN_K, zero, robotV, dt);
 			updateKalman(camBlue, KALMAN_K, zero, robotV, dt);
@@ -87,6 +97,9 @@ class Functional:  public BaseFunctional
 			ball.update(camBall.pos, robotGlobalPos, time, SPEED_CALC_TIME);
 			
 			ballPosSave.add(ball.globalPos, time);
+			
+			getRobotClass()->display.print("RAZ:", 1, 1);
+			getRobotClass()->display.print(getRobotClass()->imu.getAngle() - robotA.X, 1, 7);
 
 		}
 		void strategy1()
@@ -264,39 +277,42 @@ class Functional:  public BaseFunctional
 			{
 				double avatarAngToBall = 0;
 				if(getRobotClass()->camera.objects & 1)
-					avatarAngToBall = -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3 - 1;
+					avatarAngToBall = -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
 				if(state == 0)
 				{
-					if((abs(double(camBall.pos.X)) < 20.0 && abs(double(camBall.pos.Y)) < 20.0) || (abs(double(camBall.pos.X)) >= 80.0 || abs(double(camBall.pos.Y)) >= 105.0))
-					{
-						VectorToMove res(0,0,0);
-						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 2.0);
-						b1.dempher(getRobotClass()->getPos(), res);
-						b2.dempher(getRobotClass()->getPos(), res);
-						b3.dempher(getRobotClass()->getPos(), res);
-						b4.dempher(getRobotClass()->getPos(), res);
-						move2(res, avatarAngToBall);//move(0.5, (camBall.pos.X < 0 ? 1 : -1) * 90, -90);
-					}
-					else 
-					{
-						VectorToMove res(0,0,0);
-						res = genATMVecField(camBall.pos.X/2, -camBall.pos.Y/2);
-						b1.dempher(getRobotClass()->getPos(), res);
-						b2.dempher(getRobotClass()->getPos(), res);
-						b3.dempher(getRobotClass()->getPos(), res);
-						b4.dempher(getRobotClass()->getPos(), res);
-						move2(res, avatarAngToBall);//-90);
-					}
+					VectorToMove res(0,0,0);
+					res = Parabola(ball.globalPos, getRobotClass()->getPos(), 2.0);
+					move2(res, avatarAngToBall);
+//					if((abs(double(camBall.pos.X)) < 20.0 && abs(double(camBall.pos.Y)) < 20.0) || (abs(double(camBall.pos.X)) >= 80.0 || abs(double(camBall.pos.Y)) >= 105.0))
+//					{
+//						VectorToMove res(0,0,0);
+//						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 2.0);
+//						b1.dempher(getRobotClass()->getPos(), res);
+//						b2.dempher(getRobotClass()->getPos(), res);
+//						b3.dempher(getRobotClass()->getPos(), res);
+//						b4.dempher(getRobotClass()->getPos(), res);
+//						move2(res, avatarAngToBall);//move(0.5, (camBall.pos.X < 0 ? 1 : -1) * 90, -90);
+//					}
+//					else 
+//					{
+//						VectorToMove res(0,0,0);
+//						res = genATMVecField(camBall.pos.X/2, -camBall.pos.Y/2);
+//						b1.dempher(getRobotClass()->getPos(), res);
+//						b2.dempher(getRobotClass()->getPos(), res);
+//						b3.dempher(getRobotClass()->getPos(), res);
+//						b4.dempher(getRobotClass()->getPos(), res);
+//						move2(res, avatarAngToBall);//-90);
+//					}
+//					
 					
-					
-					if(abs(double(camBall.pos.X)) < 20 && abs(double(camBall.pos.Y)) < 20)
-					{
-						getRobotClass()->motorDrivers.setMotor(4, -22);
-					}
-					else
-					{
-						getRobotClass()->motorDrivers.setMotor(4, 0);
-					}
+//					if(abs(double(camBall.pos.X)) < 20 && abs(double(camBall.pos.Y)) < 20)
+//					{
+//						getRobotClass()->motorDrivers.setMotor(4, -22);
+//					}
+//					else
+//					{
+//						getRobotClass()->motorDrivers.setMotor(4, 0);
+//					}
 					if(getRobotClass()->ballSensor.getValue())// || robot.ball[1])
 					{
 						getRobotClass()->motorDrivers.setMotors(0,0,0,0);

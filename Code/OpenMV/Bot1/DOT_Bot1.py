@@ -114,17 +114,17 @@ def realDistance(x, coordsArr):
 import sensor, image, time, pyb
 from math import sqrt, atan2
 from pyb import SPI
-EXPOSURE_TIME_SCALE = 1.1
+EXPOSURE_TIME_SCALE = 0.8
 
 
 
-threshold_blue =    (23, 48, -2, 35, -44, -8)
-threshold_yellow =  (41, 100, -1, 33, 31, 127)
-threshold_ball =    (47, 100, 39, 127, 13, 52)#(50, 65, 49, 127, 23, 127)
+threshold_blue =    (16, 31, -12, 39, -128, -28)
+threshold_yellow =  (59, 100, -3, 127, 36, 127)
+threshold_ball =    (50, 100, 68, 127, 22, 127)#(50, 65, 49, 127, 23, 127)
 
 
-cX = 166  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
-cY = 113  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
+cX = 163  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
+cY = 125  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
 
 buf = bytearray(10)
 ballX = 0
@@ -145,7 +145,7 @@ sensor.set_framesize(sensor.QVGA)
 sensor.skip_frames(time = 1000)
 
 #sensor.set_auto_whitebal(True)
-sensor.set_auto_gain(False)
+#sensor.set_auto_gain(False)
 sensor.set_auto_exposure(False)
 current_exposure_time_in_microseconds=  sensor.get_exposure_us()
 sensor.set_auto_exposure(False, \
@@ -170,7 +170,7 @@ def crc8(data, len):
 
 while(True):
     clock.tick()
-    img = sensor.snapshot()
+    img = sensor.snapshot()#.gamma_corr(gamma = 0.3, contrast = 10.0, brightness = 0.0)#.negate()
 
 
 #---Yellow-Goal-Values-------------------------
@@ -186,10 +186,10 @@ while(True):
 
 #---Yellow-Goal-Finder-------------------------
     blobsPreviousMas = 0
-    biggestYellowBlob = 0
+    biggestYellowBlob = -1
     countYellow =0
     blobsYellow=[]
-    for yellowBlob in img.find_blobs([threshold_yellow],roi=(0,0,319,239), pixels_threshold=300, area_threshold=100, merge=True, margin = 20):
+    for yellowBlob in img.find_blobs([threshold_yellow],roi=(0,0,319,239), pixels_threshold=100, area_threshold=100, merge=True, margin = 20):
         blobsYellow.append(yellowBlob)
         if(yellowBlob.area() > blobsPreviousMas):
             biggestYellowBlob = countYellow
@@ -239,7 +239,7 @@ while(True):
 
 #---Blue-Goal-Finder-------------------------
     blobsPreviousMas = 0
-    biggestBluewBlob = 0
+    biggestBlueBlob = -1
     countBlue = 0
     blobsBlue=[]
     for blueBlob in img.find_blobs([threshold_blue],roi=(0,0,319,239), pixels_threshold=100, area_threshold=100, merge=True, margin = 20):
@@ -250,7 +250,7 @@ while(True):
         countBlue+=1
     try:
         img.draw_rectangle(blobsBlue[biggestBlueBlob].rect())
-        img.draw_cross(blobsBlue[biggestBlueBlob].cx(),blobsBlue[biggestBlueBlob].cy(), 6)
+      #  img.draw_cross(blobsBlue[biggestBlueBlob].cx(),blobsBlue[biggestBlueBlob].cy(), 6)
     except: pass
     maxLeft = 320
     maxRight = 0
@@ -291,18 +291,19 @@ while(True):
 #--------------------------------------------
 
     blobsPreviousMas = 0
-    biggestBallBlob = 0
+    biggestBallBlob = -1
     countBall =0
     blobsBall = []
-    for ballBlob in img.find_blobs([threshold_ball],roi=(0,0,319,239), pixels_threshold=4, area_threshold=4, merge=True, margin = 5):
-        blobsBall.append(ballBlob)
+    for ballBlob in img.find_blobs([threshold_ball],roi=(0,0,319,239), pixels_threshold=2, area_threshold=2, merge=True, margin = 3):
+        if not(abs(ballBlob.cx() - cX) < 20 and abs(ballBlob.cy() - cY) < 20):
+            blobsBall.append(ballBlob)
         if(ballBlob.area() > blobsPreviousMas):
             biggestballBlob = countBall
             blobsPreviosMas = ballBlob.area()
         countBall+=1
     try:
         img.draw_rectangle(blobsBall[biggestBallBlob].rect())
-        img.draw_cross(blobsBall[biggestBallBlob].cx(),blobsBall[biggestBallBlob].cy(), (0,255,255))
+        img.draw_cross(blobsBall[biggestBallBlob].cx(),blobsBall[biggestBallBlob].cy(), (255,255,255))
     except: pass
     maxLeft = 320
     maxRight = 0
@@ -349,5 +350,6 @@ while(True):
     spi.deinit()
 
     img.draw_cross(cX, cY, (0,255,0))
+    img.draw_circle(cX,cY, 25)
     #print(objects)
     print("Yellow: " + str(distanceYellow) + " Blue: " + str(distanceBlue))

@@ -6,7 +6,7 @@
 #include <Obstacle.h>
 #include <VTM.h>
 #include <VecField.h>
-#include <vector>
+//#include <vector>
 #include <math.h>
 #include <PairSaver.h>
 #include <trajectory.h>
@@ -43,6 +43,7 @@ class BaseFunctional
 				Robot*							getRobotClass();
 				VectorToMove 				trajectoryFollowingDots(int16_t& oldPosIndex, double distance);
 				int16_t 						findStartOfTrajectory(pair<int16_t, int16_t> pos);
+				VectorToMove 				Parabola(pair<int16_t, int16_t> toGoCoords, pair<int16_t, int16_t> robotCoords, double maxVecMod);
     private:
 				double errorOld;
         Robot* _RC;
@@ -394,4 +395,24 @@ int16_t BaseFunctional::findStartOfTrajectory(pair<int16_t, int16_t> pos)
 			break;
 	}
 	return iter;
+}
+
+VectorToMove BaseFunctional::Parabola(pair<int16_t, int16_t> toGoCoords, pair<int16_t, int16_t> robotCoords, double maxVecMod)
+{
+	double ang = 0;
+	if(toGoCoords.X - robotCoords.X != 0)
+	{
+		ang = atan2(((toGoCoords.X - robotCoords.X) > 0 ? 1.0 : -1.0), ((toGoCoords.X - robotCoords.X) > 0 ? -1.0 : 1.0) * double(double((robotCoords.Y - toGoCoords.Y)*2) / double(robotCoords.X - toGoCoords.X))) * 57.3;
+	}
+	else
+	{
+		if(toGoCoords.Y >= robotCoords.Y)
+			ang = PI/2;
+		else
+			ang = -PI/2;
+	}
+	//VectorToMove res(0,0,0);
+	double vecMod = maxVecMod;
+	VectorToMove res(sin(double(ang/57.3))*vecMod, cos(double(ang/57.3))*vecMod, vecMod);
+  return res;
 }

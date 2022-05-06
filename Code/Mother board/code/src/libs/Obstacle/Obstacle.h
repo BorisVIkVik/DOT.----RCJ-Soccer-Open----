@@ -1,3 +1,5 @@
+#pragma once
+
 struct Obstacle
 {
     int _x;

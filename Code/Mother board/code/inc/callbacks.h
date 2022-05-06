@@ -1,7 +1,7 @@
 #ifndef __MENU_CALLBACKS__
 #define __MENU_CALLBACKS__
 
-#define MANUAL_DRIBBLER_CONTROL_SPEED 200
+#define MANUAL_DRIBBLER_CONTROL_SPEED 500
 
 int clb_var = 0;
 unsigned long long pncBeginTime = 0;

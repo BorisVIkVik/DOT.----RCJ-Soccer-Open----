@@ -1,3 +1,5 @@
+#pragma once
+
 //#include <struct_Object.h>
 #include <stdint.h>
 
