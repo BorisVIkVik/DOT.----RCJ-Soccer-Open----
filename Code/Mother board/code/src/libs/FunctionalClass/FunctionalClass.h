@@ -17,8 +17,8 @@ int16_t vecNum = 10800;
 int8_t infNum = 2;
 //int8_t** map = new int8_t*[vecNum];
 
-#define KOEF_P	0.1
-#define KOEF_D	0.6
+#define KOEF_P	0.08
+#define KOEF_D	0.0
 
 
 class BaseFunctional

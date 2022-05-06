@@ -24,8 +24,8 @@ Border b10('y', '-', -80, -90, 20, 35);
 Border b11('y', '+', 80, 90, -35, -20);
 Border b12('y', '+', 80, 90, 20, 35);
 
-	pt goalPoints[6] = {{70, -97}, {70, -89}, {55, -74}, {-55, -74}, {-70, -89}, {-70, -97}};
-	segment goalLines[5] = {{0, 1, 60, -25, 25, 0, 0}, {2, 5, 250, 25, 50, 0, 0}, {-2, 5, 250, -50, -25, 0, 0}, {1, 0, 50, 0, 0, -90, -70}, {1, 0, -50, 0, 0, -90, -70}};
+//pt goalPoints[6] = {{70, -97}, {70, -89}, {55, -74}, {-55, -74}, {-70, -89}, {-70, -97}};
+segment goalLines[5] = {{0, 1, 40, -18, 18, 0, 0}, {2, 5, 164, 18, 30, 0, 0}, {-2, 5, 164, -30, -18, 0, 0}, {1, 0, 30, 0, 0, -75, -44.8}, {1, 0, -30, 0, 0, -75, -44.8}};
 
 class Functional:  public BaseFunctional 
 {
@@ -374,6 +374,15 @@ class Functional:  public BaseFunctional
 	
 	void goalkeeper()
 	{
+		
+		if(millis() - goalkeeperStopTime > 1000)
+				goalkeeperStop = true;
+			if(getRobotClass()->ballSensor.getValue() || (getRobotClass()->camera.objects & 1))
+			{
+				goalkeeperStop = false;
+				goalkeeperStopTime = millis();
+			}
+		
 		line goalToRobot;
 		int lineA = 0;
 		int lineB = 0;
@@ -385,7 +394,7 @@ class Functional:  public BaseFunctional
 			old = ball.globalPos;
 			predictTime = millis();
 		}
-		if(distanceVec(old, ball.globalPos) > 5 && !strike)
+		if(distanceVec(old, ball.globalPos) > 1000 && !strike)
 		{
 			strikeTime = millis();
 			strike = false;
@@ -415,7 +424,7 @@ class Functional:  public BaseFunctional
 		
 		bool foundToGoPoint = false;
 		
-			if(abs(ball.globalPos.Y) < 75)
+			if(abs(ball.globalPos.Y) < 70)
 			{
 
 				
@@ -511,7 +520,14 @@ class Functional:  public BaseFunctional
 			}
 			if(getRobotClass()->playState())
 			{
-				move2(genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 2.5), 0);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
+				if(!goalkeeperStop)
+					move2(genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 2.0), 0);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
+				else
+					move2(genVTMGlobalPoint(make_pair(0, -40), getRobotClass()->getPos(),2.0), 0);
+			}
+			else
+			{
+				getRobotClass()->motorDrivers.setMotors(0,0,0,0,0);
 			}
 			
 			//TEST AREA-------------------------------------------------------------
@@ -538,6 +554,8 @@ class Functional:  public BaseFunctional
 			uint32_t stateTime;
 			uint32_t angleCheckTest;
 			bool strike;
+			uint32_t goalkeeperStopTime;
+			bool goalkeeperStop;
 		//Goalkeeper
 };
 	

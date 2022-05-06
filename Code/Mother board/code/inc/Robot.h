@@ -296,7 +296,7 @@ void Robot::updateSelfPos(pair<double, double> yellow, pair<double, double> blue
 {	
 	double K = 0.0;
 	if((camera.objects & 2) && (camera.objects & 4))
-		K = 0.5 - (sqrt(double(yellow.X*yellow.X + yellow.Y*yellow.Y)) - sqrt(double(blue.X*blue.X + blue.Y*blue.Y)))/134*0.5;
+		K = 0.5 - (sqrt(double(yellow.X*yellow.X + yellow.Y*yellow.Y)) - sqrt(double(blue.X*blue.X + blue.Y*blue.Y)))/100*0.5;
 	else if(camera.objects & 2)
 		K = 1.0;
 	else if(camera.objects & 4)

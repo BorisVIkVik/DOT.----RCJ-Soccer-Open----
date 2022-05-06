@@ -121,8 +121,8 @@ int main()
 		robot.wait(5);
 		func.posCalc();
 		//func.testBorder();
-		//func.strategy2();
-		func.goalkeeper();
+		func.strategy2();
+		//func.goalkeeper();
 		//v1 = func.getRobotClass()->imu.getXa();
 		//v2 = func.getRobotClass()->imu.getYa();
 		//v3 = func.getRobotClass()->imu.getZa();
