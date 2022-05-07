@@ -315,7 +315,7 @@ VectorToMove BaseFunctional::genATMPoint(int16_t x, int16_t y, int8_t vecMod)
 void BaseFunctional::move2(VectorToMove vtm, double heading)
 {
 		int16_t atm = atan2(double(vtm._x), double(vtm._y)) * 57.3;
-    _RC->move(vtm._mod, atm, heading, 2, 1.1, 100);
+    _RC->move(vtm._mod, atm, heading, 1.5, 1.1, 50);
 }
 
 
@@ -385,11 +385,11 @@ VectorToMove BaseFunctional::trajectoryFollowingDots(int16_t& oldPosIndex, doubl
     VectorToMove res(0, 0, 0);
 		if (side == 'r')
 		{
-			res = genVTMGlobalPoint(make_pair(trajectory1[toGoPosIndex][0] - 10, trajectory1[toGoPosIndex][1]), _RC->getPos(), vecMod);
+			res = genVTMGlobalPoint(make_pair(trajectory1[toGoPosIndex][0] - 10, trajectory1[toGoPosIndex][1] - 10), _RC->getPos(), vecMod);
 		}
 		else
 		{
-			res = genVTMGlobalPoint(make_pair(-trajectory1[toGoPosIndex][0] + 10, trajectory1[toGoPosIndex][1]), _RC->getPos(), vecMod);
+			res = genVTMGlobalPoint(make_pair(-trajectory1[toGoPosIndex][0], trajectory1[toGoPosIndex][1]), _RC->getPos(), vecMod);
 		}
     return res;
 }

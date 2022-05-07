@@ -37,6 +37,7 @@ class Functional:  public BaseFunctional
 		Functional(Robot* RC):BaseFunctional(RC)
 		{
 			kickTime = 0;
+			str1Timeout = 0;
 			state = 0;
 			trajectoryTime = 0;
 			attackerStopTime = 0;
@@ -282,27 +283,9 @@ class Functional:  public BaseFunctional
 			}
 			if(getRobotClass()->playState() && !attackerStop)		//playing
 			{
-				
-				double avatarAngToBall = 0;
-//				if(getRobotClass()->camera.objects & 1)
-				avatarAngToBall = -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
 				if(state == 0)
 				{
-					getRobotClass()->motorDrivers.setMotor(4, -100);
-					VectorToMove res(0,0,0);
-					if((abs(double(camBall.pos.X)) < 30.0 && abs(double(camBall.pos.Y)) < 30.0))
-					{
-						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 0.3);
-					}
-					else
-					{
-						res = Parabola(ball.globalPos, getRobotClass()->getPos(), 0.9);
-					}
-					b1.dempher(getRobotClass()->getPos(), res);
-					b2.dempher(getRobotClass()->getPos(), res);
-					b3.dempher(getRobotClass()->getPos(), res);
-					b4.dempher(getRobotClass()->getPos(), res);
-					move2(res, avatarAngToBall);
+
 					
 //						VectorToMove res(0,0,0);
 //						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 2.0);
@@ -334,11 +317,11 @@ class Functional:  public BaseFunctional
 //					}
 					if(getRobotClass()->ballSensor.getValue())// || robot.ball[1])
 					{
-						if(millis() - got > 1000)
+						if(millis() - got > 2000)
 						{
-							state = 1;
+							state = 11;
 						}
-						getRobotClass()->motorDrivers.setMotors(0,0,0,0);
+						getRobotClass()->move(0, 0, -atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3, 2, 1, 50);
 						
 						trajectoryTime = millis();
 						if(getRobotClass()->getPos().X > 0)
@@ -353,15 +336,33 @@ class Functional:  public BaseFunctional
 					}
 					else
 					{
-						got = millis();
+							double avatarAngToBall = 0;
+//				if(getRobotClass()->camera.objects & 1)
+							avatarAngToBall = -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
+							getRobotClass()->motorDrivers.setMotor(4, -300);
+							VectorToMove res(0,0,0);
+							if((abs(double(camBall.pos.X)) < 30.0 && abs(double(camBall.pos.Y)) < 30.0))
+							{
+								res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 0.3);
+							}
+							else
+							{
+								res = Parabola(ball.globalPos, getRobotClass()->getPos(), 0.9);
+							}
+							b1.dempher(getRobotClass()->getPos(), res);
+							b2.dempher(getRobotClass()->getPos(), res);
+							b3.dempher(getRobotClass()->getPos(), res);
+							b4.dempher(getRobotClass()->getPos(), res);
+							move2(res, avatarAngToBall);
+							got = millis();
 					}
 				}
 				else if (state == 1)
 				{
-					getRobotClass()->motorDrivers.setMotor(4, -500);
+					getRobotClass()->motorDrivers.setMotor(4, -400);
 					double avatarAngToGoalBlue = 180-atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3;
 					double flex = (millis() - trajectoryTime) * SPEED_TRAJ_FOLLOW_CM_MILLIS * 0.01;
-					if(oldPosIndex > 190 && checkBounds(make_pair(-25, 55), make_pair(25, 70), getRobotClass()->getPos()))
+					if(oldPosIndex > 190 && checkBounds(make_pair(-25, 30), make_pair(25, 90), getRobotClass()->getPos()))
 					{
 						kickTime = millis();
 						state = 2;
@@ -387,6 +388,7 @@ class Functional:  public BaseFunctional
 				}
 				else if(state == 2)
 				{
+					getRobotClass()->motorDrivers.setMotor(4, -200);
 					double avatarAngToGoalBlue = -atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3;
 					getRobotClass()->move(0, 0, avatarAngToGoalBlue);
 					//getRobotClass()->motorDrivers.setMotors(-100, -100, -100, -100);
@@ -429,6 +431,29 @@ class Functional:  public BaseFunctional
 						kickTime = millis();
 						state = 0;
 					}
+				}
+				else if (state == 11)
+				{
+					move2(genATMPoint(camBlue.pos.X, -camBlue.pos.Y, 1.0), -atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3);
+					//kickCharge
+					getRobotClass()->motorDrivers.setMotor(4, -400);
+					if(sqrt(camBlue.pos.X * camBlue.pos.X + camBlue.pos.Y * camBlue.pos.Y) < 60)
+					{
+						state = 12;
+						str1Timeout = millis();
+					}
+					
+				}
+				else if (state == 12)
+				{
+					getRobotClass()->motorDrivers.setMotors(0,0,0,0);
+					getRobotClass()->motorDrivers.setMotor(4, 450);
+					if(millis() - str1Timeout > 5000)
+					{
+						state = 0;
+					}
+					//kick
+					//state = 0;
 				}
 				
 			}
@@ -618,6 +643,7 @@ class Functional:  public BaseFunctional
 		char side;
 		uint32_t got;
 		uint32_t lost;
+		uint32_t str1Timeout;
 		//Attacker
 	
 		//Goalkeeper
