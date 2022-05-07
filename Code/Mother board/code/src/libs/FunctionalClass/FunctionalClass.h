@@ -17,8 +17,8 @@ int16_t vecNum = 10800;
 int8_t infNum = 2;
 //int8_t** map = new int8_t*[vecNum];
 
-#define KOEF_P	0.08
-#define KOEF_D	0.0
+#define KOEF_P	0.05
+#define KOEF_D	0.1
 
 
 class BaseFunctional
@@ -315,7 +315,7 @@ VectorToMove BaseFunctional::genATMPoint(int16_t x, int16_t y, int8_t vecMod)
 void BaseFunctional::move2(VectorToMove vtm, double heading)
 {
 		int16_t atm = atan2(double(vtm._x), double(vtm._y)) * 57.3;
-    _RC->move(0.5 * vtm._mod, atm, heading);
+    _RC->move(vtm._mod, atm, heading, 2, 1.1, 100);
 }
 
 
@@ -365,13 +365,13 @@ Robot* BaseFunctional::getRobotClass()
 VectorToMove BaseFunctional::trajectoryFollowingDots(int16_t& oldPosIndex, double distance, char side)
 {
 		int toGoPosIndex = oldPosIndex;
-			for(; toGoPosIndex < TRAJECTORY1_SIZE - 1; toGoPosIndex++)
-			{
-					pair<int16_t, int16_t> tmpMovedVec = make_pair(trajectory1[toGoPosIndex][0] - trajectory1[oldPosIndex][0], trajectory1[toGoPosIndex][1] - trajectory1[oldPosIndex][1]);
-					double tmpDistance = sqrt(double(tmpMovedVec.X * tmpMovedVec.X + tmpMovedVec.Y * tmpMovedVec.Y));
-					if(distance <= tmpDistance)
-							break;
-			}
+		for(; toGoPosIndex < TRAJECTORY1_SIZE - 1; toGoPosIndex++)
+		{
+				pair<int16_t, int16_t> tmpMovedVec = make_pair(trajectory1[toGoPosIndex][0] - trajectory1[oldPosIndex][0], trajectory1[toGoPosIndex][1] - trajectory1[oldPosIndex][1]);
+				double tmpDistance = sqrt(double(tmpMovedVec.X * tmpMovedVec.X + tmpMovedVec.Y * tmpMovedVec.Y));
+				if(distance <= tmpDistance)
+						break;
+		}
 			
 		
     //pair<int16_t, int16_t> toGo = make_pair(trajectory1[toGoPosIndex][0] - _RC->getPos().X, trajectory1[toGoPosIndex][1] - _RC->getPos().Y);
@@ -381,15 +381,15 @@ VectorToMove BaseFunctional::trajectoryFollowingDots(int16_t& oldPosIndex, doubl
     //toGo.Y +=
     //double angleToMove = atan2(double(), double()) * 57.3;
 		oldPosIndex = toGoPosIndex;
-    double vecMod = 1.0;//SPEED_TRAJ_FOLLOW_M_S;
+    double vecMod = 0.7;//SPEED_TRAJ_FOLLOW_M_S;
     VectorToMove res(0, 0, 0);
 		if (side == 'r')
 		{
-			res = genVTMGlobalPoint(make_pair(trajectory1[toGoPosIndex][0], trajectory1[toGoPosIndex][1]), _RC->getPos(), vecMod);
+			res = genVTMGlobalPoint(make_pair(trajectory1[toGoPosIndex][0] - 10, trajectory1[toGoPosIndex][1]), _RC->getPos(), vecMod);
 		}
 		else
 		{
-			res = genVTMGlobalPoint(make_pair(-trajectory1[toGoPosIndex][0], trajectory1[toGoPosIndex][1]), _RC->getPos(), vecMod);
+			res = genVTMGlobalPoint(make_pair(-trajectory1[toGoPosIndex][0] + 10, trajectory1[toGoPosIndex][1]), _RC->getPos(), vecMod);
 		}
     return res;
 }

@@ -43,6 +43,8 @@ class Functional:  public BaseFunctional
 			oldPosIndex = 0;
 			attackerStop = false;
 			side = 'r';
+			lost = 0;
+			got = 0;
 			///-------------------------
 			old = make_pair(0,0);
 			predictTime = 0;
@@ -268,27 +270,33 @@ class Functional:  public BaseFunctional
 		void strategy2()
 		{
 			if(millis() - attackerStopTime > 500)
+			{
 				attackerStop = true;
+				state = 0;
+			}
 			if(getRobotClass()->ballSensor.getValue() || (getRobotClass()->camera.objects & 1))
 			{
+				
 				attackerStop = false;
 				attackerStopTime = millis();
 			}
 			if(getRobotClass()->playState() && !attackerStop)		//playing
 			{
+				
 				double avatarAngToBall = 0;
-				if(getRobotClass()->camera.objects & 1)
-					avatarAngToBall = -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
+//				if(getRobotClass()->camera.objects & 1)
+				avatarAngToBall = -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
 				if(state == 0)
 				{
+					getRobotClass()->motorDrivers.setMotor(4, -100);
 					VectorToMove res(0,0,0);
 					if((abs(double(camBall.pos.X)) < 30.0 && abs(double(camBall.pos.Y)) < 30.0))
 					{
-						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 1.2);
+						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 0.3);
 					}
 					else
 					{
-						res = Parabola(ball.globalPos, getRobotClass()->getPos(), 2.0);
+						res = Parabola(ball.globalPos, getRobotClass()->getPos(), 0.9);
 					}
 					b1.dempher(getRobotClass()->getPos(), res);
 					b2.dempher(getRobotClass()->getPos(), res);
@@ -326,8 +334,12 @@ class Functional:  public BaseFunctional
 //					}
 					if(getRobotClass()->ballSensor.getValue())// || robot.ball[1])
 					{
+						if(millis() - got > 1000)
+						{
+							state = 1;
+						}
 						getRobotClass()->motorDrivers.setMotors(0,0,0,0);
-						state = 1;
+						
 						trajectoryTime = millis();
 						if(getRobotClass()->getPos().X > 0)
 						{
@@ -339,26 +351,45 @@ class Functional:  public BaseFunctional
 						}
 						oldPosIndex = findStartOfTrajectory(getRobotClass()->getPos());
 					}
+					else
+					{
+						got = millis();
+					}
 				}
 				else if (state == 1)
 				{
+					getRobotClass()->motorDrivers.setMotor(4, -500);
 					double avatarAngToGoalBlue = 180-atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3;
-					double flex = (millis() - trajectoryTime) * SPEED_TRAJ_FOLLOW_CM_MILLIS * 0.00000001;
-					if(oldPosIndex > 190 && checkBounds(make_pair(-30, 50), make_pair(30, 70), getRobotClass()->getPos()))
+					double flex = (millis() - trajectoryTime) * SPEED_TRAJ_FOLLOW_CM_MILLIS * 0.01;
+					if(oldPosIndex > 190 && checkBounds(make_pair(-25, 55), make_pair(25, 70), getRobotClass()->getPos()))
 					{
 						kickTime = millis();
 						state = 2;
 					}
+					
+					if(getRobotClass()->ballSensor.getValue())
+					{
+						lost = millis();
+					}
+					
+					if(millis() - lost > 500)
+					{
+						state = 0;
+						lost = millis();
+					}
+					
 					if(side == 'r')
-						move2(trajectoryFollowingDots(oldPosIndex, flex, side), -90);
+						move2(trajectoryFollowingDots(oldPosIndex, flex, side), 180 -atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3);
 					else
-						move2(trajectoryFollowingDots(oldPosIndex, flex, side), 90);
+						move2(trajectoryFollowingDots(oldPosIndex, flex, side), 180 -atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3);
 						
 					printUART(DEBUG_UART, flex);
 				}
 				else if(state == 2)
 				{
-					getRobotClass()->motorDrivers.setMotors(-100, -100, -100, -100);
+					double avatarAngToGoalBlue = -atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3;
+					getRobotClass()->move(0, 0, avatarAngToGoalBlue);
+					//getRobotClass()->motorDrivers.setMotors(-100, -100, -100, -100);
 //					getRobotClass()->motorDrivers.setMotor(4, -22);
 //					getRobotClass()->move(0.5, 0, 90);
 //					if(robotGlobalPos.Y > 45)
@@ -585,18 +616,20 @@ class Functional:  public BaseFunctional
 		bool attackerStop;
 		PairSaver ballPosSave;
 		char side;
+		uint32_t got;
+		uint32_t lost;
 		//Attacker
 	
 		//Goalkeeper
-			pt toGo;
-			pair<double, double> old;
-			uint32_t predictTime;
-			uint32_t strikeTime; 
-			uint32_t stateTime;
-			uint32_t angleCheckTest;
-			bool strike;
-			uint32_t goalkeeperStopTime;
-			bool goalkeeperStop;
+		pt toGo;
+		pair<double, double> old;
+		uint32_t predictTime;
+		uint32_t strikeTime; 
+		uint32_t stateTime;
+		uint32_t angleCheckTest;
+		bool strike;
+		uint32_t goalkeeperStopTime;
+		bool goalkeeperStop;
 		//Goalkeeper
 };
 	

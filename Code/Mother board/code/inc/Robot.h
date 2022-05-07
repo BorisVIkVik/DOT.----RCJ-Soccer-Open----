@@ -50,7 +50,7 @@ class Robot
 		void swithPowerOff();
 		void switch5vOn();
 		void switch5vOff();
-		void move(double velocity, double dir, double heading = 0, double acc = 4 /* m/(s^2) */, double smooth = 1 /* ob/s */);
+		void move(double velocity, double dir, double heading = 0, double acc = 4 /* m/(s^2) */, double smooth = 1 /* ob/s */, double maxRotSpeed = 400);
 		void updateMenu();
 		void changePlayState();
 		void setPlayState(bool a);
@@ -193,7 +193,7 @@ bool Robot::playState()
 }
 
 
-void Robot::move(double velocity, double dir, double heading, double acc, double smooth)
+void Robot::move(double velocity, double dir, double heading, double acc, double smooth, double maxRotSpeed)
 {
 	double _dir = abs(dir);
 	while (_dir > 90) _dir -= 90;
@@ -224,7 +224,7 @@ void Robot::move(double velocity, double dir, double heading, double acc, double
 
 	double u = (p + d + s) * -1;
 	// 1 ob kolesa - 0.3441 ob robota
-	if (abs(u) > 400) u = sgn(u) * 400;
+	if (abs(u) > maxRotSpeed) u = sgn(u) * maxRotSpeed;
 	
 	double cx = velocity * cos((dir) * DEG2RAD);
 	double cy = velocity * sin((dir) * DEG2RAD);
@@ -253,7 +253,7 @@ void Robot::move(double velocity, double dir, double heading, double acc, double
 	v4 = vel * sin((tAngle + dAngle + 58.)  * DEG2RAD);
 	
 	k = 1;//abs(vel) / max5(abs(v1), abs(v2), abs(v3), abs(v4), 1);
- 
+
 	v1 = v1 * k + u;
   v2 = v2 * k + u;
   v3 = v3 * k + u;

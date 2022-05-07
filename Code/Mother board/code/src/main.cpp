@@ -150,6 +150,10 @@ int main()
 				if (robot.buttons.isChanged(UP_BUTTON, true))
 				{
 					robot.imu.setZeroAngle();
+					robot.switch5vOff();
+					delay(100);
+					robot.switch5vOn();
+					delay(1);
 				}
 				if (robot.buttons.isChanged(DOWN_BUTTON, true))
 				{

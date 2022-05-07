@@ -114,13 +114,13 @@ def realDistance(x, coordsArr):
 import sensor, image, time, pyb
 from math import sqrt, atan2
 from pyb import SPI
-EXPOSURE_TIME_SCALE = 1.0
+EXPOSURE_TIME_SCALE =0.6
 
 
 
-threshold_blue =    (6, 54, -25, 18, -45, -21)
-threshold_yellow =  (59, 100, -3, 127, 36, 127)
-threshold_ball =    (50, 100, 68, 127, 22, 127)#(50, 65, 49, 127, 23, 127)
+threshold_blue =    (9, 16, -6, 20, -44, -13)
+threshold_yellow =  (65, 100, -42, 127, 23, 127)
+threshold_ball =    (51, 68, 51, 127, 25, 127)#(50, 65, 49, 127, 23, 127)
 
 
 cX = 163  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
@@ -294,8 +294,8 @@ while(True):
     biggestBallBlob = -1
     countBall =0
     blobsBall = []
-    for ballBlob in img.find_blobs([threshold_ball],roi=(0,0,319,239), pixels_threshold=2, area_threshold=2, merge=True, margin = 3):
-        if not(abs(ballBlob.cx() - cX) < 20 and abs(ballBlob.cy() - cY) < 20):
+    for ballBlob in img.find_blobs([threshold_ball],roi=(0,0,319,239), pixels_threshold=5, area_threshold=5, merge=True, margin = 3):
+        if not(abs(ballBlob.cx() - cX) < 28 and abs(ballBlob.cy() - cY) < 28):
             blobsBall.append(ballBlob)
         if(ballBlob.area() > blobsPreviousMas):
             biggestballBlob = countBall

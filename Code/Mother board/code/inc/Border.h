@@ -30,7 +30,7 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm)
 		//	if(_minLimit < pos.Y && pos.Y < _maxLimit)
 		//	{
         int32_t error = pos.X - _start;
-        double p = (error * 3.0)/(_end - _start);
+        double p = (error * 1.0)/(_end - _start);
         double u = abs(double(p));
         if(_side == '+' && _start < pos.X && vtm._x > 0)
 				{
@@ -49,7 +49,7 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm)
 			//if(_minLimit < pos.X && pos.X < _maxLimit)
 		//	{
         int32_t error = pos.Y - _start;
-        double p = (error * 1.0)/(_end - _start);
+        double p = (error * 2.0)/(_end - _start);
         double u = abs(double(p));
         if(_side == '+' && _start < pos.Y && vtm._y < 0)
 				{
