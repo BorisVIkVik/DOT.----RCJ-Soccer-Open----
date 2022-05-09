@@ -25,6 +25,7 @@ class MotorDrivers{
 		void setDribbler(int v);
 		void enableMotors();
 		void disableMotors();
+		void disableMotor(int n);
 		unsigned int update();
 		void attemptCurrent();
 	

@@ -18,7 +18,7 @@
 
 
 //#define PREDICTION
-#define CAMERA_LATENCY	50
+#define CAMERA_LATENCY	60
 
 #define SPEED_CALC_TIME	200
 

@@ -315,7 +315,7 @@ VectorToMove BaseFunctional::genATMPoint(int16_t x, int16_t y, int8_t vecMod)
 void BaseFunctional::move2(VectorToMove vtm, double heading, uint16_t maxRotSpeed)
 {
 		int16_t atm = atan2(double(vtm._x), double(vtm._y)) * 57.3;
-    _RC->move(vtm._mod, atm, heading, 1.0, 1.1, maxRotSpeed);
+    _RC->move(vtm._mod, atm, heading, 0.5, 1.1, maxRotSpeed);
 }
 
 
@@ -398,7 +398,7 @@ VectorToMove BaseFunctional::trajectoryFollowingDots(int16_t& oldPosIndex, doubl
 int16_t BaseFunctional::findStartOfTrajectory(pair<int16_t, int16_t> pos)
 {
 	int iter = 0;
-	for(; iter < TRAJECTORY1_SIZE - 1; iter++)
+	for(; iter < TRAJECTORY1_STOP - 1; iter++)
 	{
 		if(pos.Y <= trajectory1[iter][1])
 			break;

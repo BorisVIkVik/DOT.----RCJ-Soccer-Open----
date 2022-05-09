@@ -23,10 +23,10 @@
 
 
 
-Border b1(1.0, 'x', '-', -35, -40, -90, 90);
-Border b2(1.0, 'x', '+', 35, 40, -90, 90);
-Border b3(1.0, 'y', '-', -50, -55, -30, 30);
-Border b4(1.0, 'y', '+', 50, 55, -30, 30);
+Border b1(0.7, 'x', '-', -35, -40, -90, 90);
+Border b2(0.7, 'x', '+', 35, 40, -90, 90);
+Border b3(0.5, 'y', '-', -45, -50, -30, 30);
+Border b4(0.5, 'y', '+', 45, 50, -30, 30);
 
 //Border b5('x', '+', -20, -15, -90, -60);
 //Border b6('x', '-', 20, 15, -90, -60);
@@ -123,8 +123,8 @@ class Functional:  public BaseFunctional
 			
 			ballPosSave.add(ball.globalPos, time);
 			
-			//getRobotClass()->display.print("RAZ:", 1, 1);
-			//getRobotClass()->display.print(getRobotClass()->imu.getAngle() - robotA.X, 1, 7);
+			getRobotClass()->display.print("RAZ:", 1, 1);
+			getRobotClass()->display.print(getRobotClass()->imu.getAngle() - robotA.X, 1, 7);
 
 		}
 		void strategy1()
@@ -526,7 +526,7 @@ class Functional:  public BaseFunctional
 					
 					case STATE_STOP:
 						speedRot = 400;
-						angleToGo = 0;
+						//angleToGo = 0;
 						res._x = 0;
 						res._y = 0;
 						res._mod = 0;
@@ -557,6 +557,7 @@ class Functional:  public BaseFunctional
 						
 						if(getRobotClass()->ballSensor.getValue())// || robot.ball[1])
 						{
+							dribblerSpeed = -300;
 							if(millis() - got > 500)
 							{
 								state = STATE_GO_TO_GOAL;
@@ -604,11 +605,11 @@ class Functional:  public BaseFunctional
 						speedRot = 50;
 						dribblerSpeed = -400;
 						angleToGo = 180 + angToGoalBlue;
-						double flex = (millis() - trajectoryTime) * SPEED_TRAJ_FOLLOW_CM_MILLIS * 0.1;
-						res = trajectoryFollowingDots(oldPosIndex, flex, side, 0.6);
+						double flex = (millis() - trajectoryTime) * SPEED_TRAJ_FOLLOW_CM_MILLIS * 0.05;
+						res = trajectoryFollowingDots(oldPosIndex, flex, side, 0.45);
 						trajectoryTime = millis();
 					
-						if(oldPosIndex > 185 && checkBounds(make_pair(-25, 50), make_pair(25, 90), getRobotClass()->getPos()))
+						if(oldPosIndex > TRAJECTORY1_STOP && checkBounds(make_pair(-30, 45), make_pair(30, 90), getRobotClass()->getPos()))
 						{
 						//kickTime = millis();
 							state = STATE_ROTATE;
@@ -628,7 +629,7 @@ class Functional:  public BaseFunctional
 						break;
 					case STATE_ROTATE:
 						dribblerSpeed = -400;
-						speedRot = 20;
+						speedRot = 50;
 						angleToGo = angToGoalBlue;
 						res._x = 0;
 						res._y = 0;
@@ -641,14 +642,26 @@ class Functional:  public BaseFunctional
 						{
 								state = STATE_KICK;
 						}
+						
+						if(getRobotClass()->ballSensor.getValue())
+						{
+							lost = millis();
+						}
+						
+						if(millis() - lost > 500)
+						{
+							state = STATE_STOP;
+							lost = millis();
+						}
 
 						break;
 					case STATE_KICK:						
 						speedRot = 400;
 						dribblerSpeed = 400;
+						setPin(LED_3, 0);
 						//getRobotClass()->kicker.kick(true, true);
 						angleToGo = angToGoalBlue;
-						//state = STATE_STOP;
+						state = STATE_STOP;
 						break;
 				}
 						

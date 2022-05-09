@@ -187,10 +187,10 @@ int main()
 				break;
 			
 			case DEBUG_DATA_SCREEN:
-					robot.display.print("Ball x: ", 2, 1);
-					robot.display.print(func.camBall.pos.X, 2, 11);
-					robot.display.print("Ball y: ", 3, 1);
-					robot.display.print(func.camBall.pos.Y, 3, 11);
+//					robot.display.print("Ball x: ", 2, 1);
+//					robot.display.print(func.camBall.pos.X, 2, 11);
+//					robot.display.print("Ball y: ", 3, 1);
+//					robot.display.print(func.camBall.pos.Y, 3, 11);
 //				double yelX = func.camYellow.pos.X;
 //				double yelY = func.camYellow.pos.Y;
 //			
@@ -243,11 +243,11 @@ int main()
 //				robot.display.print("GZ: ", 3, 10);
 //				robot.display.print(robot.imu.getZg(), 3, 14);
 //				//robot.display.print(robot.ADC_2.read(BALL_SENSOR), 2, 1);
-				//robot.display.print("x: ", 2, 1);
-				//robot.display.print(robot.getPos().X, 2, 9);
+				robot.display.print("x: ", 2, 1);
+				robot.display.print(robot.getPos().X, 2, 9);
 ////				//robot.display.print(robot.camera.yellow.X, 2, 9);
-				//robot.display.print("y: ", 3, 1);
-				//robot.display.print(robot.getPos().Y, 3, 9);
+				robot.display.print("y: ", 3, 1);
+				robot.display.print(robot.getPos().Y, 3, 9);
 ////				robot.display.print("Ball sens: ", 3, 1);
 ////				robot.display.print(robot.ballSensor.getSensorValue(), 3, 14);
 				//robot.display.print(robot.camera.yellow.Y, 3, 9);
