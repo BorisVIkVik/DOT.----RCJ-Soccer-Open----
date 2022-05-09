@@ -206,7 +206,7 @@ void Robot::move(double velocity, double dir, double heading, double acc, double
 	double dAngle = imu.getAngle();
 	adduction(dAngle);
 	
-	static double oldErr = dAngle + heading, p, d, s, err, k;
+	static double oldErr = dAngle - heading, p, d, s, err, k;
 	
 	/* Delta time estimating */
 	static uint32_t sTime = millis();	
@@ -214,7 +214,7 @@ void Robot::move(double velocity, double dir, double heading, double acc, double
 	sTime = millis();
 	
 	
-	err = dAngle + heading;	
+	err = dAngle - heading;	
 	adduction(err);
 	p = err * 2.0;//8
 	s = 0;//sgn(err) * err * err * 0.3;
@@ -303,8 +303,11 @@ void Robot::updateSelfPos(pair<double, double> yellow, pair<double, double> blue
 		K = 0.0;		
 	if(K > 1.0) K = 1.0;
 	if(K < 0.0) K = 0.0;
-	//display.print("K: ", 1, 1);
-	//display.print(K, 1, 5);
+	//display.print("K:", 2, 1);
+	//display.print(K, 2, 3);
+	//display.print("r:", 2, 8);
+	//display.print(sqrt(double(yellow.X*yellow.X + yellow.Y*yellow.Y)) - sqrt(double(blue.X*blue.X + blue.Y*blue.Y)), 2, 10);
+		
 	#define GOAL_X	0
 	#define GOAL_Y	103
 	

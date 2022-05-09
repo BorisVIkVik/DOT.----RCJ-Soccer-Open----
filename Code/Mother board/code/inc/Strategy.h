@@ -9,8 +9,22 @@
 #define SPEED_TRAJ_FOLLOW_M_S									1.0
 #define SPEED_TRAJ_FOLLOW_CM_MILLIS						SPEED_TRAJ_FOLLOW_M_S * 0.1 
 
-Border b1(1.0, 'x', '-', -23, -28, -90, 90);
-Border b2(1.0, 'x', '+', 23, 28, -90, 90);
+
+
+#define STATE_STOP							0
+#define	STATE_PARABOLKA					1
+#define STATE_RUSH_TO_GOAL			2
+#define	STATE_GO_TO_GOAL				3
+#define STATE_ROTATE						4
+#define STATE_KICK							5
+
+
+
+
+
+
+Border b1(1.0, 'x', '-', -35, -40, -90, 90);
+Border b2(1.0, 'x', '+', 35, 40, -90, 90);
 Border b3(1.0, 'y', '-', -50, -55, -30, 30);
 Border b4(1.0, 'y', '+', 50, 55, -30, 30);
 
@@ -46,6 +60,9 @@ class Functional:  public BaseFunctional
 			side = 'r';
 			lost = 0;
 			got = 0;
+			speedRot = 0;
+			angleToGo = 0;
+			dribblerSpeed = 0;
 			///-------------------------
 			old = make_pair(0,0);
 			predictTime = 0;
@@ -70,20 +87,24 @@ class Functional:  public BaseFunctional
 			robotV.Y *= 100;
 			
 			ballV = ball.speedSaver.pop(time - CAMERA_LATENCY);
+			
 			/*
 			camYellow.pos = rotate(getRobotClass()->camera.yellow, 0);
 			camBlue.pos = rotate(getRobotClass()->camera.blue, 0);
 			camBall.pos = rotate(getRobotClass()->camera.ball, 0);
 			*/
+			
 			/*
 			camYellow.pos = rotate(getRobotClass()->camera.yellow, -getRobotClass()->imu.getAngle());
 			camBlue.pos = rotate(getRobotClass()->camera.blue, -getRobotClass()->imu.getAngle());
 			camBall.pos = rotate(getRobotClass()->camera.ball, -getRobotClass()->imu.getAngle());
 			*/
 			
+			
 			camYellow.pos = rotate(getRobotClass()->camera.yellow, -robotA.first);
 			camBlue.pos = rotate(getRobotClass()->camera.blue, -robotA.first);
 			camBall.pos = rotate(getRobotClass()->camera.ball, -robotA.first);
+			
 			
 			#ifdef KALMAN
 			updateKalman(camYellow, KALMAN_K, zero, robotV, dt);
@@ -285,75 +306,58 @@ class Functional:  public BaseFunctional
 			{
 				if(state == 0)
 				{
-
 					
-//						VectorToMove res(0,0,0);
-//						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 2.0);
-//						b1.dempher(getRobotClass()->getPos(), res);
-//						b2.dempher(getRobotClass()->getPos(), res);
-//						b3.dempher(getRobotClass()->getPos(), res);
-//						b4.dempher(getRobotClass()->getPos(), res);
-//						move2(res, avatarAngToBall);//move(0.5, (camBall.pos.X < 0 ? 1 : -1) * 90, -90);
-//					}
-//					else 
-//					{
-//						VectorToMove res(0,0,0);
-//						res = genATMVecField(camBall.pos.X/2, -camBall.pos.Y/2);
-//						b1.dempher(getRobotClass()->getPos(), res);
-//						b2.dempher(getRobotClass()->getPos(), res);
-//						b3.dempher(getRobotClass()->getPos(), res);
-//						b4.dempher(getRobotClass()->getPos(), res);
-//						move2(res, avatarAngToBall);//-90);
-//					}
-//					
-					
-//					if(abs(double(camBall.pos.X)) < 20 && abs(double(camBall.pos.Y)) < 20)
-//					{
-//						getRobotClass()->motorDrivers.setMotor(4, -22);
-//					}
-//					else
-//					{
-//						getRobotClass()->motorDrivers.setMotor(4, 0);
-//					}
-					if(getRobotClass()->ballSensor.getValue())// || robot.ball[1])
+					double avatarAngToBall = 0;
+					avatarAngToBall = -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
+					getRobotClass()->motorDrivers.setMotor(4, 0);
+					VectorToMove res(0,0,0);
+					if((abs(double(camBall.pos.X)) < 30.0 && abs(double(camBall.pos.Y)) < 30.0))
 					{
-						if(millis() - got > 2000)
-						{
-							state = 11;
-						}
-						getRobotClass()->move(0, 0, -atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3, 2, 1, 50);
-						
-						trajectoryTime = millis();
-						if(getRobotClass()->getPos().X > 0)
-						{
-							side = 'r';
-						}
-						else
-						{
-							side = 'l';
-						}
-						oldPosIndex = findStartOfTrajectory(getRobotClass()->getPos());
+						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 0.5);
 					}
 					else
 					{
-							double avatarAngToBall = 0;
-//				if(getRobotClass()->camera.objects & 1)
-							avatarAngToBall = -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
-							getRobotClass()->motorDrivers.setMotor(4, -300);
-							VectorToMove res(0,0,0);
-							if((abs(double(camBall.pos.X)) < 30.0 && abs(double(camBall.pos.Y)) < 30.0))
-							{
-								res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 0.3);
-							}
-							else
-							{
-								res = Parabola(ball.globalPos, getRobotClass()->getPos(), 0.9);
-							}
-							b1.dempher(getRobotClass()->getPos(), res);
-							b2.dempher(getRobotClass()->getPos(), res);
-							b3.dempher(getRobotClass()->getPos(), res);
-							b4.dempher(getRobotClass()->getPos(), res);
-							move2(res, avatarAngToBall);
+						res = Parabola(ball.globalPos, getRobotClass()->getPos(), 1.0);
+					}
+					b1.dempher(getRobotClass()->getPos(), res);
+					b2.dempher(getRobotClass()->getPos(), res);
+					b3.dempher(getRobotClass()->getPos(), res);
+					b4.dempher(getRobotClass()->getPos(), res);
+					move2(res, avatarAngToBall);
+					
+					double razUglov = avatarAngToBall + atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3;
+					adduction(razUglov);
+					getRobotClass()->display.print("Ug", 1, 0);		
+					getRobotClass()->display.print(razUglov, 1, 5);
+					if(abs(razUglov) < 30)
+					{
+						state = 21;
+					}
+						
+					
+					
+					if(getRobotClass()->ballSensor.getValue())// || robot.ball[1])
+					{
+//						if(millis() - got > 2000)
+//						{
+//							//state = 1;
+//						}
+//						//getRobotClass()->move(0, 0, -atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3, 2, 1, 50);
+//						
+//						trajectoryTime = millis();
+//						if(getRobotClass()->getPos().X > 0)
+//						{
+//							side = 'r';
+//						}
+//						else
+//						{
+//							side = 'l';
+//						}
+//						oldPosIndex = findStartOfTrajectory(getRobotClass()->getPos());
+					}
+					else
+					{
+							
 							got = millis();
 					}
 				}
@@ -379,10 +383,10 @@ class Functional:  public BaseFunctional
 						lost = millis();
 					}
 					
-					if(side == 'r')
-						move2(trajectoryFollowingDots(oldPosIndex, flex, side), 180 -atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3);
-					else
-						move2(trajectoryFollowingDots(oldPosIndex, flex, side), 180 -atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3);
+					//if(side == 'r')
+						move2(trajectoryFollowingDots(oldPosIndex, flex, side, 0.5), 180 -atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3);
+					//else
+						//move2(trajectoryFollowingDots(oldPosIndex, flex, side), 180 -atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3);
 						
 					printUART(DEBUG_UART, flex);
 				}
@@ -455,7 +459,32 @@ class Functional:  public BaseFunctional
 					//kick
 					//state = 0;
 				}
-				
+				else if (state == 21)
+				{
+					VectorToMove res(0,0,0);
+					res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 1.0);
+					b1.dempher(getRobotClass()->getPos(), res);
+					b2.dempher(getRobotClass()->getPos(), res);
+					b3.dempher(getRobotClass()->getPos(), res);
+					b4.dempher(getRobotClass()->getPos(), res);
+					move2(res, -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3);
+					//kickCharge
+					getRobotClass()->motorDrivers.setMotor(4, 400);
+					if(sqrt(camBlue.pos.X * camBlue.pos.X + camBlue.pos.Y * camBlue.pos.Y) < 55)
+					{
+						state = 22;
+						str1Timeout = millis();
+					}
+				}
+				else if (state == 22)
+				{
+					getRobotClass()->motorDrivers.setMotors(0,0,0,0);
+					if(millis() - str1Timeout > 1000)
+					{
+						state = 0;
+					}
+					//getRobotClass()->motorDrivers.setMotor(4, -450);
+				}
 			}
 			else
 			{
@@ -464,6 +493,183 @@ class Functional:  public BaseFunctional
 			}
 		}
 		///
+		
+		
+		void strategy3()
+		{
+			//getRobotClass()->display.print("S:", 1, 10);
+			//getRobotClass()->display.print(state, 1, 13);
+			
+			if(getRobotClass()->playState() && getRobotClass()->camera.objects)
+			{
+				
+				double angToBall = atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
+				double angToGoalBlue = atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3;
+				double angleDif = angToBall - angToGoalBlue;
+				
+				if(millis() - attackerStopTime > 500)
+				{
+					attackerStop = true;
+					state = STATE_STOP;
+				}
+
+				if(getRobotClass()->ballSensor.getValue() || (getRobotClass()->camera.objects & 1))
+				{
+					
+					attackerStop = false;
+					attackerStopTime = millis();
+				}
+				VectorToMove res(0,0,0);
+				dribblerSpeed = 0;
+				switch(state)
+				{
+					
+					case STATE_STOP:
+						speedRot = 400;
+						angleToGo = 0;
+						res._x = 0;
+						res._y = 0;
+						res._mod = 0;
+						dribblerSpeed = 0;
+					
+						if(!attackerStop)
+						{
+							state = STATE_PARABOLKA;
+						}
+					
+						break;
+					case STATE_PARABOLKA:					
+						speedRot = 400;
+						angleToGo = angToBall;
+						getRobotClass()->display.print(angToBall, 2, 3);
+					
+						if((abs(double(camBall.pos.X)) < 30.0 && abs(double(camBall.pos.Y)) < 30.0))
+						{
+							res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 0.3);
+							dribblerSpeed = -300;
+						}
+						else
+						{
+							res = Parabola(ball.globalPos, getRobotClass()->getPos(), 1.0);
+							dribblerSpeed = 0;
+						}
+						
+						
+						if(getRobotClass()->ballSensor.getValue())// || robot.ball[1])
+						{
+							if(millis() - got > 500)
+							{
+								state = STATE_GO_TO_GOAL;
+							}
+							res._x = 0;
+							res._y = 0;
+							res._mod = 0;
+							trajectoryTime = millis();
+							if(getRobotClass()->imu.getAngle() > 0)
+								side = 'r';
+							else
+								side = 'l';
+							oldPosIndex = findStartOfTrajectory(getRobotClass()->getPos());
+						}
+						else
+						{	
+								got = millis();
+						}
+						
+												
+						
+						adduction(angleDif);
+						if(abs(angleDif) < 30)
+						{
+							state = STATE_RUSH_TO_GOAL;
+						}
+						
+											
+						break;
+					case STATE_RUSH_TO_GOAL:
+						speedRot = 400;
+						angleToGo = angToBall;
+						//pair<int, int> newBallCoords = make_pair(ball.globalPos.X 
+						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 1.5);
+						dribblerSpeed = 500;
+					
+						adduction(angleDif);
+						if(abs(angleDif) >= 30)
+						{
+							state = STATE_STOP;
+						}
+					
+						break;
+					case STATE_GO_TO_GOAL:
+						speedRot = 50;
+						dribblerSpeed = -400;
+						angleToGo = 180 + angToGoalBlue;
+						double flex = (millis() - trajectoryTime) * SPEED_TRAJ_FOLLOW_CM_MILLIS * 0.1;
+						res = trajectoryFollowingDots(oldPosIndex, flex, side, 0.6);
+						trajectoryTime = millis();
+					
+						if(oldPosIndex > 185 && checkBounds(make_pair(-25, 50), make_pair(25, 90), getRobotClass()->getPos()))
+						{
+						//kickTime = millis();
+							state = STATE_ROTATE;
+						}
+						
+						if(getRobotClass()->ballSensor.getValue())
+						{
+							lost = millis();
+						}
+						
+						if(millis() - lost > 500)
+						{
+							state = STATE_STOP;
+							lost = millis();
+						}
+					
+						break;
+					case STATE_ROTATE:
+						dribblerSpeed = -400;
+						speedRot = 20;
+						angleToGo = angToGoalBlue;
+						res._x = 0;
+						res._y = 0;
+						res._mod = 0;
+						//getRobotClass()->kicker.initCharge();
+						double angleTurn = angleToGo - getRobotClass()->imu.getAngle();
+						adduction(angleTurn);
+						setPin(LED_3, 1);
+						if(abs(angleTurn) < 5)
+						{
+								state = STATE_KICK;
+						}
+
+						break;
+					case STATE_KICK:						
+						speedRot = 400;
+						dribblerSpeed = 400;
+						//getRobotClass()->kicker.kick(true, true);
+						angleToGo = angToGoalBlue;
+						//state = STATE_STOP;
+						break;
+				}
+						
+				b1.dempher(getRobotClass()->getPos(), res);
+				b2.dempher(getRobotClass()->getPos(), res);
+				b3.dempher(getRobotClass()->getPos(), res);
+				b4.dempher(getRobotClass()->getPos(), res);
+				
+				move2(res, angleToGo, speedRot);
+				getRobotClass()->motorDrivers.setMotor(4, dribblerSpeed);
+				
+				
+			}
+			else
+			{
+				getRobotClass()->motorDrivers.setMotors(0,0,0,0,0);
+			}
+		}
+		
+		
+		
 		CameraObject camYellow, camBlue, camBall;
 		
 		
@@ -643,7 +849,10 @@ class Functional:  public BaseFunctional
 		char side;
 		uint32_t got;
 		uint32_t lost;
+		int32_t speedRot;
 		uint32_t str1Timeout;
+		int32_t dribblerSpeed;
+		double	angleToGo;
 		//Attacker
 	
 		//Goalkeeper

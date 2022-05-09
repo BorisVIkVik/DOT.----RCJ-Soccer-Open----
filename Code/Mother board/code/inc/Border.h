@@ -34,12 +34,18 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm)
         double u = abs(double(p));
         if(_side == '+' && _start < pos.X && vtm._x > 0)
 				{
+					if (abs(u * vtm._x) <= abs(vtm._x))
             vtm._x -= u * vtm._x;
-						vtm._mod = _speed;
+					else
+						vtm._x = 0;
+					vtm._mod = _speed;
 				}
         else if(_side == '-' && pos.X < _start && vtm._x < 0)
 				{
-            vtm._x -= u * vtm._x;
+            if (abs(u * vtm._x) <= abs(vtm._x))
+							vtm._x -= u * vtm._x;
+						else
+							vtm._x = 0;
 						vtm._mod = _speed;
 				}
 			//}

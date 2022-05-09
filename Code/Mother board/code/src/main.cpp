@@ -121,7 +121,7 @@ int main()
 		robot.wait(5);
 		func.posCalc();
 		//func.testBorder();
-		func.strategy2();
+		func.strategy3();
 		//func.goalkeeper();
 		//v1 = func.getRobotClass()->imu.getXa();
 		//v2 = func.getRobotClass()->imu.getYa();
@@ -149,15 +149,15 @@ int main()
 				}
 				if (robot.buttons.isChanged(UP_BUTTON, true))
 				{
-					robot.imu.setZeroAngle();
-					robot.switch5vOff();
-					delay(100);
-					robot.switch5vOn();
-					delay(1);
+					robot.imu.setZeroAngle();					
 				}
 				if (robot.buttons.isChanged(DOWN_BUTTON, true))
 				{
 					robot.imu.calibrate(228);
+					robot.switch5vOff();
+					delay(10);
+					robot.switch5vOn();
+					delay(1);
 				}
 				if (robot.buttons.isChanged(ESC_BUTTON, true))
 				{
@@ -169,8 +169,8 @@ int main()
 				else robot.display.print("waiting", 0, 6);
 				
 //				robot.display.print(cycleTime, 0, 15);
-				robot.display.print("Yaw angle: ", 2, 1);
-				robot.display.print(robot.imu.getAngle(), 2, 11);
+				robot.display.print("Yaw angle: ", 1, 1);
+				robot.display.print(robot.imu.getAngle(), 1, 11);
 				robot.display.print("Ball x: ", 3, 1);
 				robot.display.print(func.ball.globalPos.X, 3, 11);
 				robot.display.print("Ball y: ", 4, 1);
@@ -187,6 +187,37 @@ int main()
 				break;
 			
 			case DEBUG_DATA_SCREEN:
+					robot.display.print("Ball x: ", 2, 1);
+					robot.display.print(func.camBall.pos.X, 2, 11);
+					robot.display.print("Ball y: ", 3, 1);
+					robot.display.print(func.camBall.pos.Y, 3, 11);
+//				double yelX = func.camYellow.pos.X;
+//				double yelY = func.camYellow.pos.Y;
+//			
+//				double blueX = func.camBlue.pos.X;
+//				double blueY = func.camBlue.pos.Y;
+//				robot.display.print("Yx", 0, 0);
+//				robot.display.print(yelX, 0, 3);
+//			
+//				robot.display.print("Yy", 0, 8);
+//				robot.display.print(yelY, 0, 11);
+//			
+//				robot.display.print("Bx", 1, 0);
+//				robot.display.print(blueX, 1, 3);
+//			
+//				robot.display.print("By", 1, 8);
+//				robot.display.print(blueY, 1, 11);
+//			
+//				robot.display.print("Bd", 3, 0);
+//				robot.display.print(sqrt(double(blueX*blueX + blueY*blueY)), 3, 3);
+//			
+//				robot.display.print("Yd", 3, 8);
+//				robot.display.print(sqrt(double(yelX*yelX + yelY*yelY)), 3, 11);
+				//robot.display.print("", 0, 0);
+				//robot.display.print(func.camYellow.pos.X, 0, 3);
+			
+//				robot.display.print("S", 2, 8);
+//				robot.display.print(func.state, 2, 10);
 				//robot.display.print("Line data: ", 0, 1);
 				//robot.display.print(robot.lineSensors.getLine(), 0, 11);
 //				robot.display.print("Yaw angle: ", 0, 1);
@@ -212,11 +243,11 @@ int main()
 //				robot.display.print("GZ: ", 3, 10);
 //				robot.display.print(robot.imu.getZg(), 3, 14);
 //				//robot.display.print(robot.ADC_2.read(BALL_SENSOR), 2, 1);
-				robot.display.print("x: ", 2, 1);
-				robot.display.print(robot.getPos().X, 2, 9);
+				//robot.display.print("x: ", 2, 1);
+				//robot.display.print(robot.getPos().X, 2, 9);
 ////				//robot.display.print(robot.camera.yellow.X, 2, 9);
-				robot.display.print("y: ", 3, 1);
-				robot.display.print(robot.getPos().Y, 3, 9);
+				//robot.display.print("y: ", 3, 1);
+				//robot.display.print(robot.getPos().Y, 3, 9);
 ////				robot.display.print("Ball sens: ", 3, 1);
 ////				robot.display.print(robot.ballSensor.getSensorValue(), 3, 14);
 				//robot.display.print(robot.camera.yellow.Y, 3, 9);

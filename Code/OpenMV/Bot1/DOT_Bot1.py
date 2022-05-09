@@ -112,15 +112,15 @@ def realDistance(x, coordsArr):
 #---------------------------------------------------
 
 import sensor, image, time, pyb
-from math import sqrt, atan2
+from math import sqrt, atan2, cos, sin
 from pyb import SPI
-EXPOSURE_TIME_SCALE = 1.0
+EXPOSURE_TIME_SCALE = 0.9
 
 
 
-threshold_blue =    (9, 32, -15, 17, -46, -15)
-threshold_yellow =  (65, 100, -42, 127, 23, 127)
-threshold_ball =    (51, 68, 51, 127, 25, 127)#(50, 65, 49, 127, 23, 127)
+threshold_blue =    (8, 32, -13, 12, -59, -13)
+threshold_yellow =  (48, 100, 2, 37, 26, 127)
+threshold_ball =    (48, 100, 62, 123, -2, 127)#(55, 100, 53, 127, -9, 127)#(50, 65, 49, 127, 23, 127)
 
 
 cX = 163  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
@@ -189,7 +189,7 @@ while(True):
     biggestYellowBlob = -1
     countYellow =0
     blobsYellow=[]
-    for yellowBlob in img.find_blobs([threshold_yellow],roi=(0,0,319,239), pixels_threshold=100, area_threshold=100, merge=True, margin = 20):
+    for yellowBlob in img.find_blobs([threshold_yellow],roi=(0,0,319,239), pixels_threshold=100, area_threshold=100, merge=True, margin = 10):
         blobsYellow.append(yellowBlob)
         if(yellowBlob.area() > blobsPreviousMas):
             biggestYellowBlob = countYellow
@@ -213,16 +213,19 @@ while(True):
         GLYPixel = -centerY + cY
         distanceYellow = sqrt(GLXPixel * GLXPixel + GLYPixel * GLYPixel) # pixels
         #print("Yellow: " + str(distanceYellow))
-        #distanceYellow = realDistance(distanceYellow, goalCoords)   #cm
+        distanceYellow = realDistance(distanceYellow, goalCoords)   #cm
         #print("GLX Pixel: " + str(GLXPixel) + " GLY Pixel: " + str(GLYPixel) + " DistanceYellow: " + str(distanceYellow))
-        #print("YLX: " + str(int(realDistance(GLXPixel, ballCoords))) + " YLY: " + str(int(realDistance(GLYPixel, ballCoords))))
+        #print("YLX: " + str(int(realDistance(GLXPixel, goalCoords))) + " YLY: " + str(int(realDistance(GLYPixel, goalCoords))), end = ' ')
         #print(GLYPixel)
-        angle = atan2(GLXPixel, GLYPixel)
-        angle = (angle*57)//1
+        angle = atan2(GLYPixel, GLXPixel)
+        #angle = (angle*57)//1
         angleYellow = angle
+        Y_X_CM = int(distanceYellow * cos(angleYellow))
+        Y_Y_CM = int(distanceYellow * sin(angleYellow))
         #print((GLXPixel + 139) // 2)
-        yGoalX = (int(realDistance(GLXPixel, goalCoords)) + 240) // 2
-        yGoalY = (int(realDistance(GLYPixel, goalCoords)) + 240) // 2
+        yGoalX = (Y_X_CM + 240) // 2
+        yGoalY = (Y_Y_CM + 240) // 2
+        print("YX: " + str(Y_X_CM) + " YY: " + str(Y_Y_CM), end = ' ')
     except: pass
 #----------------------------------------------
 
@@ -264,18 +267,23 @@ while(True):
         centerX = blobsBlue[biggestBlueBlob].cx()
         GLXPixel = -centerX + cX
         GLYPixel = -centerY + cY
-
+        #kekBX = int(realDistance(GLXPixel, goalCoords))
+        #kekBY = int(realDistance(GLYPixel, goalCoords))
         distanceBlue = sqrt(GLXPixel * GLXPixel + GLYPixel * GLYPixel) # pixels
         #print("Blue: " + str(distanceBlue))
         distanceBlue = realDistance(distanceBlue, goalCoords)   #cm
 
-        #print(GLYPixel)
-        angle = atan2(GLXPixel, GLYPixel)
-        angle = (angle*57)//1
+        angle = atan2(GLYPixel, GLXPixel)
+        #angle = (angle*57)//1
         angleBlue = angle
+
+        BL_X_CM = int(distanceBlue * cos(angleBlue))
+        BL_Y_CM = int(distanceBlue * sin(angleBlue))
         #print((GLXPixel + 139) // 2)
-        bGoalX = (int(realDistance(GLXPixel, goalCoords)) + 240) // 2
-        bGoalY = (int(realDistance(GLYPixel, goalCoords)) + 240) // 2
+        bGoalX = (BL_X_CM + 240) // 2
+        bGoalY = (BL_Y_CM + 240) // 2
+        print("BX: " + str(BL_X_CM) + " BY: " + str(BL_Y_CM), end = ' ')
+
     except: pass
 #----------------------------------------------
     #print("bGoal" +  "YellowDistance: " + str(distanceYellow) + " BlueDistance: " + str(distanceBlue))
@@ -321,13 +329,15 @@ while(True):
         distance = realDistance(distance, ballCoords)   #cm
         #print("GLXPixel: " + str(GLXPixel) + " GLYPixel: " + str(GLYPixel) + " Distance: " + str(distance))
         #print("BLX: " + str(int(realDistance(GLXPixel, ballCoords))) + " BLY: " + str(int(realDistance(GLYPixel, ballCoords))))
-        angle = atan2(GLXPixel, GLYPixel)
-        angle = (angle*57)//1
+        angle = atan2(GLYPixel, GLXPixel)
+        #angle = (angle*57)//1
         angleBall = angle
+        B_X_CM = int(distance * cos(angleBall))
+        B_Y_CM = int(distance * sin(angleBall))
         #print(GLXPixel)
-        ballX = (int(realDistance(GLXPixel, ballCoords)) + 240) // 2
-        ballY = (int(realDistance(GLYPixel, ballCoords)) + 240) // 2
-
+        ballX = (B_X_CM + 240) // 2
+        ballY = (B_Y_CM + 240) // 2
+        print("BAllx: " + str(B_X_CM) + " BallY: " + str(B_Y_CM), end = ' ')
 
 
     except: pass
@@ -352,4 +362,4 @@ while(True):
     img.draw_cross(cX, cY, (0,255,0))
     img.draw_circle(cX,cY, 25)
     #print(objects)
-    print("Yellow: " + str(distanceYellow) + " Blue: " + str(distanceBlue))
+    print("Yellow: " + str(distanceYellow) + " BLue: " + str(distanceBlue))

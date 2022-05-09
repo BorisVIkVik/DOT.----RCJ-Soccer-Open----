@@ -18,7 +18,7 @@ int8_t infNum = 2;
 //int8_t** map = new int8_t*[vecNum];
 
 #define KOEF_P	0.05
-#define KOEF_D	0.1
+#define KOEF_D	0.09
 
 
 class BaseFunctional
@@ -35,13 +35,13 @@ class BaseFunctional
         //RobotParametrs      setAngle(RobotParametrs RP, int8_t angle);
         bool                checkBall();
         //void                addObstacle(VecField* vF, VecField oF, int8_t x, int8_t y);
-        void                move2(VectorToMove vtm, double heading);
+        void                move2(VectorToMove vtm, double heading, uint16_t maxRotSpeed = 400);
         VectorToMove        genATMPoint(int16_t x, int16_t y, int8_t vecMod); 
         VectorToMove        genATMVecField(int16_t x, int16_t y);//, vector<Obstacle> obs);
 				VectorToMove 				genVTMGlobalPoint(pair<int16_t, int16_t> toGoCoords, pair<int16_t, int16_t> robotCoords, double vecMod);
 				bool 								checkBounds(pair<double, double> nizLF, pair<double, double> verxPR, pair<double, double> pointToCheck);
 				Robot*							getRobotClass();
-				VectorToMove 				trajectoryFollowingDots(int16_t& oldPosIndex, double distance, char side);
+				VectorToMove 				trajectoryFollowingDots(int16_t& oldPosIndex, double distance, char side, double maxVecSpeed);
 				int16_t 						findStartOfTrajectory(pair<int16_t, int16_t> pos);
 				VectorToMove 				Parabola(pair<int16_t, int16_t> toGoCoords, pair<int16_t, int16_t> robotCoords, double maxVecMod);
     private:
@@ -312,10 +312,10 @@ VectorToMove BaseFunctional::genATMPoint(int16_t x, int16_t y, int8_t vecMod)
 		return res;
 }
 
-void BaseFunctional::move2(VectorToMove vtm, double heading)
+void BaseFunctional::move2(VectorToMove vtm, double heading, uint16_t maxRotSpeed)
 {
 		int16_t atm = atan2(double(vtm._x), double(vtm._y)) * 57.3;
-    _RC->move(vtm._mod, atm, heading, 1.5, 1.1, 50);
+    _RC->move(vtm._mod, atm, heading, 1.0, 1.1, maxRotSpeed);
 }
 
 
@@ -362,7 +362,7 @@ Robot* BaseFunctional::getRobotClass()
 	return _RC;
 }
 
-VectorToMove BaseFunctional::trajectoryFollowingDots(int16_t& oldPosIndex, double distance, char side)
+VectorToMove BaseFunctional::trajectoryFollowingDots(int16_t& oldPosIndex, double distance, char side, double maxVecSpeed)
 {
 		int toGoPosIndex = oldPosIndex;
 		for(; toGoPosIndex < TRAJECTORY1_SIZE - 1; toGoPosIndex++)
@@ -381,11 +381,11 @@ VectorToMove BaseFunctional::trajectoryFollowingDots(int16_t& oldPosIndex, doubl
     //toGo.Y +=
     //double angleToMove = atan2(double(), double()) * 57.3;
 		oldPosIndex = toGoPosIndex;
-    double vecMod = 0.7;//SPEED_TRAJ_FOLLOW_M_S;
+    double vecMod = maxVecSpeed;//SPEED_TRAJ_FOLLOW_M_S;
     VectorToMove res(0, 0, 0);
 		if (side == 'r')
 		{
-			res = genVTMGlobalPoint(make_pair(trajectory1[toGoPosIndex][0] - 10, trajectory1[toGoPosIndex][1] - 10), _RC->getPos(), vecMod);
+			res = genVTMGlobalPoint(make_pair(trajectory1[toGoPosIndex][0], trajectory1[toGoPosIndex][1]), _RC->getPos(), vecMod);
 		}
 		else
 		{
