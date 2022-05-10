@@ -23,8 +23,8 @@
 
 
 
-Border b1(0.7, 'x', '-', -35, -40, -90, 90);
-Border b2(0.7, 'x', '+', 35, 40, -90, 90);
+Border b1(0.3, 'x', '-', -40, -50, -90, 90);
+Border b2(0.3, 'x', '+', 40, 50, -90, 90);
 Border b3(0.3, 'y', '-', -45, -55, -30, 30);
 Border b4(0.3, 'y', '+', 45, 55, -30, 30);
 
@@ -545,7 +545,7 @@ class Functional:  public BaseFunctional
 					
 						break;
 					case STATE_PARABOLKA:	
-						acceleration = 1;
+						acceleration = 3;
 						speedRot = 100;
 						angleToGo = angToBall;
 						getRobotClass()->display.print(angToBall, 2, 3);
@@ -557,7 +557,7 @@ class Functional:  public BaseFunctional
 						}
 						else
 						{
-							res = Parabola(ball.globalPos, getRobotClass()->getPos(), 1.0);
+							res = Parabola(ball.globalPos, getRobotClass()->getPos(), 0.8);
 							dribblerSpeed = 0;
 						}
 						
@@ -599,7 +599,7 @@ class Functional:  public BaseFunctional
 						speedRot = 400;
 						angleToGo = angToBall;
 						//pair<int, int> newBallCoords = make_pair(ball.globalPos.X 
-						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 1.5, 'a');
+						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 1.3, 'a');
 						dribblerSpeed = 500;
 					
 						adduction(angleDif);
@@ -623,7 +623,7 @@ class Functional:  public BaseFunctional
 						{
 							if(side == 'r')
 							{
-								if(checkBounds(make_pair(trajectory1[TRAJECTORY1_STOP][0]-10, trajectory1[TRAJECTORY1_STOP][1]-10), make_pair(trajectory1[TRAJECTORY1_STOP][0]+10, trajectory1[TRAJECTORY1_STOP][1]+10), getRobotClass()->getPos()))
+								if(checkBounds(make_pair(trajectory1[TRAJECTORY1_STOP][0]-2, trajectory1[TRAJECTORY1_STOP][1]-2), make_pair(trajectory1[TRAJECTORY1_STOP][0]+2, trajectory1[TRAJECTORY1_STOP][1]+2), getRobotClass()->getPos()))
 								{
 						//kickTime = millis();
 							state = STATE_ROTATE;
@@ -632,7 +632,7 @@ class Functional:  public BaseFunctional
 							}
 							else
 							{
-								if(checkBounds(make_pair(-trajectory1[TRAJECTORY1_STOP][0]-10, trajectory1[TRAJECTORY1_STOP][1]-10), make_pair(-trajectory1[TRAJECTORY1_STOP][0]+10, trajectory1[TRAJECTORY1_STOP][1]+10), getRobotClass()->getPos()))
+								if(checkBounds(make_pair(-trajectory1[TRAJECTORY1_STOP][0]-2, trajectory1[TRAJECTORY1_STOP][1]-2), make_pair(-trajectory1[TRAJECTORY1_STOP][0]+2, trajectory1[TRAJECTORY1_STOP][1]+2), getRobotClass()->getPos()))
 								{
 						//kickTime = millis();
 							state = STATE_ROTATE;
@@ -659,7 +659,7 @@ class Functional:  public BaseFunctional
 						followDots = true;
 						dribblerSpeed = -400;
 						speedRot = 50;
-						angleToGo = angToGoalBlue;
+						angleToGo = angToGoalBlue + (side == 'r' ? 30 : -30);
 						res._x = 0;
 						res._y = 0;
 						res._mod = 0;
