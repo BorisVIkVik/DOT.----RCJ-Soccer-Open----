@@ -724,6 +724,12 @@ class Functional:  public BaseFunctional
 	//	}
 		else
 		{
+			
+			if(abs(ball.globalPos.Y) >= 75)
+			{
+				strikeTime = millis();
+				strike = false;
+			}
 			if(millis() - strikeTime > 5000 && !strike)
 			{
 				strikeTime = millis();
@@ -741,7 +747,7 @@ class Functional:  public BaseFunctional
 		
 		bool foundToGoPoint = false;
 		
-			if(abs(ball.globalPos.Y) < 70)
+			if(abs(ball.globalPos.Y) < 75)
 			{
 
 				
@@ -848,11 +854,12 @@ class Functional:  public BaseFunctional
 				}
 				double angToBall = atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
 				if(!goalkeeperStop)
-					move2(genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 1.0, 'g'), angToBall, 4);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
+					move2(genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 1.0, 'g'), 0, 4);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
 				else
 				{
 					move2(genVTMGlobalPoint(make_pair(0, -60), getRobotClass()->getPos(), 1.0, 'g'), 0, 4);
 					strikeTime = millis();
+					strike = false;
 				}
 			}
 			else

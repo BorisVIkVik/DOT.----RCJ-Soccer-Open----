@@ -21,8 +21,8 @@ int8_t infNum = 2;
 #define KOEF_A_D	0.09
 
 #define KOEF_G_P	0.08
-#define KOEF_G_I	0.0000000001
-#define KOEF_G_D	0.48
+#define KOEF_G_I	0.000000001
+#define KOEF_G_D	0.5
 
 class BaseFunctional
 {
