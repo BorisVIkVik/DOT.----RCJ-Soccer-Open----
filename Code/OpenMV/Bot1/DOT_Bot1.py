@@ -118,7 +118,7 @@ EXPOSURE_TIME_SCALE = 0.5
 
 
 
-threshold_blue =    (23, 100, -72, 53, -82, -23)
+threshold_blue =    (9, 39, -22, 27, -55, -13)
 threshold_yellow =  (39, 90, 15, 46, 26, 127)
 threshold_ball =    (15, 70, 56, 127, 11, 127)#(55, 100, 53, 127, -9, 127)#(50, 65, 49, 127, 23, 127)
 

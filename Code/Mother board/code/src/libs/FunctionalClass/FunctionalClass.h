@@ -370,7 +370,7 @@ Robot* BaseFunctional::getRobotClass()
 VectorToMove BaseFunctional::trajectoryFollowingDots(int16_t& oldPosIndex, double distance, char side, double maxVecSpeed)
 {
 		int toGoPosIndex = oldPosIndex;
-		for(; toGoPosIndex < TRAJECTORY1_SIZE - 1; toGoPosIndex++)
+		for(; toGoPosIndex < TRAJECTORY1_STOP - 1; toGoPosIndex++)
 		{
 				pair<int16_t, int16_t> tmpMovedVec = make_pair(trajectory1[toGoPosIndex][0] - trajectory1[oldPosIndex][0], trajectory1[toGoPosIndex][1] - trajectory1[oldPosIndex][1]);
 				double tmpDistance = sqrt(double(tmpMovedVec.X * tmpMovedVec.X + tmpMovedVec.Y * tmpMovedVec.Y));

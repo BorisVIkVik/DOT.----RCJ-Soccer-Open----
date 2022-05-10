@@ -24,6 +24,7 @@ class MotorDrivers{
 		void setMotors(int v1, int v2, int v3, int v4, int v5);
 		void setDribbler(int v);
 		void enableMotors();
+		void enableMotor(int n);
 		void disableMotors();
 		void disableMotor(int n);
 		unsigned int update();
@@ -113,6 +114,16 @@ void MotorDrivers::disableMotors()
 	{
 		drivers[i].enableFloating();
 	}
+}
+
+void MotorDrivers::disableMotor(int n)
+{
+	drivers[n].enableFloating();
+}
+
+void MotorDrivers::enableMotor(int n)
+{
+	drivers[n].disableFloating();
 }
 
 void MotorDrivers::enableMotors()

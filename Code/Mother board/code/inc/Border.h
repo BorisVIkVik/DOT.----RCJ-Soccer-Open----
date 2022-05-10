@@ -28,9 +28,9 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm)
 {
     if(_coord == 'x')
     {
-        double error = (pos.X - _start)/(_end - _start);				
+        double error = double(pos.X - _start)/double(_end - _start);				
         double p = (error * 1.0);
-        double d = (error - errorOldX) * 6.0;
+        double d = (error - errorOldX) * 10.0;
 				errorOldX = error;
 				double u = abs(double(p + d));
 				
@@ -42,7 +42,7 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm)
 						if (abs(u * vtm._x) <= abs(vtm._x))
 						{
 							vtm._x -= u * vtm._x;
-							vtm._mod = _speed/u;
+							//vtm._mod = _speed/u;
 						}
 						else
 							vtm._x = -u * vtm._x * 0.01;
@@ -51,7 +51,7 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm)
 					else if(vtm._x == 0)
 					{
 						vtm._x = -1.0;
-						vtm._mod = _speed;
+						//vtm._mod = _speed;
 					}
 					
 					vtm._mod = _speed;// / u;
@@ -63,7 +63,7 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm)
 						if (abs(u * vtm._x) <= abs(vtm._x))
 						{
 							vtm._x -= u * vtm._x;
-							vtm._mod = _speed/u;
+							//vtm._mod = _speed/u;
 						}
 						else
 							vtm._x = -u * vtm._x * 0.01;
@@ -72,17 +72,17 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm)
 					else if(vtm._x == 0)
 					{
 						vtm._x = 1.0;
-						vtm._mod = _speed;
+						//vtm._mod = _speed;
 					}
 						
-					// / u;
+					vtm._mod = _speed;// / u;// / u;
 				}
     }
     else 
     {
-        double error = (pos.Y - _start)/(_end - _start);
-        double p = (error * 4.0);
-				double d = (error - errorOldY) * 16.0;
+        double error = double(pos.Y - _start)/double(_end - _start);
+        double p = (error * 1.0);
+				double d = (error - errorOldY) * 3.0;
 				errorOldY = error;
 				double u = abs(double(p + d));
         if(_side == '+' && _start < pos.Y)
@@ -92,7 +92,7 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm)
 						if (abs(u * vtm._y) <= abs(vtm._y))
 						{	
 							vtm._y -= u * vtm._y;
-							vtm._mod = _speed/u;
+							vtm._mod = 0.1;
 						}
 						else
 							vtm._y = -u * vtm._y * 0.1;
@@ -104,7 +104,7 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm)
 					}
 					
 					
-					// / u;
+					//vtm._mod = _speed;// / u;// / u;
 				}
         else if(_side == '-' && pos.Y < _start)
 				{
@@ -114,10 +114,10 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm)
             if (abs(u * vtm._y) <= abs(vtm._y))
 						{
 							vtm._y -= u * vtm._y;
-							vtm._mod = _speed/u;
+							vtm._mod = 0.1;
 						}
 						else
-							vtm._y = -u * vtm._y * 0.1;
+							vtm._y = -u * vtm._y*0.1;
 						
 					}
 					else if (vtm._y == 0)
