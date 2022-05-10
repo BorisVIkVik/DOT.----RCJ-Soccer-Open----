@@ -659,7 +659,7 @@ class Functional:  public BaseFunctional
 						followDots = true;
 						dribblerSpeed = -400;
 						speedRot = 50;
-						angleToGo = angToGoalBlue + (side == 'r' ? 30 : -30);
+						angleToGo = angToGoalBlue + (side == 'r' ? 20 : -20);
 						res._x = 0;
 						res._y = 0;
 						res._mod = 0;
