@@ -39,7 +39,9 @@ Border b4(0.5, 'y', '+', 45, 50, -30, 30);
 //Border b12('y', '+', 80, 90, 20, 35);
 
 //pt goalPoints[6] = {{70, -97}, {70, -89}, {55, -74}, {-55, -74}, {-70, -89}, {-70, -97}};
-segment goalLines[5] = {{0, 1, 40, -18, 18, 0, 0}, {2, 5, 164, 18, 30, 0, 0}, {-2, 5, 164, -30, -18, 0, 0}, {1, 0, 30, 0, 0, -75, -44.8}, {1, 0, -30, 0, 0, -75, -44.8}};
+segment goalLines[5] = {{0, 1, 60, -25, 25, 0, 0}, {2, 5, 250, 25, 50, 0, 0}, {-2, 5, 250, -50, -25, 0, 0}, {1, 0, 50, 0, 0, -90, -70}, {1, 0, -50, 0, 0, -90, -70}};
+
+//{{0, 1, 40, -18, 18, 0, 0}, {2, 5, 164, 18, 30, 0, 0}, {-2, 5, 164, -30, -18, 0, 0}, {1, 0, 30, 0, 0, -75, -44.8}, {1, 0, -30, 0, 0, -75, -44.8}};
 
 class Functional:  public BaseFunctional 
 {
@@ -123,8 +125,8 @@ class Functional:  public BaseFunctional
 			
 			ballPosSave.add(ball.globalPos, time);
 			
-			getRobotClass()->display.print("RAZ:", 1, 1);
-			getRobotClass()->display.print(getRobotClass()->imu.getAngle() - robotA.X, 1, 7);
+			//getRobotClass()->display.print("RAZ:", 1, 1);
+			//getRobotClass()->display.print(getRobotClass()->imu.getAngle() - robotA.X, 1, 7);
 
 		}
 		void strategy1()
@@ -155,7 +157,7 @@ class Functional:  public BaseFunctional
 					}
 					else
 					{
-						move2(genATMVecField(camBall.pos.X, camBall.pos.Y), 90);
+						move2(genATMVecField(camBall.pos.X, camBall.pos.Y), 90, 0.5);
 					}
 					
 					if(abs(double(camBall.pos.X)) < 20 && abs(double(camBall.pos.Y)) < 20)
@@ -263,7 +265,7 @@ class Functional:  public BaseFunctional
 			if(getRobotClass()->playState())	
 			{
 			VectorToMove res(0,0,0);
-			res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 2.0);
+			res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 2.0, 'a');
 			//getRobotClass()->move(1, 90);
 			b1.dempher(getRobotClass()->getPos(), res);
 			b2.dempher(getRobotClass()->getPos(), res);
@@ -277,7 +279,7 @@ class Functional:  public BaseFunctional
 //			b10.dempher(getRobotClass()->getPos(), res);
 //			b11.dempher(getRobotClass()->getPos(), res);
 //			b12.dempher(getRobotClass()->getPos(), res);
-			move2(res, 0);
+			move2(res, 0, 0.5);
 			}
 			else
 			{
@@ -313,7 +315,7 @@ class Functional:  public BaseFunctional
 					VectorToMove res(0,0,0);
 					if((abs(double(camBall.pos.X)) < 30.0 && abs(double(camBall.pos.Y)) < 30.0))
 					{
-						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 0.5);
+						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 0.5, 'a');
 					}
 					else
 					{
@@ -323,7 +325,7 @@ class Functional:  public BaseFunctional
 					b2.dempher(getRobotClass()->getPos(), res);
 					b3.dempher(getRobotClass()->getPos(), res);
 					b4.dempher(getRobotClass()->getPos(), res);
-					move2(res, avatarAngToBall);
+					move2(res, avatarAngToBall, 0.5);
 					
 					double razUglov = avatarAngToBall + atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3;
 					adduction(razUglov);
@@ -384,7 +386,7 @@ class Functional:  public BaseFunctional
 					}
 					
 					//if(side == 'r')
-						move2(trajectoryFollowingDots(oldPosIndex, flex, side, 0.5), 180 -atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3);
+						move2(trajectoryFollowingDots(oldPosIndex, flex, side, 0.5), 180 -atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3, 0.5);
 					//else
 						//move2(trajectoryFollowingDots(oldPosIndex, flex, side), 180 -atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3);
 						
@@ -438,7 +440,7 @@ class Functional:  public BaseFunctional
 				}
 				else if (state == 11)
 				{
-					move2(genATMPoint(camBlue.pos.X, -camBlue.pos.Y, 1.0), -atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3);
+					move2(genATMPoint(camBlue.pos.X, -camBlue.pos.Y, 1.0), -atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3, 0.5);
 					//kickCharge
 					getRobotClass()->motorDrivers.setMotor(4, -400);
 					if(sqrt(camBlue.pos.X * camBlue.pos.X + camBlue.pos.Y * camBlue.pos.Y) < 60)
@@ -462,12 +464,12 @@ class Functional:  public BaseFunctional
 				else if (state == 21)
 				{
 					VectorToMove res(0,0,0);
-					res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 1.0);
+					res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 1.0, 'a');
 					b1.dempher(getRobotClass()->getPos(), res);
 					b2.dempher(getRobotClass()->getPos(), res);
 					b3.dempher(getRobotClass()->getPos(), res);
 					b4.dempher(getRobotClass()->getPos(), res);
-					move2(res, -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3);
+					move2(res, -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3, 0.5);
 					//kickCharge
 					getRobotClass()->motorDrivers.setMotor(4, 400);
 					if(sqrt(camBlue.pos.X * camBlue.pos.X + camBlue.pos.Y * camBlue.pos.Y) < 55)
@@ -539,18 +541,18 @@ class Functional:  public BaseFunctional
 					
 						break;
 					case STATE_PARABOLKA:					
-						speedRot = 400;
+						speedRot = 300;
 						angleToGo = angToBall;
 						getRobotClass()->display.print(angToBall, 2, 3);
 					
 						if((abs(double(camBall.pos.X)) < 30.0 && abs(double(camBall.pos.Y)) < 30.0))
 						{
-							res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 0.3);
+						//	res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 0.3, 'a');
 							dribblerSpeed = -300;
 						}
 						else
 						{
-							res = Parabola(ball.globalPos, getRobotClass()->getPos(), 1.0);
+							//res = Parabola(ball.globalPos, getRobotClass()->getPos(), 1.0);
 							dribblerSpeed = 0;
 						}
 						
@@ -582,7 +584,7 @@ class Functional:  public BaseFunctional
 						adduction(angleDif);
 						if(abs(angleDif) < 30)
 						{
-							state = STATE_RUSH_TO_GOAL;
+						//	state = STATE_RUSH_TO_GOAL;
 						}
 						
 											
@@ -591,7 +593,7 @@ class Functional:  public BaseFunctional
 						speedRot = 400;
 						angleToGo = angToBall;
 						//pair<int, int> newBallCoords = make_pair(ball.globalPos.X 
-						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 1.5);
+						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 1.5, 'a');
 						dribblerSpeed = 500;
 					
 						adduction(angleDif);
@@ -670,7 +672,7 @@ class Functional:  public BaseFunctional
 				b3.dempher(getRobotClass()->getPos(), res);
 				b4.dempher(getRobotClass()->getPos(), res);
 				
-				move2(res, angleToGo, speedRot);
+				move2(res, angleToGo, 0.5, speedRot);//check
 				getRobotClass()->motorDrivers.setMotor(4, dribblerSpeed);
 				
 				
@@ -709,7 +711,7 @@ class Functional:  public BaseFunctional
 			old = ball.globalPos;
 			predictTime = millis();
 		}
-		if(distanceVec(old, ball.globalPos) > 1000 && !strike)
+		if(distanceVec(old, ball.globalPos) > 10 && !strike)
 		{
 			strikeTime = millis();
 			strike = false;
@@ -825,20 +827,33 @@ class Functional:  public BaseFunctional
 	//		}
 			if(strike)
 			{
+				
 				toGo.x = ball.globalPos.X;
 				toGo.y = ball.globalPos.Y;
-				if(millis() - strikeTime > 3000 || !checkBounds(make_pair(-30, -80), make_pair(30, 0), getRobotClass()->getPos()))
+				if(millis() - strikeTime > 5000 || !checkBounds(make_pair(-30, -65), make_pair(30, 0), getRobotClass()->getPos()))
 				{
 					strikeTime = millis();
 					strike = false;
 				}
 			}
-			if(getRobotClass()->playState())
+			if(getRobotClass()->playState() && getRobotClass()->camera.objects)
 			{
-				if(!goalkeeperStop)
-					move2(genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 2.0), 0);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
+				if((abs(double(camBall.pos.X)) < 50.0 && abs(double(camBall.pos.Y)) < 50.0))
+				{
+					getRobotClass()->motorDrivers.setMotor(4, 300);
+				}
 				else
-					move2(genVTMGlobalPoint(make_pair(0, -40), getRobotClass()->getPos(),2.0), 0);
+				{
+					getRobotClass()->motorDrivers.setMotor(4, 0);
+				}
+				double angToBall = atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
+				if(!goalkeeperStop)
+					move2(genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 1.0, 'g'), angToBall, 4);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
+				else
+				{
+					move2(genVTMGlobalPoint(make_pair(0, -60), getRobotClass()->getPos(), 1.0, 'g'), 0, 4);
+					strikeTime = millis();
+				}
 			}
 			else
 			{
