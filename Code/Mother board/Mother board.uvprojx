@@ -422,6 +422,16 @@
               <FileType>5</FileType>
               <FilePath>.\code\inc\Border.h</FilePath>
             </File>
+            <File>
+              <FileName>Lidar.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\code\inc\Lidar.h</FilePath>
+            </File>
+            <File>
+              <FileName>check.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\code\inc\check.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

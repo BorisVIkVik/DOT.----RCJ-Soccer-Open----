@@ -27,6 +27,15 @@
 #define UARTbufSize 32
 
 
+typedef struct
+{
+	u8 Rdy;
+	u16 Len;
+	u8 Buff[256 + 20];
+}T_RX_BUFF;
+
+extern T_RX_BUFF RxBuffer;
+
 void initUART(unsigned int num, uint32_t baudrate,  uint8_t wordLength = 8, float _stopBits = 1, uint8_t parity = 0, unsigned int clk = 0);
 void writeUART(unsigned int num, char data);
 void writeStrUART(unsigned int num, char* data);

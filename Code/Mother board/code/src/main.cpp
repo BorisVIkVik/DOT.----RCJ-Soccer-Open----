@@ -114,15 +114,37 @@ int main()
 //	uint32_t mainTime = 0;
 //	volatile uint32_t cycleTime = 0;
 //	volatile double v1 = 0, v2 = 0, v3 = 0;
+	robot.lidar.LidarInit(_UART2);
+	volatile uint32_t lidarCircles = 0;
 	while(1)
 	{
 //		cycleTime = millis() - mainTime;
 //		mainTime = millis();
 		robot.wait(5);
-		func.posCalc();
+		
+		robot.lidar.ProcessUartRxData();
+		lidarCircles = robot.lidar.LSI.OneCriclePoint[29].Distance;
+		if(robot.lidar.LSI.Result == LIDAR_GRAB_SUCESS)//扫描到完整一圈
+		{
+			robot.lidar.LSI.Result=LIDAR_GRAB_ING;//恢复正在扫描状态
+			
+			
+			/**************打印扫描一圈的总点数：lidarscaninfo.OneCriclePointNum*********************************************/
+			//printf("one circle point num:%d\n",lidarscaninfo.OneCriclePointNum);
+		
+			/*****lidarscaninfo.OneCriclePoint[lidarscaninfo.OneCriclePointNum]：存放一圈总点数的角度和距离*********/
+			
+			//打印某个点信息：一圈从零点开始，打印第100个点的角度和距离
+			/*printf("point %d: angle=%5.2f,distance=%5.2fmm\n",100,
+					lidarscaninfo.OneCriclePoint[100].Angle,
+					lidarscaninfo.OneCriclePoint[100].Distance);*/
+			
+		}
+		
+		//func.posCalc();
 		//func.testBorder();
 		//func.strategy3();
-		func.goalkeeper();
+		//func.goalkeeper();
 		//v1 = func.getRobotClass()->imu.getXa();
 		//v2 = func.getRobotClass()->imu.getYa();
 		//v3 = func.getRobotClass()->imu.getZa();
@@ -169,6 +191,8 @@ int main()
 				else robot.display.print("waiting", 0, 6);
 				
 //				robot.display.print(cycleTime, 0, 15);
+				robot.display.print("Lidar: ", 2, 1);
+				robot.display.print(lidarCircles, 2, 11);
 				robot.display.print("Yaw angle: ", 1, 1);
 				robot.display.print(robot.imu.getAngle(), 1, 11);
 				robot.display.print("Ball x: ", 3, 1);

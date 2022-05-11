@@ -13,6 +13,7 @@
 #include "IMU.h"
 #include "Buttons.h"
 #include <utility>
+#include "Lidar.h"
 
 #include "Errors.h"
 
@@ -37,6 +38,7 @@ class Robot
 		Display display;
 		IMU imu;
 		Buttons buttons;
+		Lidar lidar;
 	
 		double dx, dy;
 		PL_ADC ADC_1, ADC_2;

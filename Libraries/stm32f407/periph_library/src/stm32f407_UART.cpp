@@ -6,6 +6,13 @@ char _bufTx[UARTQ][UARTbufSize];
 uint8_t _bufRxHead[UARTQ], _bufRxTail[UARTQ];
 uint8_t _bufTxHead[UARTQ], _bufTxTail[UARTQ];
 
+//char _lidarBufRx[UARTbufSize];
+//char _lidarBufTx[UARTbufSize];
+//uint8_t _lidarRxHead, _lidarRxTail;
+//uint8_t _lidarTxHead, _lidarTxTail;
+
+T_RX_BUFF RxBuffer;
+
 
 void initUART(unsigned int num, uint32_t baudrate, uint8_t wordLength, float _stopBits, uint8_t parity, unsigned int clk){
 	
@@ -166,6 +173,7 @@ void initUART(unsigned int num, uint32_t baudrate, uint8_t wordLength, float _st
 				case 38400: mantissa = 68, fraction = 6; break;
 				case 57600: mantissa = 45, fraction = 9; break;
 				case 115200: mantissa = 22, fraction = 13; break;
+				case 230400: mantissa = 11, fraction = 6; break;
 		}
 		else if(clk == 84)
 			switch(baudrate) {
@@ -267,24 +275,51 @@ void UARTInterruptHandler(unsigned int num){			//actual interrupt handler
 			case _UART1: uart = USART1; break;
 			default: uart = USART1; break;
 		}
-	
-	if((uart->SR & USART_SR_RXNE)){										//rx interrupt
-		//check parity
-		if(!(uart->SR & USART_SR_PE) && !(uart->SR & USART_SR_FE)){	
-			//add recived byte to the buffer
-			_bufRx[num][_bufRxHead[num]] = uart->DR;		
-			_bufRxHead[num] = (_bufRxHead[num] + 1) % UARTbufSize;
-		}
-		
-		//disable flag
-		uart->SR &= ~USART_SR_FE;	
-		uart->SR &= ~USART_SR_PE;	
-		uart->SR &= ~USART_SR_RXNE;								
+	if (num != _UART2)
+	{
+		if((uart->SR & USART_SR_RXNE)){										//rx interrupt
+			//check parity
+			if(!(uart->SR & USART_SR_PE) && !(uart->SR & USART_SR_FE)){	
+				//add recived byte to the buffer
+				_bufRx[num][_bufRxHead[num]] = uart->DR;		
+				_bufRxHead[num] = (_bufRxHead[num] + 1) % UARTbufSize;
+			}
+			
+			//disable flag
+			uart->SR &= ~USART_SR_FE;	
+			uart->SR &= ~USART_SR_PE;	
+			uart->SR &= ~USART_SR_RXNE;								
+		}		
+		else if((uart->SR & USART_SR_TXE))							//tx buffer empty interrupt
+			//transmit another byte
+			tryTransmit(num);
 	}
-	
-	else if((uart->SR & USART_SR_TXE))							//tx buffer empty interrupt
-		//transmit another byte
-		tryTransmit(num);	
+	else
+	{
+		if((uart->SR & USART_SR_RXNE)){										//rx interrupt
+			//check parity
+			if(!(uart->SR & USART_SR_PE) && !(uart->SR & USART_SR_FE)){	
+				//add recived byte to the buffer
+					if(RxBuffer.Rdy == 0)
+					{
+						RxBuffer.Buff[RxBuffer.Len++] = uart->DR;
+						if(RxBuffer.Len >= sizeof(RxBuffer.Buff))
+							RxBuffer.Rdy = 1;
+					}
+				//_bufRx[num][_bufRxHead[num]] = uart->DR;		
+				//_bufRxHead[num] = (_bufRxHead[num] + 1) % UARTbufSize;
+			}
+			
+			//disable flag
+			uart->SR &= ~USART_SR_FE;	
+			uart->SR &= ~USART_SR_PE;	
+			uart->SR &= ~USART_SR_RXNE;								
+		}
+		else if((uart->SR & USART_SR_TXE))							//tx buffer empty interrupt
+			//transmit another byte
+			tryTransmit(num);
+	}
+		
 
 	
 }
@@ -448,4 +483,3 @@ void printUART(unsigned int num, double data){
   }
 	*/
 }
-
