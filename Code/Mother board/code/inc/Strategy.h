@@ -738,18 +738,25 @@ class Functional:  public BaseFunctional
 		int lineC = 0;
 		//TEST AREA-------------------------------------------------------------
 		int timeBack = 200;
-		if(millis() - predictTime > 200)
+		if(!goalkeeperStop && wasNotSeen)
+		{
+			old = ball.globalPos;
+			predictTime = millis();
+			wasNotSeen = false;
+		}
+		else if(millis() - predictTime > 200)
 		{
 			old = ball.globalPos;
 			predictTime = millis();
 		}
-		if(distanceVec(old, ball.globalPos) > 10 && !strike)
+		
+		if(distanceVec(old, ball.globalPos) > 10 && !strike && !goalkeeperStop)
 		{
 			strikeTime = millis();
 			strike = false;
-		lineA = (ball.globalPos.Y - old.Y);
-		lineB = (old.X - ball.globalPos.X);
-		lineC = old.Y * (ball.globalPos.X - old.X) - (ball.globalPos.Y - old.Y) * old.X;
+			lineA = (ball.globalPos.Y - old.Y);
+			lineB = (old.X - ball.globalPos.X);
+			lineC = old.Y * (ball.globalPos.X - old.X) - (ball.globalPos.Y - old.Y) * old.X;
 		}
 	//		lineB = (ballPosSave.pop(time - timeBack).X - ball.globalPos.X);
 	//		lineC = ballPosSave.pop(time - timeBack).Y * (ball.globalPos.X - ballPosSave.pop(time - timeBack).X) - (ball.globalPos.Y - ballPosSave.pop(time - timeBack).Y) * ballPosSave.pop(time - timeBack).X;
@@ -876,6 +883,7 @@ class Functional:  public BaseFunctional
 			}
 			if(getRobotClass()->playState() && getRobotClass()->camera.objects)
 			{
+				getRobotClass()->motorDrivers.enableMotor(4);
 				if((abs(double(camBall.pos.X)) < 50.0 && abs(double(camBall.pos.Y)) < 50.0))
 				{
 					getRobotClass()->motorDrivers.setMotor(4, 300);
@@ -892,11 +900,16 @@ class Functional:  public BaseFunctional
 					move2(genVTMGlobalPoint(make_pair(0, -60), getRobotClass()->getPos(), 1.0, 'g'), 0, 4);
 					strikeTime = millis();
 					strike = false;
+					wasNotSeen = true;
+					predictTime = millis();
 				}
 			}
 			else
 			{
 				getRobotClass()->motorDrivers.setMotors(0,0,0,0,0);
+				getRobotClass()->motorDrivers.disableMotor(4);
+				strikeTime = millis();
+				predictTime = millis();
 			}
 			
 			//TEST AREA-------------------------------------------------------------
@@ -934,6 +947,7 @@ class Functional:  public BaseFunctional
 		bool strike;
 		uint32_t goalkeeperStopTime;
 		bool goalkeeperStop;
+		bool wasNotSeen;
 		//Goalkeeper
 };
 	

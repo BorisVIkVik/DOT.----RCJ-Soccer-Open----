@@ -114,12 +114,12 @@ def realDistance(x, coordsArr):
 import sensor, image, time, pyb
 from math import sqrt, atan2, cos, sin
 from pyb import SPI
-EXPOSURE_TIME_SCALE = 0.5
+EXPOSURE_TIME_SCALE = 0.6
 
 
 
-threshold_blue =    (9, 39, -22, 27, -55, -13)
-threshold_yellow =  (39, 90, 15, 46, 26, 127)
+threshold_blue =    (3, 100, -17, 44, -66, -20)
+threshold_yellow =  (10, 80, -10, 127, 38, 127)
 threshold_ball =    (15, 70, 56, 127, 11, 127)#(55, 100, 53, 127, -9, 127)#(50, 65, 49, 127, 23, 127)
 
 
@@ -189,7 +189,7 @@ while(True):
     biggestYellowBlob = -1
     countYellow =0
     blobsYellow=[]
-    for yellowBlob in img.find_blobs([threshold_yellow],roi=(0,0,319,239), pixels_threshold=100, area_threshold=100, merge=True, margin = 10):
+    for yellowBlob in img.find_blobs([threshold_yellow],roi=(0,0,319,239), pixels_threshold=150, area_threshold=150, merge=True, margin = 15):
         blobsYellow.append(yellowBlob)
         if(yellowBlob.area() > blobsPreviousMas):
             biggestYellowBlob = countYellow
@@ -201,14 +201,26 @@ while(True):
     except: pass
     maxLeft = 320
     maxRight = 0
+    count = 0
     indL = 0
     indR = 0
     centerY = 0
     centerX = 0
 
+    for yel, i in enumerate(blobsYellow):
+        if (maxLeft > blobsYellow[yel].x()):
+            maxLeft = blobsYellow[yel].x()
+            indL = count
+        if (maxRight < blobsYellow[yel].cx() + blobsYellow[yel].cx() - blobsYellow[yel].x()):
+            maxRight = blobsYellow[yel].cx() + blobsYellow[yel].cx() - blobsYellow[yel].x()
+            indR = count
+        count+=1
+
     try:
-        centerY = blobsYellow[biggestYellowBlob].cy()
-        centerX = blobsYellow[biggestYellowBlob].cx()
+        centerY = (blobsYellow[indL].cy() + blobsYellow[indR].cy()) // 2
+        centerX = (maxLeft + maxRight) // 2
+        #centerY = blobsYellow[biggestYellowBlob].cy()
+        #centerX = blobsYellow[biggestYellowBlob].cx()
         GLXPixel = -centerX + cX
         GLYPixel = -centerY + cY
         distanceYellow = sqrt(GLXPixel * GLXPixel + GLYPixel * GLYPixel) # pixels
@@ -220,6 +232,7 @@ while(True):
         angle = atan2(GLYPixel, GLXPixel)
         #angle = (angle*57)//1
         angleYellow = angle
+        img.draw_cross(centerX,centerY, (0, 255, 0))
         Y_X_CM = int(distanceYellow * cos(angleYellow))
         Y_Y_CM = int(distanceYellow * sin(angleYellow))
         #print((GLXPixel + 139) // 2)
@@ -245,7 +258,7 @@ while(True):
     biggestBlueBlob = -1
     countBlue = 0
     blobsBlue=[]
-    for blueBlob in img.find_blobs([threshold_blue],roi=(0,0,319,239), pixels_threshold=100, area_threshold=100, merge=True, margin = 20):
+    for blueBlob in img.find_blobs([threshold_blue],roi=(0,0,319,239), pixels_threshold=150, area_threshold=150, merge=True, margin = 15):
         blobsBlue.append(blueBlob)
         if(blueBlob.area() > blobsPreviousMas):
             biggestBlueBlob = countBlue
@@ -257,14 +270,24 @@ while(True):
     except: pass
     maxLeft = 320
     maxRight = 0
+    count = 0
     indL = 0
     indR = 0
     centerY = 0
     centerX = 0
+    #print(blobsBlue)
+    for blooo, i in enumerate(blobsBlue):
+        if (maxLeft > blobsBlue[blooo].x()):
+            maxLeft = blobsBlue[blooo].x()
+            indL = count
+        if (maxRight < blobsBlue[blooo].cx() + blobsBlue[blooo].cx() - blobsBlue[blooo].x()):
+            maxRight = blobsBlue[blooo].cx() + blobsBlue[blooo].cx() - blobsBlue[blooo].x()
+            indR = count
+        count+=1
 
     try:
-        centerY = blobsBlue[biggestBlueBlob].cy()
-        centerX = blobsBlue[biggestBlueBlob].cx()
+        centerY = (blobsBlue[indL].cy() + blobsBlue[indR].cy()) // 2
+        centerX = (maxLeft + maxRight) // 2
         GLXPixel = -centerX + cX
         GLYPixel = -centerY + cY
         #kekBX = int(realDistance(GLXPixel, goalCoords))
@@ -272,7 +295,7 @@ while(True):
         distanceBlue = sqrt(GLXPixel * GLXPixel + GLYPixel * GLYPixel) # pixels
         #print("Blue: " + str(distanceBlue))
         distanceBlue = realDistance(distanceBlue, goalCoords)   #cm
-
+        img.draw_cross(centerX,centerY, (0, 255, 0))
         angle = atan2(GLYPixel, GLXPixel)
         #angle = (angle*57)//1
         angleBlue = angle
@@ -313,14 +336,10 @@ while(True):
         img.draw_rectangle(blobsBall[biggestBallBlob].rect())
         img.draw_cross(blobsBall[biggestBallBlob].cx(),blobsBall[biggestBallBlob].cy(), (255,255,255))
     except: pass
-    maxLeft = 320
-    maxRight = 0
-    indL = 0
-    indR = 0
-    centerY = 0
-    centerX = 0
+
 
     try:
+
         centerY = blobsBall[biggestBallBlob].cy()
         centerX = blobsBall[biggestBallBlob].cx()
         GLXPixel = -centerX + cX
@@ -344,7 +363,7 @@ while(True):
 
 
     objects = (countBall > 0) + ((countYellow > 0) << 1) + ((countBlue > 0) << 2)
-    #print(objects)
+    print(objects)
     spi = SPI(2, SPI.SLAVE, polarity=0, phase=0)
     buf[0] = 0xBB
     buf[1] = 7 #msg_length
@@ -356,7 +375,7 @@ while(True):
     buf[7] = bGoalX
     buf[8] = bGoalY
     buf[9] = crc8(buf, 9)
-    spi.write(buf)
+    #spi.write(buf)
     spi.deinit()
 
     img.draw_cross(cX, cY, (0,255,0))
