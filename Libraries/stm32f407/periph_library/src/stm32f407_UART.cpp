@@ -13,6 +13,7 @@ uint8_t _bufTxHead[UARTQ], _bufTxTail[UARTQ];
 
 T_RX_BUFF RxBuffer;
 
+uint32_t head = 0, tail = 0; 
 
 void initUART(unsigned int num, uint32_t baudrate, uint8_t wordLength, float _stopBits, uint8_t parity, unsigned int clk){
 	
@@ -302,9 +303,44 @@ void UARTInterruptHandler(unsigned int num){			//actual interrupt handler
 				//add recived byte to the buffer
 					if(RxBuffer.Rdy == 0)
 					{
+						RxBuffer.Buff[tail++] = uart->DR;
+						
+//						if(RxBuffer.Buff[0] == 0xAA)
+//						{
+//							RxBuffer.Rdy = 1;
+//							RxBuffer.Len = 1;
+//						}
+						//tail %= 8;
+						if(tail == 5)
+						{
+							RxBuffer.Rdy = 1;
+							//tail = 0;
+						}
+					}
+					else if (RxBuffer.Rdy == 1)
+					{	
+						if(RxBuffer.Buff[0] == 0xAA && RxBuffer.Buff[4] == 0x61)
+						{
+							RxBuffer.Rdy = 2;
+							RxBuffer.Buff[5] = uart->DR;
+							RxBuffer.Len = 6;
+						}
+						else
+						{
+							//RxBuffer.Rdy = 1;
+							for (int i = 0; i < 4; i++)
+							{
+								RxBuffer.Buff[i] = RxBuffer.Buff[i+1];
+							}
+							//tail = 4;
+							RxBuffer.Buff[4] = uart->DR;
+						}
+					}
+					else if (RxBuffer.Rdy == 2)
+					{
 						RxBuffer.Buff[RxBuffer.Len++] = uart->DR;
 						if(RxBuffer.Len >= sizeof(RxBuffer.Buff))
-							RxBuffer.Rdy = 1;
+							RxBuffer.Rdy = 3;
 					}
 				//_bufRx[num][_bufRxHead[num]] = uart->DR;		
 				//_bufRxHead[num] = (_bufRxHead[num] + 1) % UARTbufSize;

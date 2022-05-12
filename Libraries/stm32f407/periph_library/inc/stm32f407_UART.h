@@ -35,6 +35,7 @@ typedef struct
 }T_RX_BUFF;
 
 extern T_RX_BUFF RxBuffer;
+extern uint32_t head, tail; 
 
 void initUART(unsigned int num, uint32_t baudrate,  uint8_t wordLength = 8, float _stopBits = 1, uint8_t parity = 0, unsigned int clk = 0);
 void writeUART(unsigned int num, char data);

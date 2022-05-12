@@ -118,9 +118,9 @@ EXPOSURE_TIME_SCALE = 0.6
 
 
 
-threshold_blue =    (3, 100, -17, 44, -66, -20)
-threshold_yellow =  (10, 80, -10, 127, 38, 127)
-threshold_ball =    (15, 70, 56, 127, 11, 127)#(55, 100, 53, 127, -9, 127)#(50, 65, 49, 127, 23, 127)
+threshold_blue =    (28, 39, -36, 15, -52, -23)
+threshold_yellow =  (56, 83, 10, 44, 18, 96)
+threshold_ball =    (53, 78, 57, 91, 11, 88)#(55, 100, 53, 127, -9, 127)#(50, 65, 49, 127, 23, 127)
 
 
 cX = 163  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
@@ -375,7 +375,7 @@ while(True):
     buf[7] = bGoalX
     buf[8] = bGoalY
     buf[9] = crc8(buf, 9)
-    #spi.write(buf)
+    spi.write(buf)
     spi.deinit()
 
     img.draw_cross(cX, cY, (0,255,0))

@@ -115,7 +115,7 @@ int main()
 //	volatile uint32_t cycleTime = 0;
 //	volatile double v1 = 0, v2 = 0, v3 = 0;
 	robot.lidar.LidarInit(_UART2);
-	volatile uint32_t lidarCircles = 0;
+	volatile uint32_t saveLidar = 0;
 	while(1)
 	{
 //		cycleTime = millis() - mainTime;
@@ -123,7 +123,18 @@ int main()
 		robot.wait(5);
 		
 		robot.lidar.ProcessUartRxData();
-		lidarCircles = robot.lidar.LSI.OneCriclePoint[29].Distance;
+		//lidarCircles = robot.lidar.LSI.OneCriclePoint[99].Angle;
+		volatile uint32_t lidarAngle = 0;
+		
+	uint32_t minDist = 1000000000;
+		for(int i = 0; i < 1000; i++)
+		{
+			if(robot.lidar.LSI.OneCriclePoint[i].Distance != 0 && robot.lidar.LSI.OneCriclePoint[i].Distance < minDist)
+			{
+				minDist = robot.lidar.LSI.OneCriclePoint[i].Distance;
+				lidarAngle = robot.lidar.LSI.OneCriclePoint[i].Angle;
+			}
+		}
 		if(robot.lidar.LSI.Result == LIDAR_GRAB_SUCESS)//扫描到完整一圈
 		{
 			robot.lidar.LSI.Result=LIDAR_GRAB_ING;//恢复正在扫描状态
@@ -191,8 +202,9 @@ int main()
 				else robot.display.print("waiting", 0, 6);
 				
 //				robot.display.print(cycleTime, 0, 15);
-				robot.display.print("Lidar: ", 2, 1);
-				robot.display.print(lidarCircles, 2, 11);
+				robot.display.print("L:", 2, 1);
+				robot.display.print(robot.lidar.LSI.OneCriclePoint[39].Angle, 2, 3);
+				robot.display.print(robot.lidar.LSI.OneCriclePoint[39].Distance, 2, 11);
 				robot.display.print("Yaw angle: ", 1, 1);
 				robot.display.print(robot.imu.getAngle(), 1, 11);
 				robot.display.print("Ball x: ", 3, 1);
@@ -211,6 +223,24 @@ int main()
 				break;
 			
 			case DEBUG_DATA_SCREEN:
+				
+				for(int i = 0; i < robot.lidar.LSI.OneCriclePointNum; i++)
+				{
+					int L = robot.lidar.LSI.OneCriclePoint[i].Distance / 10;
+					int xTmp = (L)*sin((robot.lidar.LSI.OneCriclePoint[i].Angle-90)/57.3) + 64;
+					int yTmp = -(L)*cos((robot.lidar.LSI.OneCriclePoint[i].Angle-90)/57.3) + 32;
+					if(xTmp >= 0 && xTmp < 128 && yTmp >= 0 && yTmp < 64)
+					{
+						robot.display.ssd1306.drawPixel(xTmp, yTmp, 1);
+					}
+					
+				}
+				saveLidar++;
+				if(saveLidar == 500)
+				{
+					robot.display.clear();
+					saveLidar = 0;
+				}
 //					robot.display.print("Ball x: ", 2, 1);
 //					robot.display.print(func.camBall.pos.X, 2, 11);
 //					robot.display.print("Ball y: ", 3, 1);
@@ -267,11 +297,11 @@ int main()
 //				robot.display.print("GZ: ", 3, 10);
 //				robot.display.print(robot.imu.getZg(), 3, 14);
 //				//robot.display.print(robot.ADC_2.read(BALL_SENSOR), 2, 1);
-				robot.display.print("x: ", 2, 1);
-				robot.display.print(robot.getPos().X, 2, 9);
+				//robot.display.print("x: ", 2, 1);
+				//robot.display.print(robot.getPos().X, 2, 9);
 ////				//robot.display.print(robot.camera.yellow.X, 2, 9);
-				robot.display.print("y: ", 3, 1);
-				robot.display.print(robot.getPos().Y, 3, 9);
+//				robot.display.print("y: ", 3, 1);
+//				robot.display.print(robot.getPos().Y, 3, 9);
 ////				robot.display.print("Ball sens: ", 3, 1);
 ////				robot.display.print(robot.ballSensor.getSensorValue(), 3, 14);
 				//robot.display.print(robot.camera.yellow.Y, 3, 9);
@@ -318,7 +348,10 @@ int main()
 		}
 		
 		robot.display.show();
-		robot.display.clear();
+		if(g_state != DEBUG_DATA_SCREEN)
+		{
+			robot.display.clear();
+		}
 	}
 }
 

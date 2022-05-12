@@ -35,7 +35,7 @@ enum SCANRESULT
 };
 
 //定义雷达齿轮个数
-#define  TOOTH_NUM																	4
+#define  TOOTH_NUM																	1
 
 /********************************************************************************************************************/
 //通讯帧定义
@@ -83,7 +83,7 @@ typedef struct
 	uint8_t ToothCount;
 	uint16_t OneCriclePointNum;//一圈点数
 	T_FRAME_MEAS_INFO FrameMeasInfo;//一帧测量信息
-	T_POINT OneCriclePoint[1000];//一圈测量点信息：从零点开始，由16帧点信息组成
+	T_POINT OneCriclePoint[360];//一圈测量点信息：从零点开始，由16帧点信息组成
 }T_LIDARSCANINFO;
 #pragma pack ()
 
@@ -255,7 +255,7 @@ class Lidar
 			//printf("[Lidar] Speed error!\n");
 		}
 		
-		uint8_t FrameIsRight(T_PROTOCOL Preq)
+		uint8_t FrameIsRight(T_PROTOCOL Preq, bool checkCheckSum)
 		{
 			uint16_t Temp = 0,CalcCRC,Len;
 			Len = Little2BigEndian_u16(Preq.Len);
@@ -263,7 +263,7 @@ class Lidar
 			{	
 				return 0;
 			}
-			else if(Len > RxBuffer.Len)
+			else if(Len > RxBuffer.Len && checkCheckSum)
 			{
 				return 0;
 			}
@@ -271,7 +271,7 @@ class Lidar
 			{
 				return 0;
 			} 
-			else 
+			else if(checkCheckSum)
 			{	
 				//1.crc校验
 				//CalcCRC = CRC16(RxBuffer.Buff,Len);
@@ -282,7 +282,7 @@ class Lidar
 				if(CalcCRC != Temp)
 				{
 //					printf("[Lidar] Frame is CRC error!\n");
-					return 0;
+					return 0;//nado
 				}
 			}
 			return 1;
@@ -306,23 +306,84 @@ class Lidar
 		
 		void ProcessUartRxData(void)
 		{
-			if(RxBuffer.Rdy == 0)
+			if(RxBuffer.Rdy == 0 || RxBuffer.Rdy == 1 || RxBuffer.Rdy == 2)
 				return;
 
-			if(RxBuffer.Rdy > 0)
+//			if(RxBuffer.Rdy == 1)
+//			{
+//				if(RxBuffer.Buff[0] == 0xAA && RxBuffer.Buff[4] == FRAME_TYPE)
+//				{
+//					RxBuffer.Rdy = 2;
+//					RxBuffer.Len = 5;
+//				}
+//				else
+//				{
+//					RxBuffer.Rdy = 0;
+//					for (int i = 0; i < 4; i++)
+//					{
+//						RxBuffer.Buff[i] = RxBuffer.Buff[i+1];
+//					}
+//					tail = 4;
+//				}
+////				if(checkHeader())
+////				{
+//////					for(int i = 0; i < 8; i++)
+//////					{
+//////						RxBuffer.Buff[i] = headerArray[i];
+//////					}
+////					RxBuffer.Rdy = 2;
+////					RxBuffer.Len = 9;
+////				}
+////				else
+////				{
+//					
+////				}
+//				return;
+//			}
+				
+			if(RxBuffer.Rdy == 3)
 				P_Cmd_Process();
 			RxBuffer.Len = 0;
 			RxBuffer.Rdy = 0;
+			tail = 0;					
 		}
 		
-		uint8_t P_Cmd_Process(void)
+		
+		uint8_t checkHeader(void)
 		{
 			T_PROTOCOL Preq;
-				
+			
+			
+//			int iter1 = 0;
+//			int iter2 = head;
+//			while(iter1 != 8)
+//			{
+//				headerArray[iter1] = RxBuffer.Buff[iter2 % 8];
+//				iter1++;
+//				iter2++;
+//			}				
+			
 			memcpy((uint8_t *)&Preq,(uint8_t * )RxBuffer.Buff,8);
 			Preq.Data = &RxBuffer.Buff[8];
 			
-			if(FrameIsRight(Preq)==0)
+			if(FrameIsRight(Preq, false)==0)
+			{
+//				head++;
+//				head %= 8;
+//				RxBuffer.Rdy = 0;
+				return 0;
+			}
+			else
+				return 1;
+		}
+		uint8_t P_Cmd_Process(void)
+		{
+			T_PROTOCOL Preq;
+			
+			memcpy((uint8_t *)&Preq,(uint8_t * )RxBuffer.Buff,8);
+			Preq.Data = &RxBuffer.Buff[8];
+			
+			if(FrameIsRight(Preq, true)==0)
 			{
 				return 0;
 			}
@@ -332,7 +393,7 @@ class Lidar
 		
 		T_LIDARSCANINFO LSI;
 	private:
-			
+			uint8_t headerArray[8];		
 			uint32_t uartLIDAR;
 			
 			
