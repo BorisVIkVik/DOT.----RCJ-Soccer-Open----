@@ -31,7 +31,7 @@ typedef struct
 {
 	u8 Rdy;
 	u16 Len;
-	u8 Buff[256 + 20];
+	u8 Buff[10000 + 20];
 }T_RX_BUFF;
 
 extern T_RX_BUFF RxBuffer;

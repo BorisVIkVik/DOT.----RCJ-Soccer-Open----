@@ -914,6 +914,18 @@ class Functional:  public BaseFunctional
 			
 			//TEST AREA-------------------------------------------------------------
 	}
+	
+	void lidarTest(void)
+	{
+		for(int i = 0; i < getRobotClass()->lidar.LSI.OneCriclePointNum; i++)
+		{
+			if(getRobotClass()->lidar.LSI.OneCriclePoint[i].Angle + getRobotClass()->imu.getAngle() >= 0 && getRobotClass()->lidar.LSI.OneCriclePoint[i].Angle + getRobotClass()->imu.getAngle() <= 180)
+			{
+				double k = tan((getRobotClass()->lidar.LSI.OneCriclePoint[i].Angle + getRobotClass()->imu.getAngle())/57.3);
+				double b = getRobotClass()->getPos().Y - k * getRobotClass()->getPos().X;
+			}
+		}
+	}
 	private:
 		//Attacker
 		int16_t oldPosIndex;

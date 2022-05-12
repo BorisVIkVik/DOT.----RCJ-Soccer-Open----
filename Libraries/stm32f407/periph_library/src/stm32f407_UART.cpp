@@ -339,7 +339,7 @@ void UARTInterruptHandler(unsigned int num){			//actual interrupt handler
 					else if (RxBuffer.Rdy == 2)
 					{
 						RxBuffer.Buff[RxBuffer.Len++] = uart->DR;
-						if(RxBuffer.Len >= sizeof(RxBuffer.Buff))
+						if(RxBuffer.Len >= ((RxBuffer.Buff[1] << 2) | (RxBuffer.Buff[2])) + 8)
 							RxBuffer.Rdy = 3;
 					}
 				//_bufRx[num][_bufRxHead[num]] = uart->DR;		
