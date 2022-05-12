@@ -226,7 +226,10 @@ int main()
 				break;
 			
 			case KICKER_SCREEN:
-				//empty
+				if(robot.kicker.isCharged()) 
+					robot.display.print("done", 0, 11);
+				else
+					robot.display.print("charging", 0, 11);
 				break;
 			
 			case BATTERY_SCREEN:
@@ -312,6 +315,7 @@ void setupScreens()
 	
 	robot.display.setScreen(KICKER_SCREEN);
 	robot.display.addEsc(*(new Command("", clb_screenToMain)));
+	robot.display.addToScreen(*(new Command("Charge", clb_initCharge)));
 	robot.display.addToScreen(*(new Command("Kick straight", clb_kickStraight)));
 	robot.display.addToScreen(*(new Command("Kick diagonal 1", clb_kick2)));
 	robot.display.addToScreen(*(new Command("Kick diagonal 2", clb_kick1)));

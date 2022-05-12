@@ -154,19 +154,24 @@ void clb_screenToKicker()
 	g_state = KICKER_SCREEN;
 }
 
+		void clb_initCharge()
+		{
+			robot.kicker.initCharge();
+		}
+
 		void clb_kickStraight()
 		{
-			robot.kickerModule.kick(1, 1);
+			robot.kicker.kick(1, 1);
 		}
 		
 		void clb_kick1()
 		{
-			robot.kickerModule.kick(1, 0);
+			robot.kicker.kick(1, 0);
 		}
 
 		void clb_kick2()
 		{
-			robot.kickerModule.kick(0, 1);
+			robot.kicker.kick(0, 1);
 		}
 
 //Battery screen

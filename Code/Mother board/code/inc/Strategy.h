@@ -203,7 +203,7 @@ class Functional:  public BaseFunctional
 				{
 					if(millis() - kickTime > 1)
 					{
-						getRobotClass()->kickerModule.kick(true, true);
+						getRobotClass()->kicker.kick(true, true);
 						kickTime = millis();
 						//for(int i = 0; i < 1000; i++);
 						state = 0;
@@ -394,7 +394,7 @@ class Functional:  public BaseFunctional
 				{
 					if(millis() - kickTime > 1)
 					{
-						getRobotClass()->kickerModule.kick(true, true);
+						getRobotClass()->kicker.kick(true, true);
 						kickTime = millis();
 						state = 0;
 					}
@@ -599,4 +599,3 @@ class Functional:  public BaseFunctional
 			bool goalkeeperStop;
 		//Goalkeeper
 };
-	
