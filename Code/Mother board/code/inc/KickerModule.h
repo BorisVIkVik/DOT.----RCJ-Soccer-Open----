@@ -6,18 +6,20 @@
 #include "stm32f407_pinList.h"
 #include "stm32f407_wrappers.h"
 
-#define KICK_TIME 10
+#define KICK_TIME 2
 #define COOL_DOWN_TIME 1000
 
 class KickerModule
 {
 	public:
 		void init(uint16_t boosterEn, uint16_t boosterDone, uint16_t kicker1, uint16_t kicker2);
-		void switchOnBooster();
-		void switchOffBooster();
+		unsigned int update();
+		void initCharge();
+		bool isCharged();
 		void kick(bool kick1, bool kick2);
 
 	private:
+		bool charged;
 		uint16_t boosterEn, boosterDone, kicker1, kicker2;
 		long long int kicker1Timer, kicker2Timer;
 };
@@ -25,9 +27,16 @@ class KickerModule
 
 void KickerModule::init(uint16_t boosterEn, uint16_t boosterDone, uint16_t kicker1, uint16_t kicker2)
 {
+	this->boosterEn = boosterEn;
+	this->boosterDone = boosterDone;
+	this->kicker1 = kicker1;
+	this->kicker2 = kicker2;
+	
 	initPin(boosterEn, OUTPUTPP);
 	setPin(boosterEn, 0);
 	initPin(boosterDone, INPUT, FL);
+	
+	charged = 0;
 	
 	initPin(kicker1, OUTPUTPP);
 	initPin(kicker2, OUTPUTPP);
@@ -39,20 +48,35 @@ void KickerModule::init(uint16_t boosterEn, uint16_t boosterDone, uint16_t kicke
 }
 
 
-void KickerModule::switchOnBooster()
+unsigned int KickerModule::update()
+{
+	if(readPin(boosterDone) == 0)
+	{
+		//setPin(boosterEn, 0);
+		charged = 1;
+	}
+}
+
+
+void KickerModule::initCharge()
 {
 	setPin(boosterEn, 1);
 }
 
 
-void KickerModule::switchOffBooster()
+bool KickerModule::isCharged()
 {
-	setPin(boosterEn, 0);
+	if(charged == 1)
+		return 1;
+	else
+		return 0;
 }
 
 
 void KickerModule::kick(bool kick1, bool kick2)
 {
+	setPin(boosterEn, 0);
+	
 	if (kick1 && millis() - kicker1Timer > COOL_DOWN_TIME)
 		kicker1Timer = millis();
 	else
@@ -69,6 +93,11 @@ void KickerModule::kick(bool kick1, bool kick2)
 		setPin(kicker2, kick2);
 		delay(KICK_TIME);
 	}
+	
+	setPin(kicker1, 0);
+	setPin(kicker2, 0);
+	
+	charged = 0;
 }
 
 #endif

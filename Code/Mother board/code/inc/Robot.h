@@ -31,7 +31,7 @@ class Robot
 	public:
 		LineSensors lineSensors;
 		Camera camera;
-		KickerModule kickerModule;
+		KickerModule kicker;
 		Battery battery;
 		BallSensor ballSensor;
 		MotorDrivers motorDrivers;
@@ -122,7 +122,7 @@ void Robot::init()
 	camera.init(PERIPH_SPI, CAMERA_SS);
 	
 	//Initialize kicker
-	kickerModule.init(KICKER_BOOSTER_EN, KICKER_BOOSTER_DONE, KICKER_1, KICKER_2);
+	kicker.init(KICKER_BOOSTER_EN, KICKER_BOOSTER_DONE, KICKER_1, KICKER_2);
 	
 	//Initialize ADCs for battery voltage reading and ball sensor
 	ADC_1 = *(new PL_ADC(ADC1));
@@ -399,6 +399,7 @@ void Robot::wait(uint32_t t)
 		GLOBAL_ERROR |= lineSensors.update();
 		GLOBAL_ERROR |= ballSensor.update();
 		GLOBAL_ERROR |= buttons.update();		
+		GLOBAL_ERROR |= kicker.update();
 		//GLOBAL_ERROR |= lidar.update();
 		
 		updateMenu();
