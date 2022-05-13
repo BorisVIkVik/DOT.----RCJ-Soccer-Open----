@@ -9,7 +9,7 @@
 
 #include "Errors.h"
 
-#define TRESHOLD_VALUE		2100
+#define TRESHOLD_VALUE		2050
 
 
 class BallSensor

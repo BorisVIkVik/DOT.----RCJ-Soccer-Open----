@@ -134,6 +134,8 @@ void clb_screenToDribbler()
 
 		void clb_dribblerInOn()
 		{
+			robot.motorDrivers.enableMotor(4);
+			delay(100);
 			robot.motorDrivers.setDribbler(-MANUAL_DRIBBLER_CONTROL_SPEED);
 		}
 

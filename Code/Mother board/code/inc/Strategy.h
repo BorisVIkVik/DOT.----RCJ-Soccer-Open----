@@ -67,6 +67,7 @@ class Functional:  public BaseFunctional
 			angleToGo = 0;
 			dribblerSpeed = 0;
 			acceleration = 0.5;
+			first = false;
 			///-------------------------
 			old = make_pair(0,0);
 			predictTime = 0;
@@ -613,7 +614,7 @@ class Functional:  public BaseFunctional
 						acceleration = 0.5;
 						followDots = true;
 						speedRot = 50;
-						dribblerSpeed = -400;
+						dribblerSpeed = -300;
 						angleToGo = 180 + angToGoalBlue;
 						double flex = (millis() - trajectoryTime) * SPEED_TRAJ_FOLLOW_CM_MILLIS * 0.05;
 						res = trajectoryFollowingDots(oldPosIndex, flex, side, 0.45);
@@ -625,8 +626,12 @@ class Functional:  public BaseFunctional
 							{
 								if(checkBounds(make_pair(trajectory1[TRAJECTORY1_STOP][0]-2, trajectory1[TRAJECTORY1_STOP][1]-2), make_pair(trajectory1[TRAJECTORY1_STOP][0]+2, trajectory1[TRAJECTORY1_STOP][1]+2), getRobotClass()->getPos()))
 								{
+									first = true;
+									getRobotClass()->kicker.initCharge();
+									//delayMicros(1000);
 						//kickTime = millis();
 							state = STATE_ROTATE;
+									str1Timeout = millis();
 							//followDots = false;
 								}
 							}
@@ -634,8 +639,12 @@ class Functional:  public BaseFunctional
 							{
 								if(checkBounds(make_pair(-trajectory1[TRAJECTORY1_STOP][0]-2, trajectory1[TRAJECTORY1_STOP][1]-2), make_pair(-trajectory1[TRAJECTORY1_STOP][0]+2, trajectory1[TRAJECTORY1_STOP][1]+2), getRobotClass()->getPos()))
 								{
+									first = true;
+									getRobotClass()->kicker.initCharge();
+									//delayMicros(1000);
 						//kickTime = millis();
 							state = STATE_ROTATE;
+									str1Timeout = millis();
 							//followDots = false;
 								}
 							}
@@ -658,29 +667,60 @@ class Functional:  public BaseFunctional
 						acceleration = 1;
 						followDots = true;
 						dribblerSpeed = -400;
-						speedRot = 60;
-						angleToGo = angToGoalBlue;// + (side == 'r' ? 6 : -6);
+						speedRot = 80;
 						res._x = 0;
 						res._y = 0;
 						res._mod = 0;
-						getRobotClass()->kicker.initCharge();
-						double angleTurn = angleToGo - getRobotClass()->imu.getAngle();
-						adduction(angleTurn);
-						setPin(LED_3, 1);
-						if(abs(angleTurn) < 15)
-						{
-								state = STATE_KICK;
-						}
 						
-						if(abs(angleTurn) < 20)
-						{
-							dribblerSpeed = -300;
-								//state = STATE_KICK;
-						}
+					
+//						getRobotClass()->kicker.initCharge();
+//						double angleTurn = 0;
+//						adduction(angleTurn);
+//						setPin(LED_3, 1);
+//						if(first)
+//						{
+//							angleToGo = 0;
+//							angleTurn = angleToGo - getRobotClass()->imu.getAngle();
+//							if(abs(angleTurn) < 15)
+//							{
+//									first = false;
+//							}
+//						}
+//						else
+//						{
+//							angleToGo = angToGoalBlue;
+//							angleTurn = angleToGo - getRobotClass()->imu.getAngle();
+//							if(abs(angleTurn) < 20)
+//							{
+//									state = STATE_KICK;
+//							}
+////							if(abs(angleTurn) < 20)
+////						{
+//							dribblerSpeed = -300;
+//								//state = STATE_KICK;
+////						}
+//						}
+						// + (side == 'r' ? 6 : -6);
 						
+//						if(abs(angleTurn) < 15)
+//						{
+//								state = STATE_KICK;
+//						}
+//						if(millis() - str1Timeout > 1000)
+//						{
+//							
+//						}
+						
+						angleToGo = angleToGo = 180 + angToGoalBlue - (side == 'r' ? 30 : -30);;
 						if(getRobotClass()->ballSensor.getValue())
 						{
 							lost = millis();
+							
+						}
+						if(millis() - str1Timeout > 1000)
+						{
+							state = STATE_KICK;
+							str1Timeout = millis();
 						}
 						
 						if(millis() - lost > 500)
@@ -692,14 +732,25 @@ class Functional:  public BaseFunctional
 
 						break;
 					case STATE_KICK:				
-						acceleration = 0.5;
-						speedRot = 400;
-						dribblerSpeed = 400;
+						acceleration = 1.0;
+						speedRot = 600;
+						dribblerSpeed = -400;
 						setPin(LED_3, 0);
-						followDots = false;
-						getRobotClass()->kicker.kick(true, true);
-						angleToGo = angToGoalBlue;
-						state = STATE_STOP;
+						followDots = true;
+						if(side == 'r')
+						{
+							getRobotClass()->kicker.kick(false, true);
+						}
+						else
+						{
+							getRobotClass()->kicker.kick(true, false);
+						}
+					
+						angleToGo = 180 + angToGoalBlue;
+						if(millis() - str1Timeout > 10000)
+						{
+							state = STATE_STOP;
+						}
 						break;
 				}
 				if(!followDots)
@@ -953,6 +1004,7 @@ class Functional:  public BaseFunctional
 		double	angleToGo;
 		bool followDots;
 		double acceleration;
+		bool first;
 		//Attacker
 	
 		//Goalkeeper
