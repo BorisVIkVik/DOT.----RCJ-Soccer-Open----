@@ -25,8 +25,8 @@
 
 Border b1(0.3, 'x', '-', -45, -55, -90, 90);
 Border b2(0.3, 'x', '+', 45, 55, -90, 90);
-Border b3(0.3, 'y', '-', -40, -55, -30, 30);
-Border b4(0.3, 'y', '+', 40, 55, -30, 30);
+Border b3(0.3, 'y', '-', -45, -55, -30, 30);
+Border b4(0.3, 'y', '+', 45, 55, -30, 30);
 
 //Border b5('x', '+', -20, -15, -90, -60);
 //Border b6('x', '-', 20, 15, -90, -60);
@@ -750,7 +750,7 @@ class Functional:  public BaseFunctional
 			predictTime = millis();
 		}
 		
-		if(distanceVec(old, ball.globalPos) > 10 && !strike && !goalkeeperStop)
+		if(distanceVec(old, ball.globalPos) > 15 && !strike && !goalkeeperStop)
 		{
 			strikeTime = millis();
 			strike = false;
@@ -786,7 +786,7 @@ class Functional:  public BaseFunctional
 		
 		bool foundToGoPoint = false;
 		
-			if(abs(ball.globalPos.Y) < 75)
+			if(abs(ball.globalPos.Y) < 70)
 			{
 
 				
@@ -894,10 +894,10 @@ class Functional:  public BaseFunctional
 				}
 				double angToBall = atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
 				if(!goalkeeperStop)
-					move2(genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 1.0, 'g'), 0, 4);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
+					move2(genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 1.3, 'g'), 0, 4);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
 				else
 				{
-					move2(genVTMGlobalPoint(make_pair(0, -60), getRobotClass()->getPos(), 1.0, 'g'), 0, 4);
+					move2(genVTMGlobalPoint(make_pair(0, -60), getRobotClass()->getPos(), 1.3, 'g'), 0, 4);
 					strikeTime = millis();
 					strike = false;
 					wasNotSeen = true;
