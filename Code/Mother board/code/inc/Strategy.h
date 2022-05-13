@@ -269,10 +269,10 @@ class Functional:  public BaseFunctional
 			VectorToMove res(0,0,0);
 			res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 2.0, 'a');
 			//getRobotClass()->move(1, 90);
-			b1.dempher(getRobotClass()->getPos(), res);
-			b2.dempher(getRobotClass()->getPos(), res);
-			b3.dempher(getRobotClass()->getPos(), res);
-			b4.dempher(getRobotClass()->getPos(), res);
+//			b1.dempher(getRobotClass()->getPos(), res);
+//			b2.dempher(getRobotClass()->getPos(), res);
+//			b3.dempher(getRobotClass()->getPos(), res);
+//			b4.dempher(getRobotClass()->getPos(), res);
 //			b5.dempher(getRobotClass()->getPos(), res);
 //			b6.dempher(getRobotClass()->getPos(), res);
 //			b7.dempher(getRobotClass()->getPos(), res);
@@ -323,10 +323,10 @@ class Functional:  public BaseFunctional
 					{
 						res = Parabola(ball.globalPos, getRobotClass()->getPos(), 1.0);
 					}
-					b1.dempher(getRobotClass()->getPos(), res);
-					b2.dempher(getRobotClass()->getPos(), res);
-					b3.dempher(getRobotClass()->getPos(), res);
-					b4.dempher(getRobotClass()->getPos(), res);
+//					b1.dempher(getRobotClass()->getPos(), res);
+//					b2.dempher(getRobotClass()->getPos(), res);
+//					b3.dempher(getRobotClass()->getPos(), res);
+//					b4.dempher(getRobotClass()->getPos(), res);
 					move2(res, avatarAngToBall, 0.5);
 					
 					double razUglov = avatarAngToBall + atan2(double(camBlue.pos.X), double(camBlue.pos.Y)) * 57.3;
@@ -467,10 +467,10 @@ class Functional:  public BaseFunctional
 				{
 					VectorToMove res(0,0,0);
 					res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 1.0, 'a');
-					b1.dempher(getRobotClass()->getPos(), res);
-					b2.dempher(getRobotClass()->getPos(), res);
-					b3.dempher(getRobotClass()->getPos(), res);
-					b4.dempher(getRobotClass()->getPos(), res);
+//					b1.dempher(getRobotClass()->getPos(), res);
+//					b2.dempher(getRobotClass()->getPos(), res);
+//					b3.dempher(getRobotClass()->getPos(), res);
+//					b4.dempher(getRobotClass()->getPos(), res);
 					move2(res, -atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3, 0.5);
 					//kickCharge
 					getRobotClass()->motorDrivers.setMotor(4, 400);
@@ -545,19 +545,19 @@ class Functional:  public BaseFunctional
 					
 						break;
 					case STATE_PARABOLKA:	
-						acceleration = 3;
+						acceleration = 0.8;
 						speedRot = 100;
 						angleToGo = angToBall;
 						getRobotClass()->display.print(angToBall, 2, 3);
 					
 						if((abs(double(camBall.pos.X)) < 30.0 && abs(double(camBall.pos.Y)) < 30.0))
 						{
-							res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 0.3, 'a');
+							res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 0.4, 'a');
 							dribblerSpeed = -300;
 						}
 						else
 						{
-							res = Parabola(ball.globalPos, getRobotClass()->getPos(), 0.8);
+							res = Parabola(ball.globalPos, getRobotClass()->getPos(), 1.0);
 							dribblerSpeed = 0;
 						}
 						
@@ -569,9 +569,9 @@ class Functional:  public BaseFunctional
 							{
 								state = STATE_GO_TO_GOAL;
 							}
-							res._x = 0;
-							res._y = 0;
-							res._mod = 0;
+//							res._x = 0;
+//							res._y = 0;
+//							res._mod = 0;
 							trajectoryTime = millis();
 							if(getRobotClass()->imu.getAngle() > 0)
 								side = 'r';
@@ -659,7 +659,7 @@ class Functional:  public BaseFunctional
 						followDots = true;
 						dribblerSpeed = -400;
 						speedRot = 60;
-						angleToGo = angToGoalBlue + (side == 'r' ? 10 : -10);
+						angleToGo = angToGoalBlue;// + (side == 'r' ? 6 : -6);
 						res._x = 0;
 						res._y = 0;
 						res._mod = 0;
@@ -667,9 +667,15 @@ class Functional:  public BaseFunctional
 						double angleTurn = angleToGo - getRobotClass()->imu.getAngle();
 						adduction(angleTurn);
 						setPin(LED_3, 1);
-						if(abs(angleTurn) < 5)
+						if(abs(angleTurn) < 15)
 						{
 								state = STATE_KICK;
+						}
+						
+						if(abs(angleTurn) < 20)
+						{
+							dribblerSpeed = -300;
+								//state = STATE_KICK;
 						}
 						
 						if(getRobotClass()->ballSensor.getValue())
@@ -698,10 +704,10 @@ class Functional:  public BaseFunctional
 				}
 				if(!followDots)
 				{
-					b1.dempher(getRobotClass()->getPos(), res);
-					b2.dempher(getRobotClass()->getPos(), res);
-					b3.dempher(getRobotClass()->getPos(), res);
-					b4.dempher(getRobotClass()->getPos(), res);
+					b1.dempher(getRobotClass()->getPos(), res, acceleration);
+					b2.dempher(getRobotClass()->getPos(), res, acceleration);
+					b3.dempher(getRobotClass()->getPos(), res, acceleration);
+					b4.dempher(getRobotClass()->getPos(), res, acceleration);
 				}
 				move2(res, angleToGo, acceleration, speedRot);//check
 				getRobotClass()->motorDrivers.setMotor(4, dribblerSpeed);

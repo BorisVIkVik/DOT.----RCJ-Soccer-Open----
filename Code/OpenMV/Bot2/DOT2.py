@@ -122,8 +122,8 @@ threshold_yellow =  (12, 21, 6, 34, -47, -18)
 threshold_ball =    (54, 69, 55, 75, 23, 79)#(55, 100, 53, 127, -9, 127)#(50, 65, 49, 127, 23, 127)
 
 
-cX = 157  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
-cY = 111  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
+cX = 162  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
+cY = 119  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
 
 buf = bytearray(10)
 ballX = 0
@@ -201,14 +201,26 @@ while(True):
     except: pass
     maxLeft = 320
     maxRight = 0
+    count = 0
     indL = 0
     indR = 0
     centerY = 0
     centerX = 0
 
+    for yel, i in enumerate(blobsYellow):
+        if (maxLeft > blobsYellow[yel].x()):
+            maxLeft = blobsYellow[yel].x()
+            indL = count
+        if (maxRight < blobsYellow[yel].cx() + blobsYellow[yel].cx() - blobsYellow[yel].x()):
+            maxRight = blobsYellow[yel].cx() + blobsYellow[yel].cx() - blobsYellow[yel].x()
+            indR = count
+        count+=1
+
     try:
-        centerY = blobsYellow[biggestYellowBlob].cy()
-        centerX = blobsYellow[biggestYellowBlob].cx()
+        centerY = (blobsYellow[indL].cy() + blobsYellow[indR].cy()) // 2
+        centerX = (maxLeft + maxRight) // 2
+        #centerY = blobsYellow[biggestYellowBlob].cy()
+        #centerX = blobsYellow[biggestYellowBlob].cx()
         GLXPixel = -centerX + cX
         GLYPixel = -centerY + cY
         distanceYellow = sqrt(GLXPixel * GLXPixel + GLYPixel * GLYPixel) # pixels
@@ -258,14 +270,24 @@ while(True):
     except: pass
     maxLeft = 320
     maxRight = 0
+    count = 0
     indL = 0
     indR = 0
     centerY = 0
     centerX = 0
+    #print(blobsBlue)
+    for blooo, i in enumerate(blobsBlue):
+        if (maxLeft > blobsBlue[blooo].x()):
+            maxLeft = blobsBlue[blooo].x()
+            indL = count
+        if (maxRight < blobsBlue[blooo].cx() + blobsBlue[blooo].cx() - blobsBlue[blooo].x()):
+            maxRight = blobsBlue[blooo].cx() + blobsBlue[blooo].cx() - blobsBlue[blooo].x()
+            indR = count
+        count+=1
 
     try:
-        centerY = blobsBlue[biggestBlueBlob].cy()
-        centerX = blobsBlue[biggestBlueBlob].cx()
+        centerY = (blobsBlue[indL].cy() + blobsBlue[indR].cy()) // 2
+        centerX = (maxLeft + maxRight) // 2
         GLXPixel = -centerX + cX
         GLYPixel = -centerY + cY
         #kekBX = int(realDistance(GLXPixel, goalCoords))
