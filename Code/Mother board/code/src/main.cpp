@@ -121,113 +121,152 @@ uint16_t realDistance(uint16_t dist)
 
 	
 	
-	void enemyFind(T_LIDARSCANINFO LSI, int quantity, int minDist)
-	{
-		T_POINT* lidarDots = new T_POINT[robot.lidar.LSI.OneCriclePointNum];
-		for( int i = 0 ; i < LSI.OneCriclePointNum; i++)
-		{
-			lidarDots[i] = LSI.OneCriclePoint[i];
-		}
+void enemyFind(T_LIDARSCANINFO& LSI, int quantity, int minDist)
+{
+//	T_POINT* lidarDots = new T_POINT[robot.lidar.LSI.OneCriclePointNum];
+//	for( int i = 0 ; i < LSI.OneCriclePointNum; i++)
+//	{
+//		lidarDots[i] = LSI.OneCriclePoint[i];
+//	}
 //		for( int i = 0 ; i < LSI.OneCriclePointNum; i++)
 //		{
 //			
 //		}
-		uint32_t maxPoints = 0;
-		int saveC1 = -210;
-		for(int c = -210; c <= 210; c++)
-		{
-			int pCoords = 0;
-			for(int i = 0; i < LSI.OneCriclePointNum; i++ )
-			{
-				int y = sin(LSI.OneCriclePoint[i].Angle/57.3) * LSI.OneCriclePoint[i].Distance - robot.getPos().Y;
-				if(abs(c - y) < minDist)
-				{
-					pCoords++;
-				}
-			}
-			if(pCoords > quantity && pCoords > maxPoints)
-			{
-				saveC1 = c;
-				maxPoints = pCoords;
-			}
-		}
-		
-		maxPoints = 0;
-		int saveC2 = -210;
-		for(int c = -210; c <= 210; c++)
-		{
-			int pCoords = 0;
-			for(int i = 0; i < LSI.OneCriclePointNum; i++ )
-			{
-				int y = sin(LSI.OneCriclePoint[i].Angle/57.3) * LSI.OneCriclePoint[i].Distance - robot.getPos().Y;
-				if(abs(c - y) < minDist)
-				{
-					pCoords++;
-				}
-			}
-			if(pCoords > quantity && pCoords > maxPoints && abs(saveC1 - saveC2) >= 80) 
-			{
-				saveC2 = c;
-				maxPoints = pCoords;
-			}
-		}
-		
-		
-		
-		maxPoints = 0;
-		int saveC3 = -210;
-		for(int c = -210; c <= 210; c++)
-		{
-			int pCoords = 0;
-			for(int i = 0; i < LSI.OneCriclePointNum; i++ )
-			{
-				int x = -cos(LSI.OneCriclePoint[i].Angle/57.3) * LSI.OneCriclePoint[i].Distance - robot.getPos().X;
-				if(abs(c - x) < minDist)
-				{
-					pCoords++;
-				}
-			}
-			if(pCoords > quantity && pCoords > maxPoints)
-			{
-				saveC3 = c;
-				maxPoints = pCoords;
-			}
-		}
-		
-		maxPoints = 0;
-		int saveC4 = -210;
-		for(int c = -210; c <= 210; c++)
-		{
-			int pCoords = 0;
-			for(int i = 0; i < LSI.OneCriclePointNum; i++ )
-			{
-				int x = -cos(LSI.OneCriclePoint[i].Angle/57.3) * LSI.OneCriclePoint[i].Distance - robot.getPos().X;
-				if(abs(c - x) < minDist)
-				{
-					pCoords++;
-				}
-			}
-			if(pCoords > quantity && pCoords > maxPoints && abs(saveC3 - saveC4) >= 80) 
-			{
-				saveC4 = c;
-				maxPoints = pCoords;
-			}
-		}
-		
-	
-	
-	
+	uint32_t maxPoints = 0;
+	uint32_t maxPoints2 = 0;
+	int saveC1 = -210;
+	int saveC2 = -210;
+	int saveC3 = -210;
+	int saveC4 = -210;
+	for(int c = -105; c <= 105; c++)
+	{
+		int pCoordsY = 0;
+		int pCoordsX = 0;
 		for(int i = 0; i < LSI.OneCriclePointNum; i++ )
 		{
-			int x = -cos(LSI.OneCriclePoint[i].Angle/57.3) * LSI.OneCriclePoint[i].Distance - robot.getPos().X;
-			int y = sin(LSI.OneCriclePoint[i].Angle/57.3) * LSI.OneCriclePoint[i].Distance - robot.getPos().Y;
-			if(abs(y-saveC1) < minDist || abs(y-saveC2) < minDist || abs(x-saveC3) < minDist || abs(x-saveC4) < minDist)
+			int y = sin(LSI.OneCriclePoint[i].Angle/57.3) * realDistance(LSI.OneCriclePoint[i].Distance)/10 - robot.getPos().Y;
+			if(abs(c - y) < minDist)
 			{
-				
+				pCoordsY++;
 			}
+			
+			int x = -cos(LSI.OneCriclePoint[i].Angle/57.3) * realDistance(LSI.OneCriclePoint[i].Distance)/10 - robot.getPos().X;
+			if(abs(c - x) < minDist)
+			{
+				pCoordsX++;
+			}
+			
 		}
-
+		if(pCoordsY > quantity && pCoordsY > maxPoints)
+		{
+			saveC1 = c;
+			maxPoints = pCoordsY;
+		}
+		else if(pCoordsY > quantity && pCoordsY > maxPoints2 && abs(saveC1 - saveC2) >= 80) 
+		{
+			saveC2 = c;
+			maxPoints2 = pCoordsY;
+		}
+		
+		if(pCoordsX > quantity && pCoordsX > maxPoints)
+		{
+			saveC3 = c;
+			maxPoints = pCoordsX;
+			//if
+		}
+		else if(pCoordsX > quantity && pCoordsX > maxPoints2 && abs(saveC3 - saveC4) >= 80) 
+		{
+			saveC4 = c;
+			maxPoints2 = pCoordsX;
+		}
+		
 	}
+	
+//	maxPoints = 0;
+//	
+//	for(int c = -210; c <= 210; c++)
+//	{
+//		int pCoords = 0;
+//		for(int i = 0; i < LSI.OneCriclePointNum; i++ )
+//		{
+//			int y = sin(LSI.OneCriclePoint[i].Angle/57.3) * LSI.OneCriclePoint[i].Distance - robot.getPos().Y;
+//			if(abs(c - y) < minDist)
+//			{
+//				pCoords++;
+//			}
+//		}
+//		if(pCoords > quantity && pCoords > maxPoints && abs(saveC1 - saveC2) >= 80) 
+//		{
+//			saveC2 = c;
+//			maxPoints = pCoords;
+//		}
+//	}
+	
+	
+	
+//	maxPoints = 0;
+//	maxPoints2 = 0;
+//	int saveC3 = -210;
+//	int saveC4 = -210;
+//	for(int c = -210; c <= 210; c++)
+//	{
+//		int pCoords = 0;
+//		for(int i = 0; i < LSI.OneCriclePointNum; i++ )
+//		{
+//			int x = -cos(LSI.OneCriclePoint[i].Angle/57.3) * LSI.OneCriclePoint[i].Distance - robot.getPos().X;
+//			if(abs(c - x) < minDist)
+//			{
+//				pCoords++;
+//			}
+//		}
+//		if(pCoords > quantity && pCoords > maxPoints)
+//		{
+//			saveC3 = c;
+//			maxPoints = pCoords;
+//			//if
+//		}
+//		else if(pCoords > quantity && pCoords > maxPoints2 && abs(saveC3 - saveC4) >= 80) 
+//		{
+//			saveC4 = c;
+//			maxPoints2 = pCoords;
+//		}
+//	}
+	
+//	maxPoints = 0;
+//	
+//	for(int c = -210; c <= 210; c++)
+//	{
+//		int pCoords = 0;
+//		for(int i = 0; i < LSI.OneCriclePointNum; i++ )
+//		{
+//			int x = -cos(LSI.OneCriclePoint[i].Angle/57.3) * LSI.OneCriclePoint[i].Distance - robot.getPos().X;
+//			if(abs(c - x) < minDist)
+//			{
+//				pCoords++;
+//			}
+//		}
+//		if(pCoords > quantity && pCoords > maxPoints && abs(saveC3 - saveC4) >= 80) 
+//		{
+//			saveC4 = c;
+//			maxPoints = pCoords;
+//		}
+//	}
+	
+
+
+
+	for(int i = 0; i < LSI.OneCriclePointNum; i++ )
+	{
+		int x = -cos(LSI.OneCriclePoint[i].Angle/57.3) * LSI.OneCriclePoint[i].Distance - robot.getPos().X;
+		int y = sin(LSI.OneCriclePoint[i].Angle/57.3) * LSI.OneCriclePoint[i].Distance - robot.getPos().Y;
+		if(abs(y-saveC1) < minDist || abs(y-saveC2) < minDist || abs(x-saveC3) < minDist || abs(x-saveC4) < minDist)
+		{
+			LSI.OneCriclePoint[i].Angle = -228;
+			LSI.OneCriclePoint[i].Distance = -228;
+		}
+	}
+	//delete[] lidarDots;
+}
 
 
 
@@ -293,49 +332,51 @@ int main()
 	uint32_t mainTime = 0;
 	volatile uint32_t cycleTime = 0;
 //	volatile double v1 = 0, v2 = 0, v3 = 0;
-	robot.lidar.LidarInit(_UART2);
-	volatile uint32_t saveLidar = 0;
+//	robot.lidar.LidarInit(_UART2);
+//	volatile uint32_t saveLidar = 0;
 	while(1)
 	{
 		cycleTime = millis() - mainTime;
 		mainTime = millis();
 		robot.wait(5);
 		
-		robot.lidar.ProcessUartRxData();
+		//robot.lidar.ProcessUartRxData();
 		//lidarCircles = robot.lidar.LSI.OneCriclePoint[99].Angle;
-		volatile uint32_t lidarAngle = 0;
-		bool draw = false;
+//		volatile uint32_t lidarAngle = 0;
+//		bool draw = false;
 		
-	uint32_t minDist = 1000000000;
-		for(int i = 0; i < 1000; i++)
-		{
-			if(robot.lidar.LSI.OneCriclePoint[i].Distance != 0 && robot.lidar.LSI.OneCriclePoint[i].Distance < minDist)
-			{
-				minDist = robot.lidar.LSI.OneCriclePoint[i].Distance;
-				lidarAngle = robot.lidar.LSI.OneCriclePoint[i].Angle;
-			}
-		}
-		if(robot.lidar.LSI.Result == LIDAR_GRAB_SUCESS)//扫描到完整一圈
-		{
-			robot.lidar.LSI.Result=LIDAR_GRAB_ING;//恢复正在扫描状态
-			
-			
-			
-			/**************打印扫描一圈的总点数：lidarscaninfo.OneCriclePointNum*********************************************/
-			//printf("one circle point num:%d\n",lidarscaninfo.OneCriclePointNum);
+//	uint32_t minDist = 1000000000;
+//		for(int i = 0; i < 1000; i++)
+//		{
+//			if(robot.lidar.LSI.OneCriclePoint[i].Distance != 0 && robot.lidar.LSI.OneCriclePoint[i].Distance < minDist)
+//			{
+//				minDist = robot.lidar.LSI.OneCriclePoint[i].Distance;
+//				lidarAngle = robot.lidar.LSI.OneCriclePoint[i].Angle;
+//			}
+//		}
+//		if(robot.lidar.LSI.Result == LIDAR_GRAB_SUCESS)//扫描到完整一圈
+//		{
+//		//draw = true;
+//			
+////			robot.lidar.LSI.Result=LIDAR_GRAB_ING;//恢复正在扫描状态
+////			
+////			
+////			
+////			/**************打印扫描一圈的总点数：lidarscaninfo.OneCriclePointNum*********************************************/
+////			//printf("one circle point num:%d\n",lidarscaninfo.OneCriclePointNum);
+////		
+////			/*****lidarscaninfo.OneCriclePoint[lidarscaninfo.OneCriclePointNum]：存放一圈总点数的角度和距离*********/
+////			
+////			//打印某个点信息：一圈从零点开始，打印第100个点的角度和距离
+////			/*printf("point %d: angle=%5.2f,distance=%5.2fmm\n",100,
+////					lidarscaninfo.OneCriclePoint[100].Angle,
+////					lidarscaninfo.OneCriclePoint[100].Distance);*/
+////			
+//		}
 		
-			/*****lidarscaninfo.OneCriclePoint[lidarscaninfo.OneCriclePointNum]：存放一圈总点数的角度和距离*********/
-			
-			//打印某个点信息：一圈从零点开始，打印第100个点的角度和距离
-			/*printf("point %d: angle=%5.2f,distance=%5.2fmm\n",100,
-					lidarscaninfo.OneCriclePoint[100].Angle,
-					lidarscaninfo.OneCriclePoint[100].Distance);*/
-			
-		}
-		
-		//func.posCalc();
+		func.posCalc();
 		//func.testBorder();
-		//func.strategy3();
+		func.strategy3();
 		//func.goalkeeper();
 		//v1 = func.getRobotClass()->imu.getXa();
 		//v2 = func.getRobotClass()->imu.getYa();
@@ -410,30 +451,32 @@ int main()
 				break;
 			
 			case DEBUG_DATA_SCREEN:
-//				if(robot.lidar.LSI.Result == LIDAR_GRAB_SUCESS)
+//			if(draw)enemyFind(robot.lidar.LSI, 5, 5);
+//					for(int i = 0; i < robot.lidar.LSI.OneCriclePointNum; i++)
 //				{
-					for(int i = 0; i < robot.lidar.LSI.OneCriclePointNum; i++)
-				{
-					int L = realDistance(robot.lidar.LSI.OneCriclePoint[i].Distance) * 32/2100;
-					int xTmp = (L)*sin((robot.lidar.LSI.OneCriclePoint[i].Angle-90)/57.3) + 64;
-					int yTmp = -(L)*cos((robot.lidar.LSI.OneCriclePoint[i].Angle-90)/57.3) + 32;
-					if(xTmp >= 0 && xTmp < 128 && yTmp >= 0 && yTmp < 64)
-					{
-						robot.display.ssd1306.drawPixel(xTmp, yTmp, 1);
-					}
-					
-				}
-				//robot.lidar.LSI.Result = LIDAR_GRAB_ING;
-				//}
-				//robot.display.clear();
-				//robot.display.print(cycleTime, 0, 0);
-				
-				saveLidar++;
-				if(saveLidar == 50)
-				{
-					robot.display.clear();
-					saveLidar = 0;
-				}
+//					if(robot.lidar.LSI.OneCriclePoint[i].Distance != 228)
+//					{
+//						int L = realDistance(robot.lidar.LSI.OneCriclePoint[i].Distance) * 32/2100;
+//						int xTmp = (L)*sin((robot.lidar.LSI.OneCriclePoint[i].Angle-90)/57.3) + 64;
+//						int yTmp = -(L)*cos((robot.lidar.LSI.OneCriclePoint[i].Angle-90)/57.3) + 32;
+//						if(xTmp >= 0 && xTmp < 128 && yTmp >= 0 && yTmp < 64)
+//						{
+//							robot.display.ssd1306.drawPixel(xTmp, yTmp, 1);
+//						}
+//					}
+//					
+//				}
+//				//robot.lidar.LSI.Result = LIDAR_GRAB_ING;
+//				//}
+//				//robot.display.clear();
+//				//robot.display.print(cycleTime, 0, 0);
+//				
+//				saveLidar++;
+//				if(saveLidar == 2)
+//				{
+//					robot.display.clear();
+//					saveLidar = 0;
+//				}
 //					robot.display.print("Ball x: ", 2, 1);
 //					robot.display.print(func.camBall.pos.X, 2, 11);
 //					robot.display.print("Ball y: ", 3, 1);
@@ -490,11 +533,11 @@ int main()
 //				robot.display.print("GZ: ", 3, 10);
 //				robot.display.print(robot.imu.getZg(), 3, 14);
 //				//robot.display.print(robot.ADC_2.read(BALL_SENSOR), 2, 1);
-				//robot.display.print("x: ", 2, 1);
-				//robot.display.print(robot.getPos().X, 2, 9);
-////				//robot.display.print(robot.camera.yellow.X, 2, 9);
-//				robot.display.print("y: ", 3, 1);
-//				robot.display.print(robot.getPos().Y, 3, 9);
+				robot.display.print("x: ", 2, 1);
+				robot.display.print(robot.getPos().X, 2, 9);
+//				//robot.display.print(robot.camera.yellow.X, 2, 9);
+				robot.display.print("y: ", 3, 1);
+				robot.display.print(robot.getPos().Y, 3, 9);
 ////				robot.display.print("Ball sens: ", 3, 1);
 ////				robot.display.print(robot.ballSensor.getSensorValue(), 3, 14);
 				//robot.display.print(robot.camera.yellow.Y, 3, 9);
@@ -544,10 +587,10 @@ int main()
 		}
 		
 		robot.display.show();
-		if(g_state != DEBUG_DATA_SCREEN)
-		{
+//		if(g_state != DEBUG_DATA_SCREEN)
+//		{
 			robot.display.clear();
-		}
+//		}
 	}
 }
 

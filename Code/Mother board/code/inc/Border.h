@@ -30,7 +30,7 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm)
     {
         double error = double(pos.X - _start)/double(_end - _start);				
         double p = (error * 10.0);
-        double d = 0* (error - errorOldX) * 10.0;
+        double d = (error - errorOldX) * 10.0;
 				errorOldX = error;
 				double u = abs(double(p + d));
 				

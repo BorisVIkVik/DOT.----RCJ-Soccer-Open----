@@ -23,10 +23,10 @@
 
 
 
-Border b1(0.3, 'x', '-', -40, -50, -90, 90);
-Border b2(0.3, 'x', '+', 40, 50, -90, 90);
-Border b3(0.3, 'y', '-', -45, -55, -30, 30);
-Border b4(0.3, 'y', '+', 45, 55, -30, 30);
+Border b1(0.3, 'x', '-', -45, -55, -90, 90);
+Border b2(0.3, 'x', '+', 45, 55, -90, 90);
+Border b3(0.3, 'y', '-', -40, -55, -30, 30);
+Border b4(0.3, 'y', '+', 40, 55, -30, 30);
 
 //Border b5('x', '+', -20, -15, -90, -60);
 //Border b6('x', '-', 20, 15, -90, -60);
@@ -655,15 +655,15 @@ class Functional:  public BaseFunctional
 					
 						break;
 					case STATE_ROTATE:
-						acceleration = 0.6;
+						acceleration = 1;
 						followDots = true;
 						dribblerSpeed = -400;
-						speedRot = 50;
-						angleToGo = angToGoalBlue + (side == 'r' ? 20 : -20);
+						speedRot = 60;
+						angleToGo = angToGoalBlue + (side == 'r' ? 10 : -10);
 						res._x = 0;
 						res._y = 0;
 						res._mod = 0;
-						//getRobotClass()->kicker.initCharge();
+						getRobotClass()->kicker.initCharge();
 						double angleTurn = angleToGo - getRobotClass()->imu.getAngle();
 						adduction(angleTurn);
 						setPin(LED_3, 1);
@@ -691,7 +691,7 @@ class Functional:  public BaseFunctional
 						dribblerSpeed = 400;
 						setPin(LED_3, 0);
 						followDots = false;
-						//getRobotClass()->kicker.kick(true, true);
+						getRobotClass()->kicker.kick(true, true);
 						angleToGo = angToGoalBlue;
 						state = STATE_STOP;
 						break;
@@ -886,7 +886,7 @@ class Functional:  public BaseFunctional
 				getRobotClass()->motorDrivers.enableMotor(4);
 				if((abs(double(camBall.pos.X)) < 50.0 && abs(double(camBall.pos.Y)) < 50.0))
 				{
-					getRobotClass()->motorDrivers.setMotor(4, 300);
+					getRobotClass()->motorDrivers.setMotor(4, 500);
 				}
 				else
 				{
