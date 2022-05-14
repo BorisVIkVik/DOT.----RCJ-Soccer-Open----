@@ -117,8 +117,8 @@ EXPOSURE_TIME_SCALE = 0.15
 
 
 
-threshold_blue =    (31, 64, 22, 44, 31, 76) #yellow (42, 90, 3, 117, 30, 117)
-threshold_yellow =  (12, 21, 6, 34, -47, -18) #blue (7, 27, 8, 40, -54, -15)
+threshold_blue =    (5, 15, 4, 27, -41, -17)#yellow (42, 90, 3, 117, 30, 117)
+threshold_yellow =  (31, 64, 22, 44, 31, 76)#(12, 21, 6, 34, -47, -18) #blue (7, 27, 8, 40, -54, -15)
 threshold_ball =    (54, 69, 55, 75, 23, 79)#(55, 100, 53, 127, -9, 127)#(50, 65, 49, 127, 23, 127)
 
 
@@ -230,6 +230,7 @@ while(True):
         #print("YLX: " + str(int(realDistance(GLXPixel, goalCoords))) + " YLY: " + str(int(realDistance(GLYPixel, goalCoords))), end = ' ')
         #print(GLYPixel)
         angle = atan2(GLYPixel, GLXPixel)
+        img.draw_cross(centerX,centerY, (0, 255, 0))
         #angle = (angle*57)//1
         angleYellow = angle
         Y_X_CM = int(distanceYellow * cos(angleYellow))
@@ -298,6 +299,7 @@ while(True):
         print("BX Pixel: " + str(GLXPixel) + " BY Pixel: " + str(GLYPixel) + " DistanceBlue: " + str(distanceBlue))
         angle = atan2(GLYPixel, GLXPixel)
         #angle = (angle*57)//1
+        img.draw_cross(centerX,centerY, (0, 255, 0))
         angleBlue = angle
 
         BL_X_CM = int(distanceBlue * cos(angleBlue))

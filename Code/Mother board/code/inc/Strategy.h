@@ -515,6 +515,12 @@ class Functional:  public BaseFunctional
 				
 				if(millis() - attackerStopTime > 500)
 				{
+					if(side == 'r')
+						getRobotClass()->kicker.kick(false, true);
+					else
+					{
+						getRobotClass()->kicker.kick(true, false);
+					}
 					attackerStop = true;
 					followDots = false;
 					state = STATE_STOP;
@@ -560,7 +566,7 @@ class Functional:  public BaseFunctional
 						}
 						else
 						{
-							res = Parabola(ball.globalPos, getRobotClass()->getPos(), 1.0);
+							res = Parabola(ball.globalPos, getRobotClass()->getPos(), 0.95);
 							dribblerSpeed = 0;
 						}
 						
@@ -714,7 +720,7 @@ class Functional:  public BaseFunctional
 //							
 //						}
 						
-						angleToGo = angleToGo = 180 + angToGoalBlue - (side == 'r' ? 40 : -40);
+						angleToGo = angleToGo = 180 + angToGoalBlue - (side == 'r' ? 35 : -35);
 						if(getRobotClass()->ballSensor.getValue())
 						{
 							lost = millis();
@@ -749,8 +755,8 @@ class Functional:  public BaseFunctional
 							getRobotClass()->kicker.kick(true, false);
 						}
 					
-						angleToGo = 180 + angToGoalBlue;
-						if(millis() - str1Timeout > 10000)
+						//angleToGo = 180 + angToGoalBlue;
+						if(millis() - str1Timeout > 5000)
 						{
 							state = STATE_STOP;
 						}
@@ -958,7 +964,7 @@ class Functional:  public BaseFunctional
 					move2(genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 1.3, 'g'), 0, 4);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
 				else
 				{
-					move2(genVTMGlobalPoint(make_pair(0, -60), getRobotClass()->getPos(), 1.3, 'g'), 0, 4);
+					move2(genVTMGlobalPoint(make_pair(0, -70), getRobotClass()->getPos(), 1.3, 'g'), 0, 4);
 					strikeTime = millis();
 					strike = false;
 					wasNotSeen = true;
