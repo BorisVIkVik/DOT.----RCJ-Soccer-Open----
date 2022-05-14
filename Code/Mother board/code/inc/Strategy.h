@@ -23,8 +23,8 @@
 
 
 
-Border b1(0.3, 'x', '-', -45, -50, -90, 90);
-Border b2(0.3, 'x', '+', 45, 50, -90, 90);
+Border b1(0.3, 'x', '-', -40, -45, -90, 90);
+Border b2(0.3, 'x', '+', 40, 45, -90, 90);
 Border b3(0.3, 'y', '-', -45, -55, -30, 30);
 Border b4(0.3, 'y', '+', 40, 50, -30, 30);
 
@@ -39,7 +39,7 @@ Border b4(0.3, 'y', '+', 40, 50, -30, 30);
 //Border b12('y', '+', 80, 90, 20, 35);
 
 //pt goalPoints[6] = {{70, -97}, {70, -89}, {55, -74}, {-55, -74}, {-70, -89}, {-70, -97}};
-segment goalLines[5] = {{0, 1, 65, -25, 25, 0, 0}, {2, 5, 275, 25, 50, 0, 0}, {-2, 5, 275, -50, -25, 0, 0}, {1, 0, 50, 0, 0, -90, -75}, {1, 0, -50, 0, 0, -90, -75}};
+segment goalLines[5] = {{0, 1, 70, -25, 25, 0, 0}, {2, 5, 300, 25, 50, 0, 0}, {-2, 5, 300, -50, -25, 0, 0}, {1, 0, 50, 0, 0, -85, -80}, {1, 0, -50, 0, 0, -85, -80}};
 
 //{{0, 1, 40, -18, 18, 0, 0}, {2, 5, 164, 18, 30, 0, 0}, {-2, 5, 164, -30, -18, 0, 0}, {1, 0, 30, 0, 0, -75, -44.8}, {1, 0, -30, 0, 0, -75, -44.8}};
 
@@ -935,7 +935,7 @@ class Functional:  public BaseFunctional
 				
 				toGo.x = ball.globalPos.X;
 				toGo.y = ball.globalPos.Y;
-				if(millis() - strikeTime > 5000 || !checkBounds(make_pair(-30, -65), make_pair(30, 0), getRobotClass()->getPos()))
+				if(millis() - strikeTime > 5000 || !checkBounds(make_pair(-30, -75), make_pair(30, 0), getRobotClass()->getPos()))
 				{
 					strikeTime = millis();
 					strike = false;
@@ -945,7 +945,7 @@ class Functional:  public BaseFunctional
 			{
 				longTimeNoSee = millis();
 				getRobotClass()->motorDrivers.enableMotor(4);
-				if((abs(double(camBall.pos.X)) < 50.0 && abs(double(camBall.pos.Y)) < 50.0))
+				if((abs(double(camBall.pos.X)) < 50.0 && abs(double(camBall.pos.Y)) < 50.0) && getRobotClass()->getPos().Y < ball.globalPos.Y)
 				{
 					getRobotClass()->motorDrivers.setMotor(4, 500);
 				}

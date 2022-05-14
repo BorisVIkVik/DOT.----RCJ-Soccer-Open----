@@ -35,7 +35,7 @@ Camera::Camera()
 	blue.Y = 0;
 	yellow.X = 0;
 	yellow.Y = 0;
-	lastRecieve = millis() - 200;
+	lastRecieve = millis() - 1000;
 }
 
 void Camera::init(unsigned int spi, uint16_t ss)
@@ -103,7 +103,7 @@ unsigned int Camera::update()
 		error |= CAMERA_DATA_ERROR;
 	}
 	
-	if(millis() - lastRecieve > 200)
+	if(millis() - lastRecieve > 1000)
 		error |= CAMERA_CONNECTION_ERROR;
 	
 	return error;
