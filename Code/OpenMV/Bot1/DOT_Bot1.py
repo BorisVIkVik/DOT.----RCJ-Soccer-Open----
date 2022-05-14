@@ -238,7 +238,7 @@ while(True):
         #print((GLXPixel + 139) // 2)
         yGoalX = (Y_X_CM + 240) // 2
         yGoalY = (Y_Y_CM + 240) // 2
-        print("YX: " + str(Y_X_CM) + " YY: " + str(Y_Y_CM), end = ' ')
+       # print("YX: " + str(Y_X_CM) + " YY: " + str(Y_Y_CM), end = ' ')
     except: pass
 #----------------------------------------------
 
@@ -305,7 +305,7 @@ while(True):
         #print((GLXPixel + 139) // 2)
         bGoalX = (BL_X_CM + 240) // 2
         bGoalY = (BL_Y_CM + 240) // 2
-        print("BX: " + str(BL_X_CM) + " BY: " + str(BL_Y_CM), end = ' ')
+      #  print("BX: " + str(BL_X_CM) + " BY: " + str(BL_Y_CM), end = ' ')
 
     except: pass
 #----------------------------------------------
@@ -356,14 +356,14 @@ while(True):
         #print(GLXPixel)
         ballX = (B_X_CM + 240) // 2
         ballY = (B_Y_CM + 240) // 2
-        print("BAllx: " + str(B_X_CM) + " BallY: " + str(B_Y_CM), end = ' ')
+       # print("BAllx: " + str(B_X_CM) + " BallY: " + str(B_Y_CM), end = ' ')
 
 
     except: pass
 
 
     objects = (countBall > 0) + ((countYellow > 0) << 1) + ((countBlue > 0) << 2)
-    print(objects)
+    #print(objects)
     spi = SPI(2, SPI.SLAVE, polarity=0, phase=0)
     buf[0] = 0xBB
     buf[1] = 7 #msg_length
@@ -381,4 +381,5 @@ while(True):
     img.draw_cross(cX, cY, (0,255,0))
     img.draw_circle(cX,cY, 25)
     #print(objects)
-    print("Yellow: " + str(distanceYellow) + " BLue: " + str(distanceBlue))
+    #print("Yellow: " + str(distanceYellow) + " BLue: " + str(distanceBlue))
+    print(clock.fps())

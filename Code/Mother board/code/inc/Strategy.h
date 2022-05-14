@@ -545,7 +545,6 @@ class Functional:  public BaseFunctional
 						res._y = 0;
 						res._mod = 0;
 						dribblerSpeed = 0;
-						
 					
 						if(!attackerStop)
 						{
@@ -757,9 +756,8 @@ class Functional:  public BaseFunctional
 						}
 					
 						//angleToGo = 180 + angToGoalBlue;
-						if(millis() - str1Timeout > 1500)
+						if(millis() - str1Timeout > 4000)
 						{
-							followDots = false;
 							state = STATE_STOP;
 						}
 						break;
@@ -964,19 +962,19 @@ class Functional:  public BaseFunctional
 				double angToBall = atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
 				if(!goalkeeperStop)
 				{
-					VectorToMove res = genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 1.3, 'g');
-					if(res._y > 0)
-						res._mod = 0.7;
-					move2(res, 0, 4);
-					//move2(genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 1.3, 'g'), 0, 4);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
+//					VectorToMove res = genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 1.3, 'g');
+//					if(res._y > 0)
+//						res._mod = 0.7;
+//					move2(res, 0, 4);
+					move2(genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 1.3, 'g'), 0, 4);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
 				}
 				else
 				{
-					VectorToMove res = genVTMGlobalPoint(make_pair(0, -70), getRobotClass()->getPos(), 1.3, 'g');
-					if(res._y > 0)
-						res._mod = 0.7;
-					move2(res, 0, 4);
-					//move2(genVTMGlobalPoint(make_pair(0, -70), getRobotClass()->getPos(), 1.3, 'g'), 0, 4);
+//					VectorToMove res = genVTMGlobalPoint(make_pair(0, -70), getRobotClass()->getPos(), 1.3, 'g'); //posmotret kosyk s imu
+//					if(res._y > 0)
+//						res._mod = 0.7;
+//					move2(res, 0, 4);
+					move2(genVTMGlobalPoint(make_pair(0, -70), getRobotClass()->getPos(), 1.3, 'g'), 0, 4);
 					strikeTime = millis();
 					strike = false;
 					wasNotSeen = true;
