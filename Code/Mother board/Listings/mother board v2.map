@@ -350,16 +350,17 @@ Section Cross References
     main.o(i._ZN5Robot8initLEDsEv) refers to main.o(i._Z6setPintb) for setPin(unsigned short, bool)
     main.o(i._ZN5Robot9logErrorsEv) refers to main.o(i._ZN7Display5printEjiii) for Display::print(unsigned, int, int, int)
     main.o(i._ZN5Robot9logErrorsEv) refers to main.o(.data) for .data
-    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRd) refers to dflt_clz.o(x$fpl$dflt) for __aeabi_i2d
-    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRd) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
-    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRd) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
-    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRd) refers to daddsub_clz.o(x$fpl$dsub) for __aeabi_dsub
-    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRd) refers to daddsub_clz.o(x$fpl$dadd) for __aeabi_dadd
-    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRd) refers to main.o(i._ZSt3absd) for std::abs(double)
-    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRd) refers to drleqf.o(x$fpl$drleqf) for __aeabi_cdrcmple
-    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRd) refers to dleqf.o(x$fpl$dleqf) for __aeabi_cdcmple
-    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRd) refers to daddsub_clz.o(x$fpl$drsb) for __aeabi_drsub
-    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRd) refers to deqf.o(x$fpl$deqf) for __aeabi_cdcmpeq
+    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRdi) refers to dflt_clz.o(x$fpl$dflt) for __aeabi_i2d
+    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRdi) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRdi) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRdi) refers to daddsub_clz.o(x$fpl$dsub) for __aeabi_dsub
+    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRdi) refers to daddsub_clz.o(x$fpl$dadd) for __aeabi_dadd
+    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRdi) refers to main.o(i._ZSt3absd) for std::abs(double)
+    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRdi) refers to drleqf.o(x$fpl$drleqf) for __aeabi_cdrcmple
+    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRdi) refers to dleqf.o(x$fpl$dleqf) for __aeabi_cdcmple
+    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRdi) refers to daddsub_clz.o(x$fpl$drsb) for __aeabi_drsub
+    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRdi) refers to main.o(i._Z6setPintb) for setPin(unsigned short, bool)
+    main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRdi) refers to deqf.o(x$fpl$deqf) for __aeabi_cdcmpeq
     main.o(i._ZN6Camera4initEjt) refers to main.o(i._Z7initPinthhh) for initPin(unsigned short, unsigned char, unsigned char, unsigned char)
     main.o(i._ZN6Camera4initEjt) refers to main.o(i._Z6setPintb) for setPin(unsigned short, bool)
     main.o(i._ZN6Camera6updateEv) refers to stm32f407_sysfunc.o(i._Z6millisv) for millis()
@@ -554,9 +555,9 @@ Section Cross References
     main.o(.ARM.exidx) refers to main.o(i._ZN12MotorDrivers12disableMotorEi) for i._ZN12MotorDrivers12disableMotorEi
     main.o(.ARM.exidx) refers to main.o(i._ZN12MotorDrivers9setMotorsEiiii) for i._ZN12MotorDrivers9setMotorsEiiii
     main.o(.ARM.exidx) refers to main.o(i._ZN12MotorDrivers9setMotorsEiiiii) for i._ZN12MotorDrivers9setMotorsEiiiii
-    main.o(.ARM.exidx) refers to main.o(i._ZN14BaseFunctional17genVTMGlobalPointESt4pairIssES1_dc) for i._ZN14BaseFunctional17genVTMGlobalPointESt4pairIssES1_dc
     main.o(.ARM.exidx) refers to main.o(i._ZN5Robot4moveEdddddd) for i._ZN5Robot4moveEdddddd
     main.o(.ARM.exidx) refers to main.o(i._ZN14BaseFunctional5move2E12VectorToMoveddt) for i._ZN14BaseFunctional5move2E12VectorToMoveddt
+    main.o(.ARM.exidx) refers to main.o(i._ZN14BaseFunctional17genVTMGlobalPointESt4pairIssES1_dc) for i._ZN14BaseFunctional17genVTMGlobalPointESt4pairIssES1_dc
     main.o(.ARM.exidx) refers to main.o(i._ZN14BaseFunctional11checkBoundsESt4pairIddES1_S1_) for i._ZN14BaseFunctional11checkBoundsESt4pairIddES1_S1_
     main.o(.ARM.exidx) refers to main.o(i._ZN9PairSaver4incPERh) for i._ZN9PairSaver4incPERh
     main.o(.ARM.exidx) refers to main.o(i._ZN9PairSaver3addESt4pairIddEj) for i._ZN9PairSaver3addESt4pairIddEj
@@ -623,7 +624,7 @@ Section Cross References
     main.o(.ARM.exidx) refers to main.o(i._ZN14BaseFunctional23trajectoryFollowingDotsERsdcd) for i._ZN14BaseFunctional23trajectoryFollowingDotsERsdcd
     main.o(.ARM.exidx) refers to main.o(i._ZN14BaseFunctional21findStartOfTrajectoryESt4pairIssE) for i._ZN14BaseFunctional21findStartOfTrajectoryESt4pairIssE
     main.o(.ARM.exidx) refers to main.o(i._ZN14BaseFunctional8ParabolaESt4pairIssES1_d) for i._ZN14BaseFunctional8ParabolaESt4pairIssES1_d
-    main.o(.ARM.exidx) refers to main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRd) for i._ZN6Border7dempherESt4pairIssER12VectorToMoveRd
+    main.o(.ARM.exidx) refers to main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRdi) for i._ZN6Border7dempherESt4pairIssER12VectorToMoveRdi
     main.o(.ARM.exidx) refers to main.o(i.__sti___8_main_cpp_48fb3d7c) for i.__sti___8_main_cpp_48fb3d7c
     main.o(.init_array) refers to main.o(i.__sti___8_main_cpp_48fb3d7c) for __sti___8_main_cpp_48fb3d7c
     main.o(.init_array) refers to init_aeabi.o(.text) for __cpp_initialize__aeabi_
@@ -1890,7 +1891,7 @@ Removing Unused input sections from the image.
     Removing main.o(i._ZN3IMU5getZgEv), (6 bytes).
     Removing main.o(i._ZN3IMU7turnOffEv), (34 bytes).
     Removing main.o(i._ZN5Robot13swithPowerOffEv), (8 bytes).
-    Removing main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRd), (1212 bytes).
+    Removing main.o(i._ZN6Border7dempherESt4pairIssER12VectorToMoveRdi), (1296 bytes).
     Removing main.o(i._ZN6Driver11attemptTempEv), (16 bytes).
     Removing main.o(i._ZN6Driver14attemptVoltageEv), (16 bytes).
     Removing main.o(i._ZN6Driver15attemptVelocityEv), (16 bytes).
@@ -2271,7 +2272,7 @@ Removing Unused input sections from the image.
     Removing ssd1306.o(.constdata__ZTS7SSD1306), (9 bytes).
     Removing mpu9250.o(.ARM.exidx), (8 bytes).
 
-424 unused section(s) (total 11557 bytes) removed from the image.
+424 unused section(s) (total 11641 bytes) removed from the image.
 
 ==============================================================================
 
@@ -2645,273 +2646,273 @@ Image Symbol Table
     i._ZN10BallSensor6updateEv               0x080022d6   Section        0  main.o(i._ZN10BallSensor6updateEv)
     i._ZN10BallSensor8getValueEv             0x08002314   Section        0  main.o(i._ZN10BallSensor8getValueEv)
     i._ZN10Functional10goalkeeperEv          0x08002318   Section        0  main.o(i._ZN10Functional10goalkeeperEv)
-    i._ZN10Functional7posCalcEv              0x08002b18   Section        0  main.o(i._ZN10Functional7posCalcEv)
-    i._ZN10FunctionalC1EP5Robot              0x08002d5c   Section        0  main.o(i._ZN10FunctionalC1EP5Robot)
-    i._ZN11FieldObject6updateESt4pairIddES1_jt 0x08002e94   Section        0  main.o(i._ZN11FieldObject6updateESt4pairIddES1_jt)
-    i._ZN11FieldObjectC1Ev                   0x08002f8c   Section        0  main.o(i._ZN11FieldObjectC1Ev)
-    i._ZN11LineSensors13turnOnSensorsEv      0x0800300c   Section        0  main.o(i._ZN11LineSensors13turnOnSensorsEv)
-    i._ZN11LineSensors14turnOffSensorsEv     0x08003012   Section        0  main.o(i._ZN11LineSensors14turnOffSensorsEv)
-    i._ZN11LineSensors18endLineCalibrationEv 0x08003018   Section        0  main.o(i._ZN11LineSensors18endLineCalibrationEv)
-    i._ZN11LineSensors20beginLineCalibrationEv 0x0800301e   Section        0  main.o(i._ZN11LineSensors20beginLineCalibrationEv)
-    i._ZN11LineSensors4initEjt               0x08003024   Section        0  main.o(i._ZN11LineSensors4initEjt)
-    i._ZN11LineSensors6updateEv              0x08003048   Section        0  main.o(i._ZN11LineSensors6updateEv)
-    i._ZN11LineSensors7getLineEv             0x0800307c   Section        0  main.o(i._ZN11LineSensors7getLineEv)
-    i._ZN12CameraObjectC1Ev                  0x08003080   Section        0  main.o(i._ZN12CameraObjectC1Ev)
-    i._ZN12KickerModule10initChargeEv        0x080030ac   Section        0  main.o(i._ZN12KickerModule10initChargeEv)
-    i._ZN12KickerModule4initEtttt            0x080030b4   Section        0  main.o(i._ZN12KickerModule4initEtttt)
-    i._ZN12KickerModule4kickEbb              0x0800312e   Section        0  main.o(i._ZN12KickerModule4kickEbb)
-    i._ZN12KickerModule6updateEv             0x080031c6   Section        0  main.o(i._ZN12KickerModule6updateEv)
-    i._ZN12KickerModule9isChargedEv          0x080031da   Section        0  main.o(i._ZN12KickerModule9isChargedEv)
-    i._ZN12MotorDrivers11enableMotorEi       0x080031e8   Section        0  main.o(i._ZN12MotorDrivers11enableMotorEi)
-    i._ZN12MotorDrivers11setDribblerEi       0x080031f6   Section        0  main.o(i._ZN12MotorDrivers11setDribblerEi)
-    i._ZN12MotorDrivers12disableMotorEi      0x080031fe   Section        0  main.o(i._ZN12MotorDrivers12disableMotorEi)
-    i._ZN12MotorDrivers12enableMotorsEv      0x0800320c   Section        0  main.o(i._ZN12MotorDrivers12enableMotorsEv)
-    i._ZN12MotorDrivers13disableMotorsEv     0x08003228   Section        0  main.o(i._ZN12MotorDrivers13disableMotorsEv)
-    i._ZN12MotorDrivers14attemptCurrentEv    0x08003244   Section        0  main.o(i._ZN12MotorDrivers14attemptCurrentEv)
-    i._ZN12MotorDrivers4initEjhjhjhjhjh      0x08003260   Section        0  main.o(i._ZN12MotorDrivers4initEjhjhjhjhjh)
-    i._ZN12MotorDrivers6updateEv             0x080032f0   Section        0  main.o(i._ZN12MotorDrivers6updateEv)
-    i._ZN12MotorDrivers8setMotorEii          0x0800343c   Section        0  main.o(i._ZN12MotorDrivers8setMotorEii)
-    i._ZN12MotorDrivers9setMotorsEiiii       0x08003466   Section        0  main.o(i._ZN12MotorDrivers9setMotorsEiiii)
-    i._ZN12MotorDrivers9setMotorsEiiiii      0x0800349e   Section        0  main.o(i._ZN12MotorDrivers9setMotorsEiiiii)
-    i._ZN14BaseFunctional11checkBoundsESt4pairIddES1_S1_ 0x080034bc   Section        0  main.o(i._ZN14BaseFunctional11checkBoundsESt4pairIddES1_S1_)
-    i._ZN14BaseFunctional13getRobotClassEv   0x08003524   Section        0  main.o(i._ZN14BaseFunctional13getRobotClassEv)
-    i._ZN14BaseFunctional17genVTMGlobalPointESt4pairIssES1_dc 0x08003528   Section        0  main.o(i._ZN14BaseFunctional17genVTMGlobalPointESt4pairIssES1_dc)
-    i._ZN14BaseFunctional5move2E12VectorToMoveddt 0x08003680   Section        0  main.o(i._ZN14BaseFunctional5move2E12VectorToMoveddt)
-    i._ZN3IMU12setZeroAngleEv                0x08003714   Section        0  main.o(i._ZN3IMU12setZeroAngleEv)
-    i._ZN3IMU20updateAnglesFromFIFOEv        0x08003728   Section        0  main.o(i._ZN3IMU20updateAnglesFromFIFOEv)
-    i._ZN3IMU4initEjtt                       0x08003730   Section        0  main.o(i._ZN3IMU4initEjtt)
-    i._ZN3IMU6turnOnEv                       0x08003784   Section        0  main.o(i._ZN3IMU6turnOnEv)
-    i._ZN3IMU6updateEv                       0x080037a8   Section        0  main.o(i._ZN3IMU6updateEv)
-    i._ZN3IMU8getAngleEv                     0x08003850   Section        0  main.o(i._ZN3IMU8getAngleEv)
-    i._ZN3IMU9calibrateEj                    0x080038e4   Section        0  main.o(i._ZN3IMU9calibrateEj)
-    i._ZN5Robot10switch5vOnEv                0x080038ea   Section        0  main.o(i._ZN5Robot10switch5vOnEv)
-    i._ZN5Robot10updateMenuEv                0x080038f4   Section        0  main.o(i._ZN5Robot10updateMenuEv)
-    i._ZN5Robot11switch5vOffEv               0x08003a40   Section        0  main.o(i._ZN5Robot11switch5vOffEv)
-    i._ZN5Robot12handleErrorsEv              0x08003a48   Section        0  main.o(i._ZN5Robot12handleErrorsEv)
-    i._ZN5Robot12setPlayStateEb              0x08003a88   Section        0  main.o(i._ZN5Robot12setPlayStateEb)
-    i._ZN5Robot12swithPowerOnEv              0x08003ada   Section        0  main.o(i._ZN5Robot12swithPowerOnEv)
-    i._ZN5Robot13updateSelfPosESt4pairIddES1_ 0x08003ae4   Section        0  main.o(i._ZN5Robot13updateSelfPosESt4pairIddES1_)
-    i._ZN5Robot15changePlayStateEv           0x08003cbc   Section        0  main.o(i._ZN5Robot15changePlayStateEv)
-    i._ZN5Robot4getVEv                       0x08003cd2   Section        0  main.o(i._ZN5Robot4getVEv)
-    i._ZN5Robot4initEv                       0x08003cdc   Section        0  main.o(i._ZN5Robot4initEv)
-    i._ZN5Robot4moveEdddddd                  0x08003f68   Section        0  main.o(i._ZN5Robot4moveEdddddd)
-    i._ZN5Robot4waitEj                       0x080046b4   Section        0  main.o(i._ZN5Robot4waitEj)
-    i._ZN5Robot6getPosEv                     0x08004800   Section        0  main.o(i._ZN5Robot6getPosEv)
-    i._ZN5Robot8initLEDsEv                   0x0800480a   Section        0  main.o(i._ZN5Robot8initLEDsEv)
-    i._ZN5Robot9logErrorsEv                  0x0800484c   Section        0  main.o(i._ZN5Robot9logErrorsEv)
-    i._ZN5Robot9playStateEv                  0x0800486c   Section        0  main.o(i._ZN5Robot9playStateEv)
-    i._ZN5RobotC1Ev                          0x08004878   Section        0  main.o(i._ZN5RobotC1Ev)
-    i._ZN6BorderC1Edccssss                   0x08004908   Section        0  main.o(i._ZN6BorderC1Edccssss)
-    i._ZN6Camera4initEjt                     0x08004934   Section        0  main.o(i._ZN6Camera4initEjt)
-    i._ZN6Camera6updateEv                    0x08004954   Section        0  main.o(i._ZN6Camera6updateEv)
-    i._ZN6CameraC1Ev                         0x08004aaa   Section        0  main.o(i._ZN6CameraC1Ev)
-    i._ZN6Driver11setVelocityEi              0x08004ae8   Section        0  main.o(i._ZN6Driver11setVelocityEi)
-    i._ZN6Driver13updateFromRegEv            0x08004b8c   Section        0  main.o(i._ZN6Driver13updateFromRegEv)
-    i._ZN6Driver14attemptCurrentEv           0x08004bf0   Section        0  main.o(i._ZN6Driver14attemptCurrentEv)
-    i._ZN6Driver14enableFloatingEv           0x08004c00   Section        0  main.o(i._ZN6Driver14enableFloatingEv)
-    i._ZN6Driver15disableFloatingEv          0x08004c24   Section        0  main.o(i._ZN6Driver15disableFloatingEv)
-    i._ZN6Driver4initEcc                     0x08004c48   Section        0  main.o(i._ZN6Driver4initEcc)
-    i._ZN6Driver5writeEPccc                  0x08004c50   Section        0  main.o(i._ZN6Driver5writeEPccc)
-    i._ZN6DriverC1Ev                         0x08004cb8   Section        0  main.o(i._ZN6DriverC1Ev)
-    i._ZN6PL_ADC10waitUpdateEv               0x08004cec   Section        0  stm32f407_adc.o(i._ZN6PL_ADC10waitUpdateEv)
-    i._ZN6PL_ADC3addEa                       0x08004cf8   Section        0  stm32f407_adc.o(i._ZN6PL_ADC3addEa)
-    i._ZN6PL_ADC4initEv                      0x08004dbc   Section        0  stm32f407_adc.o(i._ZN6PL_ADC4initEv)
-    i._ZN6PL_ADC4readEab                     0x08004e38   Section        0  stm32f407_adc.o(i._ZN6PL_ADC4readEab)
-    i._ZN6PL_ADC5startEv                     0x08004e82   Section        0  stm32f407_adc.o(i._ZN6PL_ADC5startEv)
-    i._ZN6PL_ADCC1EP11ADC_TypeDef            0x08004e98   Section        0  stm32f407_adc.o(i._ZN6PL_ADCC1EP11ADC_TypeDef)
-    i._ZN6ScreenC1Ev                         0x08004ed8   Section        0  main.o(i._ZN6ScreenC1Ev)
-    i._ZN7Battery10getVoltageEv              0x08004efc   Section        0  main.o(i._ZN7Battery10getVoltageEv)
-    i._ZN7Battery13getPercentageEv           0x08004f02   Section        0  main.o(i._ZN7Battery13getPercentageEv)
-    i._ZN7Battery14getCellVoltageEi          0x08004f08   Section        0  main.o(i._ZN7Battery14getCellVoltageEi)
-    i._ZN7Battery4initEP6PL_ADCtttt          0x08004f14   Section        0  main.o(i._ZN7Battery4initEP6PL_ADCtttt)
-    i._ZN7Battery6updateEv                   0x08004fb0   Section        0  main.o(i._ZN7Battery6updateEv)
-    i._ZN7Battery8readCellEi                 0x0800510c   Section        0  main.o(i._ZN7Battery8readCellEi)
-    i._ZN7Buttons10setChangedEib             0x0800513a   Section        0  main.o(i._ZN7Buttons10setChangedEib)
-    i._ZN7Buttons12ButtonStructC1Ev          0x08005146   Section        0  main.o(i._ZN7Buttons12ButtonStructC1Ev)
-    i._ZN7Buttons4initEtttt                  0x08005150   Section        0  main.o(i._ZN7Buttons4initEtttt)
-    i._ZN7Buttons6enableEv                   0x08005184   Section        0  main.o(i._ZN7Buttons6enableEv)
-    i._ZN7Buttons6updateEv                   0x0800519a   Section        0  main.o(i._ZN7Buttons6updateEv)
-    i._ZN7Buttons7disableEv                  0x080051ce   Section        0  main.o(i._ZN7Buttons7disableEv)
-    i._ZN7Buttons9isChangedEib               0x080051e4   Section        0  main.o(i._ZN7Buttons9isChangedEib)
-    i._ZN7Buttons9isPressedEi                0x08005202   Section        0  main.o(i._ZN7Buttons9isPressedEi)
-    i._ZN7CommandC1Ev                        0x0800520e   Section        0  main.o(i._ZN7CommandC1Ev)
-    i._ZN7Display11addToScreenE7Command      0x08005214   Section        0  main.o(i._ZN7Display11addToScreenE7Command)
-    i._ZN7Display5printEPcii                 0x0800524c   Section        0  main.o(i._ZN7Display5printEPcii)
-    i._ZN7Display5printEdiii                 0x08005250   Section        0  main.o(i._ZN7Display5printEdiii)
-    i._ZN7Display5printEiiii                 0x08005260   Section        0  main.o(i._ZN7Display5printEiiii)
-    i._ZN7Display5printEjiii                 0x08005270   Section        0  main.o(i._ZN7Display5printEjiii)
-    i._ZN7Display6addEscE7Command            0x08005280   Section        0  main.o(i._ZN7Display6addEscE7Command)
-    i._ZN7SSD130615ssd1306_commandEh         0x080052ae   Section        0  ssd1306.o(i._ZN7SSD130615ssd1306_commandEh)
-    i._ZN7SSD13065beginEhb                   0x080052e2   Section        0  ssd1306.o(i._ZN7SSD13065beginEhb)
-    i._ZN7SSD13065clearEv                    0x08005458   Section        0  ssd1306.o(i._ZN7SSD13065clearEv)
-    i._ZN7SSD13066invertEh                   0x08005468   Section        0  ssd1306.o(i._ZN7SSD13066invertEh)
-    i._ZN7SSD13067displayEPh                 0x08005478   Section        0  ssd1306.o(i._ZN7SSD13067displayEPh)
-    i._ZN7SSD13067displayEv                  0x080054ec   Section        0  ssd1306.o(i._ZN7SSD13067displayEv)
-    i._ZN7SSD13068switchOnEv                 0x08005564   Section        0  ssd1306.o(i._ZN7SSD13068switchOnEv)
-    i._ZN7SSD13069drawPixelEsst              0x0800556c   Section        0  ssd1306.o(i._ZN7SSD13069drawPixelEsst)
-    i._ZN7SSD1306C1Ejtttttt                  0x08005610   Section        0  ssd1306.o(i._ZN7SSD1306C1Ejtttttt)
-    i._ZN7SSD1306C1Ev                        0x08005654   Section        0  ssd1306.o(i._ZN7SSD1306C1Ev)
-    i._ZN7mpu925012readFIFOsizeEv            0x08005660   Section        0  mpu9250.o(i._ZN7mpu925012readFIFOsizeEv)
-    i._ZN7mpu925012setAccOffsetEiii          0x0800568e   Section        0  mpu9250.o(i._ZN7mpu925012setAccOffsetEiii)
-    i._ZN7mpu925012updateAnglesEdb           0x080056e8   Section        0  mpu9250.o(i._ZN7mpu925012updateAnglesEdb)
-    i._ZN7mpu925013setGyroOffsetEiii         0x08005964   Section        0  mpu9250.o(i._ZN7mpu925013setGyroOffsetEiii)
-    i._ZN7mpu925020updateAnglesFromFIFOEv    0x080059b8   Section        0  mpu9250.o(i._ZN7mpu925020updateAnglesFromFIFOEv)
-    i._ZN7mpu925021MadgwickAHRSupdateIMUEd   0x080059f8   Section        0  mpu9250.o(i._ZN7mpu925021MadgwickAHRSupdateIMUEd)
-    i._ZN7mpu92507convertEth                 0x0800624c   Section        0  mpu9250.o(i._ZN7mpu92507convertEth)
-    i._ZN7mpu92507initIMUEji                 0x08006260   Section        0  mpu9250.o(i._ZN7mpu92507initIMUEji)
-    i._ZN7mpu92507invSqrtEf                  0x080064fc   Section        0  mpu9250.o(i._ZN7mpu92507invSqrtEf)
-    i._ZN7mpu92507readAccEv                  0x08006528   Section        0  mpu9250.o(i._ZN7mpu92507readAccEv)
-    i._ZN7mpu92507readRegEiPii               0x080065d4   Section        0  mpu9250.o(i._ZN7mpu92507readRegEiPii)
-    i._ZN7mpu92508readGyroEv                 0x0800662e   Section        0  mpu9250.o(i._ZN7mpu92508readGyroEv)
-    i._ZN7mpu92508writeRegEih                0x080066da   Section        0  mpu9250.o(i._ZN7mpu92508writeRegEih)
-    i._ZN7mpu92509calibrateEi                0x0800670c   Section        0  mpu9250.o(i._ZN7mpu92509calibrateEi)
-    i._ZN9PairSaver3addESt4pairIddEj         0x080067e8   Section        0  main.o(i._ZN9PairSaver3addESt4pairIddEj)
-    i._ZN9PairSaver3popEj                    0x08006830   Section        0  main.o(i._ZN9PairSaver3popEj)
-    i._ZN9PairSaver4incPERh                  0x08006880   Section        0  main.o(i._ZN9PairSaver4incPERh)
-    i._ZN9PairSaverC1Ev                      0x08006894   Section        0  main.o(i._ZN9PairSaverC1Ev)
-    i._ZSt3absd                              0x080068e8   Section        0  main.o(i._ZSt3absd)
-    i._ZdlPv                                 0x080068ec   Section        0  delete.o(i._ZdlPv)
-    i._Znaj                                  0x080068f4   Section        0  array_new.o(i._Znaj)
-    i._Znwj                                  0x080068fc   Section        0  new.o(i._Znwj)
-    i.__ARM_fpclassify                       0x08006924   Section        0  fpclassify.o(i.__ARM_fpclassify)
-    i.__aeabi_vec_ctor_nocookie_nodtor       0x08006954   Section        0  aeabi_vec_ctor_nocookie_nodtor.o(i.__aeabi_vec_ctor_nocookie_nodtor)
-    i.__cxa_guard_acquire                    0x08006978   Section        0  cxa_guard_acquire.o(i.__cxa_guard_acquire)
-    i.__hardfp_asin                          0x08006988   Section        0  asin.o(i.__hardfp_asin)
-    i.__hardfp_atan                          0x08006ce8   Section        0  atan.o(i.__hardfp_atan)
-    i.__hardfp_atan2                         0x08006fc0   Section        0  atan2.o(i.__hardfp_atan2)
-    i.__hardfp_ceilf                         0x080071b0   Section        0  ceilf.o(i.__hardfp_ceilf)
-    i.__hardfp_cos                           0x08007220   Section        0  cos.o(i.__hardfp_cos)
-    i.__hardfp_fabs                          0x080072e8   Section        0  fabs.o(i.__hardfp_fabs)
-    i.__hardfp_pow                           0x08007300   Section        0  pow.o(i.__hardfp_pow)
-    i.__hardfp_sin                           0x08007f50   Section        0  sin.o(i.__hardfp_sin)
-    i.__hardfp_sqrt                          0x08008018   Section        0  sqrt.o(i.__hardfp_sqrt)
-    i.__ieee754_rem_pio2                     0x08008098   Section        0  rred.o(i.__ieee754_rem_pio2)
-    i.__kernel_cos                           0x080084d0   Section        0  cos_i.o(i.__kernel_cos)
-    i.__kernel_poly                          0x08008640   Section        0  poly.o(i.__kernel_poly)
-    i.__kernel_sin                           0x08008738   Section        0  sin_i.o(i.__kernel_sin)
-    i.__mathlib_dbl_divzero                  0x08008868   Section        0  dunder.o(i.__mathlib_dbl_divzero)
-    i.__mathlib_dbl_infnan                   0x08008898   Section        0  dunder.o(i.__mathlib_dbl_infnan)
-    i.__mathlib_dbl_infnan2                  0x080088ac   Section        0  dunder.o(i.__mathlib_dbl_infnan2)
-    i.__mathlib_dbl_invalid                  0x080088c0   Section        0  dunder.o(i.__mathlib_dbl_invalid)
-    i.__mathlib_dbl_overflow                 0x080088e0   Section        0  dunder.o(i.__mathlib_dbl_overflow)
-    i.__mathlib_dbl_underflow                0x08008900   Section        0  dunder.o(i.__mathlib_dbl_underflow)
-    i.__sti___8_main_cpp_48fb3d7c            0x08008920   Section        0  main.o(i.__sti___8_main_cpp_48fb3d7c)
-    __sti___8_main_cpp_48fb3d7c              0x08008921   Thumb Code   162  main.o(i.__sti___8_main_cpp_48fb3d7c)
-    i.atan                                   0x080089d4   Section        0  atan.o(i.atan)
-    i.fabs                                   0x080089e4   Section        0  fabs.o(i.fabs)
-    i.main                                   0x080089fc   Section        0  main.o(i.main)
-    i.sqrt                                   0x08008e88   Section        0  sqrt.o(i.sqrt)
-    t._Z3sgnIdET_S0_                         0x08008ef8   Section        0  main.o(t._Z3sgnIdET_S0_)
-    t._Z4crc8IcET_PS0_i                      0x08008f58   Section        0  main.o(t._Z4crc8IcET_PS0_i)
-    t._Z4crc8IhET_PS0_i                      0x08008f8c   Section        0  main.o(t._Z4crc8IhET_PS0_i)
-    t._Z4crc8IiET_PS0_i                      0x08008fc0   Section        0  main.o(t._Z4crc8IiET_PS0_i)
-    t._Z4min2IdET_S0_S0_                     0x08008ff0   Section        0  main.o(t._Z4min2IdET_S0_S0_)
-    t._Z4min2IiET_S0_S0_                     0x0800902c   Section        0  main.o(t._Z4min2IiET_S0_S0_)
-    t._Z7toPrintIdEPcT_s                     0x08009034   Section        0  main.o(t._Z7toPrintIdEPcT_s)
-    t._Z7toPrintIiEPcT_s                     0x08009258   Section        0  main.o(t._Z7toPrintIiEPcT_s)
-    t._Z7toPrintIjEPcT_s                     0x0800936e   Section        0  main.o(t._Z7toPrintIjEPcT_s)
-    t._Z8printTmlIdEvR7SSD1306T_iii          0x08009476   Section        0  main.o(t._Z8printTmlIdEvR7SSD1306T_iii)
-    t._Z8printTmlIiEvR7SSD1306T_iii          0x0800949e   Section        0  main.o(t._Z8printTmlIiEvR7SSD1306T_iii)
-    t._Z8printTmlIjEvR7SSD1306T_iii          0x080094c8   Section        0  main.o(t._Z8printTmlIjEvR7SSD1306T_iii)
-    t._ZNSt4pairIS_IddEjEC1Ev                0x080094f2   Section        0  main.o(t._ZNSt4pairIS_IddEjEC1Ev)
-    t._ZNSt4pairIddEC1ERKS0_                 0x080094fe   Section        0  main.o(t._ZNSt4pairIddEC1ERKS0_)
-    t._ZNSt4pairIddEC1Ev                     0x08009510   Section        0  main.o(t._ZNSt4pairIddEC1Ev)
-    t._ZNSt4pairIddEC1IiiEERKS_IT_T0_E       0x08009528   Section        0  main.o(t._ZNSt4pairIddEC1IiiEERKS_IT_T0_E)
-    t._ZNSt4pairIiiEC1Ev                     0x08009546   Section        0  main.o(t._ZNSt4pairIiiEC1Ev)
-    t._ZNSt4pairIssEC1IddEERKS_IT_T0_E       0x0800954e   Section        0  main.o(t._ZNSt4pairIssEC1IddEERKS_IT_T0_E)
-    t._ZNSt4pairIssEC1IiiEERKS_IT_T0_E       0x08009574   Section        0  main.o(t._ZNSt4pairIssEC1IiiEERKS_IT_T0_E)
-    x$fpl$basic                              0x0800957e   Section       24  basic.o(x$fpl$basic)
-    $v0                                      0x0800957e   Number         0  basic.o(x$fpl$basic)
-    x$fpl$d2f                                0x08009598   Section       98  d2f.o(x$fpl$d2f)
-    $v0                                      0x08009598   Number         0  d2f.o(x$fpl$d2f)
-    x$fpl$dadd                               0x080095fc   Section      336  daddsub_clz.o(x$fpl$dadd)
-    $v0                                      0x080095fc   Number         0  daddsub_clz.o(x$fpl$dadd)
-    _dadd1                                   0x0800960d   Thumb Code     0  daddsub_clz.o(x$fpl$dadd)
-    x$fpl$dcheck1                            0x0800974c   Section       16  dcheck1.o(x$fpl$dcheck1)
-    $v0                                      0x0800974c   Number         0  dcheck1.o(x$fpl$dcheck1)
-    x$fpl$dcmpinf                            0x0800975c   Section       24  dcmpi.o(x$fpl$dcmpinf)
-    $v0                                      0x0800975c   Number         0  dcmpi.o(x$fpl$dcmpinf)
-    x$fpl$ddiv                               0x08009774   Section      688  ddiv.o(x$fpl$ddiv)
-    $v0                                      0x08009774   Number         0  ddiv.o(x$fpl$ddiv)
-    ddiv_entry                               0x0800977b   Thumb Code     0  ddiv.o(x$fpl$ddiv)
-    x$fpl$deqf                               0x08009a24   Section      120  deqf.o(x$fpl$deqf)
-    $v0                                      0x08009a24   Number         0  deqf.o(x$fpl$deqf)
-    x$fpl$dfix                               0x08009a9c   Section       94  dfix.o(x$fpl$dfix)
-    $v0                                      0x08009a9c   Number         0  dfix.o(x$fpl$dfix)
-    x$fpl$dfixu                              0x08009afc   Section       90  dfixu.o(x$fpl$dfixu)
-    $v0                                      0x08009afc   Number         0  dfixu.o(x$fpl$dfixu)
-    x$fpl$dflt                               0x08009b56   Section       46  dflt_clz.o(x$fpl$dflt)
-    $v0                                      0x08009b56   Number         0  dflt_clz.o(x$fpl$dflt)
-    x$fpl$dfltll                             0x08009b84   Section      162  dfltll_clz.o(x$fpl$dfltll)
-    $v0                                      0x08009b84   Number         0  dfltll_clz.o(x$fpl$dfltll)
-    x$fpl$dfltu                              0x08009c26   Section       38  dflt_clz.o(x$fpl$dfltu)
-    $v0                                      0x08009c26   Number         0  dflt_clz.o(x$fpl$dfltu)
-    x$fpl$dleqf                              0x08009c4c   Section      120  dleqf.o(x$fpl$dleqf)
-    $v0                                      0x08009c4c   Number         0  dleqf.o(x$fpl$dleqf)
-    x$fpl$dmul                               0x08009cc4   Section      340  dmul.o(x$fpl$dmul)
-    $v0                                      0x08009cc4   Number         0  dmul.o(x$fpl$dmul)
-    x$fpl$dnaninf                            0x08009e18   Section      156  dnaninf.o(x$fpl$dnaninf)
-    $v0                                      0x08009e18   Number         0  dnaninf.o(x$fpl$dnaninf)
-    x$fpl$dretinf                            0x08009eb4   Section       12  dretinf.o(x$fpl$dretinf)
-    $v0                                      0x08009eb4   Number         0  dretinf.o(x$fpl$dretinf)
-    x$fpl$drleqf                             0x08009ec0   Section      108  drleqf.o(x$fpl$drleqf)
-    $v0                                      0x08009ec0   Number         0  drleqf.o(x$fpl$drleqf)
-    x$fpl$drsb                               0x08009f2c   Section       22  daddsub_clz.o(x$fpl$drsb)
-    $v0                                      0x08009f2c   Number         0  daddsub_clz.o(x$fpl$drsb)
-    x$fpl$dsqrt                              0x08009f44   Section      408  dsqrt_umaal.o(x$fpl$dsqrt)
-    $v0                                      0x08009f44   Number         0  dsqrt_umaal.o(x$fpl$dsqrt)
-    x$fpl$dsub                               0x0800a0dc   Section      468  daddsub_clz.o(x$fpl$dsub)
-    $v0                                      0x0800a0dc   Number         0  daddsub_clz.o(x$fpl$dsub)
-    _dsub1                                   0x0800a0ed   Thumb Code     0  daddsub_clz.o(x$fpl$dsub)
-    x$fpl$f2d                                0x0800a2b0   Section       86  f2d.o(x$fpl$f2d)
-    $v0                                      0x0800a2b0   Number         0  f2d.o(x$fpl$f2d)
-    x$fpl$fnaninf                            0x0800a306   Section      140  fnaninf.o(x$fpl$fnaninf)
-    $v0                                      0x0800a306   Number         0  fnaninf.o(x$fpl$fnaninf)
-    x$fpl$fpinit                             0x0800a392   Section       10  fpinit.o(x$fpl$fpinit)
-    $v0                                      0x0800a392   Number         0  fpinit.o(x$fpl$fpinit)
-    x$fpl$fretinf                            0x0800a39c   Section       10  fretinf.o(x$fpl$fretinf)
-    $v0                                      0x0800a39c   Number         0  fretinf.o(x$fpl$fretinf)
-    x$fpl$llsfromd                           0x0800a3a8   Section      194  dfixll.o(x$fpl$llsfromd)
-    $v0                                      0x0800a3a8   Number         0  dfixll.o(x$fpl$llsfromd)
-    x$fpl$retnan                             0x0800a46a   Section      100  retnan.o(x$fpl$retnan)
-    $v0                                      0x0800a46a   Number         0  retnan.o(x$fpl$retnan)
-    x$fpl$scalbn                             0x0800a4ce   Section       92  scalbn.o(x$fpl$scalbn)
-    $v0                                      0x0800a4ce   Number         0  scalbn.o(x$fpl$scalbn)
-    x$fpl$trapveneer                         0x0800a52a   Section       48  trapv.o(x$fpl$trapveneer)
-    $v0                                      0x0800a52a   Number         0  trapv.o(x$fpl$trapveneer)
-    x$fpl$usenofp                            0x0800a55a   Section        0  usenofp.o(x$fpl$usenofp)
-    .constdata                               0x0800a55c   Section     2448  main.o(.constdata)
-    bitmaps                                  0x0800a55c   Data        1152  main.o(.constdata)
-    fontData                                 0x0800a9dc   Data         784  main.o(.constdata)
-    auchCRCHi                                0x0800acec   Data         256  main.o(.constdata)
-    auchCRCLo                                0x0800adec   Data         256  main.o(.constdata)
-    .constdata                               0x0800aeec   Section       16  stm32f407_adc.o(.constdata)
-    .constdata                               0x0800af00   Section       80  asin.o(.constdata)
-    pS                                       0x0800af00   Data          48  asin.o(.constdata)
-    qS                                       0x0800af30   Data          32  asin.o(.constdata)
-    .constdata                               0x0800af50   Section      136  pow.o(.constdata)
-    bp                                       0x0800af50   Data          16  pow.o(.constdata)
-    dp_h                                     0x0800af60   Data          16  pow.o(.constdata)
-    dp_l                                     0x0800af70   Data          16  pow.o(.constdata)
-    L                                        0x0800af80   Data          48  pow.o(.constdata)
-    P                                        0x0800afb0   Data          40  pow.o(.constdata)
-    .constdata                               0x0800afd8   Section      152  atan.o(.constdata)
-    atanhi                                   0x0800afd8   Data          32  atan.o(.constdata)
-    atanlo                                   0x0800aff8   Data          32  atan.o(.constdata)
-    aTodd                                    0x0800b018   Data          40  atan.o(.constdata)
-    aTeven                                   0x0800b040   Data          48  atan.o(.constdata)
-    .constdata                               0x0800b070   Section       48  cos_i.o(.constdata)
-    C                                        0x0800b070   Data          48  cos_i.o(.constdata)
-    .constdata                               0x0800b0a0   Section        8  qnan.o(.constdata)
-    .constdata                               0x0800b0a8   Section      200  rred.o(.constdata)
-    pio2s                                    0x0800b0a8   Data          48  rred.o(.constdata)
-    twooverpi                                0x0800b0d8   Data         152  rred.o(.constdata)
-    .constdata                               0x0800b170   Section       40  sin_i.o(.constdata)
-    S                                        0x0800b170   Data          40  sin_i.o(.constdata)
-    .constdata__ZTV7SSD1306                  0x0800b198   Section       16  ssd1306.o(.constdata__ZTV7SSD1306)
-    .constdata__ZZN7Display6updateEvEs       0x0800b1a8   Section        2  main.o(.constdata__ZZN7Display6updateEvEs)
-    .init_array                              0x0800b1cc   Section        4  main.o(.init_array)
-    .init_array                              0x0800b1d0   Section        0  init_aeabi.o(.init_array)
+    i._ZN10Functional7posCalcEv              0x08002b60   Section        0  main.o(i._ZN10Functional7posCalcEv)
+    i._ZN10FunctionalC1EP5Robot              0x08002da4   Section        0  main.o(i._ZN10FunctionalC1EP5Robot)
+    i._ZN11FieldObject6updateESt4pairIddES1_jt 0x08002edc   Section        0  main.o(i._ZN11FieldObject6updateESt4pairIddES1_jt)
+    i._ZN11FieldObjectC1Ev                   0x08002fd4   Section        0  main.o(i._ZN11FieldObjectC1Ev)
+    i._ZN11LineSensors13turnOnSensorsEv      0x08003054   Section        0  main.o(i._ZN11LineSensors13turnOnSensorsEv)
+    i._ZN11LineSensors14turnOffSensorsEv     0x0800305a   Section        0  main.o(i._ZN11LineSensors14turnOffSensorsEv)
+    i._ZN11LineSensors18endLineCalibrationEv 0x08003060   Section        0  main.o(i._ZN11LineSensors18endLineCalibrationEv)
+    i._ZN11LineSensors20beginLineCalibrationEv 0x08003066   Section        0  main.o(i._ZN11LineSensors20beginLineCalibrationEv)
+    i._ZN11LineSensors4initEjt               0x0800306c   Section        0  main.o(i._ZN11LineSensors4initEjt)
+    i._ZN11LineSensors6updateEv              0x08003090   Section        0  main.o(i._ZN11LineSensors6updateEv)
+    i._ZN11LineSensors7getLineEv             0x080030c4   Section        0  main.o(i._ZN11LineSensors7getLineEv)
+    i._ZN12CameraObjectC1Ev                  0x080030c8   Section        0  main.o(i._ZN12CameraObjectC1Ev)
+    i._ZN12KickerModule10initChargeEv        0x080030f4   Section        0  main.o(i._ZN12KickerModule10initChargeEv)
+    i._ZN12KickerModule4initEtttt            0x080030fc   Section        0  main.o(i._ZN12KickerModule4initEtttt)
+    i._ZN12KickerModule4kickEbb              0x08003176   Section        0  main.o(i._ZN12KickerModule4kickEbb)
+    i._ZN12KickerModule6updateEv             0x0800320e   Section        0  main.o(i._ZN12KickerModule6updateEv)
+    i._ZN12KickerModule9isChargedEv          0x08003222   Section        0  main.o(i._ZN12KickerModule9isChargedEv)
+    i._ZN12MotorDrivers11enableMotorEi       0x08003230   Section        0  main.o(i._ZN12MotorDrivers11enableMotorEi)
+    i._ZN12MotorDrivers11setDribblerEi       0x0800323e   Section        0  main.o(i._ZN12MotorDrivers11setDribblerEi)
+    i._ZN12MotorDrivers12disableMotorEi      0x08003246   Section        0  main.o(i._ZN12MotorDrivers12disableMotorEi)
+    i._ZN12MotorDrivers12enableMotorsEv      0x08003254   Section        0  main.o(i._ZN12MotorDrivers12enableMotorsEv)
+    i._ZN12MotorDrivers13disableMotorsEv     0x08003270   Section        0  main.o(i._ZN12MotorDrivers13disableMotorsEv)
+    i._ZN12MotorDrivers14attemptCurrentEv    0x0800328c   Section        0  main.o(i._ZN12MotorDrivers14attemptCurrentEv)
+    i._ZN12MotorDrivers4initEjhjhjhjhjh      0x080032a8   Section        0  main.o(i._ZN12MotorDrivers4initEjhjhjhjhjh)
+    i._ZN12MotorDrivers6updateEv             0x08003338   Section        0  main.o(i._ZN12MotorDrivers6updateEv)
+    i._ZN12MotorDrivers8setMotorEii          0x08003484   Section        0  main.o(i._ZN12MotorDrivers8setMotorEii)
+    i._ZN12MotorDrivers9setMotorsEiiii       0x080034ae   Section        0  main.o(i._ZN12MotorDrivers9setMotorsEiiii)
+    i._ZN12MotorDrivers9setMotorsEiiiii      0x080034e6   Section        0  main.o(i._ZN12MotorDrivers9setMotorsEiiiii)
+    i._ZN14BaseFunctional11checkBoundsESt4pairIddES1_S1_ 0x08003504   Section        0  main.o(i._ZN14BaseFunctional11checkBoundsESt4pairIddES1_S1_)
+    i._ZN14BaseFunctional13getRobotClassEv   0x0800356c   Section        0  main.o(i._ZN14BaseFunctional13getRobotClassEv)
+    i._ZN14BaseFunctional17genVTMGlobalPointESt4pairIssES1_dc 0x08003570   Section        0  main.o(i._ZN14BaseFunctional17genVTMGlobalPointESt4pairIssES1_dc)
+    i._ZN14BaseFunctional5move2E12VectorToMoveddt 0x080036c8   Section        0  main.o(i._ZN14BaseFunctional5move2E12VectorToMoveddt)
+    i._ZN3IMU12setZeroAngleEv                0x0800375c   Section        0  main.o(i._ZN3IMU12setZeroAngleEv)
+    i._ZN3IMU20updateAnglesFromFIFOEv        0x08003770   Section        0  main.o(i._ZN3IMU20updateAnglesFromFIFOEv)
+    i._ZN3IMU4initEjtt                       0x08003778   Section        0  main.o(i._ZN3IMU4initEjtt)
+    i._ZN3IMU6turnOnEv                       0x080037cc   Section        0  main.o(i._ZN3IMU6turnOnEv)
+    i._ZN3IMU6updateEv                       0x080037f0   Section        0  main.o(i._ZN3IMU6updateEv)
+    i._ZN3IMU8getAngleEv                     0x08003898   Section        0  main.o(i._ZN3IMU8getAngleEv)
+    i._ZN3IMU9calibrateEj                    0x0800392c   Section        0  main.o(i._ZN3IMU9calibrateEj)
+    i._ZN5Robot10switch5vOnEv                0x08003932   Section        0  main.o(i._ZN5Robot10switch5vOnEv)
+    i._ZN5Robot10updateMenuEv                0x0800393c   Section        0  main.o(i._ZN5Robot10updateMenuEv)
+    i._ZN5Robot11switch5vOffEv               0x08003a88   Section        0  main.o(i._ZN5Robot11switch5vOffEv)
+    i._ZN5Robot12handleErrorsEv              0x08003a90   Section        0  main.o(i._ZN5Robot12handleErrorsEv)
+    i._ZN5Robot12setPlayStateEb              0x08003ad0   Section        0  main.o(i._ZN5Robot12setPlayStateEb)
+    i._ZN5Robot12swithPowerOnEv              0x08003b22   Section        0  main.o(i._ZN5Robot12swithPowerOnEv)
+    i._ZN5Robot13updateSelfPosESt4pairIddES1_ 0x08003b2c   Section        0  main.o(i._ZN5Robot13updateSelfPosESt4pairIddES1_)
+    i._ZN5Robot15changePlayStateEv           0x08003d04   Section        0  main.o(i._ZN5Robot15changePlayStateEv)
+    i._ZN5Robot4getVEv                       0x08003d1a   Section        0  main.o(i._ZN5Robot4getVEv)
+    i._ZN5Robot4initEv                       0x08003d24   Section        0  main.o(i._ZN5Robot4initEv)
+    i._ZN5Robot4moveEdddddd                  0x08003fb0   Section        0  main.o(i._ZN5Robot4moveEdddddd)
+    i._ZN5Robot4waitEj                       0x080046fc   Section        0  main.o(i._ZN5Robot4waitEj)
+    i._ZN5Robot6getPosEv                     0x08004848   Section        0  main.o(i._ZN5Robot6getPosEv)
+    i._ZN5Robot8initLEDsEv                   0x08004852   Section        0  main.o(i._ZN5Robot8initLEDsEv)
+    i._ZN5Robot9logErrorsEv                  0x08004894   Section        0  main.o(i._ZN5Robot9logErrorsEv)
+    i._ZN5Robot9playStateEv                  0x080048b4   Section        0  main.o(i._ZN5Robot9playStateEv)
+    i._ZN5RobotC1Ev                          0x080048c0   Section        0  main.o(i._ZN5RobotC1Ev)
+    i._ZN6BorderC1Edccssss                   0x08004950   Section        0  main.o(i._ZN6BorderC1Edccssss)
+    i._ZN6Camera4initEjt                     0x0800497c   Section        0  main.o(i._ZN6Camera4initEjt)
+    i._ZN6Camera6updateEv                    0x0800499c   Section        0  main.o(i._ZN6Camera6updateEv)
+    i._ZN6CameraC1Ev                         0x08004af2   Section        0  main.o(i._ZN6CameraC1Ev)
+    i._ZN6Driver11setVelocityEi              0x08004b30   Section        0  main.o(i._ZN6Driver11setVelocityEi)
+    i._ZN6Driver13updateFromRegEv            0x08004bd4   Section        0  main.o(i._ZN6Driver13updateFromRegEv)
+    i._ZN6Driver14attemptCurrentEv           0x08004c38   Section        0  main.o(i._ZN6Driver14attemptCurrentEv)
+    i._ZN6Driver14enableFloatingEv           0x08004c48   Section        0  main.o(i._ZN6Driver14enableFloatingEv)
+    i._ZN6Driver15disableFloatingEv          0x08004c6c   Section        0  main.o(i._ZN6Driver15disableFloatingEv)
+    i._ZN6Driver4initEcc                     0x08004c90   Section        0  main.o(i._ZN6Driver4initEcc)
+    i._ZN6Driver5writeEPccc                  0x08004c98   Section        0  main.o(i._ZN6Driver5writeEPccc)
+    i._ZN6DriverC1Ev                         0x08004d00   Section        0  main.o(i._ZN6DriverC1Ev)
+    i._ZN6PL_ADC10waitUpdateEv               0x08004d34   Section        0  stm32f407_adc.o(i._ZN6PL_ADC10waitUpdateEv)
+    i._ZN6PL_ADC3addEa                       0x08004d40   Section        0  stm32f407_adc.o(i._ZN6PL_ADC3addEa)
+    i._ZN6PL_ADC4initEv                      0x08004e04   Section        0  stm32f407_adc.o(i._ZN6PL_ADC4initEv)
+    i._ZN6PL_ADC4readEab                     0x08004e80   Section        0  stm32f407_adc.o(i._ZN6PL_ADC4readEab)
+    i._ZN6PL_ADC5startEv                     0x08004eca   Section        0  stm32f407_adc.o(i._ZN6PL_ADC5startEv)
+    i._ZN6PL_ADCC1EP11ADC_TypeDef            0x08004ee0   Section        0  stm32f407_adc.o(i._ZN6PL_ADCC1EP11ADC_TypeDef)
+    i._ZN6ScreenC1Ev                         0x08004f20   Section        0  main.o(i._ZN6ScreenC1Ev)
+    i._ZN7Battery10getVoltageEv              0x08004f44   Section        0  main.o(i._ZN7Battery10getVoltageEv)
+    i._ZN7Battery13getPercentageEv           0x08004f4a   Section        0  main.o(i._ZN7Battery13getPercentageEv)
+    i._ZN7Battery14getCellVoltageEi          0x08004f50   Section        0  main.o(i._ZN7Battery14getCellVoltageEi)
+    i._ZN7Battery4initEP6PL_ADCtttt          0x08004f5c   Section        0  main.o(i._ZN7Battery4initEP6PL_ADCtttt)
+    i._ZN7Battery6updateEv                   0x08004ff8   Section        0  main.o(i._ZN7Battery6updateEv)
+    i._ZN7Battery8readCellEi                 0x08005154   Section        0  main.o(i._ZN7Battery8readCellEi)
+    i._ZN7Buttons10setChangedEib             0x08005182   Section        0  main.o(i._ZN7Buttons10setChangedEib)
+    i._ZN7Buttons12ButtonStructC1Ev          0x0800518e   Section        0  main.o(i._ZN7Buttons12ButtonStructC1Ev)
+    i._ZN7Buttons4initEtttt                  0x08005198   Section        0  main.o(i._ZN7Buttons4initEtttt)
+    i._ZN7Buttons6enableEv                   0x080051cc   Section        0  main.o(i._ZN7Buttons6enableEv)
+    i._ZN7Buttons6updateEv                   0x080051e2   Section        0  main.o(i._ZN7Buttons6updateEv)
+    i._ZN7Buttons7disableEv                  0x08005216   Section        0  main.o(i._ZN7Buttons7disableEv)
+    i._ZN7Buttons9isChangedEib               0x0800522c   Section        0  main.o(i._ZN7Buttons9isChangedEib)
+    i._ZN7Buttons9isPressedEi                0x0800524a   Section        0  main.o(i._ZN7Buttons9isPressedEi)
+    i._ZN7CommandC1Ev                        0x08005256   Section        0  main.o(i._ZN7CommandC1Ev)
+    i._ZN7Display11addToScreenE7Command      0x0800525c   Section        0  main.o(i._ZN7Display11addToScreenE7Command)
+    i._ZN7Display5printEPcii                 0x08005294   Section        0  main.o(i._ZN7Display5printEPcii)
+    i._ZN7Display5printEdiii                 0x08005298   Section        0  main.o(i._ZN7Display5printEdiii)
+    i._ZN7Display5printEiiii                 0x080052a8   Section        0  main.o(i._ZN7Display5printEiiii)
+    i._ZN7Display5printEjiii                 0x080052b8   Section        0  main.o(i._ZN7Display5printEjiii)
+    i._ZN7Display6addEscE7Command            0x080052c8   Section        0  main.o(i._ZN7Display6addEscE7Command)
+    i._ZN7SSD130615ssd1306_commandEh         0x080052f6   Section        0  ssd1306.o(i._ZN7SSD130615ssd1306_commandEh)
+    i._ZN7SSD13065beginEhb                   0x0800532a   Section        0  ssd1306.o(i._ZN7SSD13065beginEhb)
+    i._ZN7SSD13065clearEv                    0x080054a0   Section        0  ssd1306.o(i._ZN7SSD13065clearEv)
+    i._ZN7SSD13066invertEh                   0x080054b0   Section        0  ssd1306.o(i._ZN7SSD13066invertEh)
+    i._ZN7SSD13067displayEPh                 0x080054c0   Section        0  ssd1306.o(i._ZN7SSD13067displayEPh)
+    i._ZN7SSD13067displayEv                  0x08005534   Section        0  ssd1306.o(i._ZN7SSD13067displayEv)
+    i._ZN7SSD13068switchOnEv                 0x080055ac   Section        0  ssd1306.o(i._ZN7SSD13068switchOnEv)
+    i._ZN7SSD13069drawPixelEsst              0x080055b4   Section        0  ssd1306.o(i._ZN7SSD13069drawPixelEsst)
+    i._ZN7SSD1306C1Ejtttttt                  0x08005658   Section        0  ssd1306.o(i._ZN7SSD1306C1Ejtttttt)
+    i._ZN7SSD1306C1Ev                        0x0800569c   Section        0  ssd1306.o(i._ZN7SSD1306C1Ev)
+    i._ZN7mpu925012readFIFOsizeEv            0x080056a8   Section        0  mpu9250.o(i._ZN7mpu925012readFIFOsizeEv)
+    i._ZN7mpu925012setAccOffsetEiii          0x080056d6   Section        0  mpu9250.o(i._ZN7mpu925012setAccOffsetEiii)
+    i._ZN7mpu925012updateAnglesEdb           0x08005730   Section        0  mpu9250.o(i._ZN7mpu925012updateAnglesEdb)
+    i._ZN7mpu925013setGyroOffsetEiii         0x080059ac   Section        0  mpu9250.o(i._ZN7mpu925013setGyroOffsetEiii)
+    i._ZN7mpu925020updateAnglesFromFIFOEv    0x08005a00   Section        0  mpu9250.o(i._ZN7mpu925020updateAnglesFromFIFOEv)
+    i._ZN7mpu925021MadgwickAHRSupdateIMUEd   0x08005a40   Section        0  mpu9250.o(i._ZN7mpu925021MadgwickAHRSupdateIMUEd)
+    i._ZN7mpu92507convertEth                 0x08006298   Section        0  mpu9250.o(i._ZN7mpu92507convertEth)
+    i._ZN7mpu92507initIMUEji                 0x080062ac   Section        0  mpu9250.o(i._ZN7mpu92507initIMUEji)
+    i._ZN7mpu92507invSqrtEf                  0x08006548   Section        0  mpu9250.o(i._ZN7mpu92507invSqrtEf)
+    i._ZN7mpu92507readAccEv                  0x08006574   Section        0  mpu9250.o(i._ZN7mpu92507readAccEv)
+    i._ZN7mpu92507readRegEiPii               0x08006620   Section        0  mpu9250.o(i._ZN7mpu92507readRegEiPii)
+    i._ZN7mpu92508readGyroEv                 0x0800667a   Section        0  mpu9250.o(i._ZN7mpu92508readGyroEv)
+    i._ZN7mpu92508writeRegEih                0x08006726   Section        0  mpu9250.o(i._ZN7mpu92508writeRegEih)
+    i._ZN7mpu92509calibrateEi                0x08006758   Section        0  mpu9250.o(i._ZN7mpu92509calibrateEi)
+    i._ZN9PairSaver3addESt4pairIddEj         0x08006834   Section        0  main.o(i._ZN9PairSaver3addESt4pairIddEj)
+    i._ZN9PairSaver3popEj                    0x0800687c   Section        0  main.o(i._ZN9PairSaver3popEj)
+    i._ZN9PairSaver4incPERh                  0x080068cc   Section        0  main.o(i._ZN9PairSaver4incPERh)
+    i._ZN9PairSaverC1Ev                      0x080068e0   Section        0  main.o(i._ZN9PairSaverC1Ev)
+    i._ZSt3absd                              0x08006934   Section        0  main.o(i._ZSt3absd)
+    i._ZdlPv                                 0x08006938   Section        0  delete.o(i._ZdlPv)
+    i._Znaj                                  0x08006940   Section        0  array_new.o(i._Znaj)
+    i._Znwj                                  0x08006948   Section        0  new.o(i._Znwj)
+    i.__ARM_fpclassify                       0x08006970   Section        0  fpclassify.o(i.__ARM_fpclassify)
+    i.__aeabi_vec_ctor_nocookie_nodtor       0x080069a0   Section        0  aeabi_vec_ctor_nocookie_nodtor.o(i.__aeabi_vec_ctor_nocookie_nodtor)
+    i.__cxa_guard_acquire                    0x080069c4   Section        0  cxa_guard_acquire.o(i.__cxa_guard_acquire)
+    i.__hardfp_asin                          0x080069d8   Section        0  asin.o(i.__hardfp_asin)
+    i.__hardfp_atan                          0x08006d38   Section        0  atan.o(i.__hardfp_atan)
+    i.__hardfp_atan2                         0x08007010   Section        0  atan2.o(i.__hardfp_atan2)
+    i.__hardfp_ceilf                         0x08007200   Section        0  ceilf.o(i.__hardfp_ceilf)
+    i.__hardfp_cos                           0x08007270   Section        0  cos.o(i.__hardfp_cos)
+    i.__hardfp_fabs                          0x08007338   Section        0  fabs.o(i.__hardfp_fabs)
+    i.__hardfp_pow                           0x08007350   Section        0  pow.o(i.__hardfp_pow)
+    i.__hardfp_sin                           0x08007fa0   Section        0  sin.o(i.__hardfp_sin)
+    i.__hardfp_sqrt                          0x08008068   Section        0  sqrt.o(i.__hardfp_sqrt)
+    i.__ieee754_rem_pio2                     0x080080e8   Section        0  rred.o(i.__ieee754_rem_pio2)
+    i.__kernel_cos                           0x08008520   Section        0  cos_i.o(i.__kernel_cos)
+    i.__kernel_poly                          0x08008690   Section        0  poly.o(i.__kernel_poly)
+    i.__kernel_sin                           0x08008788   Section        0  sin_i.o(i.__kernel_sin)
+    i.__mathlib_dbl_divzero                  0x080088b8   Section        0  dunder.o(i.__mathlib_dbl_divzero)
+    i.__mathlib_dbl_infnan                   0x080088e8   Section        0  dunder.o(i.__mathlib_dbl_infnan)
+    i.__mathlib_dbl_infnan2                  0x080088fc   Section        0  dunder.o(i.__mathlib_dbl_infnan2)
+    i.__mathlib_dbl_invalid                  0x08008910   Section        0  dunder.o(i.__mathlib_dbl_invalid)
+    i.__mathlib_dbl_overflow                 0x08008930   Section        0  dunder.o(i.__mathlib_dbl_overflow)
+    i.__mathlib_dbl_underflow                0x08008950   Section        0  dunder.o(i.__mathlib_dbl_underflow)
+    i.__sti___8_main_cpp_48fb3d7c            0x08008970   Section        0  main.o(i.__sti___8_main_cpp_48fb3d7c)
+    __sti___8_main_cpp_48fb3d7c              0x08008971   Thumb Code   162  main.o(i.__sti___8_main_cpp_48fb3d7c)
+    i.atan                                   0x08008a24   Section        0  atan.o(i.atan)
+    i.fabs                                   0x08008a34   Section        0  fabs.o(i.fabs)
+    i.main                                   0x08008a4c   Section        0  main.o(i.main)
+    i.sqrt                                   0x08008ed8   Section        0  sqrt.o(i.sqrt)
+    t._Z3sgnIdET_S0_                         0x08008f48   Section        0  main.o(t._Z3sgnIdET_S0_)
+    t._Z4crc8IcET_PS0_i                      0x08008fa8   Section        0  main.o(t._Z4crc8IcET_PS0_i)
+    t._Z4crc8IhET_PS0_i                      0x08008fdc   Section        0  main.o(t._Z4crc8IhET_PS0_i)
+    t._Z4crc8IiET_PS0_i                      0x08009010   Section        0  main.o(t._Z4crc8IiET_PS0_i)
+    t._Z4min2IdET_S0_S0_                     0x08009040   Section        0  main.o(t._Z4min2IdET_S0_S0_)
+    t._Z4min2IiET_S0_S0_                     0x0800907c   Section        0  main.o(t._Z4min2IiET_S0_S0_)
+    t._Z7toPrintIdEPcT_s                     0x08009084   Section        0  main.o(t._Z7toPrintIdEPcT_s)
+    t._Z7toPrintIiEPcT_s                     0x080092a8   Section        0  main.o(t._Z7toPrintIiEPcT_s)
+    t._Z7toPrintIjEPcT_s                     0x080093be   Section        0  main.o(t._Z7toPrintIjEPcT_s)
+    t._Z8printTmlIdEvR7SSD1306T_iii          0x080094c6   Section        0  main.o(t._Z8printTmlIdEvR7SSD1306T_iii)
+    t._Z8printTmlIiEvR7SSD1306T_iii          0x080094ee   Section        0  main.o(t._Z8printTmlIiEvR7SSD1306T_iii)
+    t._Z8printTmlIjEvR7SSD1306T_iii          0x08009518   Section        0  main.o(t._Z8printTmlIjEvR7SSD1306T_iii)
+    t._ZNSt4pairIS_IddEjEC1Ev                0x08009542   Section        0  main.o(t._ZNSt4pairIS_IddEjEC1Ev)
+    t._ZNSt4pairIddEC1ERKS0_                 0x0800954e   Section        0  main.o(t._ZNSt4pairIddEC1ERKS0_)
+    t._ZNSt4pairIddEC1Ev                     0x08009560   Section        0  main.o(t._ZNSt4pairIddEC1Ev)
+    t._ZNSt4pairIddEC1IiiEERKS_IT_T0_E       0x08009578   Section        0  main.o(t._ZNSt4pairIddEC1IiiEERKS_IT_T0_E)
+    t._ZNSt4pairIiiEC1Ev                     0x08009596   Section        0  main.o(t._ZNSt4pairIiiEC1Ev)
+    t._ZNSt4pairIssEC1IddEERKS_IT_T0_E       0x0800959e   Section        0  main.o(t._ZNSt4pairIssEC1IddEERKS_IT_T0_E)
+    t._ZNSt4pairIssEC1IiiEERKS_IT_T0_E       0x080095c4   Section        0  main.o(t._ZNSt4pairIssEC1IiiEERKS_IT_T0_E)
+    x$fpl$basic                              0x080095ce   Section       24  basic.o(x$fpl$basic)
+    $v0                                      0x080095ce   Number         0  basic.o(x$fpl$basic)
+    x$fpl$d2f                                0x080095e8   Section       98  d2f.o(x$fpl$d2f)
+    $v0                                      0x080095e8   Number         0  d2f.o(x$fpl$d2f)
+    x$fpl$dadd                               0x0800964c   Section      336  daddsub_clz.o(x$fpl$dadd)
+    $v0                                      0x0800964c   Number         0  daddsub_clz.o(x$fpl$dadd)
+    _dadd1                                   0x0800965d   Thumb Code     0  daddsub_clz.o(x$fpl$dadd)
+    x$fpl$dcheck1                            0x0800979c   Section       16  dcheck1.o(x$fpl$dcheck1)
+    $v0                                      0x0800979c   Number         0  dcheck1.o(x$fpl$dcheck1)
+    x$fpl$dcmpinf                            0x080097ac   Section       24  dcmpi.o(x$fpl$dcmpinf)
+    $v0                                      0x080097ac   Number         0  dcmpi.o(x$fpl$dcmpinf)
+    x$fpl$ddiv                               0x080097c4   Section      688  ddiv.o(x$fpl$ddiv)
+    $v0                                      0x080097c4   Number         0  ddiv.o(x$fpl$ddiv)
+    ddiv_entry                               0x080097cb   Thumb Code     0  ddiv.o(x$fpl$ddiv)
+    x$fpl$deqf                               0x08009a74   Section      120  deqf.o(x$fpl$deqf)
+    $v0                                      0x08009a74   Number         0  deqf.o(x$fpl$deqf)
+    x$fpl$dfix                               0x08009aec   Section       94  dfix.o(x$fpl$dfix)
+    $v0                                      0x08009aec   Number         0  dfix.o(x$fpl$dfix)
+    x$fpl$dfixu                              0x08009b4c   Section       90  dfixu.o(x$fpl$dfixu)
+    $v0                                      0x08009b4c   Number         0  dfixu.o(x$fpl$dfixu)
+    x$fpl$dflt                               0x08009ba6   Section       46  dflt_clz.o(x$fpl$dflt)
+    $v0                                      0x08009ba6   Number         0  dflt_clz.o(x$fpl$dflt)
+    x$fpl$dfltll                             0x08009bd4   Section      162  dfltll_clz.o(x$fpl$dfltll)
+    $v0                                      0x08009bd4   Number         0  dfltll_clz.o(x$fpl$dfltll)
+    x$fpl$dfltu                              0x08009c76   Section       38  dflt_clz.o(x$fpl$dfltu)
+    $v0                                      0x08009c76   Number         0  dflt_clz.o(x$fpl$dfltu)
+    x$fpl$dleqf                              0x08009c9c   Section      120  dleqf.o(x$fpl$dleqf)
+    $v0                                      0x08009c9c   Number         0  dleqf.o(x$fpl$dleqf)
+    x$fpl$dmul                               0x08009d14   Section      340  dmul.o(x$fpl$dmul)
+    $v0                                      0x08009d14   Number         0  dmul.o(x$fpl$dmul)
+    x$fpl$dnaninf                            0x08009e68   Section      156  dnaninf.o(x$fpl$dnaninf)
+    $v0                                      0x08009e68   Number         0  dnaninf.o(x$fpl$dnaninf)
+    x$fpl$dretinf                            0x08009f04   Section       12  dretinf.o(x$fpl$dretinf)
+    $v0                                      0x08009f04   Number         0  dretinf.o(x$fpl$dretinf)
+    x$fpl$drleqf                             0x08009f10   Section      108  drleqf.o(x$fpl$drleqf)
+    $v0                                      0x08009f10   Number         0  drleqf.o(x$fpl$drleqf)
+    x$fpl$drsb                               0x08009f7c   Section       22  daddsub_clz.o(x$fpl$drsb)
+    $v0                                      0x08009f7c   Number         0  daddsub_clz.o(x$fpl$drsb)
+    x$fpl$dsqrt                              0x08009f94   Section      408  dsqrt_umaal.o(x$fpl$dsqrt)
+    $v0                                      0x08009f94   Number         0  dsqrt_umaal.o(x$fpl$dsqrt)
+    x$fpl$dsub                               0x0800a12c   Section      468  daddsub_clz.o(x$fpl$dsub)
+    $v0                                      0x0800a12c   Number         0  daddsub_clz.o(x$fpl$dsub)
+    _dsub1                                   0x0800a13d   Thumb Code     0  daddsub_clz.o(x$fpl$dsub)
+    x$fpl$f2d                                0x0800a300   Section       86  f2d.o(x$fpl$f2d)
+    $v0                                      0x0800a300   Number         0  f2d.o(x$fpl$f2d)
+    x$fpl$fnaninf                            0x0800a356   Section      140  fnaninf.o(x$fpl$fnaninf)
+    $v0                                      0x0800a356   Number         0  fnaninf.o(x$fpl$fnaninf)
+    x$fpl$fpinit                             0x0800a3e2   Section       10  fpinit.o(x$fpl$fpinit)
+    $v0                                      0x0800a3e2   Number         0  fpinit.o(x$fpl$fpinit)
+    x$fpl$fretinf                            0x0800a3ec   Section       10  fretinf.o(x$fpl$fretinf)
+    $v0                                      0x0800a3ec   Number         0  fretinf.o(x$fpl$fretinf)
+    x$fpl$llsfromd                           0x0800a3f8   Section      194  dfixll.o(x$fpl$llsfromd)
+    $v0                                      0x0800a3f8   Number         0  dfixll.o(x$fpl$llsfromd)
+    x$fpl$retnan                             0x0800a4ba   Section      100  retnan.o(x$fpl$retnan)
+    $v0                                      0x0800a4ba   Number         0  retnan.o(x$fpl$retnan)
+    x$fpl$scalbn                             0x0800a51e   Section       92  scalbn.o(x$fpl$scalbn)
+    $v0                                      0x0800a51e   Number         0  scalbn.o(x$fpl$scalbn)
+    x$fpl$trapveneer                         0x0800a57a   Section       48  trapv.o(x$fpl$trapveneer)
+    $v0                                      0x0800a57a   Number         0  trapv.o(x$fpl$trapveneer)
+    x$fpl$usenofp                            0x0800a5aa   Section        0  usenofp.o(x$fpl$usenofp)
+    .constdata                               0x0800a5ac   Section     2448  main.o(.constdata)
+    bitmaps                                  0x0800a5ac   Data        1152  main.o(.constdata)
+    fontData                                 0x0800aa2c   Data         784  main.o(.constdata)
+    auchCRCHi                                0x0800ad3c   Data         256  main.o(.constdata)
+    auchCRCLo                                0x0800ae3c   Data         256  main.o(.constdata)
+    .constdata                               0x0800af3c   Section       16  stm32f407_adc.o(.constdata)
+    .constdata                               0x0800af50   Section       80  asin.o(.constdata)
+    pS                                       0x0800af50   Data          48  asin.o(.constdata)
+    qS                                       0x0800af80   Data          32  asin.o(.constdata)
+    .constdata                               0x0800afa0   Section      136  pow.o(.constdata)
+    bp                                       0x0800afa0   Data          16  pow.o(.constdata)
+    dp_h                                     0x0800afb0   Data          16  pow.o(.constdata)
+    dp_l                                     0x0800afc0   Data          16  pow.o(.constdata)
+    L                                        0x0800afd0   Data          48  pow.o(.constdata)
+    P                                        0x0800b000   Data          40  pow.o(.constdata)
+    .constdata                               0x0800b028   Section      152  atan.o(.constdata)
+    atanhi                                   0x0800b028   Data          32  atan.o(.constdata)
+    atanlo                                   0x0800b048   Data          32  atan.o(.constdata)
+    aTodd                                    0x0800b068   Data          40  atan.o(.constdata)
+    aTeven                                   0x0800b090   Data          48  atan.o(.constdata)
+    .constdata                               0x0800b0c0   Section       48  cos_i.o(.constdata)
+    C                                        0x0800b0c0   Data          48  cos_i.o(.constdata)
+    .constdata                               0x0800b0f0   Section        8  qnan.o(.constdata)
+    .constdata                               0x0800b0f8   Section      200  rred.o(.constdata)
+    pio2s                                    0x0800b0f8   Data          48  rred.o(.constdata)
+    twooverpi                                0x0800b128   Data         152  rred.o(.constdata)
+    .constdata                               0x0800b1c0   Section       40  sin_i.o(.constdata)
+    S                                        0x0800b1c0   Data          40  sin_i.o(.constdata)
+    .constdata__ZTV7SSD1306                  0x0800b1e8   Section       16  ssd1306.o(.constdata__ZTV7SSD1306)
+    .constdata__ZZN7Display6updateEvEs       0x0800b1f8   Section        2  main.o(.constdata__ZZN7Display6updateEvEs)
+    .init_array                              0x0800b21c   Section        4  main.o(.init_array)
+    .init_array                              0x0800b220   Section        0  init_aeabi.o(.init_array)
     .data                                    0x20000000   Section    30944  main.o(.data)
     msg                                      0x20000000   Data           1  main.o(.data)
     msg                                      0x20000001   Data           1  main.o(.data)
@@ -3260,263 +3261,263 @@ Image Symbol Table
     BallSensor::turnOn()                     0x080022c5   Thumb Code    18  main.o(i._ZN10BallSensor6turnOnEv)
     BallSensor::update()                     0x080022d7   Thumb Code    62  main.o(i._ZN10BallSensor6updateEv)
     BallSensor::getValue()                   0x08002315   Thumb Code     4  main.o(i._ZN10BallSensor8getValueEv)
-    Functional::goalkeeper()                 0x08002319   Thumb Code  2010  main.o(i._ZN10Functional10goalkeeperEv)
-    Functional::posCalc()                    0x08002b19   Thumb Code   562  main.o(i._ZN10Functional7posCalcEv)
-    Functional::Functional(Robot*)           0x08002d5d   Thumb Code   294  main.o(i._ZN10FunctionalC1EP5Robot)
-    Functional::Functional__sub_object(Robot*) 0x08002d5d   Thumb Code     0  main.o(i._ZN10FunctionalC1EP5Robot)
-    FieldObject::update(std::pair<double, double>, std::pair<double, double>, unsigned, unsigned short) 0x08002e95   Thumb Code   248  main.o(i._ZN11FieldObject6updateESt4pairIddES1_jt)
-    FieldObject::FieldObject()               0x08002f8d   Thumb Code   120  main.o(i._ZN11FieldObjectC1Ev)
-    FieldObject::FieldObject__sub_object()   0x08002f8d   Thumb Code     0  main.o(i._ZN11FieldObjectC1Ev)
-    LineSensors::turnOnSensors()             0x0800300d   Thumb Code     6  main.o(i._ZN11LineSensors13turnOnSensorsEv)
-    LineSensors::turnOffSensors()            0x08003013   Thumb Code     6  main.o(i._ZN11LineSensors14turnOffSensorsEv)
-    LineSensors::endLineCalibration()        0x08003019   Thumb Code     6  main.o(i._ZN11LineSensors18endLineCalibrationEv)
-    LineSensors::beginLineCalibration()      0x0800301f   Thumb Code     6  main.o(i._ZN11LineSensors20beginLineCalibrationEv)
-    LineSensors::init(unsigned, unsigned short) 0x08003025   Thumb Code    36  main.o(i._ZN11LineSensors4initEjt)
-    LineSensors::update()                    0x08003049   Thumb Code    52  main.o(i._ZN11LineSensors6updateEv)
-    LineSensors::getLine()                   0x0800307d   Thumb Code     4  main.o(i._ZN11LineSensors7getLineEv)
-    CameraObject::CameraObject()             0x08003081   Thumb Code    36  main.o(i._ZN12CameraObjectC1Ev)
-    CameraObject::CameraObject__sub_object() 0x08003081   Thumb Code     0  main.o(i._ZN12CameraObjectC1Ev)
-    KickerModule::initCharge()               0x080030ad   Thumb Code     8  main.o(i._ZN12KickerModule10initChargeEv)
-    KickerModule::init(unsigned short, unsigned short, unsigned short, unsigned short) 0x080030b5   Thumb Code   122  main.o(i._ZN12KickerModule4initEtttt)
-    KickerModule::kick(bool, bool)           0x0800312f   Thumb Code   152  main.o(i._ZN12KickerModule4kickEbb)
-    KickerModule::update()                   0x080031c7   Thumb Code    20  main.o(i._ZN12KickerModule6updateEv)
-    KickerModule::isCharged()                0x080031db   Thumb Code    14  main.o(i._ZN12KickerModule9isChargedEv)
-    MotorDrivers::enableMotor(int)           0x080031e9   Thumb Code    14  main.o(i._ZN12MotorDrivers11enableMotorEi)
-    MotorDrivers::setDribbler(int)           0x080031f7   Thumb Code     8  main.o(i._ZN12MotorDrivers11setDribblerEi)
-    MotorDrivers::disableMotor(int)          0x080031ff   Thumb Code    14  main.o(i._ZN12MotorDrivers12disableMotorEi)
-    MotorDrivers::enableMotors()             0x0800320d   Thumb Code    28  main.o(i._ZN12MotorDrivers12enableMotorsEv)
-    MotorDrivers::disableMotors()            0x08003229   Thumb Code    28  main.o(i._ZN12MotorDrivers13disableMotorsEv)
-    MotorDrivers::attemptCurrent()           0x08003245   Thumb Code    28  main.o(i._ZN12MotorDrivers14attemptCurrentEv)
-    MotorDrivers::init(unsigned, unsigned char, unsigned, unsigned char, unsigned, unsigned char, unsigned, unsigned char, unsigned, unsigned char) 0x08003261   Thumb Code   144  main.o(i._ZN12MotorDrivers4initEjhjhjhjhjh)
-    MotorDrivers::update()                   0x080032f1   Thumb Code   322  main.o(i._ZN12MotorDrivers6updateEv)
-    MotorDrivers::setMotor(int, int)         0x0800343d   Thumb Code    42  main.o(i._ZN12MotorDrivers8setMotorEii)
-    MotorDrivers::setMotors(int, int, int, int) 0x08003467   Thumb Code    56  main.o(i._ZN12MotorDrivers9setMotorsEiiii)
-    MotorDrivers::setMotors(int, int, int, int, int) 0x0800349f   Thumb Code    30  main.o(i._ZN12MotorDrivers9setMotorsEiiiii)
-    BaseFunctional::checkBounds(std::pair<double, double>, std::pair<double, double>, std::pair<double, double>) 0x080034bd   Thumb Code   104  main.o(i._ZN14BaseFunctional11checkBoundsESt4pairIddES1_S1_)
-    BaseFunctional::getRobotClass()          0x08003525   Thumb Code     4  main.o(i._ZN14BaseFunctional13getRobotClassEv)
-    BaseFunctional::genVTMGlobalPoint(std::pair<short, short>, std::pair<short, short>, double, char) 0x08003529   Thumb Code   294  main.o(i._ZN14BaseFunctional17genVTMGlobalPointESt4pairIssES1_dc)
-    BaseFunctional::move2(VectorToMove, double, double, unsigned short) 0x08003681   Thumb Code   132  main.o(i._ZN14BaseFunctional5move2E12VectorToMoveddt)
-    IMU::setZeroAngle()                      0x08003715   Thumb Code    20  main.o(i._ZN3IMU12setZeroAngleEv)
-    IMU::updateAnglesFromFIFO()              0x08003729   Thumb Code     6  main.o(i._ZN3IMU20updateAnglesFromFIFOEv)
-    IMU::init(unsigned, unsigned short, unsigned short) 0x08003731   Thumb Code    76  main.o(i._ZN3IMU4initEjtt)
-    IMU::turnOn()                            0x08003785   Thumb Code    34  main.o(i._ZN3IMU6turnOnEv)
-    IMU::update()                            0x080037a9   Thumb Code   144  main.o(i._ZN3IMU6updateEv)
-    IMU::getAngle()                          0x08003851   Thumb Code   124  main.o(i._ZN3IMU8getAngleEv)
-    IMU::calibrate(unsigned)                 0x080038e5   Thumb Code     6  main.o(i._ZN3IMU9calibrateEj)
-    Robot::switch5vOn()                      0x080038eb   Thumb Code     8  main.o(i._ZN5Robot10switch5vOnEv)
-    Robot::updateMenu()                      0x080038f5   Thumb Code   328  main.o(i._ZN5Robot10updateMenuEv)
-    Robot::switch5vOff()                     0x08003a41   Thumb Code     8  main.o(i._ZN5Robot11switch5vOffEv)
-    Robot::handleErrors()                    0x08003a49   Thumb Code    58  main.o(i._ZN5Robot12handleErrorsEv)
-    Robot::setPlayState(bool)                0x08003a89   Thumb Code    82  main.o(i._ZN5Robot12setPlayStateEb)
-    Robot::swithPowerOn()                    0x08003adb   Thumb Code     8  main.o(i._ZN5Robot12swithPowerOnEv)
-    Robot::updateSelfPos(std::pair<double, double>, std::pair<double, double>) 0x08003ae5   Thumb Code   422  main.o(i._ZN5Robot13updateSelfPosESt4pairIddES1_)
-    Robot::changePlayState()                 0x08003cbd   Thumb Code    22  main.o(i._ZN5Robot15changePlayStateEv)
-    Robot::getV()                            0x08003cd3   Thumb Code     8  main.o(i._ZN5Robot4getVEv)
-    Robot::init()                            0x08003cdd   Thumb Code   628  main.o(i._ZN5Robot4initEv)
-    Robot::move(double, double, double, double, double, double) 0x08003f69   Thumb Code  1842  main.o(i._ZN5Robot4moveEdddddd)
-    Robot::wait(unsigned)                    0x080046b5   Thumb Code   326  main.o(i._ZN5Robot4waitEj)
-    Robot::getPos()                          0x08004801   Thumb Code    10  main.o(i._ZN5Robot6getPosEv)
-    Robot::initLEDs()                        0x0800480b   Thumb Code    66  main.o(i._ZN5Robot8initLEDsEv)
-    Robot::logErrors()                       0x0800484d   Thumb Code    28  main.o(i._ZN5Robot9logErrorsEv)
-    Robot::playState()                       0x0800486d   Thumb Code    10  main.o(i._ZN5Robot9playStateEv)
-    Robot::Robot()                           0x08004879   Thumb Code   128  main.o(i._ZN5RobotC1Ev)
-    Robot::Robot__sub_object()               0x08004879   Thumb Code     0  main.o(i._ZN5RobotC1Ev)
-    Border::Border(double, char, char, short, short, short, short) 0x08004909   Thumb Code    36  main.o(i._ZN6BorderC1Edccssss)
-    Border::Border__sub_object(double, char, char, short, short, short, short) 0x08004909   Thumb Code     0  main.o(i._ZN6BorderC1Edccssss)
-    Camera::init(unsigned, unsigned short)   0x08004935   Thumb Code    32  main.o(i._ZN6Camera4initEjt)
-    Camera::update()                         0x08004955   Thumb Code   342  main.o(i._ZN6Camera6updateEv)
-    Camera::Camera()                         0x08004aab   Thumb Code    60  main.o(i._ZN6CameraC1Ev)
-    Camera::Camera__sub_object()             0x08004aab   Thumb Code     0  main.o(i._ZN6CameraC1Ev)
-    Driver::setVelocity(int)                 0x08004ae9   Thumb Code   158  main.o(i._ZN6Driver11setVelocityEi)
-    Driver::updateFromReg()                  0x08004b8d   Thumb Code    96  main.o(i._ZN6Driver13updateFromRegEv)
-    Driver::attemptCurrent()                 0x08004bf1   Thumb Code    10  main.o(i._ZN6Driver14attemptCurrentEv)
-    Driver::enableFloating()                 0x08004c01   Thumb Code    32  main.o(i._ZN6Driver14enableFloatingEv)
-    Driver::disableFloating()                0x08004c25   Thumb Code    32  main.o(i._ZN6Driver15disableFloatingEv)
-    Driver::init(char, char)                 0x08004c49   Thumb Code     6  main.o(i._ZN6Driver4initEcc)
-    Driver::write(char*, char, char)         0x08004c51   Thumb Code   100  main.o(i._ZN6Driver5writeEPccc)
-    Driver::Driver()                         0x08004cb9   Thumb Code    52  main.o(i._ZN6DriverC1Ev)
-    Driver::Driver__sub_object()             0x08004cb9   Thumb Code     0  main.o(i._ZN6DriverC1Ev)
-    PL_ADC::waitUpdate()                     0x08004ced   Thumb Code    10  stm32f407_adc.o(i._ZN6PL_ADC10waitUpdateEv)
-    PL_ADC::add(signed char)                 0x08004cf9   Thumb Code   172  stm32f407_adc.o(i._ZN6PL_ADC3addEa)
-    PL_ADC::init()                           0x08004dbd   Thumb Code   114  stm32f407_adc.o(i._ZN6PL_ADC4initEv)
-    PL_ADC::read(signed char, bool)          0x08004e39   Thumb Code    74  stm32f407_adc.o(i._ZN6PL_ADC4readEab)
-    PL_ADC::start()                          0x08004e83   Thumb Code    22  stm32f407_adc.o(i._ZN6PL_ADC5startEv)
-    PL_ADC::PL_ADC(ADC_TypeDef*)             0x08004e99   Thumb Code    50  stm32f407_adc.o(i._ZN6PL_ADCC1EP11ADC_TypeDef)
-    PL_ADC::PL_ADC__sub_object(ADC_TypeDef*) 0x08004e99   Thumb Code     0  stm32f407_adc.o(i._ZN6PL_ADCC1EP11ADC_TypeDef)
-    Screen::Screen()                         0x08004ed9   Thumb Code    32  main.o(i._ZN6ScreenC1Ev)
-    Screen::Screen__sub_object()             0x08004ed9   Thumb Code     0  main.o(i._ZN6ScreenC1Ev)
-    Battery::getVoltage()                    0x08004efd   Thumb Code     6  main.o(i._ZN7Battery10getVoltageEv)
-    Battery::getPercentage()                 0x08004f03   Thumb Code     6  main.o(i._ZN7Battery13getPercentageEv)
-    Battery::getCellVoltage(int)             0x08004f09   Thumb Code    10  main.o(i._ZN7Battery14getCellVoltageEi)
-    Battery::init(PL_ADC*, unsigned short, unsigned short, unsigned short, unsigned short) 0x08004f15   Thumb Code   118  main.o(i._ZN7Battery4initEP6PL_ADCtttt)
-    Battery::update()                        0x08004fb1   Thumb Code   308  main.o(i._ZN7Battery6updateEv)
-    Battery::readCell(int)                   0x0800510d   Thumb Code    46  main.o(i._ZN7Battery8readCellEi)
-    Buttons::setChanged(int, bool)           0x0800513b   Thumb Code    12  main.o(i._ZN7Buttons10setChangedEib)
-    Buttons::ButtonStruct::ButtonStruct()    0x08005147   Thumb Code    10  main.o(i._ZN7Buttons12ButtonStructC1Ev)
-    Buttons::ButtonStruct::ButtonStruct__sub_object() 0x08005147   Thumb Code     0  main.o(i._ZN7Buttons12ButtonStructC1Ev)
-    Buttons::init(unsigned short, unsigned short, unsigned short, unsigned short) 0x08005151   Thumb Code    52  main.o(i._ZN7Buttons4initEtttt)
-    Buttons::enable()                        0x08005185   Thumb Code    22  main.o(i._ZN7Buttons6enableEv)
-    Buttons::update()                        0x0800519b   Thumb Code    52  main.o(i._ZN7Buttons6updateEv)
-    Buttons::disable()                       0x080051cf   Thumb Code    22  main.o(i._ZN7Buttons7disableEv)
-    Buttons::isChanged(int, bool)            0x080051e5   Thumb Code    30  main.o(i._ZN7Buttons9isChangedEib)
-    Buttons::isPressed(int)                  0x08005203   Thumb Code    12  main.o(i._ZN7Buttons9isPressedEi)
-    Command::Command()                       0x0800520f   Thumb Code     6  main.o(i._ZN7CommandC1Ev)
-    Command::Command__sub_object()           0x0800520f   Thumb Code     0  main.o(i._ZN7CommandC1Ev)
-    Display::addToScreen(Command)            0x08005215   Thumb Code    56  main.o(i._ZN7Display11addToScreenE7Command)
-    Display::print(char*, int, int)          0x0800524d   Thumb Code     4  main.o(i._ZN7Display5printEPcii)
-    Display::print(double, int, int, int)    0x08005251   Thumb Code    16  main.o(i._ZN7Display5printEdiii)
-    Display::print(int, int, int, int)       0x08005261   Thumb Code    16  main.o(i._ZN7Display5printEiiii)
-    Display::print(unsigned, int, int, int)  0x08005271   Thumb Code    16  main.o(i._ZN7Display5printEjiii)
-    Display::addEsc(Command)                 0x08005281   Thumb Code    46  main.o(i._ZN7Display6addEscE7Command)
-    SSD1306::ssd1306_command(unsigned char)  0x080052af   Thumb Code    52  ssd1306.o(i._ZN7SSD130615ssd1306_commandEh)
-    SSD1306::begin(unsigned char, bool)      0x080052e3   Thumb Code   372  ssd1306.o(i._ZN7SSD13065beginEhb)
-    SSD1306::clear()                         0x08005459   Thumb Code    10  ssd1306.o(i._ZN7SSD13065clearEv)
-    SSD1306::invert(unsigned char)           0x08005469   Thumb Code    16  ssd1306.o(i._ZN7SSD13066invertEh)
-    SSD1306::display(unsigned char*)         0x08005479   Thumb Code   116  ssd1306.o(i._ZN7SSD13067displayEPh)
-    SSD1306::display()                       0x080054ed   Thumb Code   116  ssd1306.o(i._ZN7SSD13067displayEv)
-    SSD1306::switchOn()                      0x08005565   Thumb Code     8  ssd1306.o(i._ZN7SSD13068switchOnEv)
-    SSD1306::drawPixel(short, short, unsigned short) 0x0800556d   Thumb Code   158  ssd1306.o(i._ZN7SSD13069drawPixelEsst)
-    SSD1306::SSD1306(unsigned, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short) 0x08005611   Thumb Code    64  ssd1306.o(i._ZN7SSD1306C1Ejtttttt)
-    SSD1306::SSD1306__sub_object(unsigned, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short) 0x08005611   Thumb Code     0  ssd1306.o(i._ZN7SSD1306C1Ejtttttt)
-    SSD1306::SSD1306()                       0x08005655   Thumb Code     6  ssd1306.o(i._ZN7SSD1306C1Ev)
-    SSD1306::SSD1306__sub_object()           0x08005655   Thumb Code     0  ssd1306.o(i._ZN7SSD1306C1Ev)
-    mpu9250::readFIFOsize()                  0x08005661   Thumb Code    46  mpu9250.o(i._ZN7mpu925012readFIFOsizeEv)
-    mpu9250::setAccOffset(int, int, int)     0x0800568f   Thumb Code    88  mpu9250.o(i._ZN7mpu925012setAccOffsetEiii)
-    mpu9250::updateAngles(double, bool)      0x080056e9   Thumb Code   588  mpu9250.o(i._ZN7mpu925012updateAnglesEdb)
-    mpu9250::setGyroOffset(int, int, int)    0x08005965   Thumb Code    82  mpu9250.o(i._ZN7mpu925013setGyroOffsetEiii)
-    mpu9250::updateAnglesFromFIFO()          0x080059b9   Thumb Code    56  mpu9250.o(i._ZN7mpu925020updateAnglesFromFIFOEv)
-    mpu9250::MadgwickAHRSupdateIMU(double)   0x080059f9   Thumb Code  2130  mpu9250.o(i._ZN7mpu925021MadgwickAHRSupdateIMUEd)
-    mpu9250::convert(unsigned short, unsigned char) 0x0800624d   Thumb Code    16  mpu9250.o(i._ZN7mpu92507convertEth)
-    mpu9250::initIMU(unsigned, int)          0x08006261   Thumb Code   572  mpu9250.o(i._ZN7mpu92507initIMUEji)
-    mpu9250::invSqrt(float)                  0x080064fd   Thumb Code    40  mpu9250.o(i._ZN7mpu92507invSqrtEf)
-    mpu9250::readAcc()                       0x08006529   Thumb Code   172  mpu9250.o(i._ZN7mpu92507readAccEv)
-    mpu9250::readReg(int, int*, int)         0x080065d5   Thumb Code    90  mpu9250.o(i._ZN7mpu92507readRegEiPii)
-    mpu9250::readGyro()                      0x0800662f   Thumb Code   172  mpu9250.o(i._ZN7mpu92508readGyroEv)
-    mpu9250::writeReg(int, unsigned char)    0x080066db   Thumb Code    50  mpu9250.o(i._ZN7mpu92508writeRegEih)
-    mpu9250::calibrate(int)                  0x0800670d   Thumb Code   210  mpu9250.o(i._ZN7mpu92509calibrateEi)
-    PairSaver::add(std::pair<double, double>, unsigned) 0x080067e9   Thumb Code    72  main.o(i._ZN9PairSaver3addESt4pairIddEj)
-    PairSaver::pop(unsigned)                 0x08006831   Thumb Code    80  main.o(i._ZN9PairSaver3popEj)
-    PairSaver::incP(unsigned char&)          0x08006881   Thumb Code    18  main.o(i._ZN9PairSaver4incPERh)
-    PairSaver::PairSaver()                   0x08006895   Thumb Code    80  main.o(i._ZN9PairSaverC1Ev)
-    PairSaver::PairSaver__sub_object()       0x08006895   Thumb Code     0  main.o(i._ZN9PairSaverC1Ev)
-    std::abs(double)                         0x080068e9   Thumb Code     4  main.o(i._ZSt3absd)
-    operator delete (void*)                  0x080068ed   Thumb Code     8  delete.o(i._ZdlPv)
-    operator new[] (unsigned)                0x080068f5   Thumb Code     8  array_new.o(i._Znaj)
-    operator new(unsigned)                   0x080068fd   Thumb Code    34  new.o(i._Znwj)
-    __ARM_fpclassify                         0x08006925   Thumb Code    48  fpclassify.o(i.__ARM_fpclassify)
-    __aeabi_vec_ctor_nocookie_nodtor         0x08006955   Thumb Code    36  aeabi_vec_ctor_nocookie_nodtor.o(i.__aeabi_vec_ctor_nocookie_nodtor)
-    __cxa_guard_acquire                      0x08006979   Thumb Code    16  cxa_guard_acquire.o(i.__cxa_guard_acquire)
-    __hardfp_asin                            0x08006989   Thumb Code   770  asin.o(i.__hardfp_asin)
-    __hardfp_atan                            0x08006ce9   Thumb Code   622  atan.o(i.__hardfp_atan)
-    __hardfp_atan2                           0x08006fc1   Thumb Code   432  atan2.o(i.__hardfp_atan2)
-    __hardfp_ceilf                           0x080071b1   Thumb Code    98  ceilf.o(i.__hardfp_ceilf)
-    __mathlib_ceilf                          0x080071b1   Thumb Code     0  ceilf.o(i.__hardfp_ceilf)
-    __hardfp_cos                             0x08007221   Thumb Code   180  cos.o(i.__hardfp_cos)
-    __hardfp_fabs                            0x080072e9   Thumb Code    20  fabs.o(i.__hardfp_fabs)
-    __hardfp_pow                             0x08007301   Thumb Code  3072  pow.o(i.__hardfp_pow)
-    __hardfp_sin                             0x08007f51   Thumb Code   180  sin.o(i.__hardfp_sin)
-    __hardfp_sqrt                            0x08008019   Thumb Code   122  sqrt.o(i.__hardfp_sqrt)
-    __ieee754_rem_pio2                       0x08008099   Thumb Code   938  rred.o(i.__ieee754_rem_pio2)
-    __kernel_cos                             0x080084d1   Thumb Code   322  cos_i.o(i.__kernel_cos)
-    __kernel_poly                            0x08008641   Thumb Code   248  poly.o(i.__kernel_poly)
-    __kernel_sin                             0x08008739   Thumb Code   280  sin_i.o(i.__kernel_sin)
-    __mathlib_dbl_divzero                    0x08008869   Thumb Code    28  dunder.o(i.__mathlib_dbl_divzero)
-    __mathlib_dbl_infnan                     0x08008899   Thumb Code    20  dunder.o(i.__mathlib_dbl_infnan)
-    __mathlib_dbl_infnan2                    0x080088ad   Thumb Code    20  dunder.o(i.__mathlib_dbl_infnan2)
-    __mathlib_dbl_invalid                    0x080088c1   Thumb Code    24  dunder.o(i.__mathlib_dbl_invalid)
-    __mathlib_dbl_overflow                   0x080088e1   Thumb Code    24  dunder.o(i.__mathlib_dbl_overflow)
-    __mathlib_dbl_underflow                  0x08008901   Thumb Code    24  dunder.o(i.__mathlib_dbl_underflow)
-    atan                                     0x080089d5   Thumb Code    16  atan.o(i.atan)
-    fabs                                     0x080089e5   Thumb Code    24  fabs.o(i.fabs)
-    main                                     0x080089fd   Thumb Code   990  main.o(i.main)
-    sqrt                                     0x08008e89   Thumb Code   110  sqrt.o(i.sqrt)
-    T1 sgn<double>(T1)                       0x08008ef9   Thumb Code    72  main.o(t._Z3sgnIdET_S0_)
-    T1 crc8<char>(T1*, int)                  0x08008f59   Thumb Code    52  main.o(t._Z4crc8IcET_PS0_i)
-    T1 crc8<unsigned char>(T1*, int)         0x08008f8d   Thumb Code    52  main.o(t._Z4crc8IhET_PS0_i)
-    T1 crc8<int>(T1*, int)                   0x08008fc1   Thumb Code    48  main.o(t._Z4crc8IiET_PS0_i)
-    T1 min2<double>(T1, T1)                  0x08008ff1   Thumb Code    60  main.o(t._Z4min2IdET_S0_S0_)
-    T1 min2<int>(T1, T1)                     0x0800902d   Thumb Code     8  main.o(t._Z4min2IiET_S0_S0_)
-    char* toPrint<double>(T1, short)         0x08009035   Thumb Code   532  main.o(t._Z7toPrintIdEPcT_s)
-    char* toPrint<int>(T1, short)            0x08009259   Thumb Code   278  main.o(t._Z7toPrintIiEPcT_s)
-    char* toPrint<unsigned>(T1, short)       0x0800936f   Thumb Code   264  main.o(t._Z7toPrintIjEPcT_s)
-    void printTml<double>(SSD1306&, T1, int, int, int) 0x08009477   Thumb Code    40  main.o(t._Z8printTmlIdEvR7SSD1306T_iii)
-    void printTml<int>(SSD1306&, T1, int, int, int) 0x0800949f   Thumb Code    42  main.o(t._Z8printTmlIiEvR7SSD1306T_iii)
-    void printTml<unsigned>(SSD1306&, T1, int, int, int) 0x080094c9   Thumb Code    42  main.o(t._Z8printTmlIjEvR7SSD1306T_iii)
-    std::pair<std::pair<double, double>, unsigned>::pair() 0x080094f3   Thumb Code    12  main.o(t._ZNSt4pairIS_IddEjEC1Ev)
-    std::pair<std::pair<double, double>, unsigned>::pair__sub_object() 0x080094f3   Thumb Code     0  main.o(t._ZNSt4pairIS_IddEjEC1Ev)
-    std::pair<double, double>::pair(const std::pair<double, double>&) 0x080094ff   Thumb Code    18  main.o(t._ZNSt4pairIddEC1ERKS0_)
-    std::pair<double, double>::pair__sub_object(const std::pair<double, double>&) 0x080094ff   Thumb Code     0  main.o(t._ZNSt4pairIddEC1ERKS0_)
-    std::pair<double, double>::pair()        0x08009511   Thumb Code    14  main.o(t._ZNSt4pairIddEC1Ev)
-    std::pair<double, double>::pair__sub_object() 0x08009511   Thumb Code     0  main.o(t._ZNSt4pairIddEC1Ev)
-    std::pair<double, double>::pair<int, int>(const std::pair<T1, T2>&) 0x08009529   Thumb Code    30  main.o(t._ZNSt4pairIddEC1IiiEERKS_IT_T0_E)
-    std::pair<double, double>::pair__sub_object<int, int>(const std::pair<T1, T2>&) 0x08009529   Thumb Code     0  main.o(t._ZNSt4pairIddEC1IiiEERKS_IT_T0_E)
-    std::pair<int, int>::pair()              0x08009547   Thumb Code     8  main.o(t._ZNSt4pairIiiEC1Ev)
-    std::pair<int, int>::pair__sub_object()  0x08009547   Thumb Code     0  main.o(t._ZNSt4pairIiiEC1Ev)
-    std::pair<short, short>::pair<double, double>(const std::pair<T1, T2>&) 0x0800954f   Thumb Code    38  main.o(t._ZNSt4pairIssEC1IddEERKS_IT_T0_E)
-    std::pair<short, short>::pair__sub_object<double, double>(const std::pair<T1, T2>&) 0x0800954f   Thumb Code     0  main.o(t._ZNSt4pairIssEC1IddEERKS_IT_T0_E)
-    std::pair<short, short>::pair<int, int>(const std::pair<T1, T2>&) 0x08009575   Thumb Code    10  main.o(t._ZNSt4pairIssEC1IiiEERKS_IT_T0_E)
-    std::pair<short, short>::pair__sub_object<int, int>(const std::pair<T1, T2>&) 0x08009575   Thumb Code     0  main.o(t._ZNSt4pairIssEC1IiiEERKS_IT_T0_E)
-    __aeabi_dneg                             0x0800957f   Thumb Code     0  basic.o(x$fpl$basic)
-    _dneg                                    0x0800957f   Thumb Code     6  basic.o(x$fpl$basic)
-    __aeabi_fneg                             0x08009585   Thumb Code     0  basic.o(x$fpl$basic)
-    _fneg                                    0x08009585   Thumb Code     6  basic.o(x$fpl$basic)
-    _dabs                                    0x0800958b   Thumb Code     6  basic.o(x$fpl$basic)
-    _fabs                                    0x08009591   Thumb Code     6  basic.o(x$fpl$basic)
-    __aeabi_d2f                              0x08009599   Thumb Code     0  d2f.o(x$fpl$d2f)
-    _d2f                                     0x08009599   Thumb Code    98  d2f.o(x$fpl$d2f)
-    __aeabi_dadd                             0x080095fd   Thumb Code     0  daddsub_clz.o(x$fpl$dadd)
-    _dadd                                    0x080095fd   Thumb Code   332  daddsub_clz.o(x$fpl$dadd)
-    __fpl_dcheck_NaN1                        0x0800974d   Thumb Code    10  dcheck1.o(x$fpl$dcheck1)
-    __fpl_dcmp_Inf                           0x0800975d   Thumb Code    24  dcmpi.o(x$fpl$dcmpinf)
-    __aeabi_ddiv                             0x08009775   Thumb Code     0  ddiv.o(x$fpl$ddiv)
-    _ddiv                                    0x08009775   Thumb Code   552  ddiv.o(x$fpl$ddiv)
-    __aeabi_cdcmpeq                          0x08009a25   Thumb Code     0  deqf.o(x$fpl$deqf)
-    _dcmpeq                                  0x08009a25   Thumb Code   120  deqf.o(x$fpl$deqf)
-    __aeabi_d2iz                             0x08009a9d   Thumb Code     0  dfix.o(x$fpl$dfix)
-    _dfix                                    0x08009a9d   Thumb Code    94  dfix.o(x$fpl$dfix)
-    __aeabi_d2uiz                            0x08009afd   Thumb Code     0  dfixu.o(x$fpl$dfixu)
-    _dfixu                                   0x08009afd   Thumb Code    90  dfixu.o(x$fpl$dfixu)
-    __aeabi_i2d                              0x08009b57   Thumb Code     0  dflt_clz.o(x$fpl$dflt)
-    _dflt                                    0x08009b57   Thumb Code    46  dflt_clz.o(x$fpl$dflt)
-    __aeabi_l2d                              0x08009b85   Thumb Code     0  dfltll_clz.o(x$fpl$dfltll)
-    _ll_sto_d                                0x08009b85   Thumb Code   162  dfltll_clz.o(x$fpl$dfltll)
-    __aeabi_ui2d                             0x08009c27   Thumb Code     0  dflt_clz.o(x$fpl$dfltu)
-    _dfltu                                   0x08009c27   Thumb Code    38  dflt_clz.o(x$fpl$dfltu)
-    __aeabi_cdcmple                          0x08009c4d   Thumb Code     0  dleqf.o(x$fpl$dleqf)
-    _dcmple                                  0x08009c4d   Thumb Code   120  dleqf.o(x$fpl$dleqf)
-    __fpl_dcmple_InfNaN                      0x08009caf   Thumb Code     0  dleqf.o(x$fpl$dleqf)
-    __aeabi_dmul                             0x08009cc5   Thumb Code     0  dmul.o(x$fpl$dmul)
-    _dmul                                    0x08009cc5   Thumb Code   332  dmul.o(x$fpl$dmul)
-    __fpl_dnaninf                            0x08009e19   Thumb Code   156  dnaninf.o(x$fpl$dnaninf)
-    __fpl_dretinf                            0x08009eb5   Thumb Code    12  dretinf.o(x$fpl$dretinf)
-    __aeabi_cdrcmple                         0x08009ec1   Thumb Code     0  drleqf.o(x$fpl$drleqf)
-    _drcmple                                 0x08009ec1   Thumb Code   108  drleqf.o(x$fpl$drleqf)
-    __aeabi_drsub                            0x08009f2d   Thumb Code     0  daddsub_clz.o(x$fpl$drsb)
-    _drsb                                    0x08009f2d   Thumb Code    22  daddsub_clz.o(x$fpl$drsb)
-    _dsqrt                                   0x08009f45   Thumb Code   404  dsqrt_umaal.o(x$fpl$dsqrt)
-    __aeabi_dsub                             0x0800a0dd   Thumb Code     0  daddsub_clz.o(x$fpl$dsub)
-    _dsub                                    0x0800a0dd   Thumb Code   464  daddsub_clz.o(x$fpl$dsub)
-    __aeabi_f2d                              0x0800a2b1   Thumb Code     0  f2d.o(x$fpl$f2d)
-    _f2d                                     0x0800a2b1   Thumb Code    86  f2d.o(x$fpl$f2d)
-    __fpl_fnaninf                            0x0800a307   Thumb Code   140  fnaninf.o(x$fpl$fnaninf)
-    _fp_init                                 0x0800a393   Thumb Code    10  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x0800a39b   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x0800a39b   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fpl_fretinf                            0x0800a39d   Thumb Code    10  fretinf.o(x$fpl$fretinf)
-    __aeabi_d2lz                             0x0800a3a9   Thumb Code     0  dfixll.o(x$fpl$llsfromd)
-    _ll_sfrom_d                              0x0800a3a9   Thumb Code   194  dfixll.o(x$fpl$llsfromd)
-    __fpl_return_NaN                         0x0800a46b   Thumb Code   100  retnan.o(x$fpl$retnan)
-    __ARM_scalbn                             0x0800a4cf   Thumb Code    92  scalbn.o(x$fpl$scalbn)
-    __fpl_cmpreturn                          0x0800a52b   Thumb Code    48  trapv.o(x$fpl$trapveneer)
-    __I$use$fp                               0x0800a55a   Number         0  usenofp.o(x$fpl$usenofp)
-    PL_ADC::channels                         0x0800aeec   Data          16  stm32f407_adc.o(.constdata)
-    __mathlib_zero                           0x0800b0a0   Data           8  qnan.o(.constdata)
-    vtable for SSD1306                       0x0800b198   Data          16  ssd1306.o(.constdata__ZTV7SSD1306)
-    Display::update()::string                0x0800b1a8   Data           2  main.o(.constdata__ZZN7Display6updateEvEs)
-    Region$$Table$$Base                      0x0800b1ac   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0800b1cc   Number         0  anon$$obj.o(Region$$Table)
-    SHT$$INIT_ARRAY$$Base                    0x0800b1cc   Number         0  main.o(.init_array)
-    SHT$$INIT_ARRAY$$Limit                   0x0800b1d0   Number         0  init_aeabi.o(.init_array)
+    Functional::goalkeeper()                 0x08002319   Thumb Code  2074  main.o(i._ZN10Functional10goalkeeperEv)
+    Functional::posCalc()                    0x08002b61   Thumb Code   562  main.o(i._ZN10Functional7posCalcEv)
+    Functional::Functional(Robot*)           0x08002da5   Thumb Code   294  main.o(i._ZN10FunctionalC1EP5Robot)
+    Functional::Functional__sub_object(Robot*) 0x08002da5   Thumb Code     0  main.o(i._ZN10FunctionalC1EP5Robot)
+    FieldObject::update(std::pair<double, double>, std::pair<double, double>, unsigned, unsigned short) 0x08002edd   Thumb Code   248  main.o(i._ZN11FieldObject6updateESt4pairIddES1_jt)
+    FieldObject::FieldObject()               0x08002fd5   Thumb Code   120  main.o(i._ZN11FieldObjectC1Ev)
+    FieldObject::FieldObject__sub_object()   0x08002fd5   Thumb Code     0  main.o(i._ZN11FieldObjectC1Ev)
+    LineSensors::turnOnSensors()             0x08003055   Thumb Code     6  main.o(i._ZN11LineSensors13turnOnSensorsEv)
+    LineSensors::turnOffSensors()            0x0800305b   Thumb Code     6  main.o(i._ZN11LineSensors14turnOffSensorsEv)
+    LineSensors::endLineCalibration()        0x08003061   Thumb Code     6  main.o(i._ZN11LineSensors18endLineCalibrationEv)
+    LineSensors::beginLineCalibration()      0x08003067   Thumb Code     6  main.o(i._ZN11LineSensors20beginLineCalibrationEv)
+    LineSensors::init(unsigned, unsigned short) 0x0800306d   Thumb Code    36  main.o(i._ZN11LineSensors4initEjt)
+    LineSensors::update()                    0x08003091   Thumb Code    52  main.o(i._ZN11LineSensors6updateEv)
+    LineSensors::getLine()                   0x080030c5   Thumb Code     4  main.o(i._ZN11LineSensors7getLineEv)
+    CameraObject::CameraObject()             0x080030c9   Thumb Code    36  main.o(i._ZN12CameraObjectC1Ev)
+    CameraObject::CameraObject__sub_object() 0x080030c9   Thumb Code     0  main.o(i._ZN12CameraObjectC1Ev)
+    KickerModule::initCharge()               0x080030f5   Thumb Code     8  main.o(i._ZN12KickerModule10initChargeEv)
+    KickerModule::init(unsigned short, unsigned short, unsigned short, unsigned short) 0x080030fd   Thumb Code   122  main.o(i._ZN12KickerModule4initEtttt)
+    KickerModule::kick(bool, bool)           0x08003177   Thumb Code   152  main.o(i._ZN12KickerModule4kickEbb)
+    KickerModule::update()                   0x0800320f   Thumb Code    20  main.o(i._ZN12KickerModule6updateEv)
+    KickerModule::isCharged()                0x08003223   Thumb Code    14  main.o(i._ZN12KickerModule9isChargedEv)
+    MotorDrivers::enableMotor(int)           0x08003231   Thumb Code    14  main.o(i._ZN12MotorDrivers11enableMotorEi)
+    MotorDrivers::setDribbler(int)           0x0800323f   Thumb Code     8  main.o(i._ZN12MotorDrivers11setDribblerEi)
+    MotorDrivers::disableMotor(int)          0x08003247   Thumb Code    14  main.o(i._ZN12MotorDrivers12disableMotorEi)
+    MotorDrivers::enableMotors()             0x08003255   Thumb Code    28  main.o(i._ZN12MotorDrivers12enableMotorsEv)
+    MotorDrivers::disableMotors()            0x08003271   Thumb Code    28  main.o(i._ZN12MotorDrivers13disableMotorsEv)
+    MotorDrivers::attemptCurrent()           0x0800328d   Thumb Code    28  main.o(i._ZN12MotorDrivers14attemptCurrentEv)
+    MotorDrivers::init(unsigned, unsigned char, unsigned, unsigned char, unsigned, unsigned char, unsigned, unsigned char, unsigned, unsigned char) 0x080032a9   Thumb Code   144  main.o(i._ZN12MotorDrivers4initEjhjhjhjhjh)
+    MotorDrivers::update()                   0x08003339   Thumb Code   322  main.o(i._ZN12MotorDrivers6updateEv)
+    MotorDrivers::setMotor(int, int)         0x08003485   Thumb Code    42  main.o(i._ZN12MotorDrivers8setMotorEii)
+    MotorDrivers::setMotors(int, int, int, int) 0x080034af   Thumb Code    56  main.o(i._ZN12MotorDrivers9setMotorsEiiii)
+    MotorDrivers::setMotors(int, int, int, int, int) 0x080034e7   Thumb Code    30  main.o(i._ZN12MotorDrivers9setMotorsEiiiii)
+    BaseFunctional::checkBounds(std::pair<double, double>, std::pair<double, double>, std::pair<double, double>) 0x08003505   Thumb Code   104  main.o(i._ZN14BaseFunctional11checkBoundsESt4pairIddES1_S1_)
+    BaseFunctional::getRobotClass()          0x0800356d   Thumb Code     4  main.o(i._ZN14BaseFunctional13getRobotClassEv)
+    BaseFunctional::genVTMGlobalPoint(std::pair<short, short>, std::pair<short, short>, double, char) 0x08003571   Thumb Code   294  main.o(i._ZN14BaseFunctional17genVTMGlobalPointESt4pairIssES1_dc)
+    BaseFunctional::move2(VectorToMove, double, double, unsigned short) 0x080036c9   Thumb Code   132  main.o(i._ZN14BaseFunctional5move2E12VectorToMoveddt)
+    IMU::setZeroAngle()                      0x0800375d   Thumb Code    20  main.o(i._ZN3IMU12setZeroAngleEv)
+    IMU::updateAnglesFromFIFO()              0x08003771   Thumb Code     6  main.o(i._ZN3IMU20updateAnglesFromFIFOEv)
+    IMU::init(unsigned, unsigned short, unsigned short) 0x08003779   Thumb Code    76  main.o(i._ZN3IMU4initEjtt)
+    IMU::turnOn()                            0x080037cd   Thumb Code    34  main.o(i._ZN3IMU6turnOnEv)
+    IMU::update()                            0x080037f1   Thumb Code   144  main.o(i._ZN3IMU6updateEv)
+    IMU::getAngle()                          0x08003899   Thumb Code   124  main.o(i._ZN3IMU8getAngleEv)
+    IMU::calibrate(unsigned)                 0x0800392d   Thumb Code     6  main.o(i._ZN3IMU9calibrateEj)
+    Robot::switch5vOn()                      0x08003933   Thumb Code     8  main.o(i._ZN5Robot10switch5vOnEv)
+    Robot::updateMenu()                      0x0800393d   Thumb Code   328  main.o(i._ZN5Robot10updateMenuEv)
+    Robot::switch5vOff()                     0x08003a89   Thumb Code     8  main.o(i._ZN5Robot11switch5vOffEv)
+    Robot::handleErrors()                    0x08003a91   Thumb Code    58  main.o(i._ZN5Robot12handleErrorsEv)
+    Robot::setPlayState(bool)                0x08003ad1   Thumb Code    82  main.o(i._ZN5Robot12setPlayStateEb)
+    Robot::swithPowerOn()                    0x08003b23   Thumb Code     8  main.o(i._ZN5Robot12swithPowerOnEv)
+    Robot::updateSelfPos(std::pair<double, double>, std::pair<double, double>) 0x08003b2d   Thumb Code   422  main.o(i._ZN5Robot13updateSelfPosESt4pairIddES1_)
+    Robot::changePlayState()                 0x08003d05   Thumb Code    22  main.o(i._ZN5Robot15changePlayStateEv)
+    Robot::getV()                            0x08003d1b   Thumb Code     8  main.o(i._ZN5Robot4getVEv)
+    Robot::init()                            0x08003d25   Thumb Code   628  main.o(i._ZN5Robot4initEv)
+    Robot::move(double, double, double, double, double, double) 0x08003fb1   Thumb Code  1842  main.o(i._ZN5Robot4moveEdddddd)
+    Robot::wait(unsigned)                    0x080046fd   Thumb Code   326  main.o(i._ZN5Robot4waitEj)
+    Robot::getPos()                          0x08004849   Thumb Code    10  main.o(i._ZN5Robot6getPosEv)
+    Robot::initLEDs()                        0x08004853   Thumb Code    66  main.o(i._ZN5Robot8initLEDsEv)
+    Robot::logErrors()                       0x08004895   Thumb Code    28  main.o(i._ZN5Robot9logErrorsEv)
+    Robot::playState()                       0x080048b5   Thumb Code    10  main.o(i._ZN5Robot9playStateEv)
+    Robot::Robot()                           0x080048c1   Thumb Code   128  main.o(i._ZN5RobotC1Ev)
+    Robot::Robot__sub_object()               0x080048c1   Thumb Code     0  main.o(i._ZN5RobotC1Ev)
+    Border::Border(double, char, char, short, short, short, short) 0x08004951   Thumb Code    36  main.o(i._ZN6BorderC1Edccssss)
+    Border::Border__sub_object(double, char, char, short, short, short, short) 0x08004951   Thumb Code     0  main.o(i._ZN6BorderC1Edccssss)
+    Camera::init(unsigned, unsigned short)   0x0800497d   Thumb Code    32  main.o(i._ZN6Camera4initEjt)
+    Camera::update()                         0x0800499d   Thumb Code   342  main.o(i._ZN6Camera6updateEv)
+    Camera::Camera()                         0x08004af3   Thumb Code    60  main.o(i._ZN6CameraC1Ev)
+    Camera::Camera__sub_object()             0x08004af3   Thumb Code     0  main.o(i._ZN6CameraC1Ev)
+    Driver::setVelocity(int)                 0x08004b31   Thumb Code   158  main.o(i._ZN6Driver11setVelocityEi)
+    Driver::updateFromReg()                  0x08004bd5   Thumb Code    96  main.o(i._ZN6Driver13updateFromRegEv)
+    Driver::attemptCurrent()                 0x08004c39   Thumb Code    10  main.o(i._ZN6Driver14attemptCurrentEv)
+    Driver::enableFloating()                 0x08004c49   Thumb Code    32  main.o(i._ZN6Driver14enableFloatingEv)
+    Driver::disableFloating()                0x08004c6d   Thumb Code    32  main.o(i._ZN6Driver15disableFloatingEv)
+    Driver::init(char, char)                 0x08004c91   Thumb Code     6  main.o(i._ZN6Driver4initEcc)
+    Driver::write(char*, char, char)         0x08004c99   Thumb Code   100  main.o(i._ZN6Driver5writeEPccc)
+    Driver::Driver()                         0x08004d01   Thumb Code    52  main.o(i._ZN6DriverC1Ev)
+    Driver::Driver__sub_object()             0x08004d01   Thumb Code     0  main.o(i._ZN6DriverC1Ev)
+    PL_ADC::waitUpdate()                     0x08004d35   Thumb Code    10  stm32f407_adc.o(i._ZN6PL_ADC10waitUpdateEv)
+    PL_ADC::add(signed char)                 0x08004d41   Thumb Code   172  stm32f407_adc.o(i._ZN6PL_ADC3addEa)
+    PL_ADC::init()                           0x08004e05   Thumb Code   114  stm32f407_adc.o(i._ZN6PL_ADC4initEv)
+    PL_ADC::read(signed char, bool)          0x08004e81   Thumb Code    74  stm32f407_adc.o(i._ZN6PL_ADC4readEab)
+    PL_ADC::start()                          0x08004ecb   Thumb Code    22  stm32f407_adc.o(i._ZN6PL_ADC5startEv)
+    PL_ADC::PL_ADC(ADC_TypeDef*)             0x08004ee1   Thumb Code    50  stm32f407_adc.o(i._ZN6PL_ADCC1EP11ADC_TypeDef)
+    PL_ADC::PL_ADC__sub_object(ADC_TypeDef*) 0x08004ee1   Thumb Code     0  stm32f407_adc.o(i._ZN6PL_ADCC1EP11ADC_TypeDef)
+    Screen::Screen()                         0x08004f21   Thumb Code    32  main.o(i._ZN6ScreenC1Ev)
+    Screen::Screen__sub_object()             0x08004f21   Thumb Code     0  main.o(i._ZN6ScreenC1Ev)
+    Battery::getVoltage()                    0x08004f45   Thumb Code     6  main.o(i._ZN7Battery10getVoltageEv)
+    Battery::getPercentage()                 0x08004f4b   Thumb Code     6  main.o(i._ZN7Battery13getPercentageEv)
+    Battery::getCellVoltage(int)             0x08004f51   Thumb Code    10  main.o(i._ZN7Battery14getCellVoltageEi)
+    Battery::init(PL_ADC*, unsigned short, unsigned short, unsigned short, unsigned short) 0x08004f5d   Thumb Code   118  main.o(i._ZN7Battery4initEP6PL_ADCtttt)
+    Battery::update()                        0x08004ff9   Thumb Code   308  main.o(i._ZN7Battery6updateEv)
+    Battery::readCell(int)                   0x08005155   Thumb Code    46  main.o(i._ZN7Battery8readCellEi)
+    Buttons::setChanged(int, bool)           0x08005183   Thumb Code    12  main.o(i._ZN7Buttons10setChangedEib)
+    Buttons::ButtonStruct::ButtonStruct()    0x0800518f   Thumb Code    10  main.o(i._ZN7Buttons12ButtonStructC1Ev)
+    Buttons::ButtonStruct::ButtonStruct__sub_object() 0x0800518f   Thumb Code     0  main.o(i._ZN7Buttons12ButtonStructC1Ev)
+    Buttons::init(unsigned short, unsigned short, unsigned short, unsigned short) 0x08005199   Thumb Code    52  main.o(i._ZN7Buttons4initEtttt)
+    Buttons::enable()                        0x080051cd   Thumb Code    22  main.o(i._ZN7Buttons6enableEv)
+    Buttons::update()                        0x080051e3   Thumb Code    52  main.o(i._ZN7Buttons6updateEv)
+    Buttons::disable()                       0x08005217   Thumb Code    22  main.o(i._ZN7Buttons7disableEv)
+    Buttons::isChanged(int, bool)            0x0800522d   Thumb Code    30  main.o(i._ZN7Buttons9isChangedEib)
+    Buttons::isPressed(int)                  0x0800524b   Thumb Code    12  main.o(i._ZN7Buttons9isPressedEi)
+    Command::Command()                       0x08005257   Thumb Code     6  main.o(i._ZN7CommandC1Ev)
+    Command::Command__sub_object()           0x08005257   Thumb Code     0  main.o(i._ZN7CommandC1Ev)
+    Display::addToScreen(Command)            0x0800525d   Thumb Code    56  main.o(i._ZN7Display11addToScreenE7Command)
+    Display::print(char*, int, int)          0x08005295   Thumb Code     4  main.o(i._ZN7Display5printEPcii)
+    Display::print(double, int, int, int)    0x08005299   Thumb Code    16  main.o(i._ZN7Display5printEdiii)
+    Display::print(int, int, int, int)       0x080052a9   Thumb Code    16  main.o(i._ZN7Display5printEiiii)
+    Display::print(unsigned, int, int, int)  0x080052b9   Thumb Code    16  main.o(i._ZN7Display5printEjiii)
+    Display::addEsc(Command)                 0x080052c9   Thumb Code    46  main.o(i._ZN7Display6addEscE7Command)
+    SSD1306::ssd1306_command(unsigned char)  0x080052f7   Thumb Code    52  ssd1306.o(i._ZN7SSD130615ssd1306_commandEh)
+    SSD1306::begin(unsigned char, bool)      0x0800532b   Thumb Code   372  ssd1306.o(i._ZN7SSD13065beginEhb)
+    SSD1306::clear()                         0x080054a1   Thumb Code    10  ssd1306.o(i._ZN7SSD13065clearEv)
+    SSD1306::invert(unsigned char)           0x080054b1   Thumb Code    16  ssd1306.o(i._ZN7SSD13066invertEh)
+    SSD1306::display(unsigned char*)         0x080054c1   Thumb Code   116  ssd1306.o(i._ZN7SSD13067displayEPh)
+    SSD1306::display()                       0x08005535   Thumb Code   116  ssd1306.o(i._ZN7SSD13067displayEv)
+    SSD1306::switchOn()                      0x080055ad   Thumb Code     8  ssd1306.o(i._ZN7SSD13068switchOnEv)
+    SSD1306::drawPixel(short, short, unsigned short) 0x080055b5   Thumb Code   158  ssd1306.o(i._ZN7SSD13069drawPixelEsst)
+    SSD1306::SSD1306(unsigned, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short) 0x08005659   Thumb Code    64  ssd1306.o(i._ZN7SSD1306C1Ejtttttt)
+    SSD1306::SSD1306__sub_object(unsigned, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short) 0x08005659   Thumb Code     0  ssd1306.o(i._ZN7SSD1306C1Ejtttttt)
+    SSD1306::SSD1306()                       0x0800569d   Thumb Code     6  ssd1306.o(i._ZN7SSD1306C1Ev)
+    SSD1306::SSD1306__sub_object()           0x0800569d   Thumb Code     0  ssd1306.o(i._ZN7SSD1306C1Ev)
+    mpu9250::readFIFOsize()                  0x080056a9   Thumb Code    46  mpu9250.o(i._ZN7mpu925012readFIFOsizeEv)
+    mpu9250::setAccOffset(int, int, int)     0x080056d7   Thumb Code    88  mpu9250.o(i._ZN7mpu925012setAccOffsetEiii)
+    mpu9250::updateAngles(double, bool)      0x08005731   Thumb Code   588  mpu9250.o(i._ZN7mpu925012updateAnglesEdb)
+    mpu9250::setGyroOffset(int, int, int)    0x080059ad   Thumb Code    82  mpu9250.o(i._ZN7mpu925013setGyroOffsetEiii)
+    mpu9250::updateAnglesFromFIFO()          0x08005a01   Thumb Code    56  mpu9250.o(i._ZN7mpu925020updateAnglesFromFIFOEv)
+    mpu9250::MadgwickAHRSupdateIMU(double)   0x08005a41   Thumb Code  2130  mpu9250.o(i._ZN7mpu925021MadgwickAHRSupdateIMUEd)
+    mpu9250::convert(unsigned short, unsigned char) 0x08006299   Thumb Code    16  mpu9250.o(i._ZN7mpu92507convertEth)
+    mpu9250::initIMU(unsigned, int)          0x080062ad   Thumb Code   572  mpu9250.o(i._ZN7mpu92507initIMUEji)
+    mpu9250::invSqrt(float)                  0x08006549   Thumb Code    40  mpu9250.o(i._ZN7mpu92507invSqrtEf)
+    mpu9250::readAcc()                       0x08006575   Thumb Code   172  mpu9250.o(i._ZN7mpu92507readAccEv)
+    mpu9250::readReg(int, int*, int)         0x08006621   Thumb Code    90  mpu9250.o(i._ZN7mpu92507readRegEiPii)
+    mpu9250::readGyro()                      0x0800667b   Thumb Code   172  mpu9250.o(i._ZN7mpu92508readGyroEv)
+    mpu9250::writeReg(int, unsigned char)    0x08006727   Thumb Code    50  mpu9250.o(i._ZN7mpu92508writeRegEih)
+    mpu9250::calibrate(int)                  0x08006759   Thumb Code   210  mpu9250.o(i._ZN7mpu92509calibrateEi)
+    PairSaver::add(std::pair<double, double>, unsigned) 0x08006835   Thumb Code    72  main.o(i._ZN9PairSaver3addESt4pairIddEj)
+    PairSaver::pop(unsigned)                 0x0800687d   Thumb Code    80  main.o(i._ZN9PairSaver3popEj)
+    PairSaver::incP(unsigned char&)          0x080068cd   Thumb Code    18  main.o(i._ZN9PairSaver4incPERh)
+    PairSaver::PairSaver()                   0x080068e1   Thumb Code    80  main.o(i._ZN9PairSaverC1Ev)
+    PairSaver::PairSaver__sub_object()       0x080068e1   Thumb Code     0  main.o(i._ZN9PairSaverC1Ev)
+    std::abs(double)                         0x08006935   Thumb Code     4  main.o(i._ZSt3absd)
+    operator delete (void*)                  0x08006939   Thumb Code     8  delete.o(i._ZdlPv)
+    operator new[] (unsigned)                0x08006941   Thumb Code     8  array_new.o(i._Znaj)
+    operator new(unsigned)                   0x08006949   Thumb Code    34  new.o(i._Znwj)
+    __ARM_fpclassify                         0x08006971   Thumb Code    48  fpclassify.o(i.__ARM_fpclassify)
+    __aeabi_vec_ctor_nocookie_nodtor         0x080069a1   Thumb Code    36  aeabi_vec_ctor_nocookie_nodtor.o(i.__aeabi_vec_ctor_nocookie_nodtor)
+    __cxa_guard_acquire                      0x080069c5   Thumb Code    16  cxa_guard_acquire.o(i.__cxa_guard_acquire)
+    __hardfp_asin                            0x080069d9   Thumb Code   770  asin.o(i.__hardfp_asin)
+    __hardfp_atan                            0x08006d39   Thumb Code   622  atan.o(i.__hardfp_atan)
+    __hardfp_atan2                           0x08007011   Thumb Code   432  atan2.o(i.__hardfp_atan2)
+    __hardfp_ceilf                           0x08007201   Thumb Code    98  ceilf.o(i.__hardfp_ceilf)
+    __mathlib_ceilf                          0x08007201   Thumb Code     0  ceilf.o(i.__hardfp_ceilf)
+    __hardfp_cos                             0x08007271   Thumb Code   180  cos.o(i.__hardfp_cos)
+    __hardfp_fabs                            0x08007339   Thumb Code    20  fabs.o(i.__hardfp_fabs)
+    __hardfp_pow                             0x08007351   Thumb Code  3072  pow.o(i.__hardfp_pow)
+    __hardfp_sin                             0x08007fa1   Thumb Code   180  sin.o(i.__hardfp_sin)
+    __hardfp_sqrt                            0x08008069   Thumb Code   122  sqrt.o(i.__hardfp_sqrt)
+    __ieee754_rem_pio2                       0x080080e9   Thumb Code   938  rred.o(i.__ieee754_rem_pio2)
+    __kernel_cos                             0x08008521   Thumb Code   322  cos_i.o(i.__kernel_cos)
+    __kernel_poly                            0x08008691   Thumb Code   248  poly.o(i.__kernel_poly)
+    __kernel_sin                             0x08008789   Thumb Code   280  sin_i.o(i.__kernel_sin)
+    __mathlib_dbl_divzero                    0x080088b9   Thumb Code    28  dunder.o(i.__mathlib_dbl_divzero)
+    __mathlib_dbl_infnan                     0x080088e9   Thumb Code    20  dunder.o(i.__mathlib_dbl_infnan)
+    __mathlib_dbl_infnan2                    0x080088fd   Thumb Code    20  dunder.o(i.__mathlib_dbl_infnan2)
+    __mathlib_dbl_invalid                    0x08008911   Thumb Code    24  dunder.o(i.__mathlib_dbl_invalid)
+    __mathlib_dbl_overflow                   0x08008931   Thumb Code    24  dunder.o(i.__mathlib_dbl_overflow)
+    __mathlib_dbl_underflow                  0x08008951   Thumb Code    24  dunder.o(i.__mathlib_dbl_underflow)
+    atan                                     0x08008a25   Thumb Code    16  atan.o(i.atan)
+    fabs                                     0x08008a35   Thumb Code    24  fabs.o(i.fabs)
+    main                                     0x08008a4d   Thumb Code   990  main.o(i.main)
+    sqrt                                     0x08008ed9   Thumb Code   110  sqrt.o(i.sqrt)
+    T1 sgn<double>(T1)                       0x08008f49   Thumb Code    72  main.o(t._Z3sgnIdET_S0_)
+    T1 crc8<char>(T1*, int)                  0x08008fa9   Thumb Code    52  main.o(t._Z4crc8IcET_PS0_i)
+    T1 crc8<unsigned char>(T1*, int)         0x08008fdd   Thumb Code    52  main.o(t._Z4crc8IhET_PS0_i)
+    T1 crc8<int>(T1*, int)                   0x08009011   Thumb Code    48  main.o(t._Z4crc8IiET_PS0_i)
+    T1 min2<double>(T1, T1)                  0x08009041   Thumb Code    60  main.o(t._Z4min2IdET_S0_S0_)
+    T1 min2<int>(T1, T1)                     0x0800907d   Thumb Code     8  main.o(t._Z4min2IiET_S0_S0_)
+    char* toPrint<double>(T1, short)         0x08009085   Thumb Code   532  main.o(t._Z7toPrintIdEPcT_s)
+    char* toPrint<int>(T1, short)            0x080092a9   Thumb Code   278  main.o(t._Z7toPrintIiEPcT_s)
+    char* toPrint<unsigned>(T1, short)       0x080093bf   Thumb Code   264  main.o(t._Z7toPrintIjEPcT_s)
+    void printTml<double>(SSD1306&, T1, int, int, int) 0x080094c7   Thumb Code    40  main.o(t._Z8printTmlIdEvR7SSD1306T_iii)
+    void printTml<int>(SSD1306&, T1, int, int, int) 0x080094ef   Thumb Code    42  main.o(t._Z8printTmlIiEvR7SSD1306T_iii)
+    void printTml<unsigned>(SSD1306&, T1, int, int, int) 0x08009519   Thumb Code    42  main.o(t._Z8printTmlIjEvR7SSD1306T_iii)
+    std::pair<std::pair<double, double>, unsigned>::pair() 0x08009543   Thumb Code    12  main.o(t._ZNSt4pairIS_IddEjEC1Ev)
+    std::pair<std::pair<double, double>, unsigned>::pair__sub_object() 0x08009543   Thumb Code     0  main.o(t._ZNSt4pairIS_IddEjEC1Ev)
+    std::pair<double, double>::pair(const std::pair<double, double>&) 0x0800954f   Thumb Code    18  main.o(t._ZNSt4pairIddEC1ERKS0_)
+    std::pair<double, double>::pair__sub_object(const std::pair<double, double>&) 0x0800954f   Thumb Code     0  main.o(t._ZNSt4pairIddEC1ERKS0_)
+    std::pair<double, double>::pair()        0x08009561   Thumb Code    14  main.o(t._ZNSt4pairIddEC1Ev)
+    std::pair<double, double>::pair__sub_object() 0x08009561   Thumb Code     0  main.o(t._ZNSt4pairIddEC1Ev)
+    std::pair<double, double>::pair<int, int>(const std::pair<T1, T2>&) 0x08009579   Thumb Code    30  main.o(t._ZNSt4pairIddEC1IiiEERKS_IT_T0_E)
+    std::pair<double, double>::pair__sub_object<int, int>(const std::pair<T1, T2>&) 0x08009579   Thumb Code     0  main.o(t._ZNSt4pairIddEC1IiiEERKS_IT_T0_E)
+    std::pair<int, int>::pair()              0x08009597   Thumb Code     8  main.o(t._ZNSt4pairIiiEC1Ev)
+    std::pair<int, int>::pair__sub_object()  0x08009597   Thumb Code     0  main.o(t._ZNSt4pairIiiEC1Ev)
+    std::pair<short, short>::pair<double, double>(const std::pair<T1, T2>&) 0x0800959f   Thumb Code    38  main.o(t._ZNSt4pairIssEC1IddEERKS_IT_T0_E)
+    std::pair<short, short>::pair__sub_object<double, double>(const std::pair<T1, T2>&) 0x0800959f   Thumb Code     0  main.o(t._ZNSt4pairIssEC1IddEERKS_IT_T0_E)
+    std::pair<short, short>::pair<int, int>(const std::pair<T1, T2>&) 0x080095c5   Thumb Code    10  main.o(t._ZNSt4pairIssEC1IiiEERKS_IT_T0_E)
+    std::pair<short, short>::pair__sub_object<int, int>(const std::pair<T1, T2>&) 0x080095c5   Thumb Code     0  main.o(t._ZNSt4pairIssEC1IiiEERKS_IT_T0_E)
+    __aeabi_dneg                             0x080095cf   Thumb Code     0  basic.o(x$fpl$basic)
+    _dneg                                    0x080095cf   Thumb Code     6  basic.o(x$fpl$basic)
+    __aeabi_fneg                             0x080095d5   Thumb Code     0  basic.o(x$fpl$basic)
+    _fneg                                    0x080095d5   Thumb Code     6  basic.o(x$fpl$basic)
+    _dabs                                    0x080095db   Thumb Code     6  basic.o(x$fpl$basic)
+    _fabs                                    0x080095e1   Thumb Code     6  basic.o(x$fpl$basic)
+    __aeabi_d2f                              0x080095e9   Thumb Code     0  d2f.o(x$fpl$d2f)
+    _d2f                                     0x080095e9   Thumb Code    98  d2f.o(x$fpl$d2f)
+    __aeabi_dadd                             0x0800964d   Thumb Code     0  daddsub_clz.o(x$fpl$dadd)
+    _dadd                                    0x0800964d   Thumb Code   332  daddsub_clz.o(x$fpl$dadd)
+    __fpl_dcheck_NaN1                        0x0800979d   Thumb Code    10  dcheck1.o(x$fpl$dcheck1)
+    __fpl_dcmp_Inf                           0x080097ad   Thumb Code    24  dcmpi.o(x$fpl$dcmpinf)
+    __aeabi_ddiv                             0x080097c5   Thumb Code     0  ddiv.o(x$fpl$ddiv)
+    _ddiv                                    0x080097c5   Thumb Code   552  ddiv.o(x$fpl$ddiv)
+    __aeabi_cdcmpeq                          0x08009a75   Thumb Code     0  deqf.o(x$fpl$deqf)
+    _dcmpeq                                  0x08009a75   Thumb Code   120  deqf.o(x$fpl$deqf)
+    __aeabi_d2iz                             0x08009aed   Thumb Code     0  dfix.o(x$fpl$dfix)
+    _dfix                                    0x08009aed   Thumb Code    94  dfix.o(x$fpl$dfix)
+    __aeabi_d2uiz                            0x08009b4d   Thumb Code     0  dfixu.o(x$fpl$dfixu)
+    _dfixu                                   0x08009b4d   Thumb Code    90  dfixu.o(x$fpl$dfixu)
+    __aeabi_i2d                              0x08009ba7   Thumb Code     0  dflt_clz.o(x$fpl$dflt)
+    _dflt                                    0x08009ba7   Thumb Code    46  dflt_clz.o(x$fpl$dflt)
+    __aeabi_l2d                              0x08009bd5   Thumb Code     0  dfltll_clz.o(x$fpl$dfltll)
+    _ll_sto_d                                0x08009bd5   Thumb Code   162  dfltll_clz.o(x$fpl$dfltll)
+    __aeabi_ui2d                             0x08009c77   Thumb Code     0  dflt_clz.o(x$fpl$dfltu)
+    _dfltu                                   0x08009c77   Thumb Code    38  dflt_clz.o(x$fpl$dfltu)
+    __aeabi_cdcmple                          0x08009c9d   Thumb Code     0  dleqf.o(x$fpl$dleqf)
+    _dcmple                                  0x08009c9d   Thumb Code   120  dleqf.o(x$fpl$dleqf)
+    __fpl_dcmple_InfNaN                      0x08009cff   Thumb Code     0  dleqf.o(x$fpl$dleqf)
+    __aeabi_dmul                             0x08009d15   Thumb Code     0  dmul.o(x$fpl$dmul)
+    _dmul                                    0x08009d15   Thumb Code   332  dmul.o(x$fpl$dmul)
+    __fpl_dnaninf                            0x08009e69   Thumb Code   156  dnaninf.o(x$fpl$dnaninf)
+    __fpl_dretinf                            0x08009f05   Thumb Code    12  dretinf.o(x$fpl$dretinf)
+    __aeabi_cdrcmple                         0x08009f11   Thumb Code     0  drleqf.o(x$fpl$drleqf)
+    _drcmple                                 0x08009f11   Thumb Code   108  drleqf.o(x$fpl$drleqf)
+    __aeabi_drsub                            0x08009f7d   Thumb Code     0  daddsub_clz.o(x$fpl$drsb)
+    _drsb                                    0x08009f7d   Thumb Code    22  daddsub_clz.o(x$fpl$drsb)
+    _dsqrt                                   0x08009f95   Thumb Code   404  dsqrt_umaal.o(x$fpl$dsqrt)
+    __aeabi_dsub                             0x0800a12d   Thumb Code     0  daddsub_clz.o(x$fpl$dsub)
+    _dsub                                    0x0800a12d   Thumb Code   464  daddsub_clz.o(x$fpl$dsub)
+    __aeabi_f2d                              0x0800a301   Thumb Code     0  f2d.o(x$fpl$f2d)
+    _f2d                                     0x0800a301   Thumb Code    86  f2d.o(x$fpl$f2d)
+    __fpl_fnaninf                            0x0800a357   Thumb Code   140  fnaninf.o(x$fpl$fnaninf)
+    _fp_init                                 0x0800a3e3   Thumb Code    10  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x0800a3eb   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x0800a3eb   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fpl_fretinf                            0x0800a3ed   Thumb Code    10  fretinf.o(x$fpl$fretinf)
+    __aeabi_d2lz                             0x0800a3f9   Thumb Code     0  dfixll.o(x$fpl$llsfromd)
+    _ll_sfrom_d                              0x0800a3f9   Thumb Code   194  dfixll.o(x$fpl$llsfromd)
+    __fpl_return_NaN                         0x0800a4bb   Thumb Code   100  retnan.o(x$fpl$retnan)
+    __ARM_scalbn                             0x0800a51f   Thumb Code    92  scalbn.o(x$fpl$scalbn)
+    __fpl_cmpreturn                          0x0800a57b   Thumb Code    48  trapv.o(x$fpl$trapveneer)
+    __I$use$fp                               0x0800a5aa   Number         0  usenofp.o(x$fpl$usenofp)
+    PL_ADC::channels                         0x0800af3c   Data          16  stm32f407_adc.o(.constdata)
+    __mathlib_zero                           0x0800b0f0   Data           8  qnan.o(.constdata)
+    vtable for SSD1306                       0x0800b1e8   Data          16  ssd1306.o(.constdata__ZTV7SSD1306)
+    Display::update()::string                0x0800b1f8   Data           2  main.o(.constdata__ZZN7Display6updateEvEs)
+    Region$$Table$$Base                      0x0800b1fc   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0800b21c   Number         0  anon$$obj.o(Region$$Table)
+    SHT$$INIT_ARRAY$$Base                    0x0800b21c   Number         0  main.o(.init_array)
+    SHT$$INIT_ARRAY$$Limit                   0x0800b220   Number         0  init_aeabi.o(.init_array)
     GLOBAL_ERROR                             0x2000000c   Data           4  main.o(.data)
     g_state                                  0x20000010   Data           4  main.o(.data)
     clb_var                                  0x20000014   Data           4  main.o(.data)
@@ -3553,9 +3554,9 @@ Memory Map of the image
 
   Image Entry point : 0x0800027d
 
-  Load Region LR_1 (Base: 0x08000000, Size: 0x00012ee0, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x0000cb54])
+  Load Region LR_1 (Base: 0x08000000, Size: 0x00012f30, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x0000cba4])
 
-    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x0000b1d0, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x0000b220, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -3725,254 +3726,254 @@ Memory Map of the image
     0x080022c4   0x080022c4   0x00000012   Code   RO          119    i._ZN10BallSensor6turnOnEv  main.o
     0x080022d6   0x080022d6   0x0000003e   Code   RO          120    i._ZN10BallSensor6updateEv  main.o
     0x08002314   0x08002314   0x00000004   Code   RO          122    i._ZN10BallSensor8getValueEv  main.o
-    0x08002318   0x08002318   0x00000800   Code   RO         1245    i._ZN10Functional10goalkeeperEv  main.o
-    0x08002b18   0x08002b18   0x00000244   Code   RO         1251    i._ZN10Functional7posCalcEv  main.o
-    0x08002d5c   0x08002d5c   0x00000138   Code   RO         1263    i._ZN10FunctionalC1EP5Robot  main.o
-    0x08002e94   0x08002e94   0x000000f8   Code   RO         1317    i._ZN11FieldObject6updateESt4pairIddES1_jt  main.o
-    0x08002f8c   0x08002f8c   0x00000080   Code   RO         1350    i._ZN11FieldObjectC1Ev  main.o
-    0x0800300c   0x0800300c   0x00000006   Code   RO          123    i._ZN11LineSensors13turnOnSensorsEv  main.o
-    0x08003012   0x08003012   0x00000006   Code   RO          124    i._ZN11LineSensors14turnOffSensorsEv  main.o
-    0x08003018   0x08003018   0x00000006   Code   RO          125    i._ZN11LineSensors18endLineCalibrationEv  main.o
-    0x0800301e   0x0800301e   0x00000006   Code   RO          126    i._ZN11LineSensors20beginLineCalibrationEv  main.o
-    0x08003024   0x08003024   0x00000024   Code   RO          127    i._ZN11LineSensors4initEjt  main.o
-    0x08003048   0x08003048   0x00000034   Code   RO          128    i._ZN11LineSensors6updateEv  main.o
-    0x0800307c   0x0800307c   0x00000004   Code   RO          129    i._ZN11LineSensors7getLineEv  main.o
-    0x08003080   0x08003080   0x0000002c   Code   RO         1356    i._ZN12CameraObjectC1Ev  main.o
-    0x080030ac   0x080030ac   0x00000008   Code   RO          130    i._ZN12KickerModule10initChargeEv  main.o
-    0x080030b4   0x080030b4   0x0000007a   Code   RO          131    i._ZN12KickerModule4initEtttt  main.o
-    0x0800312e   0x0800312e   0x00000098   Code   RO          132    i._ZN12KickerModule4kickEbb  main.o
-    0x080031c6   0x080031c6   0x00000014   Code   RO          133    i._ZN12KickerModule6updateEv  main.o
-    0x080031da   0x080031da   0x0000000e   Code   RO          134    i._ZN12KickerModule9isChargedEv  main.o
-    0x080031e8   0x080031e8   0x0000000e   Code   RO          135    i._ZN12MotorDrivers11enableMotorEi  main.o
-    0x080031f6   0x080031f6   0x00000008   Code   RO          136    i._ZN12MotorDrivers11setDribblerEi  main.o
-    0x080031fe   0x080031fe   0x0000000e   Code   RO          137    i._ZN12MotorDrivers12disableMotorEi  main.o
-    0x0800320c   0x0800320c   0x0000001c   Code   RO          138    i._ZN12MotorDrivers12enableMotorsEv  main.o
-    0x08003228   0x08003228   0x0000001c   Code   RO          139    i._ZN12MotorDrivers13disableMotorsEv  main.o
-    0x08003244   0x08003244   0x0000001c   Code   RO          140    i._ZN12MotorDrivers14attemptCurrentEv  main.o
-    0x08003260   0x08003260   0x00000090   Code   RO          141    i._ZN12MotorDrivers4initEjhjhjhjhjh  main.o
-    0x080032f0   0x080032f0   0x0000014c   Code   RO          142    i._ZN12MotorDrivers6updateEv  main.o
-    0x0800343c   0x0800343c   0x0000002a   Code   RO          143    i._ZN12MotorDrivers8setMotorEii  main.o
-    0x08003466   0x08003466   0x00000038   Code   RO          144    i._ZN12MotorDrivers9setMotorsEiiii  main.o
-    0x0800349e   0x0800349e   0x0000001e   Code   RO          145    i._ZN12MotorDrivers9setMotorsEiiiii  main.o
-    0x080034bc   0x080034bc   0x00000068   Code   RO          146    i._ZN14BaseFunctional11checkBoundsESt4pairIddES1_S1_  main.o
-    0x08003524   0x08003524   0x00000004   Code   RO          149    i._ZN14BaseFunctional13getRobotClassEv  main.o
-    0x08003528   0x08003528   0x00000158   Code   RO          151    i._ZN14BaseFunctional17genVTMGlobalPointESt4pairIssES1_dc  main.o
-    0x08003680   0x08003680   0x00000094   Code   RO          154    i._ZN14BaseFunctional5move2E12VectorToMoveddt  main.o
-    0x08003714   0x08003714   0x00000014   Code   RO          158    i._ZN3IMU12setZeroAngleEv  main.o
-    0x08003728   0x08003728   0x00000006   Code   RO          159    i._ZN3IMU20updateAnglesFromFIFOEv  main.o
-    0x0800372e   0x0800372e   0x00000002   PAD
-    0x08003730   0x08003730   0x00000054   Code   RO          160    i._ZN3IMU4initEjtt  main.o
-    0x08003784   0x08003784   0x00000022   Code   RO          167    i._ZN3IMU6turnOnEv  main.o
-    0x080037a6   0x080037a6   0x00000002   PAD
-    0x080037a8   0x080037a8   0x000000a8   Code   RO          168    i._ZN3IMU6updateEv  main.o
-    0x08003850   0x08003850   0x00000094   Code   RO          170    i._ZN3IMU8getAngleEv  main.o
-    0x080038e4   0x080038e4   0x00000006   Code   RO          171    i._ZN3IMU9calibrateEj  main.o
-    0x080038ea   0x080038ea   0x00000008   Code   RO          172    i._ZN5Robot10switch5vOnEv  main.o
-    0x080038f2   0x080038f2   0x00000002   PAD
-    0x080038f4   0x080038f4   0x0000014c   Code   RO          173    i._ZN5Robot10updateMenuEv  main.o
-    0x08003a40   0x08003a40   0x00000008   Code   RO          174    i._ZN5Robot11switch5vOffEv  main.o
-    0x08003a48   0x08003a48   0x00000040   Code   RO          175    i._ZN5Robot12handleErrorsEv  main.o
-    0x08003a88   0x08003a88   0x00000052   Code   RO          176    i._ZN5Robot12setPlayStateEb  main.o
-    0x08003ada   0x08003ada   0x00000008   Code   RO          177    i._ZN5Robot12swithPowerOnEv  main.o
-    0x08003ae2   0x08003ae2   0x00000002   PAD
-    0x08003ae4   0x08003ae4   0x000001d8   Code   RO          179    i._ZN5Robot13updateSelfPosESt4pairIddES1_  main.o
-    0x08003cbc   0x08003cbc   0x00000016   Code   RO          180    i._ZN5Robot15changePlayStateEv  main.o
-    0x08003cd2   0x08003cd2   0x00000008   Code   RO          181    i._ZN5Robot4getVEv  main.o
-    0x08003cda   0x08003cda   0x00000002   PAD
-    0x08003cdc   0x08003cdc   0x0000028c   Code   RO          182    i._ZN5Robot4initEv  main.o
-    0x08003f68   0x08003f68   0x0000074c   Code   RO          183    i._ZN5Robot4moveEdddddd  main.o
-    0x080046b4   0x080046b4   0x0000014c   Code   RO          184    i._ZN5Robot4waitEj  main.o
-    0x08004800   0x08004800   0x0000000a   Code   RO          185    i._ZN5Robot6getPosEv  main.o
-    0x0800480a   0x0800480a   0x00000042   Code   RO          186    i._ZN5Robot8initLEDsEv  main.o
-    0x0800484c   0x0800484c   0x00000020   Code   RO          187    i._ZN5Robot9logErrorsEv  main.o
-    0x0800486c   0x0800486c   0x0000000a   Code   RO          188    i._ZN5Robot9playStateEv  main.o
-    0x08004876   0x08004876   0x00000002   PAD
-    0x08004878   0x08004878   0x00000090   Code   RO         1341    i._ZN5RobotC1Ev     main.o
-    0x08004908   0x08004908   0x0000002c   Code   RO         1362    i._ZN6BorderC1Edccssss  main.o
-    0x08004934   0x08004934   0x00000020   Code   RO          190    i._ZN6Camera4initEjt  main.o
-    0x08004954   0x08004954   0x00000156   Code   RO          191    i._ZN6Camera6updateEv  main.o
-    0x08004aaa   0x08004aaa   0x0000003c   Code   RO          192    i._ZN6CameraC1Ev    main.o
-    0x08004ae6   0x08004ae6   0x00000002   PAD
-    0x08004ae8   0x08004ae8   0x000000a4   Code   RO          194    i._ZN6Driver11setVelocityEi  main.o
-    0x08004b8c   0x08004b8c   0x00000064   Code   RO          195    i._ZN6Driver13updateFromRegEv  main.o
-    0x08004bf0   0x08004bf0   0x00000010   Code   RO          196    i._ZN6Driver14attemptCurrentEv  main.o
-    0x08004c00   0x08004c00   0x00000024   Code   RO          198    i._ZN6Driver14enableFloatingEv  main.o
-    0x08004c24   0x08004c24   0x00000024   Code   RO          200    i._ZN6Driver15disableFloatingEv  main.o
-    0x08004c48   0x08004c48   0x00000006   Code   RO          201    i._ZN6Driver4initEcc  main.o
-    0x08004c4e   0x08004c4e   0x00000002   PAD
-    0x08004c50   0x08004c50   0x00000068   Code   RO          202    i._ZN6Driver5writeEPccc  main.o
-    0x08004cb8   0x08004cb8   0x00000034   Code   RO          204    i._ZN6DriverC1Ev    main.o
-    0x08004cec   0x08004cec   0x0000000a   Code   RO         1898    i._ZN6PL_ADC10waitUpdateEv  stm32f407_adc.o
-    0x08004cf6   0x08004cf6   0x00000002   PAD
-    0x08004cf8   0x08004cf8   0x000000c4   Code   RO         1899    i._ZN6PL_ADC3addEa  stm32f407_adc.o
-    0x08004dbc   0x08004dbc   0x0000007c   Code   RO         1900    i._ZN6PL_ADC4initEv  stm32f407_adc.o
-    0x08004e38   0x08004e38   0x0000004a   Code   RO         1901    i._ZN6PL_ADC4readEab  stm32f407_adc.o
-    0x08004e82   0x08004e82   0x00000016   Code   RO         1903    i._ZN6PL_ADC5startEv  stm32f407_adc.o
-    0x08004e98   0x08004e98   0x00000040   Code   RO         1904    i._ZN6PL_ADCC1EP11ADC_TypeDef  stm32f407_adc.o
-    0x08004ed8   0x08004ed8   0x00000024   Code   RO         1368    i._ZN6ScreenC1Ev    main.o
-    0x08004efc   0x08004efc   0x00000006   Code   RO          205    i._ZN7Battery10getVoltageEv  main.o
-    0x08004f02   0x08004f02   0x00000006   Code   RO          206    i._ZN7Battery13getPercentageEv  main.o
-    0x08004f08   0x08004f08   0x0000000a   Code   RO          207    i._ZN7Battery14getCellVoltageEi  main.o
-    0x08004f12   0x08004f12   0x00000002   PAD
-    0x08004f14   0x08004f14   0x0000009c   Code   RO          208    i._ZN7Battery4initEP6PL_ADCtttt  main.o
-    0x08004fb0   0x08004fb0   0x0000015c   Code   RO          209    i._ZN7Battery6updateEv  main.o
-    0x0800510c   0x0800510c   0x0000002e   Code   RO          210    i._ZN7Battery8readCellEi  main.o
-    0x0800513a   0x0800513a   0x0000000c   Code   RO          211    i._ZN7Buttons10setChangedEib  main.o
-    0x08005146   0x08005146   0x0000000a   Code   RO         1374    i._ZN7Buttons12ButtonStructC1Ev  main.o
-    0x08005150   0x08005150   0x00000034   Code   RO          212    i._ZN7Buttons4initEtttt  main.o
-    0x08005184   0x08005184   0x00000016   Code   RO          213    i._ZN7Buttons6enableEv  main.o
-    0x0800519a   0x0800519a   0x00000034   Code   RO          214    i._ZN7Buttons6updateEv  main.o
-    0x080051ce   0x080051ce   0x00000016   Code   RO          215    i._ZN7Buttons7disableEv  main.o
-    0x080051e4   0x080051e4   0x0000001e   Code   RO          216    i._ZN7Buttons9isChangedEib  main.o
-    0x08005202   0x08005202   0x0000000c   Code   RO          217    i._ZN7Buttons9isPressedEi  main.o
-    0x0800520e   0x0800520e   0x00000006   Code   RO         1380    i._ZN7CommandC1Ev   main.o
-    0x08005214   0x08005214   0x00000038   Code   RO         1335    i._ZN7Display11addToScreenE7Command  main.o
-    0x0800524c   0x0800524c   0x00000004   Code   RO          218    i._ZN7Display5printEPcii  main.o
-    0x08005250   0x08005250   0x00000010   Code   RO          219    i._ZN7Display5printEdiii  main.o
-    0x08005260   0x08005260   0x00000010   Code   RO          221    i._ZN7Display5printEiiii  main.o
-    0x08005270   0x08005270   0x00000010   Code   RO          222    i._ZN7Display5printEjiii  main.o
-    0x08005280   0x08005280   0x0000002e   Code   RO         1329    i._ZN7Display6addEscE7Command  main.o
-    0x080052ae   0x080052ae   0x00000034   Code   RO         2383    i._ZN7SSD130615ssd1306_commandEh  ssd1306.o
-    0x080052e2   0x080052e2   0x00000174   Code   RO         2390    i._ZN7SSD13065beginEhb  ssd1306.o
-    0x08005456   0x08005456   0x00000002   PAD
-    0x08005458   0x08005458   0x00000010   Code   RO         2391    i._ZN7SSD13065clearEv  ssd1306.o
-    0x08005468   0x08005468   0x00000010   Code   RO         2392    i._ZN7SSD13066invertEh  ssd1306.o
-    0x08005478   0x08005478   0x00000074   Code   RO         2393    i._ZN7SSD13067displayEPh  ssd1306.o
-    0x080054ec   0x080054ec   0x00000078   Code   RO         2394    i._ZN7SSD13067displayEv  ssd1306.o
-    0x08005564   0x08005564   0x00000008   Code   RO         2395    i._ZN7SSD13068switchOnEv  ssd1306.o
-    0x0800556c   0x0800556c   0x000000a4   Code   RO         2396    i._ZN7SSD13069drawPixelEsst  ssd1306.o
-    0x08005610   0x08005610   0x00000044   Code   RO         2398    i._ZN7SSD1306C1Ejtttttt  ssd1306.o
-    0x08005654   0x08005654   0x0000000c   Code   RO         2399    i._ZN7SSD1306C1Ev   ssd1306.o
-    0x08005660   0x08005660   0x0000002e   Code   RO         2557    i._ZN7mpu925012readFIFOsizeEv  mpu9250.o
-    0x0800568e   0x0800568e   0x00000058   Code   RO         2558    i._ZN7mpu925012setAccOffsetEiii  mpu9250.o
-    0x080056e6   0x080056e6   0x00000002   PAD
-    0x080056e8   0x080056e8   0x0000027c   Code   RO         2559    i._ZN7mpu925012updateAnglesEdb  mpu9250.o
-    0x08005964   0x08005964   0x00000052   Code   RO         2560    i._ZN7mpu925013setGyroOffsetEiii  mpu9250.o
-    0x080059b6   0x080059b6   0x00000002   PAD
-    0x080059b8   0x080059b8   0x00000040   Code   RO         2561    i._ZN7mpu925020updateAnglesFromFIFOEv  mpu9250.o
-    0x080059f8   0x080059f8   0x00000852   Code   RO         2562    i._ZN7mpu925021MadgwickAHRSupdateIMUEd  mpu9250.o
-    0x0800624a   0x0800624a   0x00000002   PAD
-    0x0800624c   0x0800624c   0x00000014   Code   RO         2701    i._ZN7mpu92507convertEth  mpu9250.o
-    0x08006260   0x08006260   0x0000029c   Code   RO         2570    i._ZN7mpu92507initIMUEji  mpu9250.o
-    0x080064fc   0x080064fc   0x0000002c   Code   RO         2571    i._ZN7mpu92507invSqrtEf  mpu9250.o
-    0x08006528   0x08006528   0x000000ac   Code   RO         2572    i._ZN7mpu92507readAccEv  mpu9250.o
-    0x080065d4   0x080065d4   0x0000005a   Code   RO         2573    i._ZN7mpu92507readRegEiPii  mpu9250.o
-    0x0800662e   0x0800662e   0x000000ac   Code   RO         2575    i._ZN7mpu92508readGyroEv  mpu9250.o
-    0x080066da   0x080066da   0x00000032   Code   RO         2577    i._ZN7mpu92508writeRegEih  mpu9250.o
-    0x0800670c   0x0800670c   0x000000dc   Code   RO         2578    i._ZN7mpu92509calibrateEi  mpu9250.o
-    0x080067e8   0x080067e8   0x00000048   Code   RO          225    i._ZN9PairSaver3addESt4pairIddEj  main.o
-    0x08006830   0x08006830   0x00000050   Code   RO          226    i._ZN9PairSaver3popEj  main.o
-    0x08006880   0x08006880   0x00000012   Code   RO          227    i._ZN9PairSaver4incPERh  main.o
-    0x08006892   0x08006892   0x00000002   PAD
-    0x08006894   0x08006894   0x00000054   Code   RO         1257    i._ZN9PairSaverC1Ev  main.o
-    0x080068e8   0x080068e8   0x00000004   Code   RO         1287    i._ZSt3absd         main.o
-    0x080068ec   0x080068ec   0x00000008   Code   RO         2739    i._ZdlPv            cpprt_w.l(delete.o)
-    0x080068f4   0x080068f4   0x00000008   Code   RO         2735    i._Znaj             cpprt_w.l(array_new.o)
-    0x080068fc   0x080068fc   0x00000028   Code   RO         2742    i._Znwj             cpprt_w.l(new.o)
-    0x08006924   0x08006924   0x00000030   Code   RO         3200    i.__ARM_fpclassify  m_wm.l(fpclassify.o)
-    0x08006954   0x08006954   0x00000024   Code   RO         2858    i.__aeabi_vec_ctor_nocookie_nodtor  cpprt_w.l(aeabi_vec_ctor_nocookie_nodtor.o)
-    0x08006978   0x08006978   0x00000010   Code   RO         2746    i.__cxa_guard_acquire  cpprt_w.l(cxa_guard_acquire.o)
-    0x08006988   0x08006988   0x00000360   Code   RO         2913    i.__hardfp_asin     m_wm.l(asin.o)
-    0x08006ce8   0x08006ce8   0x000002d8   Code   RO         3169    i.__hardfp_atan     m_wm.l(atan.o)
-    0x08006fc0   0x08006fc0   0x000001f0   Code   RO         2927    i.__hardfp_atan2    m_wm.l(atan2.o)
-    0x080071b0   0x080071b0   0x0000006c   Code   RO         2939    i.__hardfp_ceilf    m_wm.l(ceilf.o)
-    0x0800721c   0x0800721c   0x00000004   PAD
-    0x08007220   0x08007220   0x000000c8   Code   RO         2945    i.__hardfp_cos      m_wm.l(cos.o)
-    0x080072e8   0x080072e8   0x00000014   Code   RO         2957    i.__hardfp_fabs     m_wm.l(fabs.o)
-    0x080072fc   0x080072fc   0x00000004   PAD
-    0x08007300   0x08007300   0x00000c50   Code   RO         2963    i.__hardfp_pow      m_wm.l(pow.o)
-    0x08007f50   0x08007f50   0x000000c8   Code   RO         2977    i.__hardfp_sin      m_wm.l(sin.o)
-    0x08008018   0x08008018   0x0000007a   Code   RO         2989    i.__hardfp_sqrt     m_wm.l(sqrt.o)
-    0x08008092   0x08008092   0x00000006   PAD
-    0x08008098   0x08008098   0x00000438   Code   RO         3205    i.__ieee754_rem_pio2  m_wm.l(rred.o)
-    0x080084d0   0x080084d0   0x00000170   Code   RO         3183    i.__kernel_cos      m_wm.l(cos_i.o)
-    0x08008640   0x08008640   0x000000f8   Code   RO         3202    i.__kernel_poly     m_wm.l(poly.o)
-    0x08008738   0x08008738   0x00000130   Code   RO         3210    i.__kernel_sin      m_wm.l(sin_i.o)
-    0x08008868   0x08008868   0x00000030   Code   RO         3186    i.__mathlib_dbl_divzero  m_wm.l(dunder.o)
-    0x08008898   0x08008898   0x00000014   Code   RO         3187    i.__mathlib_dbl_infnan  m_wm.l(dunder.o)
-    0x080088ac   0x080088ac   0x00000014   Code   RO         3188    i.__mathlib_dbl_infnan2  m_wm.l(dunder.o)
-    0x080088c0   0x080088c0   0x00000020   Code   RO         3189    i.__mathlib_dbl_invalid  m_wm.l(dunder.o)
-    0x080088e0   0x080088e0   0x00000020   Code   RO         3190    i.__mathlib_dbl_overflow  m_wm.l(dunder.o)
-    0x08008900   0x08008900   0x00000020   Code   RO         3192    i.__mathlib_dbl_underflow  m_wm.l(dunder.o)
-    0x08008920   0x08008920   0x000000b4   Code   RO          228    i.__sti___8_main_cpp_48fb3d7c  main.o
-    0x080089d4   0x080089d4   0x00000010   Code   RO         3171    i.atan              m_wm.l(atan.o)
-    0x080089e4   0x080089e4   0x00000018   Code   RO         2959    i.fabs              m_wm.l(fabs.o)
-    0x080089fc   0x080089fc   0x0000048c   Code   RO          229    i.main              main.o
-    0x08008e88   0x08008e88   0x0000006e   Code   RO         2991    i.sqrt              m_wm.l(sqrt.o)
-    0x08008ef6   0x08008ef6   0x00000002   PAD
-    0x08008ef8   0x08008ef8   0x00000060   Code   RO         1238    t._Z3sgnIdET_S0_    main.o
-    0x08008f58   0x08008f58   0x00000034   Code   RO         1126    t._Z4crc8IcET_PS0_i  main.o
-    0x08008f8c   0x08008f8c   0x00000034   Code   RO         1119    t._Z4crc8IhET_PS0_i  main.o
-    0x08008fc0   0x08008fc0   0x00000030   Code   RO         1133    t._Z4crc8IiET_PS0_i  main.o
-    0x08008ff0   0x08008ff0   0x0000003c   Code   RO         1231    t._Z4min2IdET_S0_S0_  main.o
-    0x0800902c   0x0800902c   0x00000008   Code   RO         1140    t._Z4min2IiET_S0_S0_  main.o
-    0x08009034   0x08009034   0x00000224   Code   RO         1203    t._Z7toPrintIdEPcT_s  main.o
-    0x08009258   0x08009258   0x00000116   Code   RO         1147    t._Z7toPrintIiEPcT_s  main.o
-    0x0800936e   0x0800936e   0x00000108   Code   RO         1161    t._Z7toPrintIjEPcT_s  main.o
-    0x08009476   0x08009476   0x00000028   Code   RO         1210    t._Z8printTmlIdEvR7SSD1306T_iii  main.o
-    0x0800949e   0x0800949e   0x0000002a   Code   RO         1154    t._Z8printTmlIiEvR7SSD1306T_iii  main.o
-    0x080094c8   0x080094c8   0x0000002a   Code   RO         1168    t._Z8printTmlIjEvR7SSD1306T_iii  main.o
-    0x080094f2   0x080094f2   0x0000000c   Code   RO         1344    t._ZNSt4pairIS_IddEjEC1Ev  main.o
-    0x080094fe   0x080094fe   0x00000012   Code   RO         1293    t._ZNSt4pairIddEC1ERKS0_  main.o
-    0x08009510   0x08009510   0x00000018   Code   RO         1281    t._ZNSt4pairIddEC1Ev  main.o
-    0x08009528   0x08009528   0x0000001e   Code   RO         1311    t._ZNSt4pairIddEC1IiiEERKS_IT_T0_E  main.o
-    0x08009546   0x08009546   0x00000008   Code   RO         1323    t._ZNSt4pairIiiEC1Ev  main.o
-    0x0800954e   0x0800954e   0x00000026   Code   RO         1299    t._ZNSt4pairIssEC1IddEERKS_IT_T0_E  main.o
-    0x08009574   0x08009574   0x0000000a   Code   RO         1305    t._ZNSt4pairIssEC1IiiEERKS_IT_T0_E  main.o
-    0x0800957e   0x0800957e   0x00000018   Code   RO         2861    x$fpl$basic         fz_wm.l(basic.o)
-    0x08009596   0x08009596   0x00000002   PAD
-    0x08009598   0x08009598   0x00000062   Code   RO         2863    x$fpl$d2f           fz_wm.l(d2f.o)
-    0x080095fa   0x080095fa   0x00000002   PAD
-    0x080095fc   0x080095fc   0x00000150   Code   RO         2865    x$fpl$dadd          fz_wm.l(daddsub_clz.o)
-    0x0800974c   0x0800974c   0x00000010   Code   RO         3301    x$fpl$dcheck1       fz_wm.l(dcheck1.o)
-    0x0800975c   0x0800975c   0x00000018   Code   RO         3154    x$fpl$dcmpinf       fz_wm.l(dcmpi.o)
-    0x08009774   0x08009774   0x000002b0   Code   RO         2872    x$fpl$ddiv          fz_wm.l(ddiv.o)
-    0x08009a24   0x08009a24   0x00000078   Code   RO         2875    x$fpl$deqf          fz_wm.l(deqf.o)
-    0x08009a9c   0x08009a9c   0x0000005e   Code   RO         2877    x$fpl$dfix          fz_wm.l(dfix.o)
-    0x08009afa   0x08009afa   0x00000002   PAD
-    0x08009afc   0x08009afc   0x0000005a   Code   RO         2885    x$fpl$dfixu         fz_wm.l(dfixu.o)
-    0x08009b56   0x08009b56   0x0000002e   Code   RO         2890    x$fpl$dflt          fz_wm.l(dflt_clz.o)
-    0x08009b84   0x08009b84   0x000000a2   Code   RO         2895    x$fpl$dfltll        fz_wm.l(dfltll_clz.o)
-    0x08009c26   0x08009c26   0x00000026   Code   RO         2889    x$fpl$dfltu         fz_wm.l(dflt_clz.o)
-    0x08009c4c   0x08009c4c   0x00000078   Code   RO         2899    x$fpl$dleqf         fz_wm.l(dleqf.o)
-    0x08009cc4   0x08009cc4   0x00000154   Code   RO         2901    x$fpl$dmul          fz_wm.l(dmul.o)
-    0x08009e18   0x08009e18   0x0000009c   Code   RO         3156    x$fpl$dnaninf       fz_wm.l(dnaninf.o)
-    0x08009eb4   0x08009eb4   0x0000000c   Code   RO         3158    x$fpl$dretinf       fz_wm.l(dretinf.o)
-    0x08009ec0   0x08009ec0   0x0000006c   Code   RO         2903    x$fpl$drleqf        fz_wm.l(drleqf.o)
-    0x08009f2c   0x08009f2c   0x00000016   Code   RO         2866    x$fpl$drsb          fz_wm.l(daddsub_clz.o)
-    0x08009f42   0x08009f42   0x00000002   PAD
-    0x08009f44   0x08009f44   0x00000198   Code   RO         3160    x$fpl$dsqrt         fz_wm.l(dsqrt_umaal.o)
-    0x0800a0dc   0x0800a0dc   0x000001d4   Code   RO         2867    x$fpl$dsub          fz_wm.l(daddsub_clz.o)
-    0x0800a2b0   0x0800a2b0   0x00000056   Code   RO         2905    x$fpl$f2d           fz_wm.l(f2d.o)
-    0x0800a306   0x0800a306   0x0000008c   Code   RO         3162    x$fpl$fnaninf       fz_wm.l(fnaninf.o)
-    0x0800a392   0x0800a392   0x0000000a   Code   RO         3303    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x0800a39c   0x0800a39c   0x0000000a   Code   RO         3164    x$fpl$fretinf       fz_wm.l(fretinf.o)
-    0x0800a3a6   0x0800a3a6   0x00000002   PAD
-    0x0800a3a8   0x0800a3a8   0x000000c2   Code   RO         2881    x$fpl$llsfromd      fz_wm.l(dfixll.o)
-    0x0800a46a   0x0800a46a   0x00000064   Code   RO         3360    x$fpl$retnan        fz_wm.l(retnan.o)
-    0x0800a4ce   0x0800a4ce   0x0000005c   Code   RO         3166    x$fpl$scalbn        fz_wm.l(scalbn.o)
-    0x0800a52a   0x0800a52a   0x00000030   Code   RO         3385    x$fpl$trapveneer    fz_wm.l(trapv.o)
-    0x0800a55a   0x0800a55a   0x00000000   Code   RO         3168    x$fpl$usenofp       fz_wm.l(usenofp.o)
-    0x0800a55a   0x0800a55a   0x00000002   PAD
-    0x0800a55c   0x0800a55c   0x00000990   Data   RO          391    .constdata          main.o
-    0x0800aeec   0x0800aeec   0x00000010   Data   RO         1912    .constdata          stm32f407_adc.o
-    0x0800aefc   0x0800aefc   0x00000004   PAD
-    0x0800af00   0x0800af00   0x00000050   Data   RO         2916    .constdata          m_wm.l(asin.o)
-    0x0800af50   0x0800af50   0x00000088   Data   RO         2966    .constdata          m_wm.l(pow.o)
-    0x0800afd8   0x0800afd8   0x00000098   Data   RO         3172    .constdata          m_wm.l(atan.o)
-    0x0800b070   0x0800b070   0x00000030   Data   RO         3184    .constdata          m_wm.l(cos_i.o)
-    0x0800b0a0   0x0800b0a0   0x00000008   Data   RO         3204    .constdata          m_wm.l(qnan.o)
-    0x0800b0a8   0x0800b0a8   0x000000c8   Data   RO         3207    .constdata          m_wm.l(rred.o)
-    0x0800b170   0x0800b170   0x00000028   Data   RO         3211    .constdata          m_wm.l(sin_i.o)
-    0x0800b198   0x0800b198   0x00000010   Data   RO         2515    .constdata__ZTV7SSD1306  ssd1306.o
-    0x0800b1a8   0x0800b1a8   0x00000002   Data   RO         1097    .constdata__ZZN7Display6updateEvEs  main.o
-    0x0800b1aa   0x0800b1aa   0x00000002   PAD
-    0x0800b1ac   0x0800b1ac   0x00000020   Data   RO         3439    Region$$Table       anon$$obj.o
-    0x0800b1cc   0x0800b1cc   0x00000004   Data   RO          396    .init_array         main.o
-    0x0800b1d0   0x0800b1cc   0x00000000   Data   RO         2730    .init_array         c_w.l(init_aeabi.o)
+    0x08002318   0x08002318   0x00000848   Code   RO         1245    i._ZN10Functional10goalkeeperEv  main.o
+    0x08002b60   0x08002b60   0x00000244   Code   RO         1251    i._ZN10Functional7posCalcEv  main.o
+    0x08002da4   0x08002da4   0x00000138   Code   RO         1263    i._ZN10FunctionalC1EP5Robot  main.o
+    0x08002edc   0x08002edc   0x000000f8   Code   RO         1317    i._ZN11FieldObject6updateESt4pairIddES1_jt  main.o
+    0x08002fd4   0x08002fd4   0x00000080   Code   RO         1350    i._ZN11FieldObjectC1Ev  main.o
+    0x08003054   0x08003054   0x00000006   Code   RO          123    i._ZN11LineSensors13turnOnSensorsEv  main.o
+    0x0800305a   0x0800305a   0x00000006   Code   RO          124    i._ZN11LineSensors14turnOffSensorsEv  main.o
+    0x08003060   0x08003060   0x00000006   Code   RO          125    i._ZN11LineSensors18endLineCalibrationEv  main.o
+    0x08003066   0x08003066   0x00000006   Code   RO          126    i._ZN11LineSensors20beginLineCalibrationEv  main.o
+    0x0800306c   0x0800306c   0x00000024   Code   RO          127    i._ZN11LineSensors4initEjt  main.o
+    0x08003090   0x08003090   0x00000034   Code   RO          128    i._ZN11LineSensors6updateEv  main.o
+    0x080030c4   0x080030c4   0x00000004   Code   RO          129    i._ZN11LineSensors7getLineEv  main.o
+    0x080030c8   0x080030c8   0x0000002c   Code   RO         1356    i._ZN12CameraObjectC1Ev  main.o
+    0x080030f4   0x080030f4   0x00000008   Code   RO          130    i._ZN12KickerModule10initChargeEv  main.o
+    0x080030fc   0x080030fc   0x0000007a   Code   RO          131    i._ZN12KickerModule4initEtttt  main.o
+    0x08003176   0x08003176   0x00000098   Code   RO          132    i._ZN12KickerModule4kickEbb  main.o
+    0x0800320e   0x0800320e   0x00000014   Code   RO          133    i._ZN12KickerModule6updateEv  main.o
+    0x08003222   0x08003222   0x0000000e   Code   RO          134    i._ZN12KickerModule9isChargedEv  main.o
+    0x08003230   0x08003230   0x0000000e   Code   RO          135    i._ZN12MotorDrivers11enableMotorEi  main.o
+    0x0800323e   0x0800323e   0x00000008   Code   RO          136    i._ZN12MotorDrivers11setDribblerEi  main.o
+    0x08003246   0x08003246   0x0000000e   Code   RO          137    i._ZN12MotorDrivers12disableMotorEi  main.o
+    0x08003254   0x08003254   0x0000001c   Code   RO          138    i._ZN12MotorDrivers12enableMotorsEv  main.o
+    0x08003270   0x08003270   0x0000001c   Code   RO          139    i._ZN12MotorDrivers13disableMotorsEv  main.o
+    0x0800328c   0x0800328c   0x0000001c   Code   RO          140    i._ZN12MotorDrivers14attemptCurrentEv  main.o
+    0x080032a8   0x080032a8   0x00000090   Code   RO          141    i._ZN12MotorDrivers4initEjhjhjhjhjh  main.o
+    0x08003338   0x08003338   0x0000014c   Code   RO          142    i._ZN12MotorDrivers6updateEv  main.o
+    0x08003484   0x08003484   0x0000002a   Code   RO          143    i._ZN12MotorDrivers8setMotorEii  main.o
+    0x080034ae   0x080034ae   0x00000038   Code   RO          144    i._ZN12MotorDrivers9setMotorsEiiii  main.o
+    0x080034e6   0x080034e6   0x0000001e   Code   RO          145    i._ZN12MotorDrivers9setMotorsEiiiii  main.o
+    0x08003504   0x08003504   0x00000068   Code   RO          146    i._ZN14BaseFunctional11checkBoundsESt4pairIddES1_S1_  main.o
+    0x0800356c   0x0800356c   0x00000004   Code   RO          149    i._ZN14BaseFunctional13getRobotClassEv  main.o
+    0x08003570   0x08003570   0x00000158   Code   RO          151    i._ZN14BaseFunctional17genVTMGlobalPointESt4pairIssES1_dc  main.o
+    0x080036c8   0x080036c8   0x00000094   Code   RO          154    i._ZN14BaseFunctional5move2E12VectorToMoveddt  main.o
+    0x0800375c   0x0800375c   0x00000014   Code   RO          158    i._ZN3IMU12setZeroAngleEv  main.o
+    0x08003770   0x08003770   0x00000006   Code   RO          159    i._ZN3IMU20updateAnglesFromFIFOEv  main.o
+    0x08003776   0x08003776   0x00000002   PAD
+    0x08003778   0x08003778   0x00000054   Code   RO          160    i._ZN3IMU4initEjtt  main.o
+    0x080037cc   0x080037cc   0x00000022   Code   RO          167    i._ZN3IMU6turnOnEv  main.o
+    0x080037ee   0x080037ee   0x00000002   PAD
+    0x080037f0   0x080037f0   0x000000a8   Code   RO          168    i._ZN3IMU6updateEv  main.o
+    0x08003898   0x08003898   0x00000094   Code   RO          170    i._ZN3IMU8getAngleEv  main.o
+    0x0800392c   0x0800392c   0x00000006   Code   RO          171    i._ZN3IMU9calibrateEj  main.o
+    0x08003932   0x08003932   0x00000008   Code   RO          172    i._ZN5Robot10switch5vOnEv  main.o
+    0x0800393a   0x0800393a   0x00000002   PAD
+    0x0800393c   0x0800393c   0x0000014c   Code   RO          173    i._ZN5Robot10updateMenuEv  main.o
+    0x08003a88   0x08003a88   0x00000008   Code   RO          174    i._ZN5Robot11switch5vOffEv  main.o
+    0x08003a90   0x08003a90   0x00000040   Code   RO          175    i._ZN5Robot12handleErrorsEv  main.o
+    0x08003ad0   0x08003ad0   0x00000052   Code   RO          176    i._ZN5Robot12setPlayStateEb  main.o
+    0x08003b22   0x08003b22   0x00000008   Code   RO          177    i._ZN5Robot12swithPowerOnEv  main.o
+    0x08003b2a   0x08003b2a   0x00000002   PAD
+    0x08003b2c   0x08003b2c   0x000001d8   Code   RO          179    i._ZN5Robot13updateSelfPosESt4pairIddES1_  main.o
+    0x08003d04   0x08003d04   0x00000016   Code   RO          180    i._ZN5Robot15changePlayStateEv  main.o
+    0x08003d1a   0x08003d1a   0x00000008   Code   RO          181    i._ZN5Robot4getVEv  main.o
+    0x08003d22   0x08003d22   0x00000002   PAD
+    0x08003d24   0x08003d24   0x0000028c   Code   RO          182    i._ZN5Robot4initEv  main.o
+    0x08003fb0   0x08003fb0   0x0000074c   Code   RO          183    i._ZN5Robot4moveEdddddd  main.o
+    0x080046fc   0x080046fc   0x0000014c   Code   RO          184    i._ZN5Robot4waitEj  main.o
+    0x08004848   0x08004848   0x0000000a   Code   RO          185    i._ZN5Robot6getPosEv  main.o
+    0x08004852   0x08004852   0x00000042   Code   RO          186    i._ZN5Robot8initLEDsEv  main.o
+    0x08004894   0x08004894   0x00000020   Code   RO          187    i._ZN5Robot9logErrorsEv  main.o
+    0x080048b4   0x080048b4   0x0000000a   Code   RO          188    i._ZN5Robot9playStateEv  main.o
+    0x080048be   0x080048be   0x00000002   PAD
+    0x080048c0   0x080048c0   0x00000090   Code   RO         1341    i._ZN5RobotC1Ev     main.o
+    0x08004950   0x08004950   0x0000002c   Code   RO         1362    i._ZN6BorderC1Edccssss  main.o
+    0x0800497c   0x0800497c   0x00000020   Code   RO          190    i._ZN6Camera4initEjt  main.o
+    0x0800499c   0x0800499c   0x00000156   Code   RO          191    i._ZN6Camera6updateEv  main.o
+    0x08004af2   0x08004af2   0x0000003c   Code   RO          192    i._ZN6CameraC1Ev    main.o
+    0x08004b2e   0x08004b2e   0x00000002   PAD
+    0x08004b30   0x08004b30   0x000000a4   Code   RO          194    i._ZN6Driver11setVelocityEi  main.o
+    0x08004bd4   0x08004bd4   0x00000064   Code   RO          195    i._ZN6Driver13updateFromRegEv  main.o
+    0x08004c38   0x08004c38   0x00000010   Code   RO          196    i._ZN6Driver14attemptCurrentEv  main.o
+    0x08004c48   0x08004c48   0x00000024   Code   RO          198    i._ZN6Driver14enableFloatingEv  main.o
+    0x08004c6c   0x08004c6c   0x00000024   Code   RO          200    i._ZN6Driver15disableFloatingEv  main.o
+    0x08004c90   0x08004c90   0x00000006   Code   RO          201    i._ZN6Driver4initEcc  main.o
+    0x08004c96   0x08004c96   0x00000002   PAD
+    0x08004c98   0x08004c98   0x00000068   Code   RO          202    i._ZN6Driver5writeEPccc  main.o
+    0x08004d00   0x08004d00   0x00000034   Code   RO          204    i._ZN6DriverC1Ev    main.o
+    0x08004d34   0x08004d34   0x0000000a   Code   RO         1898    i._ZN6PL_ADC10waitUpdateEv  stm32f407_adc.o
+    0x08004d3e   0x08004d3e   0x00000002   PAD
+    0x08004d40   0x08004d40   0x000000c4   Code   RO         1899    i._ZN6PL_ADC3addEa  stm32f407_adc.o
+    0x08004e04   0x08004e04   0x0000007c   Code   RO         1900    i._ZN6PL_ADC4initEv  stm32f407_adc.o
+    0x08004e80   0x08004e80   0x0000004a   Code   RO         1901    i._ZN6PL_ADC4readEab  stm32f407_adc.o
+    0x08004eca   0x08004eca   0x00000016   Code   RO         1903    i._ZN6PL_ADC5startEv  stm32f407_adc.o
+    0x08004ee0   0x08004ee0   0x00000040   Code   RO         1904    i._ZN6PL_ADCC1EP11ADC_TypeDef  stm32f407_adc.o
+    0x08004f20   0x08004f20   0x00000024   Code   RO         1368    i._ZN6ScreenC1Ev    main.o
+    0x08004f44   0x08004f44   0x00000006   Code   RO          205    i._ZN7Battery10getVoltageEv  main.o
+    0x08004f4a   0x08004f4a   0x00000006   Code   RO          206    i._ZN7Battery13getPercentageEv  main.o
+    0x08004f50   0x08004f50   0x0000000a   Code   RO          207    i._ZN7Battery14getCellVoltageEi  main.o
+    0x08004f5a   0x08004f5a   0x00000002   PAD
+    0x08004f5c   0x08004f5c   0x0000009c   Code   RO          208    i._ZN7Battery4initEP6PL_ADCtttt  main.o
+    0x08004ff8   0x08004ff8   0x0000015c   Code   RO          209    i._ZN7Battery6updateEv  main.o
+    0x08005154   0x08005154   0x0000002e   Code   RO          210    i._ZN7Battery8readCellEi  main.o
+    0x08005182   0x08005182   0x0000000c   Code   RO          211    i._ZN7Buttons10setChangedEib  main.o
+    0x0800518e   0x0800518e   0x0000000a   Code   RO         1374    i._ZN7Buttons12ButtonStructC1Ev  main.o
+    0x08005198   0x08005198   0x00000034   Code   RO          212    i._ZN7Buttons4initEtttt  main.o
+    0x080051cc   0x080051cc   0x00000016   Code   RO          213    i._ZN7Buttons6enableEv  main.o
+    0x080051e2   0x080051e2   0x00000034   Code   RO          214    i._ZN7Buttons6updateEv  main.o
+    0x08005216   0x08005216   0x00000016   Code   RO          215    i._ZN7Buttons7disableEv  main.o
+    0x0800522c   0x0800522c   0x0000001e   Code   RO          216    i._ZN7Buttons9isChangedEib  main.o
+    0x0800524a   0x0800524a   0x0000000c   Code   RO          217    i._ZN7Buttons9isPressedEi  main.o
+    0x08005256   0x08005256   0x00000006   Code   RO         1380    i._ZN7CommandC1Ev   main.o
+    0x0800525c   0x0800525c   0x00000038   Code   RO         1335    i._ZN7Display11addToScreenE7Command  main.o
+    0x08005294   0x08005294   0x00000004   Code   RO          218    i._ZN7Display5printEPcii  main.o
+    0x08005298   0x08005298   0x00000010   Code   RO          219    i._ZN7Display5printEdiii  main.o
+    0x080052a8   0x080052a8   0x00000010   Code   RO          221    i._ZN7Display5printEiiii  main.o
+    0x080052b8   0x080052b8   0x00000010   Code   RO          222    i._ZN7Display5printEjiii  main.o
+    0x080052c8   0x080052c8   0x0000002e   Code   RO         1329    i._ZN7Display6addEscE7Command  main.o
+    0x080052f6   0x080052f6   0x00000034   Code   RO         2383    i._ZN7SSD130615ssd1306_commandEh  ssd1306.o
+    0x0800532a   0x0800532a   0x00000174   Code   RO         2390    i._ZN7SSD13065beginEhb  ssd1306.o
+    0x0800549e   0x0800549e   0x00000002   PAD
+    0x080054a0   0x080054a0   0x00000010   Code   RO         2391    i._ZN7SSD13065clearEv  ssd1306.o
+    0x080054b0   0x080054b0   0x00000010   Code   RO         2392    i._ZN7SSD13066invertEh  ssd1306.o
+    0x080054c0   0x080054c0   0x00000074   Code   RO         2393    i._ZN7SSD13067displayEPh  ssd1306.o
+    0x08005534   0x08005534   0x00000078   Code   RO         2394    i._ZN7SSD13067displayEv  ssd1306.o
+    0x080055ac   0x080055ac   0x00000008   Code   RO         2395    i._ZN7SSD13068switchOnEv  ssd1306.o
+    0x080055b4   0x080055b4   0x000000a4   Code   RO         2396    i._ZN7SSD13069drawPixelEsst  ssd1306.o
+    0x08005658   0x08005658   0x00000044   Code   RO         2398    i._ZN7SSD1306C1Ejtttttt  ssd1306.o
+    0x0800569c   0x0800569c   0x0000000c   Code   RO         2399    i._ZN7SSD1306C1Ev   ssd1306.o
+    0x080056a8   0x080056a8   0x0000002e   Code   RO         2557    i._ZN7mpu925012readFIFOsizeEv  mpu9250.o
+    0x080056d6   0x080056d6   0x00000058   Code   RO         2558    i._ZN7mpu925012setAccOffsetEiii  mpu9250.o
+    0x0800572e   0x0800572e   0x00000002   PAD
+    0x08005730   0x08005730   0x0000027c   Code   RO         2559    i._ZN7mpu925012updateAnglesEdb  mpu9250.o
+    0x080059ac   0x080059ac   0x00000052   Code   RO         2560    i._ZN7mpu925013setGyroOffsetEiii  mpu9250.o
+    0x080059fe   0x080059fe   0x00000002   PAD
+    0x08005a00   0x08005a00   0x00000040   Code   RO         2561    i._ZN7mpu925020updateAnglesFromFIFOEv  mpu9250.o
+    0x08005a40   0x08005a40   0x00000858   Code   RO         2562    i._ZN7mpu925021MadgwickAHRSupdateIMUEd  mpu9250.o
+    0x08006298   0x08006298   0x00000014   Code   RO         2701    i._ZN7mpu92507convertEth  mpu9250.o
+    0x080062ac   0x080062ac   0x0000029c   Code   RO         2570    i._ZN7mpu92507initIMUEji  mpu9250.o
+    0x08006548   0x08006548   0x0000002c   Code   RO         2571    i._ZN7mpu92507invSqrtEf  mpu9250.o
+    0x08006574   0x08006574   0x000000ac   Code   RO         2572    i._ZN7mpu92507readAccEv  mpu9250.o
+    0x08006620   0x08006620   0x0000005a   Code   RO         2573    i._ZN7mpu92507readRegEiPii  mpu9250.o
+    0x0800667a   0x0800667a   0x000000ac   Code   RO         2575    i._ZN7mpu92508readGyroEv  mpu9250.o
+    0x08006726   0x08006726   0x00000032   Code   RO         2577    i._ZN7mpu92508writeRegEih  mpu9250.o
+    0x08006758   0x08006758   0x000000dc   Code   RO         2578    i._ZN7mpu92509calibrateEi  mpu9250.o
+    0x08006834   0x08006834   0x00000048   Code   RO          225    i._ZN9PairSaver3addESt4pairIddEj  main.o
+    0x0800687c   0x0800687c   0x00000050   Code   RO          226    i._ZN9PairSaver3popEj  main.o
+    0x080068cc   0x080068cc   0x00000012   Code   RO          227    i._ZN9PairSaver4incPERh  main.o
+    0x080068de   0x080068de   0x00000002   PAD
+    0x080068e0   0x080068e0   0x00000054   Code   RO         1257    i._ZN9PairSaverC1Ev  main.o
+    0x08006934   0x08006934   0x00000004   Code   RO         1287    i._ZSt3absd         main.o
+    0x08006938   0x08006938   0x00000008   Code   RO         2739    i._ZdlPv            cpprt_w.l(delete.o)
+    0x08006940   0x08006940   0x00000008   Code   RO         2735    i._Znaj             cpprt_w.l(array_new.o)
+    0x08006948   0x08006948   0x00000028   Code   RO         2742    i._Znwj             cpprt_w.l(new.o)
+    0x08006970   0x08006970   0x00000030   Code   RO         3200    i.__ARM_fpclassify  m_wm.l(fpclassify.o)
+    0x080069a0   0x080069a0   0x00000024   Code   RO         2858    i.__aeabi_vec_ctor_nocookie_nodtor  cpprt_w.l(aeabi_vec_ctor_nocookie_nodtor.o)
+    0x080069c4   0x080069c4   0x00000010   Code   RO         2746    i.__cxa_guard_acquire  cpprt_w.l(cxa_guard_acquire.o)
+    0x080069d4   0x080069d4   0x00000004   PAD
+    0x080069d8   0x080069d8   0x00000360   Code   RO         2913    i.__hardfp_asin     m_wm.l(asin.o)
+    0x08006d38   0x08006d38   0x000002d8   Code   RO         3169    i.__hardfp_atan     m_wm.l(atan.o)
+    0x08007010   0x08007010   0x000001f0   Code   RO         2927    i.__hardfp_atan2    m_wm.l(atan2.o)
+    0x08007200   0x08007200   0x0000006c   Code   RO         2939    i.__hardfp_ceilf    m_wm.l(ceilf.o)
+    0x0800726c   0x0800726c   0x00000004   PAD
+    0x08007270   0x08007270   0x000000c8   Code   RO         2945    i.__hardfp_cos      m_wm.l(cos.o)
+    0x08007338   0x08007338   0x00000014   Code   RO         2957    i.__hardfp_fabs     m_wm.l(fabs.o)
+    0x0800734c   0x0800734c   0x00000004   PAD
+    0x08007350   0x08007350   0x00000c50   Code   RO         2963    i.__hardfp_pow      m_wm.l(pow.o)
+    0x08007fa0   0x08007fa0   0x000000c8   Code   RO         2977    i.__hardfp_sin      m_wm.l(sin.o)
+    0x08008068   0x08008068   0x0000007a   Code   RO         2989    i.__hardfp_sqrt     m_wm.l(sqrt.o)
+    0x080080e2   0x080080e2   0x00000006   PAD
+    0x080080e8   0x080080e8   0x00000438   Code   RO         3205    i.__ieee754_rem_pio2  m_wm.l(rred.o)
+    0x08008520   0x08008520   0x00000170   Code   RO         3183    i.__kernel_cos      m_wm.l(cos_i.o)
+    0x08008690   0x08008690   0x000000f8   Code   RO         3202    i.__kernel_poly     m_wm.l(poly.o)
+    0x08008788   0x08008788   0x00000130   Code   RO         3210    i.__kernel_sin      m_wm.l(sin_i.o)
+    0x080088b8   0x080088b8   0x00000030   Code   RO         3186    i.__mathlib_dbl_divzero  m_wm.l(dunder.o)
+    0x080088e8   0x080088e8   0x00000014   Code   RO         3187    i.__mathlib_dbl_infnan  m_wm.l(dunder.o)
+    0x080088fc   0x080088fc   0x00000014   Code   RO         3188    i.__mathlib_dbl_infnan2  m_wm.l(dunder.o)
+    0x08008910   0x08008910   0x00000020   Code   RO         3189    i.__mathlib_dbl_invalid  m_wm.l(dunder.o)
+    0x08008930   0x08008930   0x00000020   Code   RO         3190    i.__mathlib_dbl_overflow  m_wm.l(dunder.o)
+    0x08008950   0x08008950   0x00000020   Code   RO         3192    i.__mathlib_dbl_underflow  m_wm.l(dunder.o)
+    0x08008970   0x08008970   0x000000b4   Code   RO          228    i.__sti___8_main_cpp_48fb3d7c  main.o
+    0x08008a24   0x08008a24   0x00000010   Code   RO         3171    i.atan              m_wm.l(atan.o)
+    0x08008a34   0x08008a34   0x00000018   Code   RO         2959    i.fabs              m_wm.l(fabs.o)
+    0x08008a4c   0x08008a4c   0x0000048c   Code   RO          229    i.main              main.o
+    0x08008ed8   0x08008ed8   0x0000006e   Code   RO         2991    i.sqrt              m_wm.l(sqrt.o)
+    0x08008f46   0x08008f46   0x00000002   PAD
+    0x08008f48   0x08008f48   0x00000060   Code   RO         1238    t._Z3sgnIdET_S0_    main.o
+    0x08008fa8   0x08008fa8   0x00000034   Code   RO         1126    t._Z4crc8IcET_PS0_i  main.o
+    0x08008fdc   0x08008fdc   0x00000034   Code   RO         1119    t._Z4crc8IhET_PS0_i  main.o
+    0x08009010   0x08009010   0x00000030   Code   RO         1133    t._Z4crc8IiET_PS0_i  main.o
+    0x08009040   0x08009040   0x0000003c   Code   RO         1231    t._Z4min2IdET_S0_S0_  main.o
+    0x0800907c   0x0800907c   0x00000008   Code   RO         1140    t._Z4min2IiET_S0_S0_  main.o
+    0x08009084   0x08009084   0x00000224   Code   RO         1203    t._Z7toPrintIdEPcT_s  main.o
+    0x080092a8   0x080092a8   0x00000116   Code   RO         1147    t._Z7toPrintIiEPcT_s  main.o
+    0x080093be   0x080093be   0x00000108   Code   RO         1161    t._Z7toPrintIjEPcT_s  main.o
+    0x080094c6   0x080094c6   0x00000028   Code   RO         1210    t._Z8printTmlIdEvR7SSD1306T_iii  main.o
+    0x080094ee   0x080094ee   0x0000002a   Code   RO         1154    t._Z8printTmlIiEvR7SSD1306T_iii  main.o
+    0x08009518   0x08009518   0x0000002a   Code   RO         1168    t._Z8printTmlIjEvR7SSD1306T_iii  main.o
+    0x08009542   0x08009542   0x0000000c   Code   RO         1344    t._ZNSt4pairIS_IddEjEC1Ev  main.o
+    0x0800954e   0x0800954e   0x00000012   Code   RO         1293    t._ZNSt4pairIddEC1ERKS0_  main.o
+    0x08009560   0x08009560   0x00000018   Code   RO         1281    t._ZNSt4pairIddEC1Ev  main.o
+    0x08009578   0x08009578   0x0000001e   Code   RO         1311    t._ZNSt4pairIddEC1IiiEERKS_IT_T0_E  main.o
+    0x08009596   0x08009596   0x00000008   Code   RO         1323    t._ZNSt4pairIiiEC1Ev  main.o
+    0x0800959e   0x0800959e   0x00000026   Code   RO         1299    t._ZNSt4pairIssEC1IddEERKS_IT_T0_E  main.o
+    0x080095c4   0x080095c4   0x0000000a   Code   RO         1305    t._ZNSt4pairIssEC1IiiEERKS_IT_T0_E  main.o
+    0x080095ce   0x080095ce   0x00000018   Code   RO         2861    x$fpl$basic         fz_wm.l(basic.o)
+    0x080095e6   0x080095e6   0x00000002   PAD
+    0x080095e8   0x080095e8   0x00000062   Code   RO         2863    x$fpl$d2f           fz_wm.l(d2f.o)
+    0x0800964a   0x0800964a   0x00000002   PAD
+    0x0800964c   0x0800964c   0x00000150   Code   RO         2865    x$fpl$dadd          fz_wm.l(daddsub_clz.o)
+    0x0800979c   0x0800979c   0x00000010   Code   RO         3301    x$fpl$dcheck1       fz_wm.l(dcheck1.o)
+    0x080097ac   0x080097ac   0x00000018   Code   RO         3154    x$fpl$dcmpinf       fz_wm.l(dcmpi.o)
+    0x080097c4   0x080097c4   0x000002b0   Code   RO         2872    x$fpl$ddiv          fz_wm.l(ddiv.o)
+    0x08009a74   0x08009a74   0x00000078   Code   RO         2875    x$fpl$deqf          fz_wm.l(deqf.o)
+    0x08009aec   0x08009aec   0x0000005e   Code   RO         2877    x$fpl$dfix          fz_wm.l(dfix.o)
+    0x08009b4a   0x08009b4a   0x00000002   PAD
+    0x08009b4c   0x08009b4c   0x0000005a   Code   RO         2885    x$fpl$dfixu         fz_wm.l(dfixu.o)
+    0x08009ba6   0x08009ba6   0x0000002e   Code   RO         2890    x$fpl$dflt          fz_wm.l(dflt_clz.o)
+    0x08009bd4   0x08009bd4   0x000000a2   Code   RO         2895    x$fpl$dfltll        fz_wm.l(dfltll_clz.o)
+    0x08009c76   0x08009c76   0x00000026   Code   RO         2889    x$fpl$dfltu         fz_wm.l(dflt_clz.o)
+    0x08009c9c   0x08009c9c   0x00000078   Code   RO         2899    x$fpl$dleqf         fz_wm.l(dleqf.o)
+    0x08009d14   0x08009d14   0x00000154   Code   RO         2901    x$fpl$dmul          fz_wm.l(dmul.o)
+    0x08009e68   0x08009e68   0x0000009c   Code   RO         3156    x$fpl$dnaninf       fz_wm.l(dnaninf.o)
+    0x08009f04   0x08009f04   0x0000000c   Code   RO         3158    x$fpl$dretinf       fz_wm.l(dretinf.o)
+    0x08009f10   0x08009f10   0x0000006c   Code   RO         2903    x$fpl$drleqf        fz_wm.l(drleqf.o)
+    0x08009f7c   0x08009f7c   0x00000016   Code   RO         2866    x$fpl$drsb          fz_wm.l(daddsub_clz.o)
+    0x08009f92   0x08009f92   0x00000002   PAD
+    0x08009f94   0x08009f94   0x00000198   Code   RO         3160    x$fpl$dsqrt         fz_wm.l(dsqrt_umaal.o)
+    0x0800a12c   0x0800a12c   0x000001d4   Code   RO         2867    x$fpl$dsub          fz_wm.l(daddsub_clz.o)
+    0x0800a300   0x0800a300   0x00000056   Code   RO         2905    x$fpl$f2d           fz_wm.l(f2d.o)
+    0x0800a356   0x0800a356   0x0000008c   Code   RO         3162    x$fpl$fnaninf       fz_wm.l(fnaninf.o)
+    0x0800a3e2   0x0800a3e2   0x0000000a   Code   RO         3303    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x0800a3ec   0x0800a3ec   0x0000000a   Code   RO         3164    x$fpl$fretinf       fz_wm.l(fretinf.o)
+    0x0800a3f6   0x0800a3f6   0x00000002   PAD
+    0x0800a3f8   0x0800a3f8   0x000000c2   Code   RO         2881    x$fpl$llsfromd      fz_wm.l(dfixll.o)
+    0x0800a4ba   0x0800a4ba   0x00000064   Code   RO         3360    x$fpl$retnan        fz_wm.l(retnan.o)
+    0x0800a51e   0x0800a51e   0x0000005c   Code   RO         3166    x$fpl$scalbn        fz_wm.l(scalbn.o)
+    0x0800a57a   0x0800a57a   0x00000030   Code   RO         3385    x$fpl$trapveneer    fz_wm.l(trapv.o)
+    0x0800a5aa   0x0800a5aa   0x00000000   Code   RO         3168    x$fpl$usenofp       fz_wm.l(usenofp.o)
+    0x0800a5aa   0x0800a5aa   0x00000002   PAD
+    0x0800a5ac   0x0800a5ac   0x00000990   Data   RO          391    .constdata          main.o
+    0x0800af3c   0x0800af3c   0x00000010   Data   RO         1912    .constdata          stm32f407_adc.o
+    0x0800af4c   0x0800af4c   0x00000004   PAD
+    0x0800af50   0x0800af50   0x00000050   Data   RO         2916    .constdata          m_wm.l(asin.o)
+    0x0800afa0   0x0800afa0   0x00000088   Data   RO         2966    .constdata          m_wm.l(pow.o)
+    0x0800b028   0x0800b028   0x00000098   Data   RO         3172    .constdata          m_wm.l(atan.o)
+    0x0800b0c0   0x0800b0c0   0x00000030   Data   RO         3184    .constdata          m_wm.l(cos_i.o)
+    0x0800b0f0   0x0800b0f0   0x00000008   Data   RO         3204    .constdata          m_wm.l(qnan.o)
+    0x0800b0f8   0x0800b0f8   0x000000c8   Data   RO         3207    .constdata          m_wm.l(rred.o)
+    0x0800b1c0   0x0800b1c0   0x00000028   Data   RO         3211    .constdata          m_wm.l(sin_i.o)
+    0x0800b1e8   0x0800b1e8   0x00000010   Data   RO         2515    .constdata__ZTV7SSD1306  ssd1306.o
+    0x0800b1f8   0x0800b1f8   0x00000002   Data   RO         1097    .constdata__ZZN7Display6updateEvEs  main.o
+    0x0800b1fa   0x0800b1fa   0x00000002   PAD
+    0x0800b1fc   0x0800b1fc   0x00000020   Data   RO         3439    Region$$Table       anon$$obj.o
+    0x0800b21c   0x0800b21c   0x00000004   Data   RO          396    .init_array         main.o
+    0x0800b220   0x0800b21c   0x00000000   Data   RO         2730    .init_array         c_w.l(init_aeabi.o)
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x0800b1d0, Size: 0x00007d10, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x00001984])
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x0800b220, Size: 0x00007d10, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x00001984])
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -3984,7 +3985,7 @@ Memory Map of the image
     0x20007910   COMPRESSED   0x00000400   Data   RW         2420    .data               ssd1306.o
 
 
-    Execution Region ER_ZI (Exec base: 0x20007d10, Load base: 0x0800cb54, Size: 0x00010ca8, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x20007d10, Load base: 0x0800cba4, Size: 0x00010ca8, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -4002,8 +4003,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-     18180       1558       2454      30944       8992     398776   main.o
-      4482        210          0          0          0      13416   mpu9250.o
+     18252       1566       2454      30944       8992     398872   main.o
+      4488        216          0          0          0      13416   mpu9250.o
        944         26         16       1024          0      11336   ssd1306.o
         64         26        392          0      49152        824   startup_stm32f40xx.o
        490         48         16          0          0       6254   stm32f407_adc.o
@@ -4015,9 +4016,9 @@ Image component sizes
        276         34          0          0          0     242557   system_stm32f4xx.o
 
     ----------------------------------------------------------------------
-     27660       2214       2916      32016      68680     749343   Object Totals
+     27736       2228       2916      32016      68680     749439   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        34          0          6          2          0          0   (incl. Padding)
+        32          0          6          2          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -4122,8 +4123,8 @@ Image component sizes
        232          0          0          0          0        296   sqrt.o
 
     ----------------------------------------------------------------------
-     14280       1286        664          0         96      11116   Library Totals
-        40          4          0          0          0          0   (incl. Padding)
+     14284       1286        664          0         96      11116   Library Totals
+        44          4          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -4135,7 +4136,7 @@ Image component sizes
       8272        866        664          0          0       3780   m_wm.l
 
     ----------------------------------------------------------------------
-     14280       1286        664          0         96      11116   Library Totals
+     14284       1286        664          0         96      11116   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -4144,15 +4145,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     41940       3500       3580      32016      68776     732383   Grand Totals
-     41940       3500       3580       6532      68776     732383   ELF Image Totals (compressed)
-     41940       3500       3580       6532          0          0   ROM Totals
+     42020       3514       3580      32016      68776     732479   Grand Totals
+     42020       3514       3580       6532      68776     732479   ELF Image Totals (compressed)
+     42020       3514       3580       6532          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                45520 (  44.45kB)
+    Total RO  Size (Code + RO Data)                45600 (  44.53kB)
     Total RW  Size (RW Data + ZI Data)            100792 (  98.43kB)
-    Total ROM Size (Code + RO Data + RW Data)      52052 (  50.83kB)
+    Total ROM Size (Code + RO Data + RW Data)      52132 (  50.91kB)
 
 ==============================================================================
 

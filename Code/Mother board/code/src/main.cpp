@@ -435,6 +435,8 @@ int main()
 				}
 				robot.display.print("Yaw angle: ", 1, 1);
 				robot.display.print(robot.imu.getAngle(), 1, 11);
+//				robot.display.print("Line:", 3, 1);
+//				robot.display.print(robot.lineSensors.getLine(), 3, 7);
 //				robot.display.print("Ball x: ", 3, 1);
 //				robot.display.print(func.ball.globalPos.X, 3, 11);
 //				robot.display.print("Ball y: ", 4, 1);
@@ -533,6 +535,7 @@ int main()
 //				robot.display.print("GZ: ", 3, 10);
 //				robot.display.print(robot.imu.getZg(), 3, 14);
 //				//robot.display.print(robot.ADC_2.read(BALL_SENSOR), 2, 1);
+				
 				robot.display.print("x: ", 2, 1);
 				robot.display.print(robot.getPos().X, 2, 9);
 //				//robot.display.print(robot.camera.yellow.X, 2, 9);

@@ -545,6 +545,7 @@ class Functional:  public BaseFunctional
 						res._y = 0;
 						res._mod = 0;
 						dribblerSpeed = 0;
+						
 					
 						if(!attackerStop)
 						{
@@ -675,7 +676,7 @@ class Functional:  public BaseFunctional
 					case STATE_ROTATE:
 						acceleration = 1;
 						followDots = true;
-						dribblerSpeed = -400;
+						dribblerSpeed = -450;
 						speedRot = 80;
 						res._x = 0;
 						res._y = 0;
@@ -756,18 +757,19 @@ class Functional:  public BaseFunctional
 						}
 					
 						//angleToGo = 180 + angToGoalBlue;
-						if(millis() - str1Timeout > 5000)
+						if(millis() - str1Timeout > 1500)
 						{
+							followDots = false;
 							state = STATE_STOP;
 						}
 						break;
 				}
 				if(!followDots)
 				{
-					b1.dempher(getRobotClass()->getPos(), res, acceleration);
-					b2.dempher(getRobotClass()->getPos(), res, acceleration);
-					b3.dempher(getRobotClass()->getPos(), res, acceleration);
-					b4.dempher(getRobotClass()->getPos(), res, acceleration);
+					b1.dempher(getRobotClass()->getPos(), res, acceleration, getRobotClass()->lineSensors.getLine());
+					b2.dempher(getRobotClass()->getPos(), res, acceleration, getRobotClass()->lineSensors.getLine());
+					b3.dempher(getRobotClass()->getPos(), res, acceleration, getRobotClass()->lineSensors.getLine());
+					b4.dempher(getRobotClass()->getPos(), res, acceleration, getRobotClass()->lineSensors.getLine());
 				}
 				move2(res, angleToGo, acceleration, speedRot);//check
 				getRobotClass()->motorDrivers.setMotor(4, dribblerSpeed);
@@ -961,10 +963,20 @@ class Functional:  public BaseFunctional
 				}
 				double angToBall = atan2(double(camBall.pos.X), double(camBall.pos.Y)) * 57.3;
 				if(!goalkeeperStop)
-					move2(genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 1.3, 'g'), 0, 4);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
+				{
+					VectorToMove res = genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 1.3, 'g');
+					if(res._y > 0)
+						res._mod = 0.7;
+					move2(res, 0, 4);
+					//move2(genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 1.3, 'g'), 0, 4);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
+				}
 				else
 				{
-					move2(genVTMGlobalPoint(make_pair(0, -70), getRobotClass()->getPos(), 1.3, 'g'), 0, 4);
+					VectorToMove res = genVTMGlobalPoint(make_pair(0, -70), getRobotClass()->getPos(), 1.3, 'g');
+					if(res._y > 0)
+						res._mod = 0.7;
+					move2(res, 0, 4);
+					//move2(genVTMGlobalPoint(make_pair(0, -70), getRobotClass()->getPos(), 1.3, 'g'), 0, 4);
 					strikeTime = millis();
 					strike = false;
 					wasNotSeen = true;

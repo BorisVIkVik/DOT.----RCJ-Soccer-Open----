@@ -68,11 +68,6 @@ unsigned int Camera::update()
 		startByte = writeSPI(spi, 47);
 		setPin(this->ss, 1);
 	}
-	if(error == CAMERA_CONNECTION_ERROR)
-		{
-		setPin(LED_2, 0);		
-		return error;
-	}
 
 	setPin(this->ss, 0);
 	uint8_t msgLen = writeSPI(spi, 47);
@@ -103,8 +98,15 @@ unsigned int Camera::update()
 		error |= CAMERA_DATA_ERROR;
 	}
 	
-	if(millis() - lastRecieve > 1000)
+	if(millis() - lastRecieve > 350)
 		error |= CAMERA_CONNECTION_ERROR;
+	
+	if(error == CAMERA_CONNECTION_ERROR)
+		{
+		setPin(LED_2, 0);		
+		return error;
+	}
+	
 	
 	return error;
 //	if(ballX == 46)

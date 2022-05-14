@@ -2,15 +2,15 @@
 
 #include <tools.h>
 #include <VTM.h>
-
+#include <LineSensors.h>
 //#include <main.h>
 
 using namespace std;
 class Border
 {
     public:
-        Border(double speed, char coord, char side, int16_t start, int16_t end, int16_t minLimit, int16_t maxLimit):_speed(speed), _coord(coord), _side(side), _start(start), _end(end), _minLimit(minLimit), _maxLimit(maxLimit), errorOldX(0), errorOldY(0){}
-        void dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm, double& acc);
+			Border(double speed, char coord, char side, int16_t start, int16_t end, int16_t minLimit, int16_t maxLimit):_speed(speed), _coord(coord), _side(side), _start(start), _end(end), _minLimit(minLimit), _maxLimit(maxLimit), errorOldX(0), errorOldY(0){}
+        void dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm, double& acc, int32_t lineSensorsValue);
     private:
 				double _speed;
         char _coord;
@@ -24,7 +24,7 @@ class Border
 		
 };
 
-void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm, double& acc)
+void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm, double& acc, int32_t lineSensorsValue)
 {
     if(_coord == 'x')
     {
@@ -43,7 +43,7 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm, double& acc)
 					if(vtm._x > 0)
 					{
 						
-						if (abs(u * vtm._x) <= abs(vtm._x))
+						if (abs(u * vtm._x) <= abs(vtm._x))// && !lineSensorsValue)
 						{
 							vtm._x -= u * vtm._x;
 							//vtm._y -= u * vtm._y;
@@ -53,6 +53,8 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm, double& acc)
 						else
 						{
 							vtm._x = -u * vtm._x * 0.1;
+							if(lineSensorsValue)
+								setPin(LED_3, 1);
 							//vtm._mod = _speed;
 						}
 							
@@ -74,7 +76,7 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm, double& acc)
 					}
 					if(vtm._x < 0)
 					{
-						if (abs(u * vtm._x) <= abs(vtm._x))
+						if (abs(u * vtm._x) <= abs(vtm._x))// && !lineSensorsValue)
 						{
 							vtm._x -= u * vtm._x;
 							//vtm._y -= u * vtm._y;
@@ -84,6 +86,8 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm, double& acc)
 						else
 						{
 							vtm._x = -u * vtm._x * 0.1;
+							if(lineSensorsValue)
+								setPin(LED_3, 1);
 							//vtm._mod = _speed;
 						}
 						
@@ -112,7 +116,7 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm, double& acc)
 					}
 					if(vtm._y < 0)
 					{						
-						if (abs(u * vtm._y) <= abs(vtm._y))
+						if (abs(u * vtm._y) <= abs(vtm._y))// && !lineSensorsValue)
 						{	
 							vtm._y -= u * vtm._y;
 							//vtm._mod = _speed;
@@ -121,6 +125,8 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm, double& acc)
 						else
 						{
 							vtm._y = -u * vtm._y * 0.1;
+							if(lineSensorsValue)
+								setPin(LED_3, 1);
 							//vtm._mod = _speed;
 						}
 					}
@@ -142,7 +148,7 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm, double& acc)
 					if(vtm._y > 0)
 					{
 						
-            if (abs(u * vtm._y) <= abs(vtm._y))
+            if (abs(u * vtm._y) <= abs(vtm._y))// && !lineSensorsValue)
 						{
 							vtm._y -= u * vtm._y;
 							//vtm._mod = _speed;
@@ -151,6 +157,8 @@ void Border::dempher(pair<int16_t, int16_t> pos, VectorToMove& vtm, double& acc)
 						else
 						{
 							vtm._y = -u * vtm._y*0.01;
+							if(lineSensorsValue)
+								setPin(LED_3, 1);
 							//vtm._mod = _speed;
 						}
 						
