@@ -368,6 +368,7 @@ void Robot::updateMenu()
 
 void Robot::wait(uint32_t t)
 {
+	GLOBAL_ERROR = 0;
 	/*
 	static uint32_t error_step_time = 0;
 	if ((millis() + error_step_time) % 250 < 50) 

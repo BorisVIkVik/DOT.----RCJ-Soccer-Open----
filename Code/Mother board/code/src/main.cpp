@@ -435,10 +435,10 @@ int main()
 				}
 				robot.display.print("Yaw angle: ", 1, 1);
 				robot.display.print(robot.imu.getAngle(), 1, 11);
-				robot.display.print("Ball x: ", 3, 1);
-				robot.display.print(func.ball.globalPos.X, 3, 11);
-				robot.display.print("Ball y: ", 4, 1);
-				robot.display.print(func.ball.globalPos.Y, 4, 11);
+//				robot.display.print("Ball x: ", 3, 1);
+//				robot.display.print(func.ball.globalPos.X, 3, 11);
+//				robot.display.print("Ball y: ", 4, 1);
+//				robot.display.print(func.ball.globalPos.Y, 4, 11);
 				break;
 			
 			case CALIBRATIONS_SCREEN:

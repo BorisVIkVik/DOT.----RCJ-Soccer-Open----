@@ -23,6 +23,7 @@ class Camera
 	private:
 		unsigned int spi;
 		uint16_t ss;	
+		long long int lastRecieve;
 };
 
 Camera::Camera()
@@ -34,6 +35,7 @@ Camera::Camera()
 	blue.Y = 0;
 	yellow.X = 0;
 	yellow.Y = 0;
+	lastRecieve = millis() - 200;
 }
 
 void Camera::init(unsigned int spi, uint16_t ss)
@@ -51,7 +53,7 @@ unsigned int Camera::update()
 	
 	unsigned int error = 0;
 	long long int timeout = millis();
-	
+	//objects = 0;
 	setPin(this->ss, 0);
 	uint8_t startByte = writeSPI(spi, 47);
 	setPin(this->ss, 1);
@@ -59,7 +61,7 @@ unsigned int Camera::update()
 	{
 		if( millis() - timeout > 10)
 		{
-			error = CAMERA_CONNECTION_ERROR;
+			//error = CAMERA_CONNECTION_ERROR;
 			break;
 		}
 		setPin(this->ss, 0);
@@ -93,12 +95,17 @@ unsigned int Camera::update()
 		yellow.Y = (rxData[6] * 2) - 240;
 		blue.X = (rxData[7] * 2) - 240;
 		blue.Y = (rxData[8] * 2) - 240;
+		lastRecieve = millis();
 	}
 	else
 	{
 		setPin(LED_2, 0);				
 		error |= CAMERA_DATA_ERROR;
 	}
+	
+	if(millis() - lastRecieve > 200)
+		error |= CAMERA_CONNECTION_ERROR;
+	
 	return error;
 //	if(ballX == 46)
 //	{

@@ -23,10 +23,10 @@
 
 
 
-Border b1(0.3, 'x', '-', -45, -55, -90, 90);
-Border b2(0.3, 'x', '+', 45, 55, -90, 90);
+Border b1(0.3, 'x', '-', -45, -50, -90, 90);
+Border b2(0.3, 'x', '+', 45, 50, -90, 90);
 Border b3(0.3, 'y', '-', -45, -55, -30, 30);
-Border b4(0.3, 'y', '+', 45, 55, -30, 30);
+Border b4(0.3, 'y', '+', 40, 50, -30, 30);
 
 //Border b5('x', '+', -20, -15, -90, -60);
 //Border b6('x', '-', 20, 15, -90, -60);
@@ -39,7 +39,7 @@ Border b4(0.3, 'y', '+', 45, 55, -30, 30);
 //Border b12('y', '+', 80, 90, 20, 35);
 
 //pt goalPoints[6] = {{70, -97}, {70, -89}, {55, -74}, {-55, -74}, {-70, -89}, {-70, -97}};
-segment goalLines[5] = {{0, 1, 60, -25, 25, 0, 0}, {2, 5, 250, 25, 50, 0, 0}, {-2, 5, 250, -50, -25, 0, 0}, {1, 0, 50, 0, 0, -90, -70}, {1, 0, -50, 0, 0, -90, -70}};
+segment goalLines[5] = {{0, 1, 65, -25, 25, 0, 0}, {2, 5, 275, 25, 50, 0, 0}, {-2, 5, 275, -50, -25, 0, 0}, {1, 0, 50, 0, 0, -90, -75}, {1, 0, -50, 0, 0, -90, -75}};
 
 //{{0, 1, 40, -18, 18, 0, 0}, {2, 5, 164, 18, 30, 0, 0}, {-2, 5, 164, -30, -18, 0, 0}, {1, 0, 30, 0, 0, -75, -44.8}, {1, 0, -30, 0, 0, -75, -44.8}};
 
@@ -75,6 +75,7 @@ class Functional:  public BaseFunctional
 			stateTime = 0;
 			angleCheckTest = 0;
 			strike = false;
+			longTimeNoSee = 0;
 		}
 		
 		
@@ -546,6 +547,7 @@ class Functional:  public BaseFunctional
 					
 						break;
 					case STATE_PARABOLKA:	
+						setPin(LED_3, 0);
 						acceleration = 0.8;
 						speedRot = 100;
 						angleToGo = angToBall;
@@ -588,7 +590,7 @@ class Functional:  public BaseFunctional
 												
 						
 						adduction(angleDif);
-						if(abs(angleDif) < 30)
+						if(abs(angleDif) < 30 && getRobotClass()->getPos().Y < ball.globalPos.Y)
 						{
 							state = STATE_RUSH_TO_GOAL;
 						}
@@ -596,6 +598,7 @@ class Functional:  public BaseFunctional
 											
 						break;
 					case STATE_RUSH_TO_GOAL:
+						setPin(LED_3, 1);
 						acceleration = 4;
 						speedRot = 400;
 						angleToGo = angToBall;
@@ -711,7 +714,7 @@ class Functional:  public BaseFunctional
 //							
 //						}
 						
-						angleToGo = angleToGo = 180 + angToGoalBlue - (side == 'r' ? 30 : -30);;
+						angleToGo = angleToGo = 180 + angToGoalBlue - (side == 'r' ? 40 : -40);
 						if(getRobotClass()->ballSensor.getValue())
 						{
 							lost = millis();
@@ -783,7 +786,7 @@ class Functional:  public BaseFunctional
 		
 		if(millis() - goalkeeperStopTime > 1000)
 				goalkeeperStop = true;
-			if(getRobotClass()->ballSensor.getValue() || (getRobotClass()->camera.objects & 1))
+			if(/*getRobotClass()->ballSensor.getValue() || */(getRobotClass()->camera.objects & 1))
 			{
 				goalkeeperStop = false;
 				goalkeeperStopTime = millis();
@@ -938,8 +941,9 @@ class Functional:  public BaseFunctional
 					strike = false;
 				}
 			}
-			if(getRobotClass()->playState() && getRobotClass()->camera.objects)
+			if(getRobotClass()->playState() && getRobotClass()->camera.objects && !((GLOBAL_ERROR & CAMERA_CONNECTION_ERROR) == CAMERA_CONNECTION_ERROR))
 			{
+				longTimeNoSee = millis();
 				getRobotClass()->motorDrivers.enableMotor(4);
 				if((abs(double(camBall.pos.X)) < 50.0 && abs(double(camBall.pos.Y)) < 50.0))
 				{
@@ -965,7 +969,10 @@ class Functional:  public BaseFunctional
 			{
 				getRobotClass()->motorDrivers.setMotors(0,0,0,0,0);
 				getRobotClass()->motorDrivers.disableMotor(4);
-				strikeTime = millis();
+				if(millis() - longTimeNoSee > 2000)
+				{
+					strikeTime = millis();
+				}
 				predictTime = millis();
 			}
 			
@@ -1018,5 +1025,6 @@ class Functional:  public BaseFunctional
 		uint32_t goalkeeperStopTime;
 		bool goalkeeperStop;
 		bool wasNotSeen;
+		uint32_t longTimeNoSee;
 		//Goalkeeper
 };
