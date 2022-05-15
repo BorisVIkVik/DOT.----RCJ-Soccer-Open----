@@ -6,7 +6,7 @@
 #include "stm32f407_pinList.h"
 #include "stm32f407_wrappers.h"
 
-#define KICK_TIME 1000
+#define KICK_TIME 1000//7000//1000
 #define COOL_DOWN_TIME 1000
 
 class KickerModule

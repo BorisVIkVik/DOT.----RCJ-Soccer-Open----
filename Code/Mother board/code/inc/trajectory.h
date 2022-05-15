@@ -1,7 +1,7 @@
 #include <stdint.h>
 
 #define TRAJECTORY1_SIZE					219
-#define TRAJECTORY1_STOP					180
+#define TRAJECTORY1_STOP					170
 
 int8_t trajectory1[TRAJECTORY1_SIZE][2] = { {55, -103}, 
 {55, -102}, 
