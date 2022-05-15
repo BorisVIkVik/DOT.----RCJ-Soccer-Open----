@@ -6,7 +6,7 @@
 #include "stm32f407_pinList.h"
 #include "stm32f407_wrappers.h"
 
-#define KICK_TIME 1//7000//1000
+#define KICK_TIME 1000//7000//1000
 #define COOL_DOWN_TIME 1000
 
 class KickerModule
@@ -96,7 +96,7 @@ void KickerModule::kick(bool kick1, bool kick2)
 	{
 		setPin(kicker1, kick1);
 		setPin(kicker2, kick2);
-		delay(KICK_TIME);
+		delayMicros(KICK_TIME);
 	}
 	
 	setPin(kicker1, 0);

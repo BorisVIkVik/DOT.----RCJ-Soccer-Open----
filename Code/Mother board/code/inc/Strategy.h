@@ -731,11 +731,11 @@ class Functional:  public BaseFunctional
 //							
 //						}
 						
-						//angleToGo = angleToGo = 180 + angToGoalBlue + (side == 'r' ? 15 : -15);
-						if(kickSide)
-							angleToGo = angleToGo = 180 + angToGoalBlue - (side == 'r' ? -34 : -35);
-						else
-							angleToGo = angleToGo = 180 + angToGoalBlue + (side == 'r' ? -20 : -20);
+						angleToGo = angleToGo = 180 + angToGoalBlue - (side == 'r' ? 30 : -30);
+//						if(kickSide)
+//							angleToGo = angleToGo = 180 + angToGoalBlue - (side == 'r' ? -34 : -35);
+//						else
+//							angleToGo = angleToGo = 180 + angToGoalBlue + (side == 'r' ? -20 : -20);
 						if(getRobotClass()->ballSensor.getValue())
 						{
 							lost = millis();
@@ -762,7 +762,7 @@ class Functional:  public BaseFunctional
 						dribblerSpeed = -400;
 						setPin(LED_3, 0);
 						followDots = true;
-						if(kickSide)
+						if(side == 'r')
 						{
 							getRobotClass()->kicker.kick(false, true);
 						}
