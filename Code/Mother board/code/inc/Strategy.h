@@ -29,7 +29,7 @@
 
 Border b1(0.3, 'x', '-', -40, -45, -90, 90);
 Border b2(0.3, 'x', '+', 40, 45, -90, 90);
-Border b3(0.3, 'y', '-', -45, -55, -30, 30);
+Border b3(0.3, 'y', '-', -40, -50, -30, 30);
 Border b4(0.3, 'y', '+', 40, 50, -30, 30);
 
 //Border b5('x', '+', -20, -15, -90, -60);
@@ -72,6 +72,7 @@ class Functional:  public BaseFunctional
 			dribblerSpeed = 0;
 			acceleration = 0.5;
 			first = false;
+			kickSide = true;
 			///-------------------------
 			old = make_pair(0,0);
 			predictTime = 0;
@@ -638,12 +639,12 @@ class Functional:  public BaseFunctional
 						double flex = (millis() - trajectoryTime) * SPEED_TRAJ_FOLLOW_CM_MILLIS * 0.05;
 						res = trajectoryFollowingDots(oldPosIndex, flex, side, 0.45);
 						trajectoryTime = millis();
-					
+						getRobotClass()->kicker.stopCharge();
 						if(oldPosIndex >= TRAJECTORY1_STOP - 2)
 						{
 							if(side == 'r')
 							{
-								if(checkBounds(make_pair(trajectory1[TRAJECTORY1_STOP][0]-5-2, trajectory1[TRAJECTORY1_STOP][1]-10-2), make_pair(trajectory1[TRAJECTORY1_STOP][0] - 5+2, trajectory1[TRAJECTORY1_STOP][1] - 10+2), getRobotClass()->getPos()))
+								if(checkBounds(make_pair(trajectory1[TRAJECTORY1_STOP][0] -2, trajectory1[TRAJECTORY1_STOP][1]-8-2), make_pair(trajectory1[TRAJECTORY1_STOP][0] +2, trajectory1[TRAJECTORY1_STOP][1] - 8+2), getRobotClass()->getPos()))
 								{
 									first = true;
 									getRobotClass()->kicker.initCharge();
@@ -656,7 +657,7 @@ class Functional:  public BaseFunctional
 							}
 							else
 							{
-								if(checkBounds(make_pair(-trajectory1[TRAJECTORY1_STOP][0]+5-2, trajectory1[TRAJECTORY1_STOP][1]-10-2), make_pair(-trajectory1[TRAJECTORY1_STOP][0] + 5+2, trajectory1[TRAJECTORY1_STOP][1] - 10+2), getRobotClass()->getPos()))
+								if(checkBounds(make_pair(-trajectory1[TRAJECTORY1_STOP][0] - 5-2, trajectory1[TRAJECTORY1_STOP][1]-8-2), make_pair(-trajectory1[TRAJECTORY1_STOP][0] -5+2, trajectory1[TRAJECTORY1_STOP][1] - 8+2), getRobotClass()->getPos()))
 								{
 									first = true;
 									getRobotClass()->kicker.initCharge();
@@ -685,7 +686,7 @@ class Functional:  public BaseFunctional
 					case STATE_ROTATE:
 						acceleration = 1;
 						followDots = true;
-						dribblerSpeed = -550;
+						dribblerSpeed = -500;
 						speedRot = 80;
 						res._x = 0;
 						res._y = 0;
@@ -731,14 +732,18 @@ class Functional:  public BaseFunctional
 //						}
 						
 						//angleToGo = angleToGo = 180 + angToGoalBlue + (side == 'r' ? 15 : -15);
-						angleToGo = angleToGo = 180 + angToGoalBlue - (side == 'r' ? 30 : -30);
+						if(kickSide)
+							angleToGo = angleToGo = 180 + angToGoalBlue - (side == 'r' ? -34 : -35);
+						else
+							angleToGo = angleToGo = 180 + angToGoalBlue + (side == 'r' ? -20 : -20);
 						if(getRobotClass()->ballSensor.getValue())
 						{
 							lost = millis();
 							
 						}
-						if(millis() - str1Timeout > 700)
+						if(millis() - str1Timeout > 1000)
 						{
+							kickSide = !kickSide;
 							state = STATE_KICK;
 							str1Timeout = millis();
 						}
@@ -757,7 +762,7 @@ class Functional:  public BaseFunctional
 						dribblerSpeed = -400;
 						setPin(LED_3, 0);
 						followDots = true;
-						if(side == 'r')
+						if(kickSide)
 						{
 							getRobotClass()->kicker.kick(false, true);
 						}
@@ -790,6 +795,7 @@ class Functional:  public BaseFunctional
 			{
 				getRobotClass()->motorDrivers.setMotors(0,0,0,0,0);
 				getRobotClass()->motorDrivers.disableMotor(4);
+				kickSide = true;
 			}
 		}
 		
@@ -1393,6 +1399,7 @@ class Functional:  public BaseFunctional
 		bool followDots;
 		double acceleration;
 		bool first;
+		bool kickSide;
 		//Attacker
 	
 		//Goalkeeper
