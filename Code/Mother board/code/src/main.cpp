@@ -376,7 +376,8 @@ int main()
 		
 		func.posCalc();
 		//func.testBorder();
-		func.SIMP();
+		//func.SIMP();
+		func.strategy3();
 		//func.goalkeeper();
 		//v1 = func.getRobotClass()->imu.getXa();
 		//v2 = func.getRobotClass()->imu.getYa();

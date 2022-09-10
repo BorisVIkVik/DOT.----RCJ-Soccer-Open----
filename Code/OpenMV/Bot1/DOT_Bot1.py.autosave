@@ -114,11 +114,11 @@ def realDistance(x, coordsArr):
 import sensor, image, time, pyb
 from math import sqrt, atan2, cos, sin
 from pyb import SPI
-EXPOSURE_TIME_SCALE = 0.15
+EXPOSURE_TIME_SCALE = 0.5
 
 
 
-threshold_blue =    (7, 21, -11, 15, -45, -22)#(47, 100, -30, 48, 42, 127) yellow
+threshold_blue =    (20, 39, -10, 9, -47, -22)#(47, 100, -30, 48, 42, 127) yellow
 threshold_yellow =  (32, 90, -30, 59, 30, 98)#(1, 9, -1, 11, -27, -7)#(2, 23, 5, 72, -78, -19)#(12, 100, 14, 127, -104, -33) blue
 threshold_ball =    (41, 66, 53, 127, 26, 51)#(55, 100, 53, 127, -9, 127)#(50, 65, 49, 127, 23, 127)
 
