@@ -23,6 +23,10 @@
 
 #define SPEED_CALC_TIME	200
 
+#define R 5.5
+#define L 8
+
+
 using namespace std;
 
 /* ROBOT */
@@ -53,6 +57,7 @@ class Robot
 		void switch5vOn();
 		void switch5vOff();
 		void move(double velocity, double dir, double heading = 0, double acc = 4 /* m/(s^2) */, double smooth = 1 /* ob/s */, double maxRotSpeed = 400);
+		void moveVector(double velocity, double dir, double heading = 0, double acc = 4 /* m/(s^2) */, double smooth = 1 /* ob/s */, double maxRotSpeed = 400);
 		void updateMenu();
 		void changePlayState();
 		void setPlayState(bool a);
@@ -265,6 +270,80 @@ void Robot::move(double velocity, double dir, double heading, double acc, double
 	
 	v.X = velocity*sin(dir*DEG2RAD);
 	v.Y = velocity*cos(dir*DEG2RAD);
+
+	oldErr = err;
+}
+
+
+void Robot::moveVector(double x, double y, double heading, double acc, double smooth, double maxRotSpeed)
+{
+//	double _dir = abs(dir);
+//	while (_dir > 90) _dir -= 90;
+//	_dir = min2(_dir, 90 - _dir);
+//	
+//	double mul = 1.0 / cos(_dir * DEG2RAD);
+	
+	//velocity *= 326.5 * mul;
+	
+	double dAngle = imu.getAngle();
+	adduction(dAngle);
+	
+	static double oldErr = dAngle - heading, p, d, s, err, k;
+	
+	/* Delta time estimating */
+	static uint32_t sTime = millis();	
+	double dt = millis() - sTime;
+	sTime = millis();
+	
+	
+	err = dAngle - heading;	
+	adduction(err);
+	p = err * 2.0;//8
+	s = 0;//sgn(err) * err * err * 0.3;
+	d = (err - oldErr) * 10.0 / dt;//20
+	if (abs(d) > 70)
+		d = sgn(d) * 70;
+
+	double u = (p + d + s) * -1;
+	// 1 ob kolesa - 0.3441 ob robota
+	if (abs(u) > maxRotSpeed) u = sgn(u) * maxRotSpeed;
+	
+//	double cx = velocity * cos((dir) * DEG2RAD);
+//	double cy = velocity * sin((dir) * DEG2RAD);
+//	
+//	acc *= 5 * dt / 3.0;
+//	
+//	double ax = (cx - dx);
+//	double ay = (cy - dy);
+//	
+//	double velAngle = atan2(ay, ax);
+//	
+//	double dax = cos(velAngle);
+//	double day = sin(velAngle);
+//	
+//	dx += stp(dax * acc, abs(ax));
+//	dy += stp(day * acc, abs(ay));
+//	
+//	
+//	double vel = sqrt(dx * dx + dy * dy);
+//	double tAngle = atan2(dy, dx) * RAD2DEG;
+	
+	int v1 = x * 0 + y * 2/R + u * L/R;
+	int v2 = x * -2/R + y * 0 + u * L/R;
+	int v3 = x * 0 + y * -2/R + u * L/R;
+	int v4 = x * 2/R + y * 0 + u * L/R;
+	
+	k = 1;//abs(vel) / max5(abs(v1), abs(v2), abs(v3), abs(v4), 1);
+
+	v1 = v1 * k;
+  v2 = v2 * k;
+  v3 = v3 * k;
+  v4 = v4 * k;
+	
+	motorDrivers.setMotors(v1, v2, v3, v4);
+	
+//	v.X = velocity*sin(dir*DEG2RAD);
+//	v.Y = velocity*cos(dir*DEG2RAD);
 
 	oldErr = err;
 }

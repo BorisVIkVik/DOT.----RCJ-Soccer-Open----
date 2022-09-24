@@ -39,7 +39,7 @@ class BaseFunctional
         bool                checkBall();
         //void                addObstacle(VecField* vF, VecField oF, int8_t x, int8_t y);
         void                move2(VectorToMove vtm, double heading,  double acceleration, uint16_t maxRotSpeed = 400);
-				void								vectorMove(VectorToMove vtm);
+				void								vectorMove();
         VectorToMove        genATMPoint(int16_t x, int16_t y, double vecMod); 
         VectorToMove        genATMVecField(int16_t x, int16_t y);//, vector<Obstacle> obs);
 				VectorToMove 				genVTMGlobalPoint(pair<int16_t, int16_t> toGoCoords, pair<int16_t, int16_t> robotCoords, double vecMod, char robotMode);
@@ -432,10 +432,8 @@ VectorToMove BaseFunctional::Parabola(pair<int16_t, int16_t> toGoCoords, pair<in
   return res;
 }
 
-void BaseFunctional::vectorMove(VectorToMove vtm,  double angle)
+void BaseFunctional::vectorMove()
 {
-	vtm._x * 0 + vtm._y * 2/R + angle * L/R;
-	vtm._x * -2/R + vtm._y * 0 + angle * L/R;
-	vtm._x * 0 + vtm._y * -2/R + angle * L/R;
-	vtm._x * 2/R + vtm._y * 0 + angle * L/R;
+	_RC->moveVector(1500, 0, 0);
+	
 }

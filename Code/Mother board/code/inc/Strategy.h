@@ -1745,6 +1745,17 @@ class Functional:  public BaseFunctional
 			}
 	}
 	
+
+	void testBW()
+	{
+		//getRobotClass()->motorDrivers.setMotors(1500,1500,1500,1500,0);
+		if(getRobotClass()->playState())	
+		{
+			vectorMove();
+		}
+	}
+
+
 	
 	private:
 		//Attacker
