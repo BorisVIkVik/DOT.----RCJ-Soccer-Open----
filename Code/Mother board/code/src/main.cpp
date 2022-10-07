@@ -320,15 +320,7 @@ int main()
 	
 	
 	
-//	pt toGo = {0, 0};
-//	
-//	PairSaver ballPosSave;
-//	pair<double, double> old = make_pair(0,0);
-//	uint32_t predictTime = 0;
-//	uint32_t strikeTime = 0;
-//	uint32_t stateTime = 0;
-//	uint32_t angleCheckTest = 0;
-//	bool strike = false;
+
 	uint32_t mainTime = 0;
 	volatile uint32_t cycleTime = 0;
 //	volatile double v1 = 0, v2 = 0, v3 = 0;
@@ -339,40 +331,6 @@ int main()
 		cycleTime = millis() - mainTime;
 		mainTime = millis();
 		robot.wait(5);
-		
-		//robot.lidar.ProcessUartRxData();
-		//lidarCircles = robot.lidar.LSI.OneCriclePoint[99].Angle;
-//		volatile uint32_t lidarAngle = 0;
-//		bool draw = false;
-		
-//	uint32_t minDist = 1000000000;
-//		for(int i = 0; i < 1000; i++)
-//		{
-//			if(robot.lidar.LSI.OneCriclePoint[i].Distance != 0 && robot.lidar.LSI.OneCriclePoint[i].Distance < minDist)
-//			{
-//				minDist = robot.lidar.LSI.OneCriclePoint[i].Distance;
-//				lidarAngle = robot.lidar.LSI.OneCriclePoint[i].Angle;
-//			}
-//		}
-//		if(robot.lidar.LSI.Result == LIDAR_GRAB_SUCESS)//扫描到完整一圈
-//		{
-//		//draw = true;
-//			
-////			robot.lidar.LSI.Result=LIDAR_GRAB_ING;//恢复正在扫描状态
-////			
-////			
-////			
-////			/**************打印扫描一圈的总点数：lidarscaninfo.OneCriclePointNum*********************************************/
-////			//printf("one circle point num:%d\n",lidarscaninfo.OneCriclePointNum);
-////		
-////			/*****lidarscaninfo.OneCriclePoint[lidarscaninfo.OneCriclePointNum]：存放一圈总点数的角度和距离*********/
-////			
-////			//打印某个点信息：一圈从零点开始，打印第100个点的角度和距离
-////			/*printf("point %d: angle=%5.2f,distance=%5.2fmm\n",100,
-////					lidarscaninfo.OneCriclePoint[100].Angle,
-////					lidarscaninfo.OneCriclePoint[100].Distance);*/
-////			
-//		}
 		
 		func.posCalc();
 		//func.testBorder();
@@ -424,28 +382,23 @@ int main()
 				if (robot.playState()) robot.display.print("playing", 0, 6);
 				else robot.display.print("waiting", 0, 6);
 				
-//				robot.display.print(cycleTime, 0, 15);
-				robot.display.print("L:", 2, 1);
-				for(int i = 0; i < robot.lidar.LSI.OneCriclePointNum; i++)
-				{
-					if(robot.lidar.LSI.OneCriclePoint[i].Angle == 90)
-					{
-					//robot.display.print(robot.lidar.LSI.OneCriclePoint[100].Angle, 2, 3);
-					robot.display.print(realDistance(robot.lidar.LSI.OneCriclePoint[i].Distance), 2, 11);
-					}
-				}
+				
 				robot.display.print("Yaw angle: ", 1, 1);
 				robot.display.print(robot.imu.getAngle(), 1, 11);
-//				robot.display.print("Line:", 3, 1);
-//				robot.display.print(robot.lineSensors.getLine(), 3, 7);
-//				robot.display.print("Ball x: ", 3, 1);
-//				robot.display.print(func.ball.globalPos.X, 3, 11);
-//				robot.display.print("Ball y: ", 4, 1);
-//				robot.display.print(func.ball.globalPos.Y, 4, 11);
+				
+				robot.display.print("Home Color: ", 2, 1);
+				if(robot.color == BLUE)
+					robot.display.print("BLUE", 2, 11);
+				else
+					robot.display.print("YELLOW", 2, 11);
 				break;
 			
 			case CALIBRATIONS_SCREEN:
 				//empty
+				if(robot.color == BLUE)
+					robot.display.print("BLUE", 4, 5);
+				else
+					robot.display.print("YELLOW", 4, 5);
 				break;
 			
 			case LIGHT_SENSORS_CALIBRATION_SCREEN:
@@ -538,10 +491,10 @@ int main()
 //				//robot.display.print(robot.ADC_2.read(BALL_SENSOR), 2, 1);
 				
 				robot.display.print("x: ", 2, 1);
-				robot.display.print(robot.getPos().X, 2, 9);
+				robot.display.print(robot.camera.blue.X, 2, 9);
 //				//robot.display.print(robot.camera.yellow.X, 2, 9);
 				robot.display.print("y: ", 3, 1);
-				robot.display.print(robot.getPos().Y, 3, 9);
+				robot.display.print(robot.camera.blue.Y, 3, 9);
 ////				robot.display.print("Ball sens: ", 3, 1);
 ////				robot.display.print(robot.ballSensor.getSensorValue(), 3, 14);
 				//robot.display.print(robot.camera.yellow.Y, 3, 9);
@@ -624,6 +577,7 @@ void setupScreens()
 	robot.display.addEsc(*(new Command("", clb_screenToMain))); 
 	robot.display.addToScreen(*(new Command("Zero IMU", clb_imuSetup)));
 	robot.display.addToScreen(*(new Command("Calibrate IMU", clb_imuCalib)));
+	robot.display.addToScreen(*(new Command("Home Color", clb_colorChange)));
 	//robot.display.addToScreen(*(new Command("Clear PNC", clb_imu_pnc_clear)));
 	//robot.display.addToScreen(*(new Command("Start PNC", clb_imu_pnc_start)));
 	robot.display.addToScreen(*(new Command("Calibrate light sens...", clb_screenToLightSensorsCalibration)));

@@ -41,6 +41,7 @@ class Robot
 		Lidar lidar;
 	
 		double dx, dy;
+		bool color;
 		PL_ADC ADC_1, ADC_2;
 		long long int batteryUpdateTimer;
 		long long int cameraTimer;
@@ -117,9 +118,10 @@ void Robot::init()
 	delay(200);
 	
 	//Initialize camera and line sensors board
+	color = BLUE;
 	initSPI(PERIPH_SPI, MASTER, 8, 8);
 	lineSensors.init(PERIPH_SPI, LINE_SENSORS_SS);
-	camera.init(PERIPH_SPI, CAMERA_SS);
+	camera.init(PERIPH_SPI, CAMERA_SS, color);
 	
 	//Initialize kicker
 	kicker.init(KICKER_BOOSTER_EN, KICKER_BOOSTER_DONE, KICKER_1, KICKER_2);

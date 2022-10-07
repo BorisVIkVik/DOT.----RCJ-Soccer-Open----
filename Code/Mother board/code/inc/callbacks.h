@@ -68,6 +68,12 @@ void clb_screenToCalibrations()
 			robot.imu.setZeroAngle();
 			*/
 		}
+		
+		void clb_colorChange()
+		{
+			robot.color = !robot.color;
+		}
+
 
 		void clb_imu_pnc_clear()
 		{

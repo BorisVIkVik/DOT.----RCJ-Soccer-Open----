@@ -10,12 +10,14 @@
 #include "Errors.h"
 #include "tools.h"
 
+#define BLUE		0
+#define YELLOW	1
 
 class Camera
 {
 	public:
 		Camera();
-		void init(unsigned int spi, uint16_t ss);
+		void init(unsigned int spi, uint16_t ss, bool& color);
 		unsigned int update();
 		uint8_t objects;
 		pair<int, int> ball, blue, yellow;
@@ -23,6 +25,7 @@ class Camera
 	private:
 		unsigned int spi;
 		uint16_t ss;	
+		bool* color;
 		long long int lastRecieve;
 };
 
@@ -38,10 +41,11 @@ Camera::Camera()
 	lastRecieve = millis() - 1000;
 }
 
-void Camera::init(unsigned int spi, uint16_t ss)
+void Camera::init(unsigned int spi, uint16_t ss, bool& color)
 {
 	this->spi = spi;
 	this->ss = ss;
+	this->color = &color;
 		
 	initPin(ss, OUTPUTPP);
 	setPin(ss, 1);
@@ -86,10 +90,20 @@ unsigned int Camera::update()
 		objects = rxData[2];
 		ball.X = (rxData[3] * 2) - 240;
 		ball.Y = (rxData[4] * 2) - 240;
-		yellow.X = (rxData[5] * 2) - 240;
-		yellow.Y = (rxData[6] * 2) - 240;
-		blue.X = (rxData[7] * 2) - 240;
-		blue.Y = (rxData[8] * 2) - 240;
+		if(*color == BLUE)
+		{	
+			yellow.X = (rxData[5] * 2) - 240;
+			yellow.Y = (rxData[6] * 2) - 240;
+			blue.X = (rxData[7] * 2) - 240;
+			blue.Y = (rxData[8] * 2) - 240;
+		}
+		else
+		{
+			blue.X = (rxData[5] * 2) - 240;
+			blue.Y = (rxData[6] * 2) - 240;
+			yellow.X = (rxData[7] * 2) - 240;
+			yellow.Y = (rxData[8] * 2) - 240;
+		}
 		lastRecieve = millis();
 	}
 	else
