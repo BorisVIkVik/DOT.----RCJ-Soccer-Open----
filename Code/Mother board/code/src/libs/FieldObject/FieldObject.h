@@ -36,8 +36,8 @@ class FieldObject
 		posSaver.add(globalPos, time);
 		pair<int, int> oldPos = posSaver.pop(time - calcTime);
 
-		v.X = (globalPos.X - oldPos.X)/(calcTime/1000);
-		v.Y = (globalPos.Y - oldPos.Y)/(calcTime/1000);
+		v.X = (globalPos.X - oldPos.X)/(double(calcTime)/1000);
+		v.Y = (globalPos.Y - oldPos.Y)/(double(calcTime)/1000);
 
 		speedSaver.add(v, time);
     }

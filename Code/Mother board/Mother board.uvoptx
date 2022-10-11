@@ -380,6 +380,41 @@
           <WinNumber>1</WinNumber>
           <ItemText>*color,0x0A</ItemText>
         </Ww>
+        <Ww>
+          <count>46</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>ball,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>47</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>ballV</ItemText>
+        </Ww>
+        <Ww>
+          <count>48</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>globalInput</ItemText>
+        </Ww>
+        <Ww>
+          <count>49</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>localInput</ItemText>
+        </Ww>
+        <Ww>
+          <count>50</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>oldPos,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>51</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>globalPos</ItemText>
+        </Ww>
+        <Ww>
+          <count>52</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>v</ItemText>
+        </Ww>
       </WatchWindow1>
       <WatchWindow2>
         <Ww>

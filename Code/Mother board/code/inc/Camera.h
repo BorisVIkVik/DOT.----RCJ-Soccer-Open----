@@ -90,7 +90,7 @@ unsigned int Camera::update()
 		objects = rxData[2];
 		ball.X = (rxData[3] * 2) - 240;
 		ball.Y = (rxData[4] * 2) - 240;
-		if(*color == BLUE)
+		if(*color == YELLOW)
 		{	
 			yellow.X = (rxData[5] * 2) - 240;
 			yellow.Y = (rxData[6] * 2) - 240;

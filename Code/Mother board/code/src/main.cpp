@@ -489,12 +489,16 @@ int main()
 //				robot.display.print("GZ: ", 3, 10);
 //				robot.display.print(robot.imu.getZg(), 3, 14);
 //				//robot.display.print(robot.ADC_2.read(BALL_SENSOR), 2, 1);
+				robot.display.print("bX:", 0, 1);
+				robot.display.print(func.ball.v.X, 0, 6);
+				robot.display.print("bY:", 1, 1);
+				robot.display.print(func.ball.v.Y, 1, 6);
 				
-				robot.display.print("x: ", 2, 1);
-				robot.display.print(robot.camera.blue.X, 2, 9);
+				//robot.display.print("x: ", 2, 1);
+				//robot.display.print(robot.camera.blue.X, 2, 9);
 //				//robot.display.print(robot.camera.yellow.X, 2, 9);
-				robot.display.print("y: ", 3, 1);
-				robot.display.print(robot.camera.blue.Y, 3, 9);
+				//robot.display.print("y: ", 3, 1);
+				//robot.display.print(robot.camera.blue.Y, 3, 9);
 ////				robot.display.print("Ball sens: ", 3, 1);
 ////				robot.display.print(robot.ballSensor.getSensorValue(), 3, 14);
 				//robot.display.print(robot.camera.yellow.Y, 3, 9);

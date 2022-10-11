@@ -54,6 +54,7 @@ class Functional:  public BaseFunctional
 		FieldObject ball;
 		int32_t trajectoryTime;
 		int8_t state;
+		pair<double, double> ballV;
 		Functional(Robot* RC):BaseFunctional(RC)
 		{
 			kickTime = 0;
@@ -85,7 +86,8 @@ class Functional:  public BaseFunctional
 			
 			//--------------------------
 			stateSIMP = STATE_SIMP_FIND;
-			startTimer - millis();
+			startTimer = millis();
+			ballV = make_pair(0,0);
 		}
 		
 		
@@ -488,7 +490,7 @@ class Functional:  public BaseFunctional
 		int lineB = 0;
 		int lineC = 0;
 		//TEST AREA-------------------------------------------------------------
-		int timeBack = 200;
+			
 		if(!goalkeeperStop && wasNotSeen)
 		{
 			old = ball.globalPos;
@@ -501,7 +503,10 @@ class Functional:  public BaseFunctional
 			predictTime = millis();
 		}
 		
-		if(distanceVec(old, ball.globalPos) > 15 && !strike && !goalkeeperStop)
+//		int curBallSpeed = sqrt(double(ballV.X * ballV.X + ballV.Y * ballV.Y)); 
+//		getRobotClass()->display.print("b:", 3, 1); 
+//		getRobotClass()->display.print(curBallSpeed, 3, 6); 
+		if(/*curBallSpeed > 100*/  distanceVec(old, ball.globalPos) > 15 && !strike && !goalkeeperStop)
 		{
 			strikeTime = millis();
 			strike = false;
@@ -651,7 +656,7 @@ class Functional:  public BaseFunctional
 //					if(res._y > 0)
 //						res._mod = 0.7;
 //					move2(res, 0, 4);
-					move2(genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 1.3, 'g'), 0, 4);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
+					move2(genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 1.3, 'g'), 5, 400);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
 				}
 				else
 				{
@@ -659,7 +664,7 @@ class Functional:  public BaseFunctional
 //					if(res._y > 0)
 //						res._mod = 0.7;
 //					move2(res, 0, 4);
-					move2(genVTMGlobalPoint(make_pair(0, -70), getRobotClass()->getPos(), 1.0, 'g'), 0, 4);
+					move2(genVTMGlobalPoint(make_pair(0, -65), getRobotClass()->getPos(), 0.7, 'g'), 5, 400);
 					strikeTime = millis();
 					strike = false;
 					wasNotSeen = true;
@@ -1419,7 +1424,7 @@ class Functional:  public BaseFunctional
 		uint32_t dt;
 		uint32_t oldTime;
 		PairSaver robotAngle, robotVelocity;
-		pair<double, double> robotA, robotV, ballV;
+		pair<double, double> robotA, robotV;
 		pair<double, double> robotGlobalPos;
 		uint32_t attackerStopTime;
 		bool attackerStop;
