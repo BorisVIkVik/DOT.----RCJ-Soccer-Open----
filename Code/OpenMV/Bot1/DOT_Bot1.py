@@ -114,13 +114,13 @@ def realDistance(x, coordsArr):
 import sensor, image, time, pyb
 from math import sqrt, atan2, cos, sin
 from pyb import SPI
-EXPOSURE_TIME_SCALE = 0.5
+EXPOSURE_TIME_SCALE = 0.4
 
 
 
-threshold_blue =    (13, 42, -128, 16, -128, -23)#(47, 100, -30, 48, 42, 127) yellow
-threshold_yellow =  (3, 96, 3, 127, 34, 127)#(1, 9, -1, 11, -27, -7)#(2, 23, 5, 72, -78, -19)#(12, 100, 14, 127, -104, -33) blue
-threshold_ball =    (41, 66, 53, 127, 26, 51)#(55, 100, 53, 127, -9, 127)#(50, 65, 49, 127, 23, 127)
+threshold_blue =    (3, 31, -56, 43, -47, -14)#(47, 100, -30, 48, 42, 127) yellow
+threshold_yellow =  (1, 99, 16, 52, 40, 127)#(1, 9, -1, 11, -27, -7)#(2, 23, 5, 72, -78, -19)#(12, 100, 14, 127, -104, -33) blue
+threshold_ball =    (10, 90, 51, 127, 39, 127)#(55, 100, 53, 127, -9, 127)#(50, 65, 49, 127, 23, 127)
 
 
 cX = 163  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
@@ -196,7 +196,7 @@ while(True):
             blobsPreviosMas = yellowBlob.area()
         countYellow+=1
     try:
-        img.draw_rectangle(blobsYellow[biggestYellowBlob].rect())
+        #img.draw_rectangle(blobsYellow[biggestYellowBlob].rect())
         img.draw_cross(blobsYellow[biggestYellowBlob].cx(),blobsYellow[biggestYellowBlob].cy(), 6)
     except: pass
     maxLeft = 320
@@ -264,10 +264,10 @@ while(True):
             biggestBlueBlob = countBlue
             blobsPreviosMas = blueBlob.area()
         countBlue+=1
-    try:
-        img.draw_rectangle(blobsBlue[biggestBlueBlob].rect())
-      #  img.draw_cross(blobsBlue[biggestBlueBlob].cx(),blobsBlue[biggestBlueBlob].cy(), 6)
-    except: pass
+    #try:
+        #img.draw_rectangle(blobsBlue[biggestBlueBlob].rect())
+        #img.draw_cross(blobsBlue[biggestBlueBlob].cx(),blobsBlue[biggestBlueBlob].cy(), 6)
+    #except: pass
     maxLeft = 320
     maxRight = 0
     count = 0
@@ -333,7 +333,7 @@ while(True):
             blobsPreviosMas = ballBlob.area()
         countBall+=1
     try:
-        img.draw_rectangle(blobsBall[biggestBallBlob].rect())
+        #img.draw_rectangle(blobsBall[biggestBallBlob].rect())
         img.draw_cross(blobsBall[biggestBallBlob].cx(),blobsBall[biggestBallBlob].cy(), (255,255,255))
     except: pass
 

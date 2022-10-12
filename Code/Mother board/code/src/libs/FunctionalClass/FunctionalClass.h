@@ -48,6 +48,7 @@ class BaseFunctional
 				VectorToMove 				trajectoryFollowingDots(int16_t& oldPosIndex, double distance, char side, double maxVecSpeed);
 				int16_t 						findStartOfTrajectory(pair<int16_t, int16_t> pos);
 				VectorToMove 				Parabola(pair<int16_t, int16_t> toGoCoords, pair<int16_t, int16_t> robotCoords, double maxVecMod);
+				VectorToMove 				sideParabola(pair<int16_t, int16_t> toGoCoords, pair<int16_t, int16_t> robotCoords, double maxVecMod);
     private:
 				double errorOld;
         Robot* _RC;
@@ -204,3 +205,22 @@ VectorToMove BaseFunctional::Parabola(pair<int16_t, int16_t> toGoCoords, pair<in
   return res;
 }
 
+VectorToMove BaseFunctional::sideParabola(pair<int16_t, int16_t> toGoCoords, pair<int16_t, int16_t> robotCoords, double maxVecMod)
+{
+	double ang = 0;
+	if(toGoCoords.Y - robotCoords.Y != 0)
+	{
+		ang = atan2(((toGoCoords.X - robotCoords.X) > 0 ? 1.0 : -1.0), ((toGoCoords.X - robotCoords.X) > 0 ? -1.0 : 1.0) * double(double((robotCoords.Y - toGoCoords.Y)*0.01) / double(robotCoords.X - toGoCoords.X))) * 57.3;
+		//ang = atan2(((toGoCoords.Y - robotCoords.Y) > 0 ? 1.0 : -1.0) * double(double((robotCoords.X - toGoCoords.X)*2) / double(robotCoords.Y - toGoCoords.Y)), ((toGoCoords.Y - robotCoords.Y) > 0 ? -1.0 : 1.0)) * 57.3;
+	}
+	else
+	{
+		if(toGoCoords.X >= robotCoords.X)
+			ang = 0*57.3;
+		else
+			ang = PI*57.3;
+	}
+	double vecMod = maxVecMod;
+	VectorToMove res(sin(double(ang/57.3))*vecMod, cos(double(ang/57.3))*vecMod, vecMod);
+  return res;
+}
