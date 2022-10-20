@@ -65,8 +65,9 @@ unsigned int Camera::update()
 	{
 		if( millis() - timeout > 10)
 		{
-			//error = CAMERA_CONNECTION_ERROR;
-			break;
+//			error = CAMERA_CONNECTION_ERROR;
+//			setPin(LED_2, 0);
+			break;//return error;
 		}
 		setPin(this->ss, 0);
 		startByte = writeSPI(spi, 47);

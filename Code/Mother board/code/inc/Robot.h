@@ -388,9 +388,10 @@ void Robot::wait(uint32_t t)
 			GLOBAL_ERROR |= battery.update();
 			batteryUpdateTimer = millis();
 		}
-		if(millis() - cameraTimer > 30)
+		if(millis() - cameraTimer > 10)
 		{
 			GLOBAL_ERROR |= camera.update();
+			cameraTimer = millis();
 		}
 		if(millis() - driverTimer > 250)
 		{
