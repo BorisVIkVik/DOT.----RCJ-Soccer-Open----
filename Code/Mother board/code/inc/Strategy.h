@@ -30,7 +30,7 @@
 Border b1(0.3, 'x', '-', -40, -45, -90, 90);
 Border b2(0.3, 'x', '+', 40, 45, -90, 90);
 Border b3(0.3, 'y', '-', -40, -50, -30, 30);
-Border b4(0.3, 'y', '+', 40, 50, -30, 30);
+Border b4(0.3, 'y', '+', 35, 45, -30, 30);
 
 //Border b5('x', '+', -20, -15, -90, -60);
 //Border b6('x', '-', 20, 15, -90, -60); 
@@ -57,6 +57,8 @@ class Functional:  public BaseFunctional
 		pair<double, double> ballV;
 		Functional(Robot* RC):BaseFunctional(RC)
 		{
+			oldAngleDif = 0;
+			angleDifTimer = 0;
 			kickTime = 0;
 			str1Timeout = 0;
 			state = 0;
@@ -179,6 +181,7 @@ class Functional:  public BaseFunctional
 		
 		void halfDefender()
 		{
+			/*
 			//getRobotClass()->display.print("S:", 1, 10);
 			//getRobotClass()->display.print(state, 1, 13);
 			
@@ -214,7 +217,7 @@ class Functional:  public BaseFunctional
 				{
 					
 					case STATE_STOP:
-						acceleration = 2;
+						acceleration = 4;
 						speedRot = 400;
 						angleToGo = 0;
 						res = genVTMGlobalPoint(make_pair(0, -70), getRobotClass()->getPos(), 1.0, 'a');
@@ -305,7 +308,10 @@ class Functional:  public BaseFunctional
 						//pair<int, int> newBallCoords = make_pair(ball.globalPos.X 
 						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 1.5, 'a');
 						adduction(angleDif);
-						res._x += angleDif * 0.3;
+						double angleDifW = (angleDif - oldAngleDif) / ((millis() - angleDifTimer)/1000);
+						oldAngleDif = angleDif;
+						angleDifTimer = millis(); 
+						res._x -= angleDifW * 0.5;
 						dribblerSpeed = 500;
 					
 						adduction(angleDif);
@@ -391,6 +397,7 @@ class Functional:  public BaseFunctional
 				getRobotClass()->motorDrivers.disableMotor(4);
 				kickSide = true;
 			}
+			*/
 		}
 		
 		
@@ -435,13 +442,13 @@ class Functional:  public BaseFunctional
 				{
 					
 					case STATE_STOP:
-						acceleration = 0.5;
+						acceleration = 4;
 						speedRot = 400;
 						angleToGo = 0;
 						res._x = 0;
 						res._y = 0;
 						res._mod = 0;
-						dribblerSpeed = 0;
+						//dribblerSpeed = 0;
 					
 						if(!attackerStop)
 						{
@@ -502,14 +509,18 @@ class Functional:  public BaseFunctional
 						break;
 					case STATE_RUSH_TO_GOAL:
 						setPin(LED_3, 1);
-						acceleration = 4;
-						speedRot = 500;
+						acceleration = 2;
+						speedRot = 1000;
 						angleToGo = angToGoalBlue;
 						//pair<int, int> newBallCoords = make_pair(ball.globalPos.X 
 						res = genVTMGlobalPoint(ball.globalPos, getRobotClass()->getPos(), 1.5, 'a');
 						adduction(angleDif);
-						res._x += angleDif * 0.3;
-						dribblerSpeed = 500;
+						double angleDifW = (angleDif - oldAngleDif) / ((millis() - angleDifTimer)/1000);
+						oldAngleDif = angleDif;
+						angleDifTimer = millis(); 
+						res._x += angleDifW * 0.5;
+						//res._x -= angleDif * 0.3;
+						dribblerSpeed = 600;
 					
 						adduction(angleDif);
 						if(abs(angleDif) >= 30)
@@ -522,7 +533,7 @@ class Functional:  public BaseFunctional
 						acceleration = 0.5;
 						followDots = true;
 						speedRot = 50;
-						dribblerSpeed = -250;
+						dribblerSpeed = -350;
 						angleToGo = 180 + angToGoalBlue;
 						double flex = (millis() - trajectoryTime) * SPEED_TRAJ_FOLLOW_CM_MILLIS * 0.05;
 						res = trajectoryFollowingDots(oldPosIndex, flex, side, 0.45);
@@ -1638,6 +1649,8 @@ class Functional:  public BaseFunctional
 	
 	private:
 		//Attacker
+		double oldAngleDif;
+		double angleDifTimer;
 		int16_t oldPosIndex;
 		uint32_t time;
 		uint32_t dt;
