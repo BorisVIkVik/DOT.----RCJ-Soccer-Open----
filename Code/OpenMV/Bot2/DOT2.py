@@ -117,13 +117,13 @@ EXPOSURE_TIME_SCALE = 0.4
 
 
 
-threshold_blue =    (38, 56, -15, 10, -51, -25)#(47, 100, -30, 48, 42, 127) yellow
-threshold_yellow =  (37, 80, -11, 25, 14, 87)#(1, 9, -1, 11, -27, -7)#(2, 23, 5, 72, -78, -19)#(12, 100, 14, 127, -104, -33) blue
-threshold_ball =    (51, 76, 41, 73, 14, 36)#(55, 100, 53, 127, -9, 127)#(50, 65, 49, 127, 23, 127)
+threshold_blue =    (32, 60, -30, 17, -62, -29)#(47, 100, -30, 48, 42, 127) yellow
+threshold_yellow =  (33, 87, -10, 24, 23, 57)#(1, 9, -1, 11, -27, -7)#(2, 23, 5, 72, -78, -19)#(12, 100, 14, 127, -104, -33) blue
+threshold_ball =    (60, 80, 25, 60, 5, 24)#(55, 100, 53, 127, -9, 127)#(50, 65, 49, 127, 23, 127)
 
 
-cX = 162  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
-cY = 119  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
+cX = 163  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
+cY = 115  # bot 111111111111111111111111111111111111111111111111111111111111111111111111
 
 buf = bytearray(10)
 ballX = 0
@@ -170,6 +170,15 @@ def crc8(data, len):
 while(True):
     clock.tick()
     img = sensor.snapshot()#.gamma_corr(gamma = 0.3, contrast = 10.0, brightness = 0.0)#.negate()
+
+    #rb = 120
+    #lb = rb - 10
+    #lb2, rb2 = lb ** 2, rb ** 2
+    #for x in range(img.width()):
+    #    for y in range(img.height()):
+            #dstP = (x - cX) ** 2 + (y - cY) ** 2
+            #if (dstP >= lb2 and dstP <= rb2):
+               #img.set_pixel(x, y, (0, 0, 0))
 
 
 #---Yellow-Goal-Values-------------------------
@@ -328,7 +337,8 @@ while(True):
     countBall =0
     blobsBall = []
     for ballBlob in img.find_blobs([threshold_ball],roi=(0,0,319,239), pixels_threshold=5, area_threshold=5, merge=True, margin = 3):
-        if not(abs(ballBlob.cx() - cX) < 20 and abs(ballBlob.cy() - cY) < 20):
+        dist = sqrt((ballBlob.cx() - cX)**2 + (ballBlob.cy() - cY)**2)
+        if (20 < dist < 110):
             blobsBall.append(ballBlob)
         if(ballBlob.area() > blobsPreviousMas):
             biggestballBlob = countBall
