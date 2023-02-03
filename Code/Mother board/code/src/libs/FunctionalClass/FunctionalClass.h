@@ -165,11 +165,11 @@ VectorToMove BaseFunctional::trajectoryFollowingDots(int16_t& oldPosIndex, doubl
     VectorToMove res(0, 0, 0);
 		if (side == 'r')
 		{
-			res = genVTMGlobalPoint(make_pair(trajectory1[toGoPosIndex][0] , trajectory1[toGoPosIndex][1] - 8), _RC->getPos(), vecMod, 'a');
+			res = genVTMGlobalPoint(make_pair(trajectory1[toGoPosIndex][0] , trajectory1[toGoPosIndex][1] - 15), _RC->getPos(), vecMod, 'a');
 		}
 		else
 		{
-			res = genVTMGlobalPoint(make_pair(-trajectory1[toGoPosIndex][0] - 5, trajectory1[toGoPosIndex][1] - 8), _RC->getPos(), vecMod, 'a');
+			res = genVTMGlobalPoint(make_pair(-trajectory1[toGoPosIndex][0] - 5, trajectory1[toGoPosIndex][1] - 15), _RC->getPos(), vecMod, 'a');
 		}
     return res;
 }

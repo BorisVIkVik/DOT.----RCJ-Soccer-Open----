@@ -543,7 +543,7 @@ class Functional:  public BaseFunctional
 						{
 							if(side == 'r')
 							{
-								if(checkBounds(make_pair(trajectory1[TRAJECTORY1_STOP][0] -2, trajectory1[TRAJECTORY1_STOP][1]-8-2), make_pair(trajectory1[TRAJECTORY1_STOP][0] +2, trajectory1[TRAJECTORY1_STOP][1] - 8+2), getRobotClass()->getPos()))
+								if(checkBounds(make_pair(trajectory1[TRAJECTORY1_STOP][0] -2, trajectory1[TRAJECTORY1_STOP][1]-15-2), make_pair(trajectory1[TRAJECTORY1_STOP][0] +2, trajectory1[TRAJECTORY1_STOP][1] - 15+2), getRobotClass()->getPos()))
 								{
 									first = true;
 									getRobotClass()->kicker.initCharge();
@@ -556,7 +556,7 @@ class Functional:  public BaseFunctional
 							}
 							else
 							{
-								if(checkBounds(make_pair(-trajectory1[TRAJECTORY1_STOP][0] - 5-2, trajectory1[TRAJECTORY1_STOP][1]-8-2), make_pair(-trajectory1[TRAJECTORY1_STOP][0] -5+2, trajectory1[TRAJECTORY1_STOP][1] - 8+2), getRobotClass()->getPos()))
+								if(checkBounds(make_pair(-trajectory1[TRAJECTORY1_STOP][0] - 5-2, trajectory1[TRAJECTORY1_STOP][1]-15-2), make_pair(-trajectory1[TRAJECTORY1_STOP][0] -5+2, trajectory1[TRAJECTORY1_STOP][1] - 15+2), getRobotClass()->getPos()))
 								{
 									first = true;
 									getRobotClass()->kicker.initCharge();
@@ -630,7 +630,7 @@ class Functional:  public BaseFunctional
 //							
 //						}
 						
-						angleToGo = angleToGo = 180 + angToGoalBlue - (side == 'r' ? 30 : -30);
+						angleToGo = angleToGo = 180 + angToGoalBlue - (side == 'r' ? 45 : -20);
 //						if(kickSide)
 //							angleToGo = angleToGo = 180 + angToGoalBlue - (side == 'r' ? -34 : -35);
 //						else
