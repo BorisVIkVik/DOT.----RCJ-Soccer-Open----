@@ -630,7 +630,7 @@ class Functional:  public BaseFunctional
 //							
 //						}
 						
-						angleToGo = angleToGo = 180 + angToGoalBlue - (side == 'r' ? 45 : -20);
+						angleToGo = angleToGo = 180 + angToGoalBlue - (side == 'r' ? 45 : -35);
 //						if(kickSide)
 //							angleToGo = angleToGo = 180 + angToGoalBlue - (side == 'r' ? -34 : -35);
 //						else
@@ -886,7 +886,7 @@ class Functional:  public BaseFunctional
 //					if(res._y > 0)
 //						res._mod = 0.7;
 //					move2(res, 0, 4);
-					move2(genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 1.5, 'g'), 0, 4, 400);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
+					move2(genVTMGlobalPoint(make_pair(toGo.x, toGo.y), getRobotClass()->getPos(), 1.0, 'g'), 0, 4, 400);//-atan2(camBall.pos.X, camBall.pos.Y)*57.3);
 				}
 				else
 				{
@@ -894,7 +894,7 @@ class Functional:  public BaseFunctional
 //					if(res._y > 0)
 //						res._mod = 0.7;
 //					move2(res, 0, 4);
-					move2(genVTMGlobalPoint(make_pair(0, -65), getRobotClass()->getPos(), 0.6, 'g'), 0, 4, 400);
+					move2(genVTMGlobalPoint(make_pair(0, -65), getRobotClass()->getPos(), 0.3, 'g'), 0, 4, 400);
 					strikeTime = millis();
 					strike = false;
 					wasNotSeen = true;
