@@ -27,10 +27,10 @@
 
 #define STATE_TO_OUR_GOAL					20
 
-Border b1(0.3, 'x', '-', -40, -45, -90, 90);
-Border b2(0.3, 'x', '+', 40, 45, -90, 90);
-Border b3(0.3, 'y', '-', -40, -50, -30, 30);
-Border b4(0.3, 'y', '+', 35, 45, -30, 30);
+Border b1(0.3, 'x', '-', -50, -55, -90, 90);
+Border b2(0.3, 'x', '+', 50, 55, -90, 90);
+Border b3(0.3, 'y', '-', -45, -55, -30, 30);
+Border b4(0.3, 'y', '+', 40, 50, -30, 30);
 
 //Border b5('x', '+', -20, -15, -90, -60);
 //Border b6('x', '-', 20, 15, -90, -60); 
@@ -630,7 +630,7 @@ class Functional:  public BaseFunctional
 //							
 //						}
 						
-						angleToGo = angleToGo = 180 + angToGoalBlue - (side == 'r' ? 45 : -35);
+						angleToGo = angleToGo = 180 + angToGoalBlue - (side == 'r' ? 55 : -35);
 //						if(kickSide)
 //							angleToGo = angleToGo = 180 + angToGoalBlue - (side == 'r' ? -34 : -35);
 //						else
